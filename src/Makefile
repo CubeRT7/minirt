@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/05/31 00:55:17 by minjungk         ###   ########.fr        #
+#    Updated: 2023/05/31 08:23:38 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,13 @@ CPPFLAGS	= -I.
 LDFLAGS		= -L.
 LDLIBS		= -lm
 
-CPPFLAGS	= -I../external/MLX42/include
-LDFLAGS		= -L../external/MLX42/build
-LDLIBS		= -lmlx42
+CPPFLAGS	+= -I../external/MLX42/include
+LDFLAGS		+= -L../external/MLX42/build
+LDLIBS		+= -lmlx42
 
-CPPFLAGS	= -I../lib/libft
-LDFLAGS		= -L../lib/libft
-LDLIBS		= -lft
+CPPFLAGS	+= -I../lib/libft
+LDFLAGS		+= -L../lib/libft
+LDLIBS		+= -lft
 
 ifneq ($(shell uname), Darwin)
 	CPPFLAGS	+= -D__LINUX__
@@ -38,7 +38,7 @@ else
 endif
 
 ifdef	DEBUG
-	CPPFLAGS	= -D__DEBUG__
+	CPPFLAGS	+= -D__DEBUG__
 	CFLAGS		= -g -O0 -ffast-math
 endif
 
