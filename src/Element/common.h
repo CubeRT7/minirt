@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.c                                           :+:      :+:    :+:   */
+/*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 08:25:17 by minjungk         ###   ########.fr       */
+/*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
+/*   Updated: 2023/05/31 07:17:19 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include <stdio.h>
+#ifndef COMMON_H
+# define COMMON_H
+# include "libft.h"
 
-int	main(int argc, char **argv)
+struct s_rgb
 {
-	struct s_scene	scene;
+	int	r;
+	int	g;
+	int	b;
+};
 
-	if (parse(&scene, argc, argv))
-	{
-		perror("Error\n");
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
-}
+struct s_coordinate
+{
+	float	x;
+	float	y;
+	float	z;
+};
+
+#endif

@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/05/31 08:23:38 by minjungk         ###   ########.fr        #
+#    Updated: 2023/05/31 08:22:54 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,16 @@ endif
 # **************************************************************************** #
 MINIRT = miniRT
 
+CPPFLAGS	+= -Iparse
+
 MINIRT_SRCS = \
+	Element/AmbientLight/ambient_light.c \
+	Element/Camera/camera.c \
+	Element/Light/light.c \
+	Element/Plane/plane.c \
+	Element/Sphere/sphere.c \
+	Element/Cylinder/cylinder.c \
+	parse/parse.c \
 	$(MINIRT).c
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)
 MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)

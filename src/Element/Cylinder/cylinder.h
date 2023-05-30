@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.c                                           :+:      :+:    :+:   */
+/*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 08:25:17 by minjungk         ###   ########.fr       */
+/*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
+/*   Updated: 2023/05/31 08:06:02 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include <stdio.h>
+#ifndef CYLINDER_H
+# define CYLINDER_H
+# include "../common.h"
 
-int	main(int argc, char **argv)
+typedef struct s_cylinder
 {
-	struct s_scene	scene;
+	struct s_coordinate	center;
+	struct s_coordinate	vector;
+	float				diameter;
+	float				height;
+	struct s_rgb		rgb;
+}	t_cylinder;
 
-	if (parse(&scene, argc, argv))
-	{
-		perror("Error\n");
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
-}
+extern int	parse_cylinder(t_list **head, char **argv);
+extern void	clear_cylinder(void *param);
+
+#endif 
