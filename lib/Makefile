@@ -5,34 +5,21 @@
 #                                                     +:+ +:+         +:+      #
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/30 21:20:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/05/31 00:55:00 by minjungk         ###   ########.fr        #
+#    Created: 2023/05/30 21:39:07 by minjungk          #+#    #+#              #
+#    Updated: 2023/05/30 22:22:56 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .DEFAULT_ON_ERROR:
 .DEFAULT_GOAL := all
 
-MINIRT = miniRT
+MAKEFLAGS	= -j 8
 
-all bonus $(MINIRT):
-	$(MAKE) -C external
-	$(MAKE) -C lib
-	$(MAKE) -C src $@
-	ln -sf ./src/$(MINIRT) $(MINIRT)
+LIBS = libft/libft.a
 
-clean:
-	$(MAKE) -C external $@
-	$(MAKE) -C lib $@
-	$(MAKE) -C src $@
+all bonus clean fclean re:
+	@for dir in $(dir $(LIBS)); do \
+		$(MAKE) -C $$dir $@; \
+	done
 
-fclean:
-	$(MAKE) -C external $@
-	$(MAKE) -C lib $@
-	$(MAKE) -C src $@
-	$(RM) $(MINIRT)
-
-re: fclean
-	$(MAKE) $(MINIRT)
-
-.PHONY: all clean fclean re bonus $(MINIRT)
+.PHONY: all clean fclean re bonus
