@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/01 02:40:29 by minjungk         ###   ########.fr        #
+#    Updated: 2023/06/01 03:25:34 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)
 MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)
 -include $(MINIRT_DEPS)
 
-$(MINIRT): $(MINIRT_OBJS)
+$(MINIRT): $(MINIRT_OBJS) ../lib/libft/libft.a ../lib/libcustom/libcustom.a
 
 # **************************************************************************** #
 
