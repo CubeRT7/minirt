@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/05/31 20:47:57 by minjungk         ###   ########.fr        #
+#    Updated: 2023/06/01 02:40:29 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,10 @@ LDLIBS		= -lm
 CPPFLAGS	+= -I../external/MLX42/include
 LDFLAGS		+= -L../external/MLX42/build
 LDLIBS		+= -lmlx42
+
+CPPFLAGS	+= -I../lib/libcustom
+LDFLAGS		+= -L../lib/libcustom
+LDLIBS		+= -lcustom
 
 CPPFLAGS	+= -I../lib/libft
 LDFLAGS		+= -L../lib/libft
