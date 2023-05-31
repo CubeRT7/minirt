@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/05/31 08:22:54 by minjungk         ###   ########.fr        #
+#    Updated: 2023/05/31 20:47:57 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ MINIRT = miniRT
 CPPFLAGS	+= -Iparse
 
 MINIRT_SRCS = \
+	Element/common.c \
 	Element/AmbientLight/ambient_light.c \
 	Element/Camera/camera.c \
 	Element/Light/light.c \
