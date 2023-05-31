@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 08:06:02 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:22:31 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 typedef struct s_cylinder
 {
-	struct s_coordinate	center;
-	struct s_coordinate	vector;
+	struct s_vector4	coordinate;
+	struct s_vector4	axis;
+	struct s_rgb		rgb;
 	float				diameter;
 	float				height;
-	struct s_rgb		rgb;
 }	t_cylinder;
 
 extern int	parse_cylinder(t_list **head, char **argv);

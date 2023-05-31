@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 08:06:04 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:21:44 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 
 typedef struct s_light
 {
-	struct s_coordinate	viewport;
-	float				radio;
+	struct s_vector4	coordinate;
+	struct s_vector4	asix;
 	struct s_rgb		rgb;
+	float				radio;
 }	t_light;
 
 extern int	parse_light(t_list **head, char **argv);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 08:06:08 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:06:56 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 typedef struct s_plane
 {
-	struct s_coordinate	point;
-	struct s_coordinate	vector;
+	struct s_vector4	coordinate;
+	struct s_vector4	axis;
 	struct s_rgb		rgb;
 }	t_plane;
 

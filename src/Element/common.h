@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 07:17:19 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:40:59 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 # define COMMON_H
 # include "libft.h"
 
-struct s_rgb
+typedef struct s_rgb
 {
 	int	r;
 	int	g;
 	int	b;
-};
+}	t_rgb;
 
-struct s_coordinate
+typedef struct s_vector4
 {
 	float	x;
 	float	y;
 	float	z;
-};
+	float	w;
+}	t_vector4;
 
 #endif

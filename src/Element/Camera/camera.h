@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 08:05:59 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:16:59 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 typedef struct s_camera
 {
-	struct s_coordinate	viewport;
-	struct s_coordinate	vector;
-	int					fov;
+	struct s_vector4	coordinate;
+	struct s_vector4	axis;
+	float				fov;
 }	t_camera;
 
 extern int	parse_camera(t_list **head, char **argv);
