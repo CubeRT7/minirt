@@ -3,6 +3,7 @@
 .vscode
 .DS_Store*
 external/MLX42/build
+miniRT
 
 # Object files
 *.o
