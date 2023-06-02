@@ -6,11 +6,21 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 20:29:41 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 21:13:12 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ambient_light.h"
+
+void	debug_ambient_light(void *param)
+{
+	struct s_ambient_light *const	c = param;
+
+	if (c == NULL || DEBUG == 0)
+		return ;
+	printf("%s: ratio[%f]\n", __func__, c->ratio);
+	printf("%s: rgb[%d, %d, %d]\n", __func__, c->rgb.r, c->rgb.g, c->rgb.b);
+}
 
 int	parse_ambient_light(t_list **head, char **argv)
 {
@@ -29,6 +39,7 @@ int	parse_ambient_light(t_list **head, char **argv)
 			break ;
 		if (!(0.0 <= content->ratio && content->ratio <= 1.0))
 			break ;
+		debug_ambient_light(content);
 		errno = 0;
 		ft_lstadd_back(head, node);
 		return (EXIT_SUCCESS);

@@ -6,11 +6,23 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 19:32:53 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 21:15:48 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "light.h"
+
+void	debug_light(void *param)
+{
+	struct s_light *const	c = param;
+
+	if (c == NULL || DEBUG == 0)
+		return ;
+	printf("%s: coordinate[%f, %f, %f]\n", __func__,
+		c->coordinate.x, c->coordinate.y, c->coordinate.z);
+	printf("%s: ratio[%f]\n", __func__, c->ratio);
+	printf("%s: rgb[%d, %d, %d]\n", __func__, c->rgb.r, c->rgb.g, c->rgb.b);
+}
 
 int	parse_light(t_list **head, char **argv)
 {
@@ -31,6 +43,7 @@ int	parse_light(t_list **head, char **argv)
 			break ;
 		if (argv[2] && parse_rgb(&content->rgb, argv[2]))
 			break ;
+		debug_light(content);
 		errno = 0;
 		ft_lstadd_back(head, node);
 		return (EXIT_SUCCESS);

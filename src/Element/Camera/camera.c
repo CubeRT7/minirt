@@ -6,11 +6,23 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 19:25:11 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 21:13:20 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
+
+void	debug_camera(void *param)
+{
+	struct s_camera *const	c = param;
+
+	if (c == NULL || DEBUG == 0)
+		return ;
+	printf("%s: coordinate[%f, %f, %f]\n", __func__,
+		c->coordinate.x, c->coordinate.y, c->coordinate.z);
+	printf("%s: axis[%f, %f, %f]\n", __func__, c->axis.x, c->axis.y, c->axis.z);
+	printf("%s: fov[%f]\n", __func__, c->fov);
+}
 
 int	parse_camera(t_list **head, char **argv)
 {
@@ -31,6 +43,7 @@ int	parse_camera(t_list **head, char **argv)
 		content->fov = ft_strtof(argv[2], NULL);
 		if (!(0.0 <= content->fov && content->fov <= 180.0))
 			break ;
+		debug_camera(content);
 		errno = 0;
 		ft_lstadd_back(head, node);
 		return (EXIT_SUCCESS);

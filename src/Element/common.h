@@ -6,13 +6,14 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 20:23:26 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:50:21 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMON_H
 # define COMMON_H
 # include "libcustom.h"
+# include <stdio.h>
 
 typedef struct s_rgb
 {

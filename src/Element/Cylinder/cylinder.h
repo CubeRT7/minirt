@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 20:31:12 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 21:01:56 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_cylinder
 	float				height;
 }	t_cylinder;
 
+extern void	debug_cylinder(void *param);
 extern int	parse_cylinder(t_list **head, char **argv);
 
 #endif 

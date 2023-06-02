@@ -6,11 +6,23 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 19:32:59 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 21:15:54 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plane.h"
+
+void	debug_plane(void *param)
+{
+	struct s_plane *const	c = param;
+
+	if (c == NULL || DEBUG == 0)
+		return ;
+	printf("%s: coordinate[%f, %f, %f]\n", __func__,
+		c->coordinate.x, c->coordinate.y, c->coordinate.z);
+	printf("%s: axis[%f, %f, %f]\n", __func__, c->axis.x, c->axis.y, c->axis.z);
+	printf("%s: rgb[%d, %d, %d]\n", __func__, c->rgb.r, c->rgb.g, c->rgb.b);
+}
 
 int	parse_plane(t_list **head, char **argv)
 {
@@ -30,6 +42,7 @@ int	parse_plane(t_list **head, char **argv)
 			break ;
 		if (parse_rgb(&content->rgb, argv[2]))
 			break ;
+		debug_plane(content);
 		errno = 0;
 		ft_lstadd_back(head, node);
 		return (EXIT_SUCCESS);

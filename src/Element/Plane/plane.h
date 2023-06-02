@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 20:31:17 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 21:02:03 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_plane
 	struct s_rgb		rgb;
 }	t_plane;
 
+extern void	debug_plane(void *param);
 extern int	parse_plane(t_list **head, char **argv);
 
 #endif 
