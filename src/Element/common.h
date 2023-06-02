@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/01 02:39:49 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:23:26 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
+enum e_vector4_type
+{
+	Vector,
+	Coordinate
+};
+
 typedef struct s_vector4
 {
 	float	x;
@@ -28,5 +34,8 @@ typedef struct s_vector4
 	float	z;
 	float	w;
 }	t_vector4;
+
+extern int	parse_rgb(struct s_rgb *rgb, char *curr);
+extern int	parse_vector3(struct s_vector4 *vector, char *curr, float w);
 
 #endif
