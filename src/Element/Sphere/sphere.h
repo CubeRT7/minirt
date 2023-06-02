@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 20:21:47 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/06/02 20:31:19 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ typedef struct s_sphere
 }	t_sphere;
 
 extern int	parse_sphere(t_list **head, char **argv);
-extern void	clear_sphere(void *param);
 
 #endif 

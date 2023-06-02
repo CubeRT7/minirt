@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 08:10:55 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:32:53 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,28 @@
 
 int	parse_light(t_list **head, char **argv)
 {
-	(void)head;
-	(void)argv;
-	return (EXIT_SUCCESS);
-}
+	t_list			*node;
+	struct s_light	*content;
 
-void	clear_light(void *param)
-{
-	t_light *const	content = param;
-
-	(void)content;
+	errno = EINVAL;
+	if (!argv || !argv[0] || !argv[1])
+		return (EXIT_FAILURE);
+	content = ft_calloc(1, sizeof(struct s_light));
+	node = ft_lstnew(content);
+	while (content && node)
+	{
+		if (parse_vector3(&content->coordinate, argv[0], Coordinate))
+			break ;
+		content->ratio = ft_strtof(argv[1], NULL);
+		if (!(0.0 <= content->ratio && content->ratio <= 1.0))
+			break ;
+		if (argv[2] && parse_rgb(&content->rgb, argv[2]))
+			break ;
+		errno = 0;
+		ft_lstadd_back(head, node);
+		return (EXIT_SUCCESS);
+	}
+	free(content);
+	ft_lstdelone(node, NULL);
+	return (EXIT_FAILURE);
 }

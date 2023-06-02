@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 08:18:20 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/02 20:22:23 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	_read(struct s_scene *scene, char *filename)
 		return (EXIT_FAILURE);
 	ret = EXIT_SUCCESS;
 	line = get_next_line(fd);
-	while (line && ret == EXIT_SUCCESS)
+	while (line && ret == EXIT_SUCCESS && errno == 0)
 	{
 		ret = _element(scene, line);
 		free(line);
@@ -80,7 +80,8 @@ static int	_read(struct s_scene *scene, char *filename)
 		&& ft_lstsize(scene->camera) < 2
 		&& ft_lstsize(scene->light) < 2)
 		return (EXIT_SUCCESS);
-	errno = EINVAL;
+	if (errno == 0)
+		errno = EINVAL;
 	return (EXIT_FAILURE);
 }
 
@@ -91,11 +92,11 @@ int	parse(struct s_scene *scene, int argc, char **argv)
 	ft_bzero(scene, sizeof(struct s_scene));
 	if (_read(scene, argv[1]) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
-	ft_lstclear(&scene->ambient_light, clear_ambient_light);
-	ft_lstclear(&scene->camera, clear_camera);
-	ft_lstclear(&scene->light, clear_light);
-	ft_lstclear(&scene->plane, clear_plane);
-	ft_lstclear(&scene->sphere, clear_sphere);
-	ft_lstclear(&scene->cylinder, clear_cylinder);
+	ft_lstclear(&scene->ambient_light, free);
+	ft_lstclear(&scene->camera, free);
+	ft_lstclear(&scene->light, free);
+	ft_lstclear(&scene->plane, free);
+	ft_lstclear(&scene->sphere, free);
+	ft_lstclear(&scene->cylinder, free);
 	return (EXIT_FAILURE);
 }

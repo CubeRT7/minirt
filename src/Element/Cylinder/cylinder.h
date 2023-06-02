@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 20:22:31 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/06/02 20:31:12 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ typedef struct s_cylinder
 }	t_cylinder;
 
 extern int	parse_cylinder(t_list **head, char **argv);
-extern void	clear_cylinder(void *param);
 
 #endif 
