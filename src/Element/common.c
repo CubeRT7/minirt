@@ -21,7 +21,7 @@ static char	*next_rgb(int *buf, char *curr)
 		return (NULL);
 	while (ft_isdigit(curr[0]))
 		++curr;
-	if (curr[0] != '\0' && curr[0] != '\r' && curr[0] != ',')
+	if (curr[0] != '\0' && ft_strchr(",\r\n", curr[0]) == NULL)
 		return (NULL);
 	return (curr);
 }
