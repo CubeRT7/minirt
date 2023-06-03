@@ -36,7 +36,7 @@ int	parse_rgb(struct s_rgb *rgb, char *curr)
 	if (curr == NULL || curr[0] != ',')
 		return (ft_error(__func__, __FILE__, __LINE__));
 	curr = next_rgb(&rgb->b, curr + 1);
-	if (curr == NULL || (curr[0] != '\0' && curr[0] != '\r'))
+	if (curr == NULL || (curr[0] != '\0' && ft_strchr("\r\n", curr[0]) == NULL))
 		return (ft_error(__func__, __FILE__, __LINE__));
 	errno = 0;
 	return (EXIT_SUCCESS);
