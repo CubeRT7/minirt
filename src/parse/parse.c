@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/03 17:21:44 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:43:46 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static int	_invalid(int argc, char **argv)
 
 	errno = EINVAL;
 	if (argc != 2 || argv == NULL || argv[1] == NULL)
-		return (EXIT_FAILURE);
+		return (ft_error(__func__, __FILE__, __LINE__));
 	extension = ft_strrchr(argv[1], '.');
 	if (extension == NULL)
-		return (EXIT_FAILURE);
+		return (ft_error(__func__, __FILE__, __LINE__));
 	if (ft_strncmp(extension, ".rt", 4) != 0)
-		return (EXIT_FAILURE);
+		return (ft_error(__func__, __FILE__, __LINE__));
 	errno = 0;
 	return (EXIT_SUCCESS);
 }
@@ -65,7 +65,7 @@ static int	_read(struct s_scene *scene, char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (EXIT_FAILURE);
+		return (ft_error(__func__, __FILE__, __LINE__));
 	ret = EXIT_SUCCESS;
 	line = get_next_line(fd);
 	while (line && ret == EXIT_SUCCESS && errno == 0)
@@ -81,15 +81,15 @@ static int	_read(struct s_scene *scene, char *filename)
 		&& ft_lstsize(scene->camera) < 2
 		&& ft_lstsize(scene->light) < 2)
 		return (EXIT_SUCCESS);
-	if (errno == 0)
+	if (ret == EXIT_SUCCESS && errno == 0)
 		errno = EINVAL;
-	return (EXIT_FAILURE);
+	return (ft_error(__func__, __FILE__, __LINE__));
 }
 
 int	parse(struct s_scene *scene, int argc, char **argv)
 {
 	if (_invalid(argc, argv) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ft_error(__func__, __FILE__, __LINE__));
 	ft_bzero(scene, sizeof(struct s_scene));
 	if (_read(scene, argv[1]) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
@@ -99,5 +99,5 @@ int	parse(struct s_scene *scene, int argc, char **argv)
 	ft_lstclear(&scene->plane, free);
 	ft_lstclear(&scene->sphere, free);
 	ft_lstclear(&scene->cylinder, free);
-	return (EXIT_FAILURE);
+	return (ft_error(__func__, __FILE__, __LINE__));
 }

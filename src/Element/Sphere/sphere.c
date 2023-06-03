@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 21:15:59 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:30:58 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ int	parse_sphere(t_list **head, char **argv)
 	t_list			*node;
 	struct s_sphere	*content;
 
-	errno = EINVAL;
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
-		return (EXIT_FAILURE);
+		return (ft_error(__func__, __FILE__, __LINE__));
 	content = ft_calloc(1, sizeof(struct s_sphere));
 	node = ft_lstnew(content);
 	while (content && node)
@@ -48,5 +47,5 @@ int	parse_sphere(t_list **head, char **argv)
 	}
 	free(content);
 	ft_lstdelone(node, NULL);
-	return (EXIT_FAILURE);
+	return (ft_error(__func__, __FILE__, __LINE__));
 }

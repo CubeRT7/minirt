@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 21:15:48 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:29:26 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	parse_light(t_list **head, char **argv)
 
 	errno = EINVAL;
 	if (!argv || !argv[0] || !argv[1])
-		return (EXIT_FAILURE);
+		return (ft_error(__func__, __FILE__, __LINE__));
 	content = ft_calloc(1, sizeof(struct s_light));
 	node = ft_lstnew(content);
 	while (content && node)
@@ -50,5 +50,5 @@ int	parse_light(t_list **head, char **argv)
 	}
 	free(content);
 	ft_lstdelone(node, NULL);
-	return (EXIT_FAILURE);
+	return (ft_error(__func__, __FILE__, __LINE__));
 }

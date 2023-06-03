@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/05/31 08:25:17 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:33:35 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ int	main(int argc, char **argv)
 	struct s_scene	scene;
 
 	if (parse(&scene, argc, argv))
-	{
-		perror("Error\n");
-		return (EXIT_FAILURE);
-	}
+		return (ft_error(__func__, __FILE__, __LINE__));
 	return (EXIT_SUCCESS);
 }
