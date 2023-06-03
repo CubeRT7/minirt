@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/03 16:56:36 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:21:44 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ static int	_element(struct s_scene *scene, char *row)
 	char **const	cols = ft_split(row, ' ');
 
 	ret = EXIT_FAILURE;
-	if (cols[0] == NULL || cols[0][0] == '\0' || cols[0][0] == '\r'
-		|| ft_strncmp(cols[0], "\n", 2) == 0)
+	if (cols[0]
+		&& (!ft_strncmp(cols[0], "\n", 2) || !ft_strncmp(cols[0], "\r\n", 3)))
 		ret = EXIT_SUCCESS;
-	else if (ft_strncmp(cols[0], "A", 2) == 0)
+	else if (cols[0] && !ft_strncmp(cols[0], "A", 2))
 		ret = parse_ambient_light(&scene->ambient_light, cols + 1);
-	else if (ft_strncmp(cols[0], "C", 2) == 0)
+	else if (cols[0] && !ft_strncmp(cols[0], "C", 2))
 		ret = parse_camera(&scene->camera, cols + 1);
-	else if (ft_strncmp(cols[0], "L", 2) == 0)
+	else if (cols[0] && !ft_strncmp(cols[0], "L", 2))
 		ret = parse_light(&scene->light, cols + 1);
-	else if (ft_strncmp(cols[0], "pl", 3) == 0)
+	else if (cols[0] && !ft_strncmp(cols[0], "pl", 3))
 		ret = parse_plane(&scene->plane, cols + 1);
-	else if (ft_strncmp(cols[0], "sp", 3) == 0)
+	else if (cols[0] && !ft_strncmp(cols[0], "sp", 3))
 		ret = parse_sphere(&scene->sphere, cols + 1);
-	else if (ft_strncmp(cols[0], "cy", 3) == 0)
+	else if (cols[0] && !ft_strncmp(cols[0], "cy", 3))
 		ret = parse_cylinder(&scene->cylinder, cols + 1);
 	i = 0;
 	while (cols[i])
