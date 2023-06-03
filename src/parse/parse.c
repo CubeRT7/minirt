@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 20:22:23 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:56:36 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static int	_element(struct s_scene *scene, char *row)
 	char **const	cols = ft_split(row, ' ');
 
 	ret = EXIT_FAILURE;
-	if (cols[0] == NULL || ft_strncmp(cols[0], "\n", 2) == 0)
+	if (cols[0] == NULL || cols[0][0] == '\0' || cols[0][0] == '\r'
+		|| ft_strncmp(cols[0], "\n", 2) == 0)
 		ret = EXIT_SUCCESS;
 	else if (ft_strncmp(cols[0], "A", 2) == 0)
 		ret = parse_ambient_light(&scene->ambient_light, cols + 1);
