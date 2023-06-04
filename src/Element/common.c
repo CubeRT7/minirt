@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:39:31 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/05 06:57:25 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	parse_vector3(struct s_vector4 *vector, char *curr, float w)
 	if (errno || curr[0] != ',')
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	vector->z = ft_strtof(curr + 1, &curr);
-	if (errno || curr[0] != '\0')
+	if (errno || (curr[0] != '\0' && ft_strchr("\r\n", curr[0]) == NULL))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	vector->w = w;
 	if (w != Vector)
