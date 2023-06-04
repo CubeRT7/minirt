@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:20:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/05/31 00:55:00 by minjungk         ###   ########.fr        #
+#    Updated: 2023/06/04 22:21:10 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,23 +16,23 @@
 MINIRT = miniRT
 
 all bonus $(MINIRT):
-	$(MAKE) -C external
-	$(MAKE) -C lib
-	$(MAKE) -C src $@
+	$(MAKE) $(MAKEFLAGS) -C external
+	$(MAKE) $(MAKEFLAGS) -C lib
+	$(MAKE) $(MAKEFLAGS) -C src $@
 	ln -sf ./src/$(MINIRT) $(MINIRT)
 
 clean:
-	$(MAKE) -C external $@
-	$(MAKE) -C lib $@
-	$(MAKE) -C src $@
+	$(MAKE) $(MAKEFLAGS) -C external $@
+	$(MAKE) $(MAKEFLAGS) -C lib $@
+	$(MAKE) $(MAKEFLAGS) -C src $@
 
 fclean:
-	$(MAKE) -C external $@
-	$(MAKE) -C lib $@
-	$(MAKE) -C src $@
+	$(MAKE) $(MAKEFLAGS) -C external $@
+	$(MAKE) $(MAKEFLAGS) -C lib $@
+	$(MAKE) $(MAKEFLAGS) -C src $@
 	$(RM) $(MINIRT)
 
 re: fclean
-	$(MAKE) $(MINIRT)
+	$(MAKE) $(MAKEFLAGS) $(MINIRT)
 
 .PHONY: all clean fclean re bonus $(MINIRT)

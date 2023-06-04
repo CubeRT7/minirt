@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 02:34:32 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/03 19:30:25 by minjungk         ###   ########.fr        #
+#    Updated: 2023/06/04 22:22:26 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,11 @@ NAME = libcustom.a
 CFLAGS		= -Wall -Wextra -Werror -MMD -MP
 CPPFLAGS	= -I../libft
 ARFLAGS		= rsc
+
+ifdef	DEBUG
+	CPPFLAGS	+= -D__DEBUG__
+	CFLAGS		= -g -O0
+endif
 
 SRCS = \
 	ft_error.c \
