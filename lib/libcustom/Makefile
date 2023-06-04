@@ -3,23 +3,42 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
+#    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/30 21:39:07 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/01 02:14:34 by minjungk         ###   ########.fr        #
+#    Created: 2023/06/01 02:34:32 by minjungk          #+#    #+#              #
+#    Updated: 2023/06/03 19:30:25 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .DEFAULT_ON_ERROR:
 .DEFAULT_GOAL := all
 
-MAKEFLAGS	= -j 8
+NAME = libcustom.a
 
-LIBS = libft/libft.a libcustom/libcustom.a
+CFLAGS		= -Wall -Wextra -Werror -MMD -MP
+CPPFLAGS	= -I../libft
+ARFLAGS		= rsc
 
-all bonus clean fclean re:
-	@for dir in $(dir $(LIBS)); do \
-		$(MAKE) -C $$dir $@; \
-	done
+SRCS = \
+	ft_error.c \
+	ft_strtof.c \
+
+OBJS := $(SRCS:.c=.o)
+DEPS := $(SRCS:.c=.d)
+-include $(DEPS)
+
+all bonus: $(NAME)
+
+$(NAME): $(OBJS)
+	$(AR) $(ARFLAGS) $@ $^
+
+clean:
+	$(RM) $(wildcard *.o) $(wildcard *.d)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean
+	$(MAKE) $(NAME)
 
 .PHONY: all clean fclean re bonus

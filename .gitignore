@@ -1,6 +1,8 @@
 # Prerequisites
 *.d
+.vscode
 .DS_Store*
+external/MLX42/build
 
 # Object files
 *.o
