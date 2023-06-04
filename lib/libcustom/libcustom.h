@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:36:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/04 22:55:15 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/05 06:33:57 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #  define DEBUG 0
 # endif
 
-extern int		ft_error(const char *func, char *file, int line);
+extern int		ft_error(const char *func, char *file, int line, int sub_errno);
 extern float	ft_strtof(const char *nptr, char **endptr);
 extern void		ft_strarr_free(char **argv);
 

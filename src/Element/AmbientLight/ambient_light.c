@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:04:10 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/05 06:41:18 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,13 @@ int	parse_ambient_light(void *param, char **argv)
 {
 	struct s_ambient_light *const	content = param;
 
-	errno = EINVAL;
 	if (!argv || !argv[0] || !argv[1])
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	content->ratio = ft_strtof(argv[0], NULL);
 	if (parse_rgb(&content->rgb, argv[1]))
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (!(0.0 <= content->ratio && content->ratio <= 1.0))
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	debug_ambient_light(content);
-	errno = 0;
 	return (EXIT_SUCCESS);
 }

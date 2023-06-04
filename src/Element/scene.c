@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:22:54 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:00:18 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/05 06:40:47 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static int	_append(t_list **scene, t_list *node, char **cols)
 				ft_lstadd_back(&scene[i], node);
 				return (EXIT_SUCCESS);
 			}
-			return (EXIT_FAILURE);
+			return (ft_error(__func__, __FILE__, __LINE__, 0));
 		}
 		++i;
 	}
-	return (EXIT_FAILURE);
+	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 }
 
 int	append2scene(t_list **scene, char **cols)
@@ -66,11 +66,9 @@ int	append2scene(t_list **scene, char **cols)
 		return (EXIT_SUCCESS);
 	node = ft_lstnew(NULL);
 	if (node == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (_append(scene, node, cols) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
 	ft_lstdelone(node, free);
-	if (errno == 0)
-		errno = EINVAL;
-	return (ft_error(__func__, __FILE__, __LINE__));
+	return (ft_error(__func__, __FILE__, __LINE__, 0));
 }

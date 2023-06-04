@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:07:31 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/05 06:43:04 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,13 @@ int	parse_plane(void *param, char **argv)
 	struct s_plane *const	content = param;
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_vector3(&content->coordinate, argv[0], Coordinate))
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (parse_vector3(&content->axis, argv[1], Vector))
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (parse_rgb(&content->rgb, argv[2]))
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	debug_plane(content);
-	errno = 0;
 	return (EXIT_SUCCESS);
 }
