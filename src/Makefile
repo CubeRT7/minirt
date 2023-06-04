@@ -54,7 +54,7 @@ endif
 MINIRT = miniRT
 
 CPPFLAGS	+= -Iparse
-CPPFLAGS	+= -Ihook
+CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
 	Element/common.c \
@@ -66,16 +66,19 @@ MINIRT_SRCS = \
 	Element/Cylinder/cylinder.c \
 	Element/scene.c \
 	parse/parse.c \
-	hook/hook_key_event.c \
-	hook/hook_draw.c \
-	hook/hook_resize_event.c \
-	hook/hook_close_event.c \
+	simulate/hook_key_event.c \
+	simulate/hook_draw.c \
+	simulate/hook_resize_event.c \
+	simulate/hook_close_event.c \
 	$(MINIRT).c
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)
 MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)
 -include $(MINIRT_DEPS)
 
-$(MINIRT): $(MINIRT_OBJS) ../lib/libft/libft.a ../lib/libcustom/libcustom.a ../lib/libgui/libgui.a
+$(MINIRT): $(MINIRT_OBJS) \
+	../lib/libft/libft.a \
+	../lib/libcustom/libcustom.a \
+	../lib/libgui/libgui.a \
 
 # **************************************************************************** #
 

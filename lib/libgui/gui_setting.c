@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 05:22:39 by yonshin           #+#    #+#             */
-/*   Updated: 2023/06/05 06:51:37 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/06/05 07:06:39 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static int	_replace_image(t_gui_setting *g, int width, int height)
 	if (g->image == NULL)
 	{
 		mlx_close_window(g->mlx);
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
 	if (mlx_image_to_window(g->mlx, g->image, 0, 0) == -1)
 	{
 		mlx_close_window(g->mlx);
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
 	return (EXIT_SUCCESS);
 }
@@ -50,8 +50,8 @@ int	gui_setting(t_gui_setting *g, int width, int height, char *title)
 	_init_gui_setting(g, title);
 	g->mlx = mlx_init(width, height, g->title, true);
 	if (g->mlx == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (_replace_image(g, width, height))
-		return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	return (EXIT_SUCCESS);
 }

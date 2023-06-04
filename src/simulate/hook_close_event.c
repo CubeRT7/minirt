@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:35:52 by yonshin           #+#    #+#             */
-/*   Updated: 2023/06/05 06:47:58 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/06/05 07:08:25 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 void	hook_close_event(void *param)
 {
-	t_gui_setting	*gui;
-
-	gui = param;
-	(void)gui;
+	(void)param;
 }

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/06 18:15:18 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/05 07:06:53 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 		return (exit_minirt(ft_error(__func__, __FILE__, __LINE__, 0)));
 	if (gui_setting(&gui, WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (hook_setting(&gui))
+	if (_hook_setting(&gui))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	gui_open_window(&gui);
 	return (exit_minirt(EXIT_SUCCESS));
