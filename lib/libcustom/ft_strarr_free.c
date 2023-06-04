@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libcustom.h                                        :+:      :+:    :+:   */
+/*   ft_strarr_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 02:36:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/04 22:55:15 by minjungk         ###   ########.fr       */
+/*   Created: 2023/06/04 22:55:44 by minjungk          #+#    #+#             */
+/*   Updated: 2023/06/04 23:19:18 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBCUSTOM_H
-# define LIBCUSTOM_H
-# include "libft.h"
-# include <stdio.h>
+#include <stdlib.h>
 
-# ifdef __DEBUG__
-#  define DEBUG 1
-# else
-#  define DEBUG 0
-# endif
+void	ft_strarr_free(char **argv)
+{
+	int	i;
 
-extern int		ft_error(const char *func, char *file, int line);
-extern float	ft_strtof(const char *nptr, char **endptr);
-extern void		ft_strarr_free(char **argv);
-
-#endif
+	if (argv == NULL)
+		return ;
+	i = 0;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv);
+}

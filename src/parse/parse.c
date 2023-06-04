@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/03 20:43:46 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:22:05 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	_invalid(int argc, char **argv)
 
 static int	_element(struct s_scene *scene, char *row)
 {
-	int				i;
 	int				ret;
 	char **const	cols = ft_split(row, ' ');
 
@@ -50,10 +49,7 @@ static int	_element(struct s_scene *scene, char *row)
 		ret = parse_sphere(&scene->sphere, cols + 1);
 	else if (cols[0] && !ft_strncmp(cols[0], "cy", 3))
 		ret = parse_cylinder(&scene->cylinder, cols + 1);
-	i = 0;
-	while (cols[i])
-		free(cols[i++]);
-	free(cols);
+	ft_strarr_free(cols);
 	return (ret);
 }
 
