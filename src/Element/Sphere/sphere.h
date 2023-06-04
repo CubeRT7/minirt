@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/02 21:02:05 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/05 06:03:33 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ typedef struct s_sphere
 }	t_sphere;
 
 extern void	debug_sphere(void *param);
-extern int	parse_sphere(t_list **head, char **argv);
+extern int	parse_sphere(void *param, char **argv);
 
 #endif 

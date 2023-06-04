@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/04 23:45:22 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/05 05:46:22 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,6 @@ static int	_invalid(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-static int	_element(t_list	**scene, char **cols)
-{
-	if (!ft_strncmp(cols[0], "\n", 2) || !ft_strncmp(cols[0], "\r\n", 3))
-		return (EXIT_SUCCESS);
-	else if (!ft_strncmp(cols[0], "A", 2))
-		return (parse_ambient_light(&scene[AmbientLight], cols + 1));
-	else if (!ft_strncmp(cols[0], "C", 2))
-		return (parse_camera(&scene[Camera], cols + 1));
-	else if (!ft_strncmp(cols[0], "L", 2))
-		return (parse_light(&scene[Light], cols + 1));
-	else if (!ft_strncmp(cols[0], "pl", 3))
-		return (parse_plane(&scene[Plane], cols + 1));
-	else if (!ft_strncmp(cols[0], "sp", 3))
-		return (parse_sphere(&scene[Sphere], cols + 1));
-	else if (!ft_strncmp(cols[0], "cy", 3))
-		return (parse_cylinder(&scene[Cylinder], cols + 1));
-	errno = EINVAL;
-	return (ft_error(__func__, __FILE__, __LINE__));
-}
-
 static int	_parse_scene(t_list	**scene, int fd)
 {
 	int		ret;
@@ -63,7 +43,7 @@ static int	_parse_scene(t_list	**scene, int fd)
 			if (cols == NULL)
 				return (ft_error(__func__, __FILE__, __LINE__));
 		}
-		ret = _element(scene, cols);
+		ret = append2scene(scene, cols);
 		{
 			ft_strarr_free(cols);
 			if (ret == EXIT_FAILURE)
