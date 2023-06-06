@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 07:06:53 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/06/07 07:02:48 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	_hook_setting(t_gui_setting *g)
 
 static int	exit_minirt(int exit_code)
 {
-	clear_scene();
+	clear_elements();
 	return (exit_code);
 }
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	t_gui_setting	gui;
 
 	errno = 0;
-	if (parse(get_scene(), argc, argv))
+	if (parse(get_elements(), argc, argv))
 		return (exit_minirt(ft_error(__func__, __FILE__, __LINE__, 0)));
 	if (gui_setting(&gui, WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));

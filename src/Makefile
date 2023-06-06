@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/05 07:00:04 by yonshin          ###   ########.fr        #
+#    Updated: 2023/06/07 07:07:16 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ MINIRT_SRCS = \
 	Element/Plane/plane.c \
 	Element/Sphere/sphere.c \
 	Element/Cylinder/cylinder.c \
-	Element/scene.c \
+	Element/element.c \
 	parse/parse.c \
 	simulate/hook_key_event.c \
 	simulate/hook_draw.c \

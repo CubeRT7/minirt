@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   element.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:22:54 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 05:56:57 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/07 07:14:03 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#ifndef ELEMENT_H
+# define ELEMENT_H
 # include "AmbientLight/ambient_light.h"
 # include "Camera/camera.h"
 # include "Light/light.h"
@@ -19,7 +19,7 @@
 # include "Sphere/sphere.h"
 # include "Cylinder/cylinder.h"
 
-enum e_scene
+enum e_element
 {
 	AmbientLight,
 	Camera,
@@ -27,7 +27,7 @@ enum e_scene
 	Plane,
 	Sphere,
 	Cylinder,
-	MAX_SCENE
+	MAX_ELEMENT
 };
 
 struct s_element
@@ -37,8 +37,8 @@ struct s_element
 	int			(*parse)(void *, char **);
 };
 
-extern t_list	**get_scene(void);
-extern void		clear_scene(void);
-extern int		append2scene(t_list **scene, char **cols);
+extern t_list	**get_elements(void);
+extern void		clear_elements(void);
+extern int		append_element(t_list **elements, char **cols);
 
 #endif

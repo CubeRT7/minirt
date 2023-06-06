@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:38:46 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/07 07:10:22 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	_invalid(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-static int	_parse_scene(t_list	**scene, int fd)
+static int	_parse_elements(t_list	**elements, int fd)
 {
 	int		ret;
 	char	*line;
@@ -41,7 +41,7 @@ static int	_parse_scene(t_list	**scene, int fd)
 			if (cols == NULL)
 				return (ft_error(__func__, __FILE__, __LINE__, 0));
 		}
-		ret = append2scene(scene, cols);
+		ret = append_element(elements, cols);
 		{
 			ft_strarr_free(cols);
 			if (ret == EXIT_FAILURE)
@@ -52,7 +52,7 @@ static int	_parse_scene(t_list	**scene, int fd)
 	return (EXIT_SUCCESS);
 }
 
-int	parse(t_list **scene, int argc, char **argv)
+int	parse(t_list **elements, int argc, char **argv)
 {
 	int	fd;
 	int	ret;
@@ -62,14 +62,14 @@ int	parse(t_list **scene, int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	scene = get_scene();
-	ret = _parse_scene(scene, fd);
+	elements = get_elements();
+	ret = _parse_elements(elements, fd);
 	close(fd);
 	if (ret == EXIT_FAILURE)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (ft_lstsize(scene[AmbientLight]) > 1
-		|| ft_lstsize(scene[Camera]) > 1
-		|| ft_lstsize(scene[Light]) > 1)
+	if (ft_lstsize(elements[AmbientLight]) > 1
+		|| ft_lstsize(elements[Camera]) > 1
+		|| ft_lstsize(elements[Light]) > 1)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	return (EXIT_SUCCESS);
 }

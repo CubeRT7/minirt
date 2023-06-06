@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:18:35 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/04 21:44:45 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/07 07:10:32 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 # include <fcntl.h>
-# include "Element/scene.h"
+# include "Element/element.h"
 
-extern int	parse(t_list **scene, int argc, char **argv);
+extern int	parse(t_list **elements, int argc, char **argv);
 
 #endif

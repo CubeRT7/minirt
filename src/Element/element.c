@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   element.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:22:54 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:40:47 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/07 07:06:55 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
+#include "element.h"
 
-t_list	**get_scene(void)
+t_list	**get_elements(void)
 {
-	static t_list	*scene[MAX_SCENE] = {0};
+	static t_list	*elements[MAX_ELEMENT_TYPE] = {0};
 
-	return (scene);
+	return (elements);
 }
 
-void	clear_scene(void)
+void	clear_elements(void)
 {
 	int				i;
-	t_list **const	scene = get_scene();
+	t_list **const	elements = get_elements();
 
 	i = 0;
-	while (i < MAX_SCENE)
-		ft_lstclear(&scene[i++], free);
+	while (i < MAX_ELEMENT_TYPE)
+		ft_lstclear(&elements[i++], free);
 }
 
-static int	_append(t_list **scene, t_list *node, char **cols)
+static int	_append(t_list **elements, t_list *node, char **cols)
 {
 	int								i;
-	static const struct s_element	data[MAX_SCENE] = {
+	static const struct s_element	data[MAX_ELEMENT_TYPE] = {
 	[AmbientLight] = {"A", sizeof(struct s_ambient_light), parse_ambient_light},
 	[Camera] = {"C", sizeof(struct s_camera), parse_camera},
 	[Light] = {"L", sizeof(struct s_light), parse_light},
@@ -41,14 +41,14 @@ static int	_append(t_list **scene, t_list *node, char **cols)
 	[Cylinder] = {"cy", sizeof(struct s_cylinder), parse_cylinder}};
 
 	i = 0;
-	while (i < MAX_SCENE)
+	while (i < MAX_ELEMENT_TYPE)
 	{
 		if (!ft_strncmp(cols[0], data[i].type, ft_strlen(data[i].type) + 1))
 		{
 			node->content = ft_calloc(1, data[i].size);
 			if (node->content && !(data[i].parse(node->content, cols + 1)))
 			{
-				ft_lstadd_back(&scene[i], node);
+				ft_lstadd_back(&elements[i], node);
 				return (EXIT_SUCCESS);
 			}
 			return (ft_error(__func__, __FILE__, __LINE__, 0));
@@ -58,7 +58,7 @@ static int	_append(t_list **scene, t_list *node, char **cols)
 	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 }
 
-int	append2scene(t_list **scene, char **cols)
+int	append_element(t_list **elements, char **cols)
 {
 	t_list	*node;
 
@@ -67,7 +67,7 @@ int	append2scene(t_list **scene, char **cols)
 	node = ft_lstnew(NULL);
 	if (node == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (_append(scene, node, cols) == EXIT_SUCCESS)
+	if (_append(elements, node, cols) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
 	ft_lstdelone(node, free);
 	return (ft_error(__func__, __FILE__, __LINE__, 0));
