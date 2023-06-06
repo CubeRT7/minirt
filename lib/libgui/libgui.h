@@ -26,8 +26,6 @@ typedef struct s_gui_setting
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	char		*title;
-	int			window_width;
-	int			window_height;
 	float		focal_length;
 	float		max_depth;
 	float		ignore_delta;

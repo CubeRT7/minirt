@@ -15,4 +15,5 @@
 void	hook_close_event(void *param)
 {
 	(void)param;
+	// TODO
 }

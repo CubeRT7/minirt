@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 05:22:39 by yonshin           #+#    #+#             */
-/*   Updated: 2023/06/05 07:06:39 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/06/07 06:28:46 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static void	_init_gui_setting(t_gui_setting *g, char *title)
 	g->mlx = NULL;
 	g->image = NULL;
 	g->title = title;
-	g->window_height = 0;
-	g->window_width = 0;
 	g->focal_length = DEFAULT_FOCAL_WIDTH;
 	g->max_depth = DEFAULT_MAX_DEPTH;
 	g->ignore_delta = DEFAULT_IGNORE_DELTA;
@@ -29,8 +27,6 @@ static int	_replace_image(t_gui_setting *g, int width, int height)
 {
 	if (g->image != NULL)
 		mlx_delete_image(g->mlx, g->image);
-	g->window_width = width;
-	g->window_height = height;
 	g->image = mlx_new_image(g->mlx, width, height);
 	if (g->image == NULL)
 	{
