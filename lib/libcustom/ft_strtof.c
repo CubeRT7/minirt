@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:35:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/01 03:29:10 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:17:40 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static float	_exponent(const char *nptr, char **endptr)
 	float	rtn;
 
 	rtn = 0;
+	if (*nptr != '.' && ft_isdigit(*nptr) == 0)
+		errno = EINVAL;
 	while (ft_isdigit(*nptr))
 	{
 		rtn = rtn * 10.0 + (*nptr - '0');
@@ -34,6 +36,8 @@ static float	_mantissa(const char *nptr, char **endptr)
 
 	rtn = 0;
 	factor = 0.1;
+	if (ft_isdigit(*nptr) == 0)
+		errno = EINVAL;
 	while (ft_isdigit(*nptr))
 	{
 		rtn += factor * (*nptr - '0');

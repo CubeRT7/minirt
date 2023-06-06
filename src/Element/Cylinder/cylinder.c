@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:56:53 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:18:57 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	parse_cylinder(void *param, char **argv)
 	if (parse_vector3(&content->axis, argv[1], Vector))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	content->diameter = ft_strtof(argv[2], &remain);
-	if (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL)
+	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	content->height = ft_strtof(argv[3], &remain);
-	if (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL)
+	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&content->rgb, argv[4]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));

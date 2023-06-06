@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:56:47 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:18:36 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	parse_ambient_light(void *param, char **argv)
 	if (!argv || !argv[0] || !argv[1])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	content->ratio = ft_strtof(argv[0], &remain);
-	if (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL)
+	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&content->rgb, argv[1]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
