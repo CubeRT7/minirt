@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/01 03:25:34 by minjungk         ###   ########.fr        #
+#    Updated: 2023/06/04 23:45:52 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ MINIRT_SRCS = \
 	Element/Plane/plane.c \
 	Element/Sphere/sphere.c \
 	Element/Cylinder/cylinder.c \
+	Element/scene.c \
 	parse/parse.c \
 	$(MINIRT).c
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)

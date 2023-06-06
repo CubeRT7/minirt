@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/03 20:29:42 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/05 06:43:04 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,18 @@ void	debug_plane(void *param)
 	printf("%s: rgb[%d, %d, %d]\n", __func__, c->rgb.r, c->rgb.g, c->rgb.b);
 }
 
-int	parse_plane(t_list **head, char **argv)
+int	parse_plane(void *param, char **argv)
 {
-	t_list			*node;
-	struct s_plane	*content;
+	struct s_plane *const	content = param;
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
-		return (ft_error(__func__, __FILE__, __LINE__));
-	content = ft_calloc(1, sizeof(struct s_plane));
-	node = ft_lstnew(content);
-	while (content && node)
-	{
-		if (parse_vector3(&content->coordinate, argv[0], Coordinate))
-			break ;
-		if (parse_vector3(&content->axis, argv[1], Vector))
-			break ;
-		if (parse_rgb(&content->rgb, argv[2]))
-			break ;
-		debug_plane(content);
-		errno = 0;
-		ft_lstadd_back(head, node);
-		return (EXIT_SUCCESS);
-	}
-	free(content);
-	ft_lstdelone(node, NULL);
-	return (ft_error(__func__, __FILE__, __LINE__));
+		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
+	if (parse_vector3(&content->coordinate, argv[0], Coordinate))
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	if (parse_vector3(&content->axis, argv[1], Vector))
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	if (parse_rgb(&content->rgb, argv[2]))
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	debug_plane(content);
+	return (EXIT_SUCCESS);
 }
