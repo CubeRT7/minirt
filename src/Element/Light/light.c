@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:56:55 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:19:01 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	parse_light(void *param, char **argv)
 	if (parse_vector3(&content->coordinate, argv[0], Coordinate))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	content->ratio = ft_strtof(argv[1], &remain);
-	if (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL)
+	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (!(0.0 <= content->ratio && content->ratio <= 1.0))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
