@@ -27,7 +27,7 @@ enum e_element
 	Plane,
 	Sphere,
 	Cylinder,
-	MAX_ELEMENT
+	MAX_ELEMENT_TYPE
 };
 
 struct s_element
