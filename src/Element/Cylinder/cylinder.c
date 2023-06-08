@@ -12,9 +12,9 @@
 
 #include "cylinder.h"
 
-void	debug_cylinder(void *param)
+void	parse_debug_cylinder(void *param)
 {
-	struct s_cylinder *const	c = param;
+	struct s_parsed_cylinder *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
 		return ;
@@ -28,8 +28,8 @@ void	debug_cylinder(void *param)
 
 int	parse_cylinder(void *param, char **argv)
 {
-	char						*remain;
-	struct s_cylinder *const	content = param;
+	char							*remain;
+	struct s_parsed_cylinder *const	content = param;
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2] || !argv[3] || !argv[4])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
@@ -45,6 +45,6 @@ int	parse_cylinder(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&content->rgb, argv[4]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	debug_cylinder(content);
+	parse_debug_cylinder(content);
 	return (EXIT_SUCCESS);
 }

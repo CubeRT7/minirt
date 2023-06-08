@@ -14,14 +14,14 @@
 # define PLANE_H
 # include "../common.h"
 
-typedef struct s_plane
+typedef struct s_parsed_plane
 {
 	struct s_vector4	coordinate;
 	struct s_vector4	axis;
 	struct s_rgb		rgb;
-}	t_plane;
+}	t_parsed_plane;
 
-extern void	debug_plane(void *param);
+extern void	parse_debug_plane(void *param);
 extern int	parse_plane(void *param, char **argv);
 
 #endif 

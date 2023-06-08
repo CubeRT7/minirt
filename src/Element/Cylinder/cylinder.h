@@ -14,16 +14,16 @@
 # define CYLINDER_H
 # include "../common.h"
 
-typedef struct s_cylinder
+typedef struct s_parsed_cylinder
 {
 	struct s_vector4	coordinate;
 	struct s_vector4	axis;
 	struct s_rgb		rgb;
 	float				diameter;
 	float				height;
-}	t_cylinder;
+}	t_parsed_cylinder;
 
-extern void	debug_cylinder(void *param);
+extern void	parse_debug_cylinder(void *param);
 extern int	parse_cylinder(void *param, char **argv);
 
 #endif 

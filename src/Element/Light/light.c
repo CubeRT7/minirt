@@ -12,9 +12,9 @@
 
 #include "light.h"
 
-void	debug_light(void *param)
+void	parse_debug_light(void *param)
 {
-	struct s_light *const	c = param;
+	struct s_parsed_light *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
 		return ;
@@ -26,8 +26,8 @@ void	debug_light(void *param)
 
 int	parse_light(void *param, char **argv)
 {
-	char					*remain;
-	struct s_light *const	content = param;
+	char							*remain;
+	struct s_parsed_light *const	content = param;
 
 	if (!argv || !argv[0] || !argv[1])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
@@ -40,6 +40,6 @@ int	parse_light(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (argv[2] && parse_rgb(&content->rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	debug_light(content);
+	parse_debug_light(content);
 	return (EXIT_SUCCESS);
 }

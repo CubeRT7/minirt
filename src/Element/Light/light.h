@@ -14,15 +14,15 @@
 # define LIGHT_H
 # include "../common.h"
 
-typedef struct s_light
+typedef struct s_parsed_light
 {
 	struct s_vector4	coordinate;
 	struct s_vector4	asix;
 	struct s_rgb		rgb;
 	float				ratio;
-}	t_light;
+}	t_parsed_light;
 
-extern void	debug_light(void *param);
+extern void	parse_debug_light(void *param);
 extern int	parse_light(void *param, char **argv);
 
 #endif 

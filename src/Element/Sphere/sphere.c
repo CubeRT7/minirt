@@ -12,9 +12,9 @@
 
 #include "sphere.h"
 
-void	debug_sphere(void *param)
+void	parse_debug_sphere(void *param)
 {
-	struct s_sphere *const	c = param;
+	struct s_parsed_sphere *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
 		return ;
@@ -26,8 +26,8 @@ void	debug_sphere(void *param)
 
 int	parse_sphere(void *param, char **argv)
 {
-	char					*remain;
-	struct s_sphere *const	content = param;
+	char							*remain;
+	struct s_parsed_sphere *const	content = param;
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
@@ -38,6 +38,6 @@ int	parse_sphere(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&content->rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	debug_sphere(content);
+	parse_debug_sphere(content);
 	return (EXIT_SUCCESS);
 }

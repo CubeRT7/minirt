@@ -14,13 +14,13 @@
 # define AMBIENT_LIGHT_H
 # include "../common.h"
 
-typedef struct s_ambient_light
+typedef struct s_parsed_ambient_light
 {
 	float				ratio;
 	struct s_rgb		rgb;
-}	t_ambient_light;
+}	t_parsed_ambient_light;
 
-extern void	debug_ambient_light(void *param);
+extern void	parse_debug_ambient_light(void *param);
 extern int	parse_ambient_light(void *param, char **argv);
 
 #endif 
