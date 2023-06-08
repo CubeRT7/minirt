@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simulate.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
+/*   Updated: 2023/06/08 19:37:43 by minjungk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef SIMULATE_H
 # define SIMULATE_H
@@ -28,6 +39,6 @@ typedef struct s_world
 	t_gui_setting	gui;
 }	t_world;
 
-int simulate(t_list *objs, int width, int height, char *title);
+int	simulate(t_list *objs, int width, int height, char *title);
 
 #endif

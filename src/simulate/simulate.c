@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simulate.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
+/*   Updated: 2023/06/08 19:38:48 by minjungk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "simulate.h"
 
@@ -32,7 +43,7 @@ static int	_gui_setting(t_gui_setting *g, int width, int height, char *title)
 	return (EXIT_SUCCESS);
 }
 
-static int _hook_setting(t_world *world)
+static int	_hook_setting(t_world *world)
 {
 	if (!mlx_loop_hook(world->gui.mlx, hook_key_event, &(world->gui)))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
@@ -43,16 +54,16 @@ static int _hook_setting(t_world *world)
 	return (EXIT_SUCCESS);
 }
 
-int simulate(t_list *objs, int width, int height, char *title)
+int	simulate(t_list *objs, int width, int height, char *title)
 {
 	t_world	world;
 
 	world.objs = objs;
-    if (_gui_setting(&(world.gui), width, height, title))
-        return (ft_error(__func__, __FILE__, __LINE__, 0));
-    if (_hook_setting(&world))
-        return (ft_error(__func__, __FILE__, __LINE__, 0));
-    mlx_loop(world.gui.mlx);
+	if (_gui_setting(&(world.gui), width, height, title))
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	if (_hook_setting(&world))
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	mlx_loop(world.gui.mlx);
 	mlx_terminate(world.gui.mlx);
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

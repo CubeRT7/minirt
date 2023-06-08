@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 07:02:48 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/06/08 19:35:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_list	*objs;
 
