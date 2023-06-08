@@ -41,3 +41,30 @@ int	parse_sphere(void *param, char **argv)
 	parse_debug_sphere(content);
 	return (EXIT_SUCCESS);
 }
+
+void	*new_sphere(void *param)
+{
+	t_sphere *const	obj = malloc(sizeof(t_sphere));
+
+	if (obj == NULL)
+		return (NULL);
+	(void)param;
+	obj->type = Sphere;
+	return (obj);
+}
+
+void	destroy_sphere(void *object)
+{
+	t_sphere *const	obj = object;
+
+	free(obj);
+}
+
+int	hit_sphere(void *object, t_ray *ray)
+{
+	t_sphere *const	obj = object;
+
+	(void)obj;
+	(void)ray;
+	return (0);
+}

@@ -20,7 +20,16 @@ typedef struct s_parsed_ambient_light
 	struct s_rgb		rgb;
 }	t_parsed_ambient_light;
 
+typedef struct s_ambient_light
+{
+	enum e_element	type;
+	// TODO: add param
+}	t_ambient_light;
+
 extern void	parse_debug_ambient_light(void *param);
 extern int	parse_ambient_light(void *param, char **argv);
+extern void	*new_ambient_light(void *param);
+extern void	destroy_ambient_light(void *object);
+extern int	hit_ambient_light(void *object, t_ray *ray);
 
 #endif 

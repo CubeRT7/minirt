@@ -39,3 +39,30 @@ int	parse_plane(void *param, char **argv)
 	parse_debug_plane(content);
 	return (EXIT_SUCCESS);
 }
+
+void	*new_plane(void *param)
+{
+	t_plane *const	obj = malloc(sizeof(t_plane));
+
+	if (obj == NULL)
+		return (NULL);
+	(void)param;
+	obj->type = Plane;
+	return (obj);
+}
+
+void	destroy_plane(void *object)
+{
+	t_plane *const	obj = object;
+
+	free(obj);
+}
+
+int	hit_plane(void *object, t_ray *ray)
+{
+	t_plane *const	obj = object;
+
+	(void)obj;
+	(void)ray;
+	return (0);
+}

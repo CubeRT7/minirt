@@ -21,7 +21,16 @@ typedef struct s_parsed_plane
 	struct s_rgb		rgb;
 }	t_parsed_plane;
 
+typedef struct s_plane
+{
+	enum e_element	type;
+	// TODO: add param
+}	t_plane;
+
 extern void	parse_debug_plane(void *param);
 extern int	parse_plane(void *param, char **argv);
+extern void	*new_plane(void *param);
+extern void	destroy_plane(void *object);
+extern int	hit_plane(void *object, t_ray *ray);
 
 #endif 

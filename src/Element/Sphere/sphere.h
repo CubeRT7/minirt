@@ -22,7 +22,16 @@ typedef struct s_parsed_sphere
 	float				diameter;
 }	t_parsed_sphere;
 
+typedef struct s_sphere
+{
+	enum e_element	type;
+	// TODO: add param
+}	t_sphere;
+
 extern void	parse_debug_sphere(void *param);
 extern int	parse_sphere(void *param, char **argv);
+extern void	*new_sphere(void *param);
+extern void	destroy_sphere(void *object);
+extern int	hit_sphere(void *object, t_ray *ray);
 
 #endif 

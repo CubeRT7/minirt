@@ -48,3 +48,30 @@ int	parse_cylinder(void *param, char **argv)
 	parse_debug_cylinder(content);
 	return (EXIT_SUCCESS);
 }
+
+void	*new_cylinder(void *param)
+{
+	t_cylinder *const	obj = malloc(sizeof(t_cylinder));
+
+	if (obj == NULL)
+		return (NULL);
+	(void)param;
+	obj->type = Cylinder;
+	return (obj);
+}
+
+void	destroy_cylinder(void *object)
+{
+	t_cylinder *const	obj = object;
+
+	free(obj);
+}
+
+int	hit_cylinder(void *object, t_ray *ray)
+{
+	t_cylinder *const	obj = object;
+
+	(void)obj;
+	(void)ray;
+	return (0);
+}

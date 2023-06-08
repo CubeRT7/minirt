@@ -19,17 +19,6 @@
 # include "Element/Sphere/sphere.h"
 # include "Element/Cylinder/cylinder.h"
 
-enum e_element
-{
-	AmbientLight,
-	Camera,
-	Light,
-	Plane,
-	Sphere,
-	Cylinder,
-	MAX_ELEMENT_TYPE
-};
-
 struct s_element
 {
 	const char	*type;

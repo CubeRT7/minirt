@@ -39,3 +39,30 @@ int	parse_ambient_light(void *param, char **argv)
 	parse_debug_ambient_light(content);
 	return (EXIT_SUCCESS);
 }
+
+void	*new_ambient_light(void *param)
+{
+	t_ambient_light *const	obj = malloc(sizeof(t_ambient_light));
+
+	if (obj == NULL)
+		return (NULL);
+	(void)param;
+	obj->type = AmbientLight;
+	return (obj);
+}
+
+void	destroy_ambient_light(void *object)
+{
+	t_ambient_light *const	obj = object;
+
+	free(obj);
+}
+
+int	hit_ambient_light(void *object, t_ray *ray)
+{
+	t_ambient_light *const	obj = object;
+
+	(void)obj;
+	(void)ray;
+	return (0);
+}

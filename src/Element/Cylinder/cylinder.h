@@ -23,7 +23,16 @@ typedef struct s_parsed_cylinder
 	float				height;
 }	t_parsed_cylinder;
 
+typedef struct s_cylinder
+{
+	enum e_element	type;
+	// TODO: add param
+}	t_cylinder;
+
 extern void	parse_debug_cylinder(void *param);
 extern int	parse_cylinder(void *param, char **argv);
+extern void	*new_cylinder(void *param);
+extern void	destroy_cylinder(void *object);
+extern int	hit_cylinder(void *object, t_ray *ray);
 
 #endif 

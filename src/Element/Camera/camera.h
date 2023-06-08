@@ -21,7 +21,16 @@ typedef struct s_parsed_camera
 	float				fov;
 }	t_parsed_camera;
 
+typedef struct s_camera
+{
+	enum e_element	type;
+	// TODO: add param
+}	t_camera;
+
 extern void	parse_debug_camera(void *param);
 extern int	parse_camera(void *param, char **argv);
+extern void	*new_camera(void *param);
+extern void	destroy_camera(void *object);
+extern int	hit_camera(void *object, t_ray *ray);
 
 #endif 

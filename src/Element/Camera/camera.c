@@ -43,3 +43,30 @@ int	parse_camera(void *param, char **argv)
 	parse_debug_camera(content);
 	return (EXIT_SUCCESS);
 }
+
+void	*new_camera(void *param)
+{
+	t_camera *const	obj = malloc(sizeof(t_camera));
+
+	if (obj == NULL)
+		return (NULL);
+	(void)param;
+	obj->type = Camera;
+	return (obj);
+}
+
+void	destroy_camera(void *object)
+{
+	t_camera *const	obj = object;
+
+	free(obj);
+}
+
+int	hit_camera(void *object, t_ray *ray)
+{
+	t_camera *const	obj = object;
+
+	(void)obj;
+	(void)ray;
+	return (0);
+}

@@ -35,6 +35,23 @@ typedef struct s_vector4
 	float	w;
 }	t_vector4;
 
+typedef struct s_ray
+{
+	t_vector4	origin;
+	t_vector4	direction;
+}	t_ray;
+
+enum e_element
+{
+	AmbientLight,
+	Camera,
+	Light,
+	Plane,
+	Sphere,
+	Cylinder,
+	MAX_ELEMENT_TYPE
+};
+
 extern int	parse_rgb(struct s_rgb *rgb, char *curr);
 extern int	parse_vector3(struct s_vector4 *vector, char *curr, float w);
 
