@@ -15,7 +15,7 @@
 
 MAKEFLAGS	= -j 8
 
-LIBS = libft/libft.a libcustom/libcustom.a libgui/libgui.a
+LIBS = libft/libft.a libcustom/libcustom.a
 
 all bonus clean fclean re:
 	@for dir in $(dir $(LIBS)); do \

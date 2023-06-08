@@ -13,8 +13,8 @@
 #ifndef PARSE_H
 # define PARSE_H
 # include <fcntl.h>
-# include "Element/element.h"
+# include "element.h"
 
-extern int	parse(t_list **elements, int argc, char **argv);
+extern int	parse(t_list **result, int argc, char **argv);
 
 #endif

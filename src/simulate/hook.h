@@ -13,7 +13,7 @@
 #ifndef HOOK_H
 # define HOOK_H
 
-# include "libgui.h"
+# include "simulate.h"
 
 void	hook_key_event(void *param);
 void	hook_draw(void *param);

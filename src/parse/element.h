@@ -12,12 +12,12 @@
 
 #ifndef ELEMENT_H
 # define ELEMENT_H
-# include "AmbientLight/ambient_light.h"
-# include "Camera/camera.h"
-# include "Light/light.h"
-# include "Plane/plane.h"
-# include "Sphere/sphere.h"
-# include "Cylinder/cylinder.h"
+# include "Element/AmbientLight/ambient_light.h"
+# include "Element/Camera/camera.h"
+# include "Element/Light/light.h"
+# include "Element/Plane/plane.h"
+# include "Element/Sphere/sphere.h"
+# include "Element/Cylinder/cylinder.h"
 
 enum e_element
 {

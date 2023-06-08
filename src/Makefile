@@ -19,10 +19,6 @@ CPPFLAGS	= -I.
 LDFLAGS		= -L.
 LDLIBS		= -lm
 
-CPPFLAGS	+= -I../lib/libgui
-LDFLAGS		+= -L../lib/libgui
-LDLIBS		+= -lgui
-
 CPPFLAGS	+= -I../external/MLX42/include
 LDFLAGS		+= -L../external/MLX42/build
 LDLIBS		+= -lmlx42
@@ -64,8 +60,9 @@ MINIRT_SRCS = \
 	Element/Plane/plane.c \
 	Element/Sphere/sphere.c \
 	Element/Cylinder/cylinder.c \
-	Element/element.c \
+	parse/element.c \
 	parse/parse.c \
+	simulate/simulate.c \
 	simulate/hook_key_event.c \
 	simulate/hook_draw.c \
 	simulate/hook_resize_event.c \
@@ -78,7 +75,6 @@ MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)
 $(MINIRT): $(MINIRT_OBJS) \
 	../lib/libft/libft.a \
 	../lib/libcustom/libcustom.a \
-	../lib/libgui/libgui.a \
 
 # **************************************************************************** #
 
