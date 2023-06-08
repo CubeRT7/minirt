@@ -60,7 +60,7 @@ MINIRT_SRCS = \
 	Element/Plane/plane.c \
 	Element/Sphere/sphere.c \
 	Element/Cylinder/cylinder.c \
-	Element/element.c \
+	parse/element.c \
 	parse/parse.c \
 	simulate/simulate.c \
 	simulate/hook_key_event.c \

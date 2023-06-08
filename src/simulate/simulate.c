@@ -32,26 +32,27 @@ static int	_gui_setting(t_gui_setting *g, int width, int height, char *title)
 	return (EXIT_SUCCESS);
 }
 
-static int _hook_setting(t_gui_setting *g)
+static int _hook_setting(t_world *world)
 {
-	if (!mlx_loop_hook(g->mlx, hook_key_event, g))
+	if (!mlx_loop_hook(world->gui.mlx, hook_key_event, &(world->gui)))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (!mlx_loop_hook(g->mlx, hook_draw, g))
+	if (!mlx_loop_hook(world->gui.mlx, hook_draw, world))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	mlx_resize_hook(g->mlx, hook_resize_event, g);
-	mlx_close_hook(g->mlx, hook_close_event, g);
+	mlx_resize_hook(world->gui.mlx, hook_resize_event, &(world->gui));
+	mlx_close_hook(world->gui.mlx, hook_close_event, &(world->gui));
 	return (EXIT_SUCCESS);
 }
 
-int simulate(int width, int height, char *title)
+int simulate(t_list *objs, int width, int height, char *title)
 {
-    t_gui_setting gui;
+	t_world	world;
 
-    if (_gui_setting(&gui, width, height, title))
+	world.objs = objs;
+    if (_gui_setting(&(world.gui), width, height, title))
         return (ft_error(__func__, __FILE__, __LINE__, 0));
-    if (_hook_setting(&gui))
+    if (_hook_setting(&world))
         return (ft_error(__func__, __FILE__, __LINE__, 0));
-    mlx_loop(gui.mlx);
-	mlx_terminate(gui.mlx);
+    mlx_loop(world.gui.mlx);
+	mlx_terminate(world.gui.mlx);
     return (EXIT_SUCCESS);
 }

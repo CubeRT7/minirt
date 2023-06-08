@@ -18,18 +18,19 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
-static int exit_minirt(int exit_code)
-{
-	clear_elements();
-	return (exit_code);
-}
-
 int main(int argc, char **argv)
 {
+	t_list	*objs;
+
 	errno = 0;
-	if (parse(get_elements(), argc, argv))
-		return (exit_minirt(ft_error(__func__, __FILE__, __LINE__, 0)));
-	if (simulate(WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
-		return (exit_minirt(ft_error(__func__, __FILE__, __LINE__, 0)));
-	return (exit_minirt(EXIT_SUCCESS));
+	objs = NULL;
+	if (parse(&objs, argc, argv))
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	if (simulate(objs, WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
+	{
+		ft_lstclear(&objs, free);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	ft_lstclear(&objs, free);
+	return (EXIT_SUCCESS);
 }

@@ -22,6 +22,12 @@ typedef struct s_gui_setting
 	float		sample_per_pixel;
 }	t_gui_setting;
 
-int simulate(int width, int height, char *title);
+typedef struct s_world
+{
+	t_list			*objs;
+	t_gui_setting	gui;
+}	t_world;
+
+int simulate(t_list *objs, int width, int height, char *title);
 
 #endif
