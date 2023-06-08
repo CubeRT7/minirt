@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:20:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/04 22:21:10 by yonshin          ###   ########.fr        #
+#    Updated: 2023/06/08 15:16:27 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,24 +15,26 @@
 
 MINIRT = miniRT
 
+export MFLAGS := $(MAKEFLAGS)
+
 all bonus $(MINIRT):
-	$(MAKE) $(MAKEFLAGS) -C external
-	$(MAKE) $(MAKEFLAGS) -C lib
-	$(MAKE) $(MAKEFLAGS) -C src $@
+	$(MAKE) -C external
+	$(MAKE) -C lib
+	$(MAKE) -C src $@
 	ln -sf ./src/$(MINIRT) $(MINIRT)
 
 clean:
-	$(MAKE) $(MAKEFLAGS) -C external $@
-	$(MAKE) $(MAKEFLAGS) -C lib $@
-	$(MAKE) $(MAKEFLAGS) -C src $@
+	$(MAKE) -C external $@
+	$(MAKE) -C lib $@
+	$(MAKE) -C src $@
 
 fclean:
-	$(MAKE) $(MAKEFLAGS) -C external $@
-	$(MAKE) $(MAKEFLAGS) -C lib $@
-	$(MAKE) $(MAKEFLAGS) -C src $@
+	$(MAKE) -C external $@
+	$(MAKE) -C lib $@
+	$(MAKE) -C src $@
 	$(RM) $(MINIRT)
 
 re: fclean
-	$(MAKE) $(MAKEFLAGS) $(MINIRT)
+	$(MAKE) $(MINIRT)
 
 .PHONY: all clean fclean re bonus $(MINIRT)
