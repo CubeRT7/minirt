@@ -6,23 +6,24 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 23:27:25 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 00:49:00 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "light.h"
 
-void	parse_debug_light(void *param)
+int	debug_light(void *param)
 {
 	struct s_light *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
-		return ;
+		return (EXIT_SUCCESS);
 	printf("%s: coordinate[%f, %f, %f]\n", __func__,
 		c->raw.coordinate.x, c->raw.coordinate.y, c->raw.coordinate.z);
 	printf("%s: ratio[%f]\n", __func__, c->raw.ratio);
 	printf("%s: rgb[%d, %d, %d]\n", __func__,
 		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
+	return (EXIT_SUCCESS);
 }
 
 int	parse_light(void *param, char **argv)
@@ -42,6 +43,6 @@ int	parse_light(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (argv[2] && parse_rgb(&content->raw.rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	parse_debug_light(content);
+	debug_light(content);
 	return (EXIT_SUCCESS);
 }

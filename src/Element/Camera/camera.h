@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 23:28:12 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 00:48:01 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_camera
 	}							obj;
 }	t_camera;
 
-extern void	parse_debug_camera(void *param);
+extern int	debug_camera(void *param);
 extern int	parse_camera(void *param, char **argv);
 
 #endif 

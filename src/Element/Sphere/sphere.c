@@ -6,23 +6,24 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 23:27:31 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 00:49:24 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere.h"
 
-void	parse_debug_sphere(void *param)
+int	debug_sphere(void *param)
 {
 	struct s_sphere *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
-		return ;
+		return (EXIT_SUCCESS);
 	printf("%s: coordinate[%f, %f, %f]\n", __func__,
 		c->raw.coordinate.x, c->raw.coordinate.y, c->raw.coordinate.z);
 	printf("%s: diameter[%f]\n", __func__, c->raw.diameter);
 	printf("%s: rgb[%d, %d, %d]\n", __func__,
 		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
+	return (EXIT_SUCCESS);
 }
 
 int	parse_sphere(void *param, char **argv)
@@ -40,6 +41,6 @@ int	parse_sphere(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&content->raw.rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	parse_debug_sphere(content);
+	debug_sphere(content);
 	return (EXIT_SUCCESS);
 }

@@ -6,18 +6,18 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 23:27:21 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 00:48:45 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cylinder.h"
 
-void	parse_debug_cylinder(void *param)
+int	debug_cylinder(void *param)
 {
 	struct s_cylinder *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
-		return ;
+		return (EXIT_SUCCESS);
 	printf("%s: coordinate[%f, %f, %f]\n", __func__,
 		c->raw.coordinate.x, c->raw.coordinate.y, c->raw.coordinate.z);
 	printf("%s: axis[%f, %f, %f]\n", __func__,
@@ -26,6 +26,7 @@ void	parse_debug_cylinder(void *param)
 	printf("%s: height[%f]\n", __func__, c->raw.height);
 	printf("%s: rgb[%d, %d, %d]\n", __func__,
 		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
+	return (EXIT_SUCCESS);
 }
 
 int	parse_cylinder(void *param, char **argv)
@@ -48,6 +49,6 @@ int	parse_cylinder(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&content->raw.rgb, argv[4]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	parse_debug_cylinder(content);
+	debug_cylinder(content);
 	return (EXIT_SUCCESS);
 }

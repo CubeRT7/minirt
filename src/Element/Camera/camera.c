@@ -6,23 +6,24 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 23:27:18 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 00:48:37 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
 
-void	parse_debug_camera(void *param)
+int	debug_camera(void *param)
 {
 	struct s_camera *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
-		return ;
+		return (EXIT_SUCCESS);
 	printf("%s: coordinate[%f, %f, %f]\n", __func__,
 		c->raw.coordinate.x, c->raw.coordinate.y, c->raw.coordinate.z);
 	printf("%s: axis[%f, %f, %f]\n", __func__,
 		c->raw.axis.x, c->raw.axis.y, c->raw.axis.z);
 	printf("%s: fov[%f]\n", __func__, c->raw.fov);
+	return (EXIT_SUCCESS);
 }
 
 int	parse_camera(void *param, char **argv)
@@ -42,6 +43,6 @@ int	parse_camera(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (!(0.0 <= content->raw.fov && content->raw.fov <= 180.0))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	parse_debug_camera(content);
+	debug_camera(content);
 	return (EXIT_SUCCESS);
 }
