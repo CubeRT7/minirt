@@ -14,15 +14,24 @@
 # define SPHERE_H
 # include "../common.h"
 
-typedef struct s_sphere
+typedef struct s_parsed_sphere
 {
 	struct s_vector4	coordinate;
 	struct s_vector4	axis;
 	struct s_rgb		rgb;
 	float				diameter;
+}	t_parsed_sphere;
+
+// TODO: add param
+typedef struct s_sphere
+{
+	enum e_element	type;
 }	t_sphere;
 
-extern void	debug_sphere(void *param);
+extern void	parse_debug_sphere(void *param);
 extern int	parse_sphere(void *param, char **argv);
+extern void	*new_sphere(void *param);
+extern void	destroy_sphere(void *object);
+extern int	hit_sphere(void *object, t_ray *ray);
 
 #endif 

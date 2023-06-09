@@ -14,14 +14,23 @@
 # define PLANE_H
 # include "../common.h"
 
-typedef struct s_plane
+typedef struct s_parsed_plane
 {
 	struct s_vector4	coordinate;
 	struct s_vector4	axis;
 	struct s_rgb		rgb;
+}	t_parsed_plane;
+
+// TODO: add param
+typedef struct s_plane
+{
+	enum e_element	type;
 }	t_plane;
 
-extern void	debug_plane(void *param);
+extern void	parse_debug_plane(void *param);
 extern int	parse_plane(void *param, char **argv);
+extern void	*new_plane(void *param);
+extern void	destroy_plane(void *object);
+extern int	hit_plane(void *object, t_ray *ray);
 
 #endif 

@@ -14,14 +14,23 @@
 # define CAMERA_H
 # include "../common.h"
 
-typedef struct s_camera
+typedef struct s_parsed_camera
 {
 	struct s_vector4	coordinate;
 	struct s_vector4	axis;
 	float				fov;
+}	t_parsed_camera;
+
+// TODO: add param
+typedef struct s_camera
+{
+	enum e_element	type;
 }	t_camera;
 
-extern void	debug_camera(void *param);
+extern void	parse_debug_camera(void *param);
 extern int	parse_camera(void *param, char **argv);
+extern void	*new_camera(void *param);
+extern void	destroy_camera(void *object);
+extern int	hit_camera(void *object, t_ray *ray);
 
 #endif 

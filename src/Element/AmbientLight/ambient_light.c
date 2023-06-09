@@ -12,9 +12,9 @@
 
 #include "ambient_light.h"
 
-void	debug_ambient_light(void *param)
+void	parse_debug_ambient_light(void *param)
 {
-	struct s_ambient_light *const	c = param;
+	struct s_parsed_ambient_light *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
 		return ;
@@ -24,8 +24,8 @@ void	debug_ambient_light(void *param)
 
 int	parse_ambient_light(void *param, char **argv)
 {
-	char							*remain;
-	struct s_ambient_light *const	content = param;
+	char									*remain;
+	struct s_parsed_ambient_light *const	content = param;
 
 	if (!argv || !argv[0] || !argv[1])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
@@ -36,6 +36,33 @@ int	parse_ambient_light(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (!(0.0 <= content->ratio && content->ratio <= 1.0))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	debug_ambient_light(content);
+	parse_debug_ambient_light(content);
 	return (EXIT_SUCCESS);
+}
+
+void	*new_ambient_light(void *param)
+{
+	t_ambient_light *const	obj = malloc(sizeof(t_ambient_light));
+
+	if (obj == NULL)
+		return (NULL);
+	(void)param;
+	obj->type = AmbientLight;
+	return (obj);
+}
+
+void	destroy_ambient_light(void *object)
+{
+	t_ambient_light *const	obj = object;
+
+	free(obj);
+}
+
+int	hit_ambient_light(void *object, t_ray *ray)
+{
+	t_ambient_light *const	obj = object;
+
+	(void)obj;
+	(void)ray;
+	return (0);
 }

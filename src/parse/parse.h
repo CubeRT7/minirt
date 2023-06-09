@@ -14,6 +14,7 @@
 # define PARSE_H
 # include <fcntl.h>
 # include "element.h"
+# include "Element/object.h"
 
 extern int	parse(t_list **result, int argc, char **argv);
 

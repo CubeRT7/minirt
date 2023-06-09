@@ -12,9 +12,9 @@
 
 #include "camera.h"
 
-void	debug_camera(void *param)
+void	parse_debug_camera(void *param)
 {
-	struct s_camera *const	c = param;
+	struct s_parsed_camera *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
 		return ;
@@ -26,8 +26,8 @@ void	debug_camera(void *param)
 
 int	parse_camera(void *param, char **argv)
 {
-	char					*remain;
-	struct s_camera *const	content = param;
+	char							*remain;
+	struct s_parsed_camera *const	content = param;
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
@@ -40,6 +40,33 @@ int	parse_camera(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (!(0.0 <= content->fov && content->fov <= 180.0))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	debug_camera(content);
+	parse_debug_camera(content);
 	return (EXIT_SUCCESS);
+}
+
+void	*new_camera(void *param)
+{
+	t_camera *const	obj = malloc(sizeof(t_camera));
+
+	if (obj == NULL)
+		return (NULL);
+	(void)param;
+	obj->type = Camera;
+	return (obj);
+}
+
+void	destroy_camera(void *object)
+{
+	t_camera *const	obj = object;
+
+	free(obj);
+}
+
+int	hit_camera(void *object, t_ray *ray)
+{
+	t_camera *const	obj = object;
+
+	(void)obj;
+	(void)ray;
+	return (0);
 }

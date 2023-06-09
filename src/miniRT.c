@@ -31,6 +31,6 @@ int	main(int argc, char **argv)
 		ft_lstclear(&objs, free);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
-	ft_lstclear(&objs, free);
+	ft_lstclear(&objs, destory_object);
 	return (EXIT_SUCCESS);
 }

@@ -12,9 +12,9 @@
 
 #include "plane.h"
 
-void	debug_plane(void *param)
+void	parse_debug_plane(void *param)
 {
-	struct s_plane *const	c = param;
+	struct s_parsed_plane *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
 		return ;
@@ -26,7 +26,7 @@ void	debug_plane(void *param)
 
 int	parse_plane(void *param, char **argv)
 {
-	struct s_plane *const	content = param;
+	struct s_parsed_plane *const	content = param;
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
@@ -36,6 +36,33 @@ int	parse_plane(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (parse_rgb(&content->rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	debug_plane(content);
+	parse_debug_plane(content);
 	return (EXIT_SUCCESS);
+}
+
+void	*new_plane(void *param)
+{
+	t_plane *const	obj = malloc(sizeof(t_plane));
+
+	if (obj == NULL)
+		return (NULL);
+	(void)param;
+	obj->type = Plane;
+	return (obj);
+}
+
+void	destroy_plane(void *object)
+{
+	t_plane *const	obj = object;
+
+	free(obj);
+}
+
+int	hit_plane(void *object, t_ray *ray)
+{
+	t_plane *const	obj = object;
+
+	(void)obj;
+	(void)ray;
+	return (0);
 }

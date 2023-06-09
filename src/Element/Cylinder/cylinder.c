@@ -12,9 +12,9 @@
 
 #include "cylinder.h"
 
-void	debug_cylinder(void *param)
+void	parse_debug_cylinder(void *param)
 {
-	struct s_cylinder *const	c = param;
+	struct s_parsed_cylinder *const	c = param;
 
 	if (c == NULL || DEBUG == 0)
 		return ;
@@ -28,8 +28,8 @@ void	debug_cylinder(void *param)
 
 int	parse_cylinder(void *param, char **argv)
 {
-	char						*remain;
-	struct s_cylinder *const	content = param;
+	char							*remain;
+	struct s_parsed_cylinder *const	content = param;
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2] || !argv[3] || !argv[4])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
@@ -45,6 +45,33 @@ int	parse_cylinder(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&content->rgb, argv[4]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	debug_cylinder(content);
+	parse_debug_cylinder(content);
 	return (EXIT_SUCCESS);
+}
+
+void	*new_cylinder(void *param)
+{
+	t_cylinder *const	obj = malloc(sizeof(t_cylinder));
+
+	if (obj == NULL)
+		return (NULL);
+	(void)param;
+	obj->type = Cylinder;
+	return (obj);
+}
+
+void	destroy_cylinder(void *object)
+{
+	t_cylinder *const	obj = object;
+
+	free(obj);
+}
+
+int	hit_cylinder(void *object, t_ray *ray)
+{
+	t_cylinder *const	obj = object;
+
+	(void)obj;
+	(void)ray;
+	return (0);
 }

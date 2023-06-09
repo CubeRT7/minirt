@@ -54,6 +54,7 @@ CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
 	Element/common.c \
+	Element/object.c \
 	Element/AmbientLight/ambient_light.c \
 	Element/Camera/camera.c \
 	Element/Light/light.c \

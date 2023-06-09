@@ -14,8 +14,7 @@
 
 void	hook_resize_event(int width, int height, void *param)
 {
-	t_gui_setting	*gui;
+	t_gui_setting *const	gui = param;
 
-	gui = param;
 	mlx_resize_image(gui->image, width, height);
 }

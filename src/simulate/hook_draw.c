@@ -14,17 +14,20 @@
 
 void	hook_draw(void *param)
 {
-	t_world	*world;
+	t_world *const	world = param;
+	int				x;
+	int				y;
 
-	world = param;
-	for (int32_t i = 0; i < world->gui.mlx->width; ++i)
+	x = -1;
+	while (++x < world->gui.mlx->width)
 	{
-		for (int32_t y = 0; y < world->gui.mlx->height; ++y)
+		y = -1;
+		while (++y < world->gui.mlx->height)
 		{
-			mlx_put_pixel(world->gui.image, i, y,
-				rand() % 0xFF << 24 |
-				rand() % 0xFF << 16 |
-				rand() % 0xFF << 8 |
+			mlx_put_pixel(world->gui.image, x, y, \
+				rand() % 0xFF << 24 | \
+				rand() % 0xFF << 16 | \
+				rand() % 0xFF << 8 | \
 				rand() % 0xFF);
 		}
 	}

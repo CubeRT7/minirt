@@ -52,18 +52,30 @@ static int	_parse_elements(t_list	**elements, int fd)
 	return (EXIT_SUCCESS);
 }
 
-static int	_convert_to_objs(t_list **elements, t_list **objs)
+static int	_convert_to_objs(t_list **elems, t_list **objs)
 {
-	(void)elements;
-	(void)objs;
+	static const t_new_object	new[MAX_ELEMENT_TYPE] = {
+	[AmbientLight] = new_ambient_light,
+	[Camera] = new_camera,
+	[Light] = new_light,
+	[Plane] = new_plane,
+	[Sphere] = new_sphere,
+	[Cylinder] = new_cylinder};
+	int							i;
+	t_list						*converted;
 
-	// TODO: elements 의 각 요소를 objs 에 1차원 리스트로 변환해야 함.
-	// ft_lstaddback(objs, ft_lstmap(elements[AmbientLight],convert_func, free))
-	// ft_lstaddback(objs, ft_lstmap(elements[Camera], 		convert_func, free))
-	// ft_lstaddback(objs, ft_lstmap(elements[Light],		convert_func, free))
-	// ft_lstaddback(objs, ft_lstmap(elements[Plane],		convert_func, free))
-	// ft_lstaddback(objs, ft_lstmap(elements[Sphere],		convert_func, free))
-	// ft_lstaddback(objs, ft_lstmap(elements[Cylinder],	convert_func, free))
+	i = 0;
+	while (i < MAX_ELEMENT_TYPE)
+	{
+		converted = ft_lstmap(elems[i], new[i], destory_object);
+		if (converted == NULL)
+		{
+			ft_lstclear(objs, destory_object);
+			return (ft_error(__func__, __FILE__, __LINE__, 0));
+		}
+		ft_lstadd_front(objs, converted);
+		i++;
+	}
 	return (EXIT_SUCCESS);
 }
 

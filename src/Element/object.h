@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   element.h                                          :+:      :+:    :+:   */
+/*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/04 16:22:54 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 07:14:03 by yonshin          ###   ########.fr       */
+/*   Created: 2023/06/09 12:07:28 by yonshin           #+#    #+#             */
+/*   Updated: 2023/06/09 12:09:29 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ELEMENT_H
-# define ELEMENT_H
+#ifndef OBJECT_H
+# define OBJECT_H
+# include "common.h"
 # include "Element/AmbientLight/ambient_light.h"
 # include "Element/Camera/camera.h"
 # include "Element/Light/light.h"
@@ -19,15 +20,18 @@
 # include "Element/Sphere/sphere.h"
 # include "Element/Cylinder/cylinder.h"
 
-struct s_element
+typedef struct s_obj
 {
-	const char	*type;
-	size_t		size;
-	int			(*parse)(void *, char **);
-};
+	enum e_element	type;
+}	t_obj;
 
-extern t_list	**get_elements(void);
-extern void		clear_elements(void);
-extern int		append_element(t_list **elements, char **cols);
+typedef void	*(*t_new_object)(void *raw);
+extern void		*new_object(enum e_element type, void *raw);
+
+typedef void	(*t_destroy_object)(void *object);
+extern void		destory_object(void *object);
+
+typedef int		(*t_hit)(void *object, t_ray *ray);
+extern int		hit(void *object, t_ray *ray);
 
 #endif
