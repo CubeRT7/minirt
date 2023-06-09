@@ -50,6 +50,11 @@ enum e_element
 
 typedef int			(*t_func)();
 
+typedef struct s_element
+{
+	enum e_element	type;
+}	t_element;
+
 enum e_element_func
 {
 	Debug,
