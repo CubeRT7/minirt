@@ -23,10 +23,10 @@ typedef struct s_parsed_cylinder
 	float				height;
 }	t_parsed_cylinder;
 
+// TODO: add param
 typedef struct s_cylinder
 {
 	enum e_element	type;
-	// TODO: add param
 }	t_cylinder;
 
 extern void	parse_debug_cylinder(void *param);

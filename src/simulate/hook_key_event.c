@@ -14,9 +14,8 @@
 
 void	hook_key_event(void *param)
 {
-	t_gui_setting	*gui;
+	t_gui_setting *const	gui = param;
 
-	gui = param;
 	if (mlx_is_key_down(gui->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(gui->mlx);
 }

@@ -22,10 +22,10 @@ typedef struct s_parsed_light
 	float				ratio;
 }	t_parsed_light;
 
+// TODO: add param
 typedef struct s_light
 {
 	enum e_element	type;
-	// TODO: add param
 }	t_light;
 
 extern void	parse_debug_light(void *param);

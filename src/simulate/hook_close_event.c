@@ -12,8 +12,10 @@
 
 #include "hook.h"
 
+// TODO
 void	hook_close_event(void *param)
 {
-	(void)param;
-	// TODO
+	t_gui_setting *const	gui = param;
+
+	(void)gui;
 }
