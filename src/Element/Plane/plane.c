@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 19:25:43 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 23:27:27 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,31 +41,4 @@ int	parse_plane(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	parse_debug_plane(content);
 	return (EXIT_SUCCESS);
-}
-
-void	*new_plane(void *param)
-{
-	t_plane *const	obj = ft_calloc(1, sizeof(t_plane));
-
-	if (obj == NULL)
-		return (NULL);
-	(void)param;
-	obj->type = Plane;
-	return (obj);
-}
-
-void	destroy_plane(void *object)
-{
-	t_plane *const	obj = object;
-
-	free(obj);
-}
-
-int	hit_plane(void *object, t_ray *ray)
-{
-	t_plane *const	obj = object;
-
-	(void)obj;
-	(void)ray;
-	return (0);
 }

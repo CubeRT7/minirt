@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 19:25:46 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 23:27:31 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,4 @@ int	parse_sphere(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	parse_debug_sphere(content);
 	return (EXIT_SUCCESS);
-}
-
-void	*new_sphere(void *param)
-{
-	t_sphere *const	obj = ft_calloc(1, sizeof(t_sphere));
-
-	if (obj == NULL)
-		return (NULL);
-	(void)param;
-	obj->type = Sphere;
-	return (obj);
-}
-
-void	destroy_sphere(void *object)
-{
-	t_sphere *const	obj = object;
-
-	free(obj);
-}
-
-int	hit_sphere(void *object, t_ray *ray)
-{
-	t_sphere *const	obj = object;
-
-	(void)obj;
-	(void)ray;
-	return (0);
 }

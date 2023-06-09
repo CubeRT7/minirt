@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 19:25:34 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 23:27:18 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,4 @@ int	parse_camera(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	parse_debug_camera(content);
 	return (EXIT_SUCCESS);
-}
-
-void	*new_camera(void *param)
-{
-	t_camera *const	obj = ft_calloc(1, sizeof(t_camera));
-
-	if (obj == NULL)
-		return (NULL);
-	(void)param;
-	obj->type = Camera;
-	return (obj);
-}
-
-void	destroy_camera(void *object)
-{
-	t_camera *const	obj = object;
-
-	free(obj);
-}
-
-int	hit_camera(void *object, t_ray *ray)
-{
-	t_camera *const	obj = object;
-
-	(void)obj;
-	(void)ray;
-	return (0);
 }

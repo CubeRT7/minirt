@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/09 22:55:36 by minjungk         ###   ########.fr        #
+#    Updated: 2023/06/09 23:28:30 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,6 @@ CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
 	Element/common.c \
-	Element/object.c \
 	Element/AmbientLight/ambient_light.c \
 	Element/Camera/camera.c \
 	Element/Light/light.c \

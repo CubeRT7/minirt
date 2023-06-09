@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 19:41:08 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 23:28:17 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,5 @@ typedef struct s_plane
 
 extern void	parse_debug_plane(void *param);
 extern int	parse_plane(void *param, char **argv);
-extern void	*new_plane(void *param);
-extern void	destroy_plane(void *object);
-extern int	hit_plane(void *object, t_ray *ray);
 
 #endif 

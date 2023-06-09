@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 19:41:02 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 23:28:14 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,5 @@ typedef struct s_cylinder
 
 extern void	parse_debug_cylinder(void *param);
 extern int	parse_cylinder(void *param, char **argv);
-extern void	*new_cylinder(void *param);
-extern void	destroy_cylinder(void *object);
-extern int	hit_cylinder(void *object, t_ray *ray);
 
 #endif 
