@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:02:13 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:39:56 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 # define AMBIENT_LIGHT_H
 # include "../common.h"
 
-typedef struct s_parsed_ambient_light
-{
-	float	ratio;
-	t_rgb	rgb;
-}	t_parsed_ambient_light;
-
-// TODO: add param
 typedef struct s_ambient_light
 {
-	enum e_element	type;
+	enum e_element			type;
+	struct s_ambient_light_raw
+	{
+		float		ratio;
+		t_rgb		rgb;
+	}						raw;
+	struct s_ambient_light_obj
+	{
+		int			tbd;
+	}						obj;
 }	t_ambient_light;
 
 extern void	parse_debug_ambient_light(void *param);

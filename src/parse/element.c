@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:22:54 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 07:06:55 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/06/09 19:38:22 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static int	_append(t_list **elements, t_list *node, char **cols)
 {
 	int								i;
 	static const struct s_element	data[MAX_ELEMENT_TYPE] = {
-	[AmbientLight] = {"A", sizeof(t_parsed_ambient_light), parse_ambient_light},
-	[Camera] = {"C", sizeof(t_parsed_camera), parse_camera},
-	[Light] = {"L", sizeof(t_parsed_light), parse_light},
-	[Plane] = {"pl", sizeof(t_parsed_plane), parse_plane},
-	[Sphere] = {"sp", sizeof(t_parsed_sphere), parse_sphere},
-	[Cylinder] = {"cy", sizeof(t_parsed_cylinder), parse_cylinder}};
+	[AmbientLight] = {"A", sizeof(t_ambient_light), parse_ambient_light},
+	[Camera] = {"C", sizeof(t_camera), parse_camera},
+	[Light] = {"L", sizeof(t_light), parse_light},
+	[Plane] = {"pl", sizeof(t_plane), parse_plane},
+	[Sphere] = {"sp", sizeof(t_sphere), parse_sphere},
+	[Cylinder] = {"cy", sizeof(t_cylinder), parse_cylinder}};
 
 	i = 0;
 	while (i < MAX_ELEMENT_TYPE)
