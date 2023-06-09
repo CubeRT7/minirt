@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/08 19:35:09 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 22:55:52 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	main(int argc, char **argv)
 		ft_lstclear(&objs, free);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
-	ft_lstclear(&objs, destory_object);
+	ft_lstclear(&objs, free);
 	return (EXIT_SUCCESS);
 }

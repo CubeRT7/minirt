@@ -6,27 +6,57 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 07:10:22 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/06/09 22:56:12 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static int	_invalid(int argc, char **argv)
+static int	_append(t_list **elements, t_list *node, char **cols)
 {
-	char	*extension;
+	int									i;
+	static const struct s_parse_info	data[MAX_ELEMENT_TYPE] = {
+	[AmbientLight] = {"A", sizeof(t_ambient_light), parse_ambient_light},
+	[Camera] = {"C", sizeof(t_camera), parse_camera},
+	[Light] = {"L", sizeof(t_light), parse_light},
+	[Plane] = {"pl", sizeof(t_plane), parse_plane},
+	[Sphere] = {"sp", sizeof(t_sphere), parse_sphere},
+	[Cylinder] = {"cy", sizeof(t_cylinder), parse_cylinder}};
 
-	if (argc != 2 || argv == NULL || argv[1] == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	extension = ft_strrchr(argv[1], '.');
-	if (extension == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	if (ft_strncmp(extension, ".rt", 4) != 0)
-		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (i < MAX_ELEMENT_TYPE)
+	{
+		if (!ft_strncmp(cols[0], data[i].type, ft_strlen(data[i].type) + 1))
+		{
+			node->content = ft_calloc(1, data[i].size);
+			if (node->content && !(data[i].parse(node->content, cols + 1)))
+			{
+				ft_lstadd_back(&elements[i], node);
+				return (EXIT_SUCCESS);
+			}
+			return (ft_error(__func__, __FILE__, __LINE__, 0));
+		}
+		++i;
+	}
+	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 }
 
-static int	_parse_elements(t_list	**elements, int fd)
+static int	_append_element(t_list **elements, char **cols)
+{
+	t_list	*node;
+
+	if (!ft_strncmp(cols[0], "\n", 2) || !ft_strncmp(cols[0], "\r\n", 3))
+		return (EXIT_SUCCESS);
+	node = ft_lstnew(NULL);
+	if (node == NULL)
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	if (_append(elements, node, cols) == EXIT_SUCCESS)
+		return (EXIT_SUCCESS);
+	ft_lstdelone(node, free);
+	return (ft_error(__func__, __FILE__, __LINE__, 0));
+}
+
+static int	_append_elements(t_list **elements, int fd)
 {
 	int		ret;
 	char	*line;
@@ -41,7 +71,7 @@ static int	_parse_elements(t_list	**elements, int fd)
 			if (cols == NULL)
 				return (ft_error(__func__, __FILE__, __LINE__, 0));
 		}
-		ret = append_element(elements, cols);
+		ret = _append_element(elements, cols);
 		{
 			ft_strarr_free(cols);
 			if (ret == EXIT_FAILURE)
@@ -52,60 +82,51 @@ static int	_parse_elements(t_list	**elements, int fd)
 	return (EXIT_SUCCESS);
 }
 
-static int	_convert_to_objs(t_list **elems, t_list **objs)
+static int	_read(t_list **objs, int fd)
 {
-	static const t_new_object	new[MAX_ELEMENT_TYPE] = {
-	[AmbientLight] = new_ambient_light,
-	[Camera] = new_camera,
-	[Light] = new_light,
-	[Plane] = new_plane,
-	[Sphere] = new_sphere,
-	[Cylinder] = new_cylinder};
-	int							i;
-	t_list						*converted;
+	int		i;
+	int		ret;
+	t_list	*elements[MAX_ELEMENT_TYPE];
 
+	ft_memset(elements, 0, sizeof(elements));
+	ret = _append_elements(elements, fd);
+	if (ret == EXIT_SUCCESS)
+	{
+		if (ft_lstsize(elements[AmbientLight]) < 2
+			&& ft_lstsize(elements[Camera]) < 2
+			&& ft_lstsize(elements[Light]) < 2)
+		{
+			i = 0;
+			while (i < MAX_ELEMENT_TYPE)
+				ft_lstadd_back(objs, elements[i++]);
+			return (EXIT_SUCCESS);
+		}
+	}
 	i = 0;
 	while (i < MAX_ELEMENT_TYPE)
-	{
-		converted = ft_lstmap(elems[i], new[i], destory_object);
-		if (converted == NULL)
-		{
-			ft_lstclear(objs, destory_object);
-			return (ft_error(__func__, __FILE__, __LINE__, 0));
-		}
-		ft_lstadd_front(objs, converted);
-		i++;
-	}
-	return (EXIT_SUCCESS);
+		ft_lstclear(&elements[i++], free);
+	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 }
 
-static int	_exit_parse(int exit_code)
-{
-	clear_elements();
-	return (exit_code);
-}
-
-int	parse(t_list **result, int argc, char **argv)
+int	parse(t_list **objs, int argc, char **argv)
 {
 	int		fd;
 	int		ret;
-	t_list	**elements;
+	char	*extension;
 
-	if (_invalid(argc, argv) == EXIT_FAILURE)
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	if (objs == NULL || argc != 2 || argv == NULL || argv[1] == NULL)
+		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
+	extension = ft_strrchr(argv[1], '.');
+	if (extension == NULL)
+		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
+	if (ft_strncmp(extension, ".rt", 4) != 0)
+		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	elements = get_elements();
-	ret = _parse_elements(elements, fd);
+	ret = _read(objs, fd);
 	close(fd);
-	if (_convert_to_objs(elements, result))
-		return (_exit_parse(ft_error(__func__, __FILE__, __LINE__, 0)));
 	if (ret == EXIT_FAILURE)
-		return (_exit_parse(ft_error(__func__, __FILE__, __LINE__, 0)));
-	if (ft_lstsize(elements[AmbientLight]) > 1
-		|| ft_lstsize(elements[Camera]) > 1
-		|| ft_lstsize(elements[Light]) > 1)
-		return (_exit_parse(ft_error(__func__, __FILE__, __LINE__, EINVAL)));
-	return (_exit_parse(EXIT_SUCCESS));
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	return (EXIT_SUCCESS);
 }
