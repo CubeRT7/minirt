@@ -16,11 +16,11 @@
 
 typedef struct s_parsed_cylinder
 {
-	struct s_vector4	coordinate;
-	struct s_vector4	axis;
-	struct s_rgb		rgb;
-	float				diameter;
-	float				height;
+	t_point		coordinate;
+	t_vector3	axis;
+	t_rgb		rgb;
+	float		diameter;
+	float		height;
 }	t_parsed_cylinder;
 
 // TODO: add param

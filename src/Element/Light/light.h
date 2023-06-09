@@ -16,10 +16,10 @@
 
 typedef struct s_parsed_light
 {
-	struct s_vector4	coordinate;
-	struct s_vector4	asix;
-	struct s_rgb		rgb;
-	float				ratio;
+	t_point		coordinate;
+	t_vector3	asix;
+	t_rgb		rgb;
+	float		ratio;
 }	t_parsed_light;
 
 // TODO: add param

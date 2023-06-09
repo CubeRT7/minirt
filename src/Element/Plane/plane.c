@@ -30,9 +30,9 @@ int	parse_plane(void *param, char **argv)
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	if (parse_vector3(&content->coordinate, argv[0], Coordinate))
+	if (parse_vector3(&content->coordinate, argv[0], AllScope))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (parse_vector3(&content->axis, argv[1], Vector))
+	if (parse_vector3(&content->axis, argv[1], UnitScope))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (parse_rgb(&content->rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));

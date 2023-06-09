@@ -31,7 +31,7 @@ int	parse_sphere(void *param, char **argv)
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	if (parse_vector3(&content->coordinate, argv[0], Coordinate))
+	if (parse_vector3(&content->coordinate, argv[0], AllScope))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	content->diameter = ft_strtof(argv[1], &remain);
 	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))

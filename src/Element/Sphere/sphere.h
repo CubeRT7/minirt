@@ -16,10 +16,10 @@
 
 typedef struct s_parsed_sphere
 {
-	struct s_vector4	coordinate;
-	struct s_vector4	axis;
-	struct s_rgb		rgb;
-	float				diameter;
+	t_point		coordinate;
+	t_vector3	axis;
+	t_rgb		rgb;
+	float		diameter;
 }	t_parsed_sphere;
 
 // TODO: add param

@@ -27,6 +27,10 @@ CPPFLAGS	+= -I../lib/libcustom
 LDFLAGS		+= -L../lib/libcustom
 LDLIBS		+= -lcustom
 
+CPPFLAGS	+= -I../lib/libvector
+LDFLAGS		+= -L../lib/libvector
+LDLIBS		+= -lvector
+
 CPPFLAGS	+= -I../lib/libft
 LDFLAGS		+= -L../lib/libft
 LDLIBS		+= -lft
@@ -76,6 +80,7 @@ MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)
 $(MINIRT): $(MINIRT_OBJS) \
 	../lib/libft/libft.a \
 	../lib/libcustom/libcustom.a \
+	../lib/libvector/libvector.a \
 
 # **************************************************************************** #
 

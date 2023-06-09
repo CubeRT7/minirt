@@ -16,8 +16,8 @@
 
 typedef struct s_parsed_ambient_light
 {
-	float				ratio;
-	struct s_rgb		rgb;
+	float	ratio;
+	t_rgb	rgb;
 }	t_parsed_ambient_light;
 
 // TODO: add param

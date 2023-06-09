@@ -13,6 +13,7 @@
 #ifndef COMMON_H
 # define COMMON_H
 # include "libcustom.h"
+# include "libvector.h"
 
 typedef struct s_rgb
 {
@@ -21,24 +22,19 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
-enum e_vector4_type
+enum e_vector_scope
 {
-	Vector,
-	Coordinate
+	UnitScope,
+	AllScope
 };
 
-typedef struct s_vector4
-{
-	float	x;
-	float	y;
-	float	z;
-	float	w;
-}	t_vector4;
+typedef t_vector3	t_point;
+typedef t_vector3	t_color;
 
 typedef struct s_ray
 {
-	t_vector4	origin;
-	t_vector4	direction;
+	t_point		origin;
+	t_vector3	direction;
 }	t_ray;
 
 enum e_element
@@ -53,6 +49,6 @@ enum e_element
 };
 
 extern int	parse_rgb(struct s_rgb *rgb, char *curr);
-extern int	parse_vector3(struct s_vector4 *vector, char *curr, float w);
+extern int	parse_vector3(t_vector3 *vector, char *curr, float scope);
 
 #endif
