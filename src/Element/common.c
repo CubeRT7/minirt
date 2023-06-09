@@ -40,7 +40,7 @@ int	parse_rgb(struct s_rgb *rgb, char *curr)
 	return (EXIT_SUCCESS);
 }
 
-int	parse_vector3(struct s_vector4 *vector, char *curr, float w)
+int	parse_vector3(t_vector3 *vector, char *curr, float scope)
 {
 	vector->x = ft_strtof(curr, &curr);
 	if (errno || curr[0] != ',')
@@ -51,8 +51,7 @@ int	parse_vector3(struct s_vector4 *vector, char *curr, float w)
 	vector->z = ft_strtof(curr + 1, &curr);
 	if (errno || (curr[0] != '\0' && ft_strchr("\r\n", curr[0]) == NULL))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	vector->w = w;
-	if (w != Vector)
+	if (scope == AllScope)
 		return (EXIT_SUCCESS);
 	if ((-1.0 <= vector->x && vector->x <= 1.0)
 		&& (-1.0 <= vector->y && vector->y <= 1.0)

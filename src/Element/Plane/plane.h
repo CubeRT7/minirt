@@ -16,9 +16,9 @@
 
 typedef struct s_parsed_plane
 {
-	struct s_vector4	coordinate;
-	struct s_vector4	axis;
-	struct s_rgb		rgb;
+	t_point		coordinate;
+	t_vector3	axis;
+	t_rgb		rgb;
 }	t_parsed_plane;
 
 // TODO: add param

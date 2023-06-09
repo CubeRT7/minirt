@@ -16,9 +16,9 @@
 
 typedef struct s_parsed_camera
 {
-	struct s_vector4	coordinate;
-	struct s_vector4	axis;
-	float				fov;
+	t_point		coordinate;
+	t_vector3	axis;
+	float		fov;
 }	t_parsed_camera;
 
 // TODO: add param
