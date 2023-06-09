@@ -3,66 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ambient_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 04:18:36 by minjungk         ###   ########.fr       */
+/*   Created: 2023/06/09 12:04:44 by yonshin           #+#    #+#             */
+/*   Updated: 2023/06/10 01:40:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ambient_light.h"
 
-void	parse_debug_ambient_light(void *param)
+t_func	ambient_light(enum e_element_func func)
 {
-	struct s_parsed_ambient_light *const	c = param;
+	static const t_func	functions[MAX_ELEMENT_TYPE] = {
+	[Parse] = parse_ambient_light,
+	[Debug] = debug_ambient_light};
 
-	if (c == NULL || DEBUG == 0)
-		return ;
-	printf("%s: ratio[%f]\n", __func__, c->ratio);
-	printf("%s: rgb[%d, %d, %d]\n", __func__, c->rgb.r, c->rgb.g, c->rgb.b);
-}
-
-int	parse_ambient_light(void *param, char **argv)
-{
-	char									*remain;
-	struct s_parsed_ambient_light *const	content = param;
-
-	if (!argv || !argv[0] || !argv[1])
-		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	content->ratio = ft_strtof(argv[0], &remain);
-	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
-		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	if (parse_rgb(&content->rgb, argv[1]))
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (!(0.0 <= content->ratio && content->ratio <= 1.0))
-		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	parse_debug_ambient_light(content);
-	return (EXIT_SUCCESS);
-}
-
-void	*new_ambient_light(void *param)
-{
-	t_ambient_light *const	obj = malloc(sizeof(t_ambient_light));
-
-	if (obj == NULL)
-		return (NULL);
-	(void)param;
-	obj->type = AmbientLight;
-	return (obj);
-}
-
-void	destroy_ambient_light(void *object)
-{
-	t_ambient_light *const	obj = object;
-
-	free(obj);
-}
-
-int	hit_ambient_light(void *object, t_ray *ray)
-{
-	t_ambient_light *const	obj = object;
-
-	(void)obj;
-	(void)ray;
-	return (0);
+	return (functions[func]);
 }

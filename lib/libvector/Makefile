@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 16:16:38 by yonshin           #+#    #+#              #
-#    Updated: 2023/06/09 16:16:53 by yonshin          ###   ########.fr        #
+#    Updated: 2023/06/09 18:31:28 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@
 .DEFAULT_GOAL := all
 
 NAME = libvector.a
+
+CFLAGS		= -Wall -Wextra -Werror -MMD -MP
 
 ifdef	DEBUG
 	CPPFLAGS	+= -D__DEBUG__

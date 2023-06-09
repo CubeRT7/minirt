@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.h                                           :+:      :+:    :+:   */
+/*   file.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 12:07:28 by yonshin           #+#    #+#             */
-/*   Updated: 2023/06/09 12:09:29 by yonshin          ###   ########.fr       */
+/*   Created: 2023/05/31 04:18:35 by minjungk          #+#    #+#             */
+/*   Updated: 2023/06/09 23:56:45 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
-# include "common.h"
+#ifndef FILE_H
+# define FILE_H
+# include <fcntl.h>
 # include "Element/AmbientLight/ambient_light.h"
 # include "Element/Camera/camera.h"
 # include "Element/Light/light.h"
@@ -20,18 +20,13 @@
 # include "Element/Sphere/sphere.h"
 # include "Element/Cylinder/cylinder.h"
 
-typedef struct s_obj
+struct s_parse_info
 {
-	enum e_element	type;
-}	t_obj;
+	const char	*type;
+	size_t		size;
+	int			(*parse)(void *, char **);
+};
 
-typedef void	*(*t_new_object)(void *raw);
-extern void		*new_object(enum e_element type, void *raw);
-
-typedef void	(*t_destroy_object)(void *object);
-extern void		destory_object(void *object);
-
-typedef int		(*t_hit)(void *object, t_ray *ray);
-extern int		hit(void *object, t_ray *ray);
+extern int	import_file(t_list **result, int argc, char **argv);
 
 #endif

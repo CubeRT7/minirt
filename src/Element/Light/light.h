@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:03:28 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 01:51:23 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 # define LIGHT_H
 # include "../common.h"
 
-typedef struct s_parsed_light
-{
-	t_point		coordinate;
-	t_vector3	asix;
-	t_rgb		rgb;
-	float		ratio;
-}	t_parsed_light;
-
-// TODO: add param
 typedef struct s_light
 {
-	enum e_element	type;
+	enum e_element			type;
+	struct s_light_raw
+	{
+		t_point		coordinate;
+		t_vector3	asix;
+		t_rgb		rgb;
+		float		ratio;
+	}						raw;
+	struct s_light_obj
+	{
+		int			tbd;
+	}						obj;
 }	t_light;
 
-extern void	parse_debug_light(void *param);
-extern int	parse_light(void *param, char **argv);
-extern void	*new_light(void *param);
-extern void	destroy_light(void *object);
-extern int	hit_light(void *object, t_ray *ray);
+extern t_func	light(enum e_element_func func);
+extern int		debug_light(void *param);
+extern int		parse_light(void *param, char **argv);
 
 #endif 
