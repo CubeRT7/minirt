@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 04:19:01 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:46:48 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	parse_light(void *param, char **argv)
 
 void	*new_light(void *param)
 {
-	t_light *const	obj = malloc(sizeof(t_light));
+	t_light *const	obj = ft_calloc(1, sizeof(t_light));
 
 	if (obj == NULL)
 		return (NULL);

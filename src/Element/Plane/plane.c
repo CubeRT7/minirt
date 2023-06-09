@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:43:04 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:46:53 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	parse_plane(void *param, char **argv)
 
 void	*new_plane(void *param)
 {
-	t_plane *const	obj = malloc(sizeof(t_plane));
+	t_plane *const	obj = ft_calloc(1, sizeof(t_plane));
 
 	if (obj == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 04:18:57 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:46:41 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	parse_cylinder(void *param, char **argv)
 
 void	*new_cylinder(void *param)
 {
-	t_cylinder *const	obj = malloc(sizeof(t_cylinder));
+	t_cylinder *const	obj = ft_calloc(1, sizeof(t_cylinder));
 
 	if (obj == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 04:18:36 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:46:28 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	parse_ambient_light(void *param, char **argv)
 
 void	*new_ambient_light(void *param)
 {
-	t_ambient_light *const	obj = malloc(sizeof(t_ambient_light));
+	t_ambient_light *const	obj = ft_calloc(1, sizeof(t_ambient_light));
 
 	if (obj == NULL)
 		return (NULL);

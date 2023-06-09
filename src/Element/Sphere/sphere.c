@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 04:19:08 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:46:58 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	parse_sphere(void *param, char **argv)
 
 void	*new_sphere(void *param)
 {
-	t_sphere *const	obj = malloc(sizeof(t_sphere));
+	t_sphere *const	obj = ft_calloc(1, sizeof(t_sphere));
 
 	if (obj == NULL)
 		return (NULL);

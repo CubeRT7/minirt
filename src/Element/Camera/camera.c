@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/07 04:19:11 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:46:35 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	parse_camera(void *param, char **argv)
 
 void	*new_camera(void *param)
 {
-	t_camera *const	obj = malloc(sizeof(t_camera));
+	t_camera *const	obj = ft_calloc(1, sizeof(t_camera));
 
 	if (obj == NULL)
 		return (NULL);
