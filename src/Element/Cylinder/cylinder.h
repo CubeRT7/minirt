@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/10 00:48:02 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 01:51:12 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_cylinder
 	}						obj;
 }	t_cylinder;
 
-extern int	debug_cylinder(void *param);
-extern int	parse_cylinder(void *param, char **argv);
+extern t_func	cylinder(enum e_element_func func);
+extern int		debug_cylinder(void *param);
+extern int		parse_cylinder(void *param, char **argv);
 
 #endif 

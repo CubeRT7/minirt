@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/09 23:53:08 by minjungk         ###   ########.fr        #
+#    Updated: 2023/06/10 01:40:59 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,11 +59,17 @@ CPPFLAGS	+= -Isimulate
 MINIRT_SRCS = \
 	Element/common.c \
 	Element/AmbientLight/ambient_light.c \
+	Element/AmbientLight/parse_ambient_light.c \
 	Element/Camera/camera.c \
+	Element/Camera/parse_camera.c \
 	Element/Light/light.c \
+	Element/Light/parse_light.c \
 	Element/Plane/plane.c \
+	Element/Plane/parse_plane.c \
 	Element/Sphere/sphere.c \
+	Element/Sphere/parse_sphere.c \
 	Element/Cylinder/cylinder.c \
+	Element/Cylinder/parse_cylinder.c \
 	file/import_file.c \
 	simulate/simulate.c \
 	simulate/hook_key_event.c \

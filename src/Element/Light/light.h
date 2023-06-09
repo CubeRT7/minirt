@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/10 00:48:04 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 01:51:23 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef struct s_light
 	}						obj;
 }	t_light;
 
-extern int	debug_light(void *param);
-extern int	parse_light(void *param, char **argv);
+extern t_func	light(enum e_element_func func);
+extern int		debug_light(void *param);
+extern int		parse_light(void *param, char **argv);
 
 #endif 

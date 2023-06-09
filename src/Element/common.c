@@ -6,11 +6,17 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/05 06:57:25 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 01:59:59 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+#include "Element/AmbientLight/ambient_light.h"
+#include "Element/Camera/camera.h"
+#include "Element/Light/light.h"
+#include "Element/Plane/plane.h"
+#include "Element/Sphere/sphere.h"
+#include "Element/Cylinder/cylinder.h"
 
 static char	*next_rgb(int *buf, char *curr)
 {
@@ -58,4 +64,17 @@ int	parse_vector3(t_vector3 *vector, char *curr, float scope)
 		&& (-1.0 <= vector->z && vector->z <= 1.0))
 		return (EXIT_SUCCESS);
 	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
+}
+
+t_func	element(enum e_element type, enum e_element_func func)
+{
+	static t_func	(*functions[MAX_ELEMENT_TYPE])(enum e_element_func) = {
+	[AmbientLight] = ambient_light,
+	[Camera] = camera,
+	[Light] = light,
+	[Plane] = plane,
+	[Sphere] = sphere,
+	[Cylinder] = cylinder};
+
+	return (functions[type](func));
 }

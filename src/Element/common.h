@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/04 23:33:15 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 02:00:10 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,19 @@ enum e_element
 	MAX_ELEMENT_TYPE
 };
 
-extern int	parse_rgb(struct s_rgb *rgb, char *curr);
-extern int	parse_vector3(t_vector3 *vector, char *curr, float scope);
+typedef int			(*t_func)();
+
+enum e_element_func
+{
+	Debug,
+	Parse,
+	Serialize,
+	Deserialize,
+	MAX_ELEMENT_FUNC
+};
+
+extern t_func	element(enum e_element type, enum e_element_func func);
+extern int		parse_rgb(struct s_rgb *rgb, char *curr);
+extern int		parse_vector3(t_vector3 *vector, char *curr, float scope);
 
 #endif

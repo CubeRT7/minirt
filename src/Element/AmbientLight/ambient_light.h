@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/10 00:53:26 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/10 01:39:56 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct s_ambient_light
 	}						obj;
 }	t_ambient_light;
 
-extern int	debug_ambient_light(void *param);
-extern int	parse_ambient_light(void *param, char **argv);
+extern t_func	ambient_light(enum e_element_func func);
+extern int		debug_ambient_light(void *param);
+extern int		parse_ambient_light(void *param, char **argv);
 
 #endif 
