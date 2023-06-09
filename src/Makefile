@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/09 23:28:30 by minjungk         ###   ########.fr        #
+#    Updated: 2023/06/09 23:53:08 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ endif
 # **************************************************************************** #
 MINIRT = miniRT
 
-CPPFLAGS	+= -Iparse
+CPPFLAGS	+= -Ifile
 CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
@@ -64,7 +64,7 @@ MINIRT_SRCS = \
 	Element/Plane/plane.c \
 	Element/Sphere/sphere.c \
 	Element/Cylinder/cylinder.c \
-	parse/parse.c \
+	file/import_file.c \
 	simulate/simulate.c \
 	simulate/hook_key_event.c \
 	simulate/hook_draw.c \

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   file.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:18:35 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 22:36:38 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 23:56:45 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef FILE_H
+# define FILE_H
 # include <fcntl.h>
 # include "Element/AmbientLight/ambient_light.h"
 # include "Element/Camera/camera.h"
@@ -27,6 +27,6 @@ struct s_parse_info
 	int			(*parse)(void *, char **);
 };
 
-extern int	parse(t_list **result, int argc, char **argv);
+extern int	import_file(t_list **result, int argc, char **argv);
 
 #endif

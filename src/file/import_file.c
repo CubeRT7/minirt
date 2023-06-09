@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   import_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 22:56:12 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 23:56:55 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "file.h"
 
 static int	_append(t_list **elements, t_list *node, char **cols)
 {
@@ -108,7 +108,7 @@ static int	_read(t_list **objs, int fd)
 	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 }
 
-int	parse(t_list **objs, int argc, char **argv)
+int	import_file(t_list **objs, int argc, char **argv)
 {
 	int		fd;
 	int		ret;

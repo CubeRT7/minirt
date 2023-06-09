@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 22:55:52 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/06/09 23:57:54 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "file.h"
 #include "simulate.h"
 #include "hook.h"
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 
 	errno = 0;
 	objs = NULL;
-	if (parse(&objs, argc, argv))
+	if (import_file(&objs, argc, argv))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (simulate(objs, WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
 	{
