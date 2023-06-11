@@ -59,17 +59,33 @@ CPPFLAGS	+= -Isimulate
 MINIRT_SRCS = \
 	Element/common.c \
 	Element/AmbientLight/ambient_light.c \
+	Element/AmbientLight/init_ambient_light.c \
 	Element/AmbientLight/parse_ambient_light.c \
+	Element/AmbientLight/hit_ambient_light.c \
 	Element/Camera/camera.c \
+	Element/Camera/init_camera.c \
 	Element/Camera/parse_camera.c \
+	Element/Camera/hit_camera.c \
 	Element/Light/light.c \
+	Element/Light/init_light.c \
 	Element/Light/parse_light.c \
+	Element/Light/hit_light.c \
 	Element/Plane/plane.c \
+	Element/Plane/init_plane.c \
 	Element/Plane/parse_plane.c \
+	Element/Plane/hit_plane.c \
 	Element/Sphere/sphere.c \
+	Element/Sphere/init_sphere.c \
 	Element/Sphere/parse_sphere.c \
+	Element/Sphere/hit_sphere.c \
 	Element/Cylinder/cylinder.c \
+	Element/Cylinder/init_cylinder.c \
 	Element/Cylinder/parse_cylinder.c \
+	Element/Cylinder/hit_cylinder.c \
+	material/phong/phong.c \
+	material/lambertian/lambertian.c \
+	material/metal/metal.c \
+	material/material.c \
 	file/import_file.c \
 	simulate/simulate.c \
 	simulate/hook_key_event.c \

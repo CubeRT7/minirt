@@ -16,6 +16,8 @@
 # include "MLX42/MLX42.h"
 # include "hook.h"
 # include "libcustom.h"
+# include "Element/AmbientLight/ambient_light.h"
+# include "Element/Camera/camera.h"
 
 # define DEFAULT_FOCAL_WIDTH 2.0f
 # define DEFAULT_MAX_DEPTH 50
@@ -36,6 +38,9 @@ typedef struct s_gui_setting
 typedef struct s_world
 {
 	t_list			*objs;
+	t_list			*lights;
+	t_camera		*camera;
+	t_ambient_light	*ambient_light;
 	t_gui_setting	gui;
 }	t_world;
 

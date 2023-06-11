@@ -17,6 +17,7 @@
 typedef struct s_light
 {
 	enum e_element			type;
+	t_color					color;
 	struct s_light_raw
 	{
 		t_point		coordinate;
@@ -33,5 +34,7 @@ typedef struct s_light
 extern t_func	light(enum e_element_func func);
 extern int		debug_light(void *param);
 extern int		parse_light(void *param, char **argv);
+extern int		hit_light(void *this, t_ray *r, t_range ra, t_hit *h);
+extern int		init_light(t_light *self);
 
 #endif 

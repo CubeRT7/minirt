@@ -17,6 +17,7 @@
 typedef struct s_sphere
 {
 	enum e_element			type;
+	t_color					color;
 	struct s_sphere_raw
 	{
 		t_point		coordinate;
@@ -33,5 +34,7 @@ typedef struct s_sphere
 extern t_func	sphere(enum e_element_func func);
 extern int		debug_sphere(void *param);
 extern int		parse_sphere(void *param, char **argv);
+extern int		hit_sphere(void *this, t_ray *r, t_range ra, t_hit *h);
+extern int		init_sphere(t_sphere *self);
 
 #endif 

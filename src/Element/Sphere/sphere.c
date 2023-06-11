@@ -15,6 +15,8 @@
 t_func	sphere(enum e_element_func func)
 {
 	static const t_func	functions[MAX_ELEMENT_TYPE] = {
+	[Init] = init_sphere,
+	[Hit] = hit_sphere,
 	[Parse] = parse_sphere,
 	[Debug] = debug_sphere};
 

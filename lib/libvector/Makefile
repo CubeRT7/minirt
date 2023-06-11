@@ -25,13 +25,14 @@ endif
 SRCS = \
 	vector3.c \
 	v3_add.c \
-	v3_cross_prod.c \
-	v3_dot_prod.c \
-	v3_magnitude.c \
+	v3_sub.c \
 	v3_mul.c \
+	v3_dot_prod.c \
+	v3_cross_prod.c \
+	v3_magnitude.c \
 	v3_normalize.c \
 	v3_reverse.c \
-	v3_sub.c \
+	v3_rotate.c \
 
 OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.d)

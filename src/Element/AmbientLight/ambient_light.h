@@ -24,12 +24,15 @@ typedef struct s_ambient_light
 	}						raw;
 	struct s_ambient_light_obj
 	{
-		int			tbd;
+		float	ratio;
+		t_color	color;
 	}						obj;
 }	t_ambient_light;
 
 extern t_func	ambient_light(enum e_element_func func);
 extern int		debug_ambient_light(void *param);
 extern int		parse_ambient_light(void *param, char **argv);
+extern int		hit_ambient_light(void *this, t_ray *r, t_range ra, t_hit *h);
+extern int		init_ambient_light(t_ambient_light *self);
 
 #endif 

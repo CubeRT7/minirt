@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_key_event.c                                   :+:      :+:    :+:   */
+/*   init_ambient_light.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 06:37:59 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:03:45 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/02 02:12:26 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/02 02:12:28 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
-#include "Element/Sphere/sphere.h"
+#include "ambient_light.h"
 
-void	hook_key_event(void *param)
+int	init_ambient_light(t_ambient_light *self)
 {
-	t_world *const	world = param;
-
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(world->gui.mlx);
+	self->obj.ratio = self->raw.ratio;
+	self->obj.color = (t_color){
+		(float)self->raw.rgb.r / 255,
+		(float)self->raw.rgb.g / 255,
+		(float)self->raw.rgb.b / 255
+	};
+	return (EXIT_SUCCESS);
 }

@@ -53,7 +53,23 @@ typedef int			(*t_func)();
 typedef struct s_element
 {
 	enum e_element	type;
+	t_color			color;
 }	t_element;
+
+typedef struct s_range
+{
+	float	min;
+	float	max;
+}	t_range;
+
+typedef struct s_hit
+{
+	t_point		p;
+	t_vector3	normal;
+	float		t;
+	t_func		scatter;
+	t_color		color;
+}	t_hit;
 
 enum e_element_func
 {
@@ -61,6 +77,8 @@ enum e_element_func
 	Parse,
 	Serialize,
 	Deserialize,
+	Hit,
+	Init,
 	MAX_ELEMENT_FUNC
 };
 

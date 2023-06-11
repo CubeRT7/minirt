@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_key_event.c                                   :+:      :+:    :+:   */
+/*   hit_ambient_light.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 06:37:59 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:03:45 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/02 02:07:40 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/02 02:07:52 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
-#include "Element/Sphere/sphere.h"
+#include "ambient_light.h"
 
-void	hook_key_event(void *param)
+int	hit_ambient_light(void *this, t_ray *ray, t_range range, t_hit *record)
 {
-	t_world *const	world = param;
-
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(world->gui.mlx);
+	(void)this;
+	(void)ray;
+	(void)range;
+	(void)record;
+	return (0);
 }

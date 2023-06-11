@@ -12,7 +12,7 @@
 
 #ifndef HOOK_H
 # define HOOK_H
-
+# include "Element/common.h"
 # include "simulate.h"
 
 void	hook_key_event(void *param);
