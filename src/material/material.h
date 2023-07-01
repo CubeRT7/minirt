@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_key_event.c                                   :+:      :+:    :+:   */
+/*   material.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 06:37:59 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:03:45 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/02 02:30:42 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/02 02:30:49 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
-#include "Element/Sphere/sphere.h"
+#ifndef MATERIAL_H
+# define MATERIAL_H
+# include "Element/common.h"
 
-void	hook_key_event(void *param)
+enum e_material
 {
-	t_world *const	world = param;
+	PHONG,
+	METAL,
+	LAMBERTIAN,
+	MAX_MATERIAL_TYPE
+};
 
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(world->gui.mlx);
-}
+t_func	scatter(enum e_material material_type);
+
+#endif

@@ -15,8 +15,8 @@
 #include "hook.h"
 
 #define TITLE "CubeRT7"
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 400
+#define WINDOW_HEIGHT 300
 
 int	main(int argc, char **argv)
 {

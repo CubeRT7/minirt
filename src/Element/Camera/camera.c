@@ -15,6 +15,8 @@
 t_func	camera(enum e_element_func func)
 {
 	static const t_func	functions[MAX_ELEMENT_TYPE] = {
+	[Init] = init_camera,
+	[Hit] = hit_camera,
 	[Parse] = parse_camera,
 	[Debug] = debug_camera};
 

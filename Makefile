@@ -37,4 +37,8 @@ fclean:
 re: fclean
 	$(MAKE) $(MINIRT)
 
+test:
+	make DEBUG=1 all
+	./$(MINIRT) data/minimalist.rt
+
 .PHONY: all clean fclean re bonus $(MINIRT)
