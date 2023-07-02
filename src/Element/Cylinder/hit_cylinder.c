@@ -50,12 +50,12 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 
 static int hit_body(t_cylinder *this, t_ray *ray, t_range range, t_hit *record)
 {
-	float radius = this->raw.diameter * 0.5;
-	float half_height = this->raw.height * 0.5;
-	t_vector3 center = this->raw.coordinate;
-	t_vector3 w = v3_sub(ray->origin, this->raw.coordinate);
+	float radius = this->obj.radius;
+	float half_height = this->obj.height * 0.5;
+	t_vector3 center = this->obj.position;
+	t_vector3 w = v3_sub(ray->origin, center);
 	t_vector3 v = v3_normalize(ray->direction);
-	t_vector3 h = v3_normalize(this->raw.axis);
+	t_vector3 h = this->obj.axis;
 	float vh = v3_dot_prod(v, h);
 	float wh = v3_dot_prod(w, h);
 	float a = v3_dot_prod(v, v) - vh * vh;
@@ -87,13 +87,13 @@ static int hit_body(t_cylinder *this, t_ray *ray, t_range range, t_hit *record)
 int	hit_cylinder(void *elem, t_ray *ray, t_range range, t_hit *record)
 {
 	t_cylinder *const   this = elem;
-	const t_point coordinate = this->raw.coordinate;
-	const t_vector3 axis = v3_normalize(this->raw.axis);
-	const float diameter = this->raw.diameter;
-	const float height =  this->raw.height;
+	const t_point coordinate = this->obj.position;
+	const t_vector3 axis = this->obj.axis;
+	const float radius = this->obj.radius;
+	const float height =  this->obj.height;
 	const t_vector3 half_height = v3_mul(axis, height / 2);
-	const t_circle top = (t_circle){v3_add(coordinate, half_height), axis, diameter / 2};
-	const t_circle bottom = (t_circle){v3_sub(coordinate, half_height), v3_reverse(axis), diameter / 2};
+	const t_circle top = (t_circle){v3_add(coordinate, half_height), axis, radius};
+	const t_circle bottom = (t_circle){v3_sub(coordinate, half_height), v3_reverse(axis), radius};
 	int res = 0;
 	record->t = range.max;
 	res = res | hit_body(elem, ray, range, record);

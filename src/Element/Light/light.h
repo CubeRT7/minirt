@@ -27,7 +27,10 @@ typedef struct s_light
 	}						raw;
 	struct s_light_obj
 	{
-		int			tbd;
+		t_point		position;
+		t_vector3	asix;
+		t_color		color;
+		float		ratio;
 	}						obj;
 }	t_light;
 

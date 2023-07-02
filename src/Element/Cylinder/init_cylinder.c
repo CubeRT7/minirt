@@ -14,9 +14,14 @@
 
 int	init_cylinder(t_cylinder *self)
 {
-	self->color = vector3(
+	self->obj.position = self->raw.coordinate;
+	self->obj.axis = v3_normalize(self->raw.axis);
+	self->obj.radius = self->raw.diameter * 0.5f;
+	self->obj.height = self->raw.height;
+	self->obj.color = vector3(
 			self->raw.rgb.r / 255.0,
 			self->raw.rgb.g / 255.0,
 			self->raw.rgb.b / 255.0);
+	self->color = self->obj.color;
 	return (EXIT_SUCCESS);
 }

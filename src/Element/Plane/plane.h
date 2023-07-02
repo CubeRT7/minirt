@@ -26,7 +26,9 @@ typedef struct s_plane
 	}						raw;
 	struct s_plane_obj
 	{
-		int			tbd;
+		t_point		position;
+		t_vector3	axis;
+		t_color		color;
 	}						obj;
 }	t_plane;
 

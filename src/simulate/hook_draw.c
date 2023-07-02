@@ -82,7 +82,7 @@ t_color ray_color(t_world *world, t_ray *ray, int depth)
 		while (next) {
 			t_light *light = next->content;
 			next = next->next;
-			t_vector3 direction = v3_sub(light->raw.coordinate, rec.p);
+			t_vector3 direction = v3_sub(light->obj.position, rec.p);
 			float length = v3_magnitude(direction);
 			t_ray lightRay = {rec.p, v3_normalize(direction)};
 			if (hit(world, &lightRay, (t_range){ DELTA, length }, NULL))
@@ -91,7 +91,7 @@ t_color ray_color(t_world *world, t_ray *ray, int depth)
 			float dot1 = v3_dot_prod(lightRay.direction, rec.normal);
 			if (dot1 < 0)
 				continue;
-			lightColor = v3_add(lightColor, v3_mul(vector3(dot1, dot1, dot1), light->raw.ratio));
+			lightColor = v3_add(lightColor, v3_mul(vector3(dot1, dot1, dot1), light->obj.ratio));
 		}
 		lightColor.x = lightColor.x > 1 ? 1 : lightColor.x;
 		lightColor.y = lightColor.y > 1 ? 1 : lightColor.y;
