@@ -17,6 +17,7 @@
 typedef struct s_ambient_light
 {
 	enum e_element			type;
+	t_color					color;
 	struct s_ambient_light_raw
 	{
 		float		ratio;
