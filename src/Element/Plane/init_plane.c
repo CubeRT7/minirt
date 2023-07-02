@@ -14,9 +14,12 @@
 
 int	init_plane(t_plane *self)
 {
-	self->color = vector3(
+	self->obj.color = vector3(
 			self->raw.rgb.r / 255.0,
 			self->raw.rgb.g / 255.0,
 			self->raw.rgb.b / 255.0);
+	self->obj.position = self->raw.coordinate;
+	self->obj.axis = v3_normalize(self->raw.axis);
+	self->color = self->obj.color;
 	return (EXIT_SUCCESS);
 }

@@ -25,12 +25,12 @@ static t_vector3	set_face_normal(t_ray ray, t_vector3 normal)
 int	hit_plane(void *elem, t_ray *ray, t_range range, t_hit *record)
 {
 	t_plane *const	this = elem;
-	const t_point	coordinate = this->raw.coordinate;
-	const t_vector3	axis = v3_normalize(this->raw.axis);
+	const t_point	position = this->obj.position;
+	const t_vector3	axis = this->obj.axis;
 	const float		d = v3_dot_prod(ray->direction, axis);
 	if (d > -0.001f && d < 0.001f)
 		return (0);
-	const t_vector3 v2 = v3_sub(ray->origin, coordinate);
+	const t_vector3 v2 = v3_sub(ray->origin, position);
 	const float t = -v3_dot_prod(v2, axis) / d;
 	if (t < 0.001f || t < range.min || t > range.max)
 		return (0);

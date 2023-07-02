@@ -27,7 +27,10 @@ typedef struct s_sphere
 	}						raw;
 	struct s_sphere_obj
 	{
-		int			tbd;
+		t_point		position;
+		t_vector3	axis;
+		t_color		color;
+		float		radius;
 	}						obj;
 }	t_sphere;
 

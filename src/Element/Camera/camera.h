@@ -26,7 +26,6 @@ typedef struct s_camera
 	}							raw;
 	struct s_camera_obj
 	{
-		int			tbd;
 		t_point		position;
 		t_vector3	angle;
 	}							obj;

@@ -20,5 +20,6 @@ int	init_ambient_light(t_ambient_light *self)
 		(float)self->raw.rgb.g / 255,
 		(float)self->raw.rgb.b / 255
 	};
+	self->color = self->obj.color;
 	return (EXIT_SUCCESS);
 }

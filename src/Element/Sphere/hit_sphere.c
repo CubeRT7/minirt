@@ -25,8 +25,8 @@ static t_vector3	set_face_normal(t_ray ray, t_vector3 normal)
 int	hit_sphere(void *this, t_ray *ray, t_range range, t_hit *record)
 {
 	t_sphere *const sphere = this;
-	const t_point center = sphere->raw.coordinate;
-	const float radius = sphere->raw.diameter * 0.5f;
+	const t_point center = sphere->obj.position;
+	const float radius = sphere->obj.radius;
 
 	t_vector3 oc = v3_sub(ray->origin, center);
 	float a = v3_magnitude(ray->direction) * v3_magnitude(ray->direction);
