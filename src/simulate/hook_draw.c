@@ -70,7 +70,7 @@ t_color ray_color(t_world *world, t_ray *ray, int depth)
 	if (depth <= 0) {
 		return vector3(0, 0, 0);
 	}
-	if (hit(world, ray, (t_range){ DELTA, (float)BIGVALUE }, &rec)) {
+	if (hit(world, ray, (t_range){ DELTA, BIGVALUE }, &rec)) {
 		t_color color;
 
 		if (rec.scatter(ray, &rec, &color)) {
