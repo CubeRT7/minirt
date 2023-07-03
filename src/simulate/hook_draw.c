@@ -127,10 +127,15 @@ static t_ray get_camera_ray(void *camera, int width, int height, int x, int y)
 {
 	const t_camera *cam = camera;
 
-	float aspect_ratio = (float)width / height;
-	float viewport_height = 2.0f;
-	float viewport_width = aspect_ratio * viewport_height;
-	float focal_length = 1.0f;
+	float aspect_ratio = (float)height / width;
+	float viewport_width = 2.0f;
+	float viewport_height =  aspect_ratio * viewport_width;
+	float fov_half = cam->obj.fov_radian * 0.5f;
+	if (sin(fov_half) == 0) {
+		t_vector3 cam_axis = v3_rotate(vector3(0, 0, -1), v3_sub(cam->obj.angle, vector3(M_PI_2, M_PI_2, M_PI)));
+		return ((t_ray){ cam->obj.position, cam_axis });
+	}
+	float focal_length = cos(fov_half) / sin(fov_half);
 
 	t_point origin = cam->obj.position;
 	t_vector3 horizontal = vector3(viewport_width, 0, 0);

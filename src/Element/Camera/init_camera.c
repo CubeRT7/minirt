@@ -21,6 +21,7 @@ int	init_camera(t_camera *self)
 			acosf(v3_dot_prod(vector3(0, 1, 0), normalized_axis)),
 			acosf(v3_dot_prod(vector3(0, 0, 1), normalized_axis)));
 	self->obj.position = self->raw.coordinate;
+	self->obj.fov_radian = self->raw.fov / 180 * M_PI;
 	self->color = vector3(0, 0, 0);
 	return (EXIT_SUCCESS);
 }
