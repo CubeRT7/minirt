@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_light.c                                    :+:      :+:    :+:   */
+/*   parse_ambient_light.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/10 00:48:27 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:39:12 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ambient_light.h"
-
-int	debug_ambient_light(void *param)
-{
-	struct s_ambient_light *const	c = param;
-
-	if (c == NULL || DEBUG == 0)
-		return (EXIT_SUCCESS);
-	printf("%s: ratio[%f]\n", __func__, c->raw.ratio);
-	printf("%s: rgb[%d, %d, %d]\n", __func__,
-		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
-	return (EXIT_SUCCESS);
-}
 
 int	parse_ambient_light(void *param, char **argv)
 {

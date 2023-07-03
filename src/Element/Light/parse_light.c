@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/10 00:49:00 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:41:05 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "light.h"
-
-int	debug_light(void *param)
-{
-	struct s_light *const	c = param;
-
-	if (c == NULL || DEBUG == 0)
-		return (EXIT_SUCCESS);
-	printf("%s: coordinate[%f, %f, %f]\n", __func__,
-		c->obj.position.x, c->obj.position.y, c->obj.position.z);
-	printf("%s: ratio[%f]\n", __func__, c->raw.ratio);
-	printf("%s: rgb[%d, %d, %d]\n", __func__,
-		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
-	return (EXIT_SUCCESS);
-}
 
 int	parse_light(void *param, char **argv)
 {
