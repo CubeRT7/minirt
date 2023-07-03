@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:04:44 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/03 22:39:24 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:43:47 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_func	camera(enum e_element_func func)
 	static const t_func	functions[MAX_ELEMENT_TYPE] = {
 	[Init] = init_camera,
 	[Hit] = hit_camera,
-	[Parse] = parse_camera,
 	[Debug] = debug_camera};
 
 	return (functions[func]);

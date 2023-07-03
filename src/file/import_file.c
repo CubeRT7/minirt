@@ -6,11 +6,18 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 23:56:55 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:43:29 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file.h"
+
+extern int	parse_ambient_light(void *param, char **argv);
+extern int	parse_camera(void *param, char **argv);
+extern int	parse_light(void *param, char **argv);
+extern int	parse_sphere(void *param, char **argv);
+extern int	parse_plane(void *param, char **argv);
+extern int	parse_cylinder(void *param, char **argv);
 
 static int	_append(t_list **elements, t_list *node, char **cols)
 {
