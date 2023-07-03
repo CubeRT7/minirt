@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:39:46 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/03 22:26:58 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_color ray_color(t_world *world, t_ray *ray, int depth)
 	if (depth <= 0) {
 		return vector3(0, 0, 0);
 	}
-	if (hit(world, ray, (t_range){ DELTA, BIGVALUE }, &rec)) {
+	if (hit(world, ray, (t_range){ DELTA, (float)BIGVALUE }, &rec)) {
 		t_color color;
 
 		if (rec.scatter(ray, &rec, &color)) {
