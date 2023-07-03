@@ -6,31 +6,26 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/09 23:57:54 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/04 05:37:36 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file.h"
 #include "simulate.h"
-#include "hook.h"
-
-#define TITLE "CubeRT7"
-#define WINDOW_WIDTH 400
-#define WINDOW_HEIGHT 300
 
 int	main(int argc, char **argv)
 {
-	t_list	*objs;
+	struct s_rt_file	rt;
 
 	errno = 0;
-	objs = NULL;
-	if (import_file(&objs, argc, argv))
+	ft_bzero(&rt, sizeof(struct s_rt_file));
+	if (import_file(&rt, argc, argv))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (simulate(objs, WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
+	if (simulate(rt.ambient_light, rt.camera, rt.lights, rt.objs))
 	{
-		ft_lstclear(&objs, free);
+		clean_rt(&rt);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
-	ft_lstclear(&objs, free);
+	clean_rt(&rt);
 	return (EXIT_SUCCESS);
 }

@@ -6,13 +6,13 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:39:46 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/03 22:26:58 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hook.h"
 #define DELTA 0.001f
-#define BIGVALUE 99999999
+#define BIGVALUE 99999999.0f
 
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/10 02:00:10 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:42:21 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef struct s_hit
 enum e_element_func
 {
 	Debug,
-	Parse,
 	Serialize,
 	Deserialize,
 	Hit,

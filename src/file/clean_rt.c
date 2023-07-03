@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
+/*   clean_rt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 12:04:44 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/03 22:44:09 by minjungk         ###   ########.fr       */
+/*   Created: 2023/07/04 04:01:36 by minjungk          #+#    #+#             */
+/*   Updated: 2023/07/04 05:32:25 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "plane.h"
+#include "file.h"
 
-t_func	plane(enum e_element_func func)
+void	clean_rt(struct s_rt_file *rt)
 {
-	static const t_func	functions[MAX_ELEMENT_TYPE] = {
-	[Init] = init_plane,
-	[Hit] = hit_plane,
-	[Debug] = debug_plane};
-
-	return (functions[func]);
+	if (rt == NULL)
+		return ;
+	ft_lstclear(&rt->ambient_light, free);
+	ft_lstclear(&rt->camera, free);
+	ft_lstclear(&rt->lights, free);
+	ft_lstclear(&rt->objs, free);
 }

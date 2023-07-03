@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/10 01:51:12 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:43:04 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct s_circle
 
 extern t_func	cylinder(enum e_element_func func);
 extern int		debug_cylinder(void *param);
-extern int		parse_cylinder(void *param, char **argv);
 extern int		hit_cylinder(void *this, t_ray *r, t_range ra, t_hit *h);
 extern int		init_cylinder(t_cylinder *self);
 
