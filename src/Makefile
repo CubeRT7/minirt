@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/03 22:46:42 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/04 05:47:12 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ MINIRT_SRCS = \
 	material/lambertian/lambertian.c \
 	material/metal/metal.c \
 	material/material.c \
+	file/clean_rt.c \
 	file/import_file.c \
 	file/parse_ambient_light.c \
 	file/parse_camera.c \

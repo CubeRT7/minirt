@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/06/08 19:37:43 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/04 05:28:53 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include "libcustom.h"
 # include "Element/AmbientLight/ambient_light.h"
 # include "Element/Camera/camera.h"
+
+# define TITLE "CubeRT7"
+# define WINDOW_WIDTH 400
+# define WINDOW_HEIGHT 300
 
 # define DEFAULT_FOCAL_WIDTH 2.0f
 # define DEFAULT_MAX_DEPTH 50
@@ -44,6 +48,6 @@ typedef struct s_world
 	t_gui_setting	gui;
 }	t_world;
 
-int	simulate(t_list *objs, int width, int height, char *title);
+int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs);
 
 #endif

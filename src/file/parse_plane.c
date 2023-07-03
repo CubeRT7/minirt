@@ -6,11 +6,11 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/03 22:48:59 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/04 05:32:56 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../Element/Plane/plane.h"
+#include "../Element/Plane/plane.h"
 
 int	debug_plane(void *param)
 {

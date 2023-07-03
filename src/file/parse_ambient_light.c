@@ -6,11 +6,11 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/03 22:48:35 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/04 05:32:39 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../Element/AmbientLight/ambient_light.h"
+#include "../Element/AmbientLight/ambient_light.h"
 
 int	parse_ambient_light(void *param, char **argv)
 {

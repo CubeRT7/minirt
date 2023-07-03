@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/03 22:43:29 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/04 05:44:40 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	_append_elements(t_list **elements, int fd)
 	return (EXIT_SUCCESS);
 }
 
-static int	_read(t_list **objs, int fd)
+static int	_read(struct s_rt_file *rt, int fd)
 {
 	int		i;
 	int		ret;
@@ -103,9 +103,12 @@ static int	_read(t_list **objs, int fd)
 			&& ft_lstsize(elements[Camera]) < 2
 			&& ft_lstsize(elements[Light]) < 2)
 		{
-			i = 0;
+			rt->ambient_light = elements[AmbientLight];
+			rt->camera = elements[Camera];
+			rt->lights = elements[Light];
+			i = Light + 1;
 			while (i < MAX_ELEMENT_TYPE)
-				ft_lstadd_back(objs, elements[i++]);
+				ft_lstadd_back(&rt->objs, elements[i++]);
 			return (EXIT_SUCCESS);
 		}
 	}
@@ -115,13 +118,13 @@ static int	_read(t_list **objs, int fd)
 	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 }
 
-int	import_file(t_list **objs, int argc, char **argv)
+int	import_file(struct s_rt_file *rt, int argc, char **argv)
 {
 	int		fd;
 	int		ret;
 	char	*extension;
 
-	if (objs == NULL || argc != 2 || argv == NULL || argv[1] == NULL)
+	if (rt == NULL || argc != 2 || argv == NULL || argv[1] == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	extension = ft_strrchr(argv[1], '.');
 	if (extension == NULL)
@@ -131,7 +134,7 @@ int	import_file(t_list **objs, int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	ret = _read(objs, fd);
+	ret = _read(rt, fd);
 	close(fd);
 	if (ret == EXIT_FAILURE)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));

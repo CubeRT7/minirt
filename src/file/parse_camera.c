@@ -6,11 +6,11 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/03 22:48:42 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/04 05:32:47 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../Element/Camera/camera.h"
+#include "../Element/Camera/camera.h"
 
 int	parse_camera(void *param, char **argv)
 {

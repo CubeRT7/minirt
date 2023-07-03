@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:20:11 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/04 05:31:52 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,68 +54,46 @@ static int	_hook_setting(t_world *world)
 	return (EXIT_SUCCESS);
 }
 
-static int	_filter_append(const t_list *next, enum e_element t, t_list **res)
+static int	_init_world(t_world *world)
 {
-	t_element	*elem;
-	t_list		*new_node;
-	t_list		*list;
-
-	list = NULL;
-	while (next)
-	{
-		elem = next->content;
-		next = next->next;
-		if (elem->type != t)
-			continue ;
-		new_node = ft_lstnew(elem);
-		if (new_node == NULL)
-		{
-			ft_lstclear(&list, NULL);
-			return (ft_error(__func__, __FILE__, __LINE__, 0));
-		}
-		ft_lstadd_back(&list, new_node);
-	}
-	if (list)
-		ft_lstadd_back(res, list);
-	return (EXIT_SUCCESS);
-}
-
-static int	_init_objs(t_list *objs)
-{
+	t_list		*curr;
 	t_element	*elem;
 	t_func		func;
 
-	while (objs)
+	init_ambient_light(world->ambient_light);
+	init_camera(world->camera);
+	curr = world->lights;
+	while (curr)
 	{
-		elem = objs->content;
+		elem = curr->content;
 		func = element(elem->type, Init);
 		if (func(elem))
 			return (ft_error(__func__, __FILE__, __LINE__, 0));
-		objs = objs->next;
+		curr = curr->next;
+	}
+	curr = world->objs;
+	while (curr)
+	{
+		elem = curr->content;
+		func = element(elem->type, Init);
+		if (func(elem))
+			return (ft_error(__func__, __FILE__, __LINE__, 0));
+		curr = curr->next;
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	simulate(t_list *objs, int width, int height, char *title)
+int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 {
 	t_world	world;
-	t_list	*obj;
 
-	ft_bzero(&world, sizeof(t_world));
+	world.ambient_light = ambient->content;
+	world.camera = camera->content;
+	world.lights = lights;
 	world.objs = objs;
-	if (_filter_append(world.objs, Light, &(world.lights)))
+	if (_gui_setting(&(world.gui), WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	obj = NULL;
-	if (_filter_append(world.objs, Camera, &obj) || obj == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	world.camera = obj->content;
-	obj = NULL;
-	if (_filter_append(world.objs, AmbientLight, &obj) || obj == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	world.ambient_light = obj->content;
-	if (_gui_setting(&(world.gui), width, height, title))
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (_init_objs(world.objs))
+	if (_init_world(&world))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (_hook_setting(&world))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));

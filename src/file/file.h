@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:18:35 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/03 22:47:55 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/04 05:28:02 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ struct s_parse_info
 	int			(*parse)(void *, char **);
 };
 
-extern int	import_file(t_list **result, int argc, char **argv);
+struct s_rt_file
+{
+	t_list	*objs;
+	t_list	*lights;
+	t_list	*camera;
+	t_list	*ambient_light;
+};
+
+extern int	import_file(struct s_rt_file *rt, int argc, char **argv);
+extern void	clean_rt(struct s_rt_file *rt);
 
 #endif
