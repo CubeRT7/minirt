@@ -71,12 +71,6 @@ t_color ray_color(t_world *world, t_ray *ray, int depth)
 		return vector3(0, 0, 0);
 	}
 	if (hit(world, ray, (t_range){ DELTA, BIGVALUE }, &rec)) {
-		t_color color;
-
-		if (rec.scatter(ray, &rec, &color)) {
-			t_color c = ray_color(world, ray, depth - 1);
-			return (t_color){color.x * c.x, color.y * c.y, color.z * c.z};
-		}
 		t_list *next = world->lights;
 		t_color lightColor = vector3(0, 0, 0);
 		while (next) {
@@ -101,9 +95,9 @@ t_color ray_color(t_world *world, t_ray *ray, int depth)
 		lightColor.y = (ambient_light->obj.ratio * ambient_light->obj.color.y + (1 - ambient_light->obj.ratio) * lightColor.y);
 		lightColor.z = (ambient_light->obj.ratio * ambient_light->obj.color.z + (1 - ambient_light->obj.ratio) * lightColor.z);
 		return (t_color){
-			lightColor.x * color.x,
-			lightColor.y * color.y,
-			lightColor.z * color.z
+			lightColor.x * rec.color.x,
+			lightColor.y * rec.color.y,
+			lightColor.z * rec.color.z
 		};
 	}
 	return vector3(0, 0, 0);

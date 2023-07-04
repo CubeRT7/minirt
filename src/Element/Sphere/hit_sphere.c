@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "sphere.h"
-#include "material/material.h"
 
 static t_vector3	set_face_normal(t_ray ray, t_vector3 normal)
 {
@@ -49,6 +48,5 @@ int	hit_sphere(void *this, t_ray *ray, t_range range, t_hit *record)
 	record->p = v3_add(v3_mul(v3_normalize(ray->direction), root), ray->origin);
 	record->normal = v3_normalize(v3_mul(v3_sub(record->p, center), 1 / radius));
 	record->normal = set_face_normal(*ray, record->normal);
-	record->scatter = scatter(PHONG);
 	return 1;
 }

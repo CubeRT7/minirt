@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cylinder.h"
-#include "material/material.h"
 
 static t_vector3	set_face_normal(t_ray ray, t_vector3 normal)
 {
@@ -44,7 +43,6 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 	record->p = p;
 	record->normal = a;
 	record->normal = set_face_normal(*ray, record->normal);
-	record->scatter = scatter(PHONG);
 	return 1;
 }
 
@@ -80,7 +78,6 @@ static int hit_body(t_cylinder *this, t_ray *ray, t_range range, t_hit *record)
 	record->p = p;
 	record->normal = v3_normalize(v3_mul(v3_sub(record->p, inner_point), 1 / radius));
 	record->normal = set_face_normal(*ray, record->normal);
-	record->scatter = scatter(PHONG);
 	return 1;
 }
 

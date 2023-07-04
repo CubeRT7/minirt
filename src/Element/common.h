@@ -67,7 +67,6 @@ typedef struct s_hit
 	t_point		p;
 	t_vector3	normal;
 	float		t;
-	t_func		scatter;
 	t_color		color;
 }	t_hit;
 

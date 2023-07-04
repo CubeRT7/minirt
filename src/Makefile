@@ -76,10 +76,6 @@ MINIRT_SRCS = \
 	Element/Cylinder/cylinder.c \
 	Element/Cylinder/init_cylinder.c \
 	Element/Cylinder/hit_cylinder.c \
-	material/phong/phong.c \
-	material/lambertian/lambertian.c \
-	material/metal/metal.c \
-	material/material.c \
 	file/clean_rt.c \
 	file/import_file.c \
 	file/parse_ambient_light.c \
