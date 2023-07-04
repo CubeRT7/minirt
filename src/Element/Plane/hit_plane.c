@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hit_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 02:10:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:19:22 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/05 07:09:05 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plane.h"
-
-static t_vector3	set_face_normal(t_ray ray, t_vector3 normal)
-{
-	const int	front_face = v3_dot_prod(ray.direction, normal) < 0;
-
-	if (front_face)
-		return (normal);
-	return (v3_reverse(normal));
-}
 
 int	hit_plane(void *elem, t_ray *ray, t_range range, t_hit *record)
 {
@@ -36,6 +27,6 @@ int	hit_plane(void *elem, t_ray *ray, t_range range, t_hit *record)
 	record->t = t;
 	record->p = v3_add(v3_mul(v3_normalize(ray->direction), t), ray->origin);
 	record->normal = axis;
-	record->normal = set_face_normal(*ray, record->normal);
+	record->normal = get_face_normal(*ray, record->normal);
 	return (1);
 }	

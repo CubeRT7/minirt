@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cylinder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 02:08:42 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:30:31 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/05 07:11:48 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cylinder.h"
-
-static t_vector3	set_face_normal(t_ray ray, t_vector3 normal)
-{
-	const int	front_face = v3_dot_prod(ray.direction, normal) < 0;
-
-	if (front_face)
-		return (normal);
-	return (v3_reverse(normal));
-}
 
 static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 {
@@ -42,7 +33,7 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 	record->t = t;
 	record->p = p;
 	record->normal = a;
-	record->normal = set_face_normal(*ray, record->normal);
+	record->normal = get_face_normal(*ray, record->normal);
 	return 1;
 }
 
@@ -77,7 +68,7 @@ static int hit_body(t_cylinder *this, t_ray *ray, t_range range, t_hit *record)
 	record->t = t;
 	record->p = p;
 	record->normal = v3_normalize(v3_mul(v3_sub(record->p, inner_point), 1 / radius));
-	record->normal = set_face_normal(*ray, record->normal);
+	record->normal = get_face_normal(*ray, record->normal);
 	return 1;
 }
 

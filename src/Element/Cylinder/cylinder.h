@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/03 22:43:04 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/05 07:09:40 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CYLINDER_H
 # define CYLINDER_H
 # include "../common.h"
+# include "../util/element_util.h"
 
 typedef struct s_cylinder
 {

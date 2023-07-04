@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/03 22:43:14 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/05 07:06:24 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPHERE_H
 # define SPHERE_H
 # include "../common.h"
+# include "../util/element_util.h"
 
 typedef struct s_sphere
 {

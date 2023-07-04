@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 02:11:24 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:31:42 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/05 07:08:28 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere.h"
-
-static t_vector3	set_face_normal(t_ray ray, t_vector3 normal)
-{
-	const int	front_face = v3_dot_prod(ray.direction, normal) < 0;
-
-	if (front_face)
-		return (normal);
-	return (v3_reverse(normal));
-}
 
 int	hit_sphere(void *this, t_ray *ray, t_range range, t_hit *record)
 {
@@ -47,6 +38,6 @@ int	hit_sphere(void *this, t_ray *ray, t_range range, t_hit *record)
 	record->t = root;
 	record->p = v3_add(v3_mul(v3_normalize(ray->direction), root), ray->origin);
 	record->normal = v3_normalize(v3_mul(v3_sub(record->p, center), 1 / radius));
-	record->normal = set_face_normal(*ray, record->normal);
+	record->normal = get_face_normal(*ray, record->normal);
 	return 1;
 }
