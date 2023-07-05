@@ -18,11 +18,11 @@ int	hit_plane(void *elem, t_ray *ray, t_range range, t_hit *record)
 	const t_point	position = this->obj.position;
 	const t_vector3	axis = this->obj.axis;
 	const float		d = v3_dot_prod(ray->direction, axis);
-	if (d > -0.001f && d < 0.001f)
+	if (close_to_zero(d))
 		return (0);
 	const t_vector3 v2 = v3_sub(ray->origin, position);
 	const float t = -v3_dot_prod(v2, axis) / d;
-	if (t < 0.001f || t < range.min || t > range.max)
+	if (range_not_in(t, range))
 		return (0);
 	record->t = t;
 	record->p = get_ray_point(ray, t);

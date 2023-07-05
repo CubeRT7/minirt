@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   element_util.h                                     :+:      :+:    :+:   */
+/*   close_to_zero.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 06:58:48 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/05 07:01:42 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/06 01:20:01 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/06 01:20:06 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ELEMENT_UTIL_H
-# define ELEMENT_UTIL_H
-# include "../common.h"
+#include "element_util.h"
 
-extern t_point		get_ray_point(const t_ray *ray, float t);
-extern t_vector3	get_face_normal(t_ray ray, t_vector3 normal);
-extern int			range_in(float t, t_range range);
-extern int			range_not_in(float t, t_range range);
-extern int			close_to_zero(float f);
-
-#endif
+inline int	close_to_zero(float f)
+{
+	return (range_in(f, (t_range){-0.00001f, 0.00001f}));
+}

@@ -29,9 +29,9 @@ int	hit_sphere(void *this, t_ray *ray, t_range range, t_hit *record)
 	float sqrtd = sqrt(discrimiant);
 	float root = (-half_b - sqrtd) / a;
 	
-	if (root < range.min || root > range.max) {
+	if (range_not_in(root, range)) {
 		root = (-half_b + sqrtd) / a;
-		if (root < range.min || root > range.max)
+		if (range_not_in(root, range))
 			return 0;
 	}
 	
