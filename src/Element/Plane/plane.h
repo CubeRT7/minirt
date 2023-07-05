@@ -35,7 +35,7 @@ typedef struct s_plane
 
 extern t_func	plane(enum e_element_func func);
 extern int		debug_plane(void *param);
-extern int		hit_plane(void *this, t_ray *r, t_range ra, t_hit *h);
+extern int		hit_plane(t_plane *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_plane(t_plane *self);
 
 #endif 
