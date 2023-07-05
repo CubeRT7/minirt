@@ -26,7 +26,7 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 	const float t = aco / ad;
 	if (t < range.min || t > range.max)
 		return 0;
-	const t_vector3 p = v3_add(v3_mul(d, t), ray->origin);
+	const t_vector3 p = get_ray_point(ray, t);
 	if (v3_magnitude(v3_sub(c, p)) > circ.radius)
 		return 0;
 
@@ -59,7 +59,7 @@ static int hit_body(t_cylinder *this, t_ray *ray, t_range range, t_hit *record)
 		if (t < range.min || t > range.max)
 			return 0;
 	}
-	t_vector3 p = v3_add(v3_mul(v3_normalize(ray->direction), t), ray->origin);
+	t_vector3 p = get_ray_point(ray, t);
 	float l = v3_dot_prod(v3_sub(p, center), h);
 	if (l < -half_height || l > half_height)
 		return 0;

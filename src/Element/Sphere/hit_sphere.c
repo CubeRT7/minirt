@@ -36,7 +36,7 @@ int	hit_sphere(void *this, t_ray *ray, t_range range, t_hit *record)
 	}
 	
 	record->t = root;
-	record->p = v3_add(v3_mul(v3_normalize(ray->direction), root), ray->origin);
+	record->p = get_ray_point(ray, root);
 	record->normal = v3_normalize(v3_mul(v3_sub(record->p, center), 1 / radius));
 	record->normal = get_face_normal(*ray, record->normal);
 	return 1;

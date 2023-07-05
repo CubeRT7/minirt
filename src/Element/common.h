@@ -64,9 +64,9 @@ typedef struct s_range
 
 typedef struct s_hit
 {
+	float		t;
 	t_point		p;
 	t_vector3	normal;
-	float		t;
 	t_color		color;
 }	t_hit;
 

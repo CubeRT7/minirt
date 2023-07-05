@@ -76,6 +76,7 @@ MINIRT_SRCS = \
 	Element/Cylinder/cylinder.c \
 	Element/Cylinder/init_cylinder.c \
 	Element/Cylinder/hit_cylinder.c \
+	Element/util/get_ray_point.c \
 	Element/util/get_face_normal.c \
 	file/clean_rt.c \
 	file/import_file.c \

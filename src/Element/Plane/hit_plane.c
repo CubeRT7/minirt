@@ -25,7 +25,7 @@ int	hit_plane(void *elem, t_ray *ray, t_range range, t_hit *record)
 	if (t < 0.001f || t < range.min || t > range.max)
 		return (0);
 	record->t = t;
-	record->p = v3_add(v3_mul(v3_normalize(ray->direction), t), ray->origin);
+	record->p = get_ray_point(ray, t);
 	record->normal = axis;
 	record->normal = get_face_normal(*ray, record->normal);
 	return (1);

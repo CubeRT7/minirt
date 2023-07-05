@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   element_util.h                                     :+:      :+:    :+:   */
+/*   get_ray_point.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 06:58:48 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/05 07:01:42 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/05 09:20:47 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/05 09:20:51 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ELEMENT_UTIL_H
-# define ELEMENT_UTIL_H
-# include "../common.h"
+#include "element_util.h"
 
-extern t_point		get_ray_point(const t_ray *ray, float t);
-extern t_vector3	get_face_normal(t_ray ray, t_vector3 normal);
-
-#endif
+inline t_point	get_ray_point(const t_ray *ray, float t)
+{
+	return (v3_add(v3_mul(ray->direction, t), ray->origin));
+}
