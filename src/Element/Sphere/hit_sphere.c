@@ -12,32 +12,20 @@
 
 #include "sphere.h"
 
-int	hit_sphere(void *this, t_ray *ray, t_range range, t_hit *record)
+int	hit_sphere(t_sphere *self, t_ray *ray, t_range range, t_hit *record)
 {
-	t_sphere *const sphere = this;
-	const t_point center = sphere->obj.position;
-	const float radius = sphere->obj.radius;
+	const t_vector3	dir = ray->direction;
+	const t_vector3	oc = v3_sub(ray->origin, self->obj.position);
+	const t_abc		abc = (t_abc){
+		v3_dot_prod(dir, dir),
+		v3_dot_prod(oc, ray->direction),
+		v3_dot_prod(oc, oc) - self->obj.radius * self->obj.radius
+	};
 
-	t_vector3 oc = v3_sub(ray->origin, center);
-	float a = v3_magnitude(ray->direction) * v3_magnitude(ray->direction);
-	float half_b = v3_dot_prod(oc, ray->direction);
-	float c = v3_magnitude(oc) * v3_magnitude(oc) - radius * radius;
-	float discrimiant = half_b * half_b - a * c;
-	if (discrimiant < 0)
-		return 0;
-
-	float sqrtd = sqrt(discrimiant);
-	float root = (-half_b - sqrtd) / a;
-	
-	if (range_not_in(root, range)) {
-		root = (-half_b + sqrtd) / a;
-		if (range_not_in(root, range))
-			return 0;
-	}
-	
-	record->t = root;
-	record->p = get_ray_point(ray, root);
-	record->normal = v3_normalize(v3_mul(v3_sub(record->p, center), 1 / radius));
+	if (quadratic_formula_root(abc, range, &(record->t)) == NO_VALUE)
+		return (0);
+	record->p = get_ray_point(ray, record->t);
+	record->normal = v3_normalize(v3_sub(record->p, self->obj.position));
 	record->normal = get_face_normal(*ray, record->normal);
-	return 1;
+	return (1);
 }
