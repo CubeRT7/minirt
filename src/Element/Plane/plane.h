@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/05 07:08:59 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:48:10 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 typedef struct s_plane
 {
-	enum e_element			type;
-	t_color					color;
+	struct s_element		base;
 	struct s_plane_raw
 	{
 		t_point		coordinate;

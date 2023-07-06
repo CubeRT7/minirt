@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 02:08:42 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/05 07:11:48 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:49:15 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 	return (1);
 }
 
-static int	hit_body(t_cylinder *this, t_ray *ray, t_range range, t_hit *record)
+static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 {
-	const float				half_height = this->obj.height * 0.5;
+	const float				half_height = self->obj.height * 0.5;
 	t_cylinder_body_alias	alias;
 	t_abc					abc;
 	t_hit					tmprec;
 
-	alias.r2 = this->obj.radius * this->obj.radius;
-	alias.w = v3_sub(ray->origin, this->obj.position);
-	alias.vh = v3_dot_prod(ray->direction, this->obj.axis);
-	alias.wh = v3_dot_prod(alias.w, this->obj.axis);
+	alias.r2 = self->obj.radius * self->obj.radius;
+	alias.w = v3_sub(ray->origin, self->obj.position);
+	alias.vh = v3_dot_prod(ray->direction, self->obj.axis);
+	alias.wh = v3_dot_prod(alias.w, self->obj.axis);
 	abc = (t_abc){
 		v3_dot_prod(ray->direction, ray->direction) - alias.vh * alias.vh,
 		v3_dot_prod(ray->direction, alias.w) - (alias.vh * alias.wh),
@@ -52,11 +52,11 @@ static int	hit_body(t_cylinder *this, t_ray *ray, t_range range, t_hit *record)
 	if (quadratic_formula_root(abc, range, &(tmprec.t)))
 		return (0);
 	tmprec.p = get_ray_point(ray, tmprec.t);
-	alias.l = v3_dot_prod(v3_sub(tmprec.p, this->obj.position), this->obj.axis);
+	alias.l = v3_dot_prod(v3_sub(tmprec.p, self->obj.position), self->obj.axis);
 	if (range_not_in(alias.l, (t_range){-half_height, half_height}))
 		return (0);
 	ft_memcpy(record, &tmprec, sizeof(t_hit));
-	alias.in = v3_add(this->obj.position, v3_mul(this->obj.axis, alias.l));
+	alias.in = v3_add(self->obj.position, v3_mul(self->obj.axis, alias.l));
 	record->normal = v3_normalize(v3_sub(record->p, alias.in));
 	record->normal = get_face_normal(*ray, record->normal);
 	return (1);

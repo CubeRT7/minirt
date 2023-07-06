@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/05 07:06:24 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:49:42 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 typedef struct s_sphere
 {
-	enum e_element			type;
-	t_color					color;
+	struct s_element		base;
 	struct s_sphere_raw
 	{
 		t_point		coordinate;
@@ -37,7 +36,7 @@ typedef struct s_sphere
 
 extern t_func	sphere(enum e_element_func func);
 extern int		debug_sphere(void *param);
-extern int		hit_sphere(t_sphere *this, t_ray *r, t_range ra, t_hit *h);
+extern int		hit_sphere(t_sphere *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_sphere(t_sphere *self);
 
 #endif 

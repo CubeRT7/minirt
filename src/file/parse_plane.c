@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/04 05:32:56 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/07 05:52:11 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	parse_plane(void *param, char **argv)
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	content->type = Plane;
+	content->base.type = Plane;
 	if (parse_vector3(&content->raw.coordinate, argv[0], AllScope))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (parse_vector3(&content->raw.axis, argv[1], UnitScope))

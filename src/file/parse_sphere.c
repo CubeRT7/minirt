@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/04 05:32:58 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/07 05:52:14 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	parse_sphere(void *param, char **argv)
 
 	if (!argv || !argv[0] || !argv[1] || !argv[2])
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	content->type = Sphere;
+	content->base.type = Sphere;
 	if (parse_vector3(&content->raw.coordinate, argv[0], AllScope))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	content->raw.diameter = ft_strtof(argv[1], &remain);

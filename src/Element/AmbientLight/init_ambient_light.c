@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 02:12:26 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:12:28 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:50:34 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ int	init_ambient_light(t_ambient_light *self)
 		(float)self->raw.rgb.g / 255,
 		(float)self->raw.rgb.b / 255
 	};
-	self->color = self->obj.color;
+	self->base.color = self->obj.color;
 	return (EXIT_SUCCESS);
 }

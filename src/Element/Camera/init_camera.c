@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 21:42:00 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:14:03 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:50:48 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	init_camera(t_camera *self)
 			acosf(v3_dot_prod(vector3(0, 0, 1), normalized_axis)));
 	self->obj.position = self->raw.coordinate;
 	self->obj.fov_radian = self->raw.fov / 180 * M_PI;
-	self->color = vector3(0, 0, 0);
+	self->base.color = vector3(0, 0, 0);
 	return (EXIT_SUCCESS);
 }
