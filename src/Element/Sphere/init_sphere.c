@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 21:42:17 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:25:32 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:51:23 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	init_sphere(t_sphere *self)
 	self->obj.axis = v3_normalize(self->raw.axis);
 	self->obj.position = self->raw.coordinate;
 	self->obj.radius = self->raw.diameter * 0.5f;
-	self->color = self->obj.color;
+	self->base.color = self->obj.color;
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/05 07:09:48 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:49:05 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 typedef struct s_camera
 {
-	enum e_element				type;
-	t_color						color;
+	struct s_element			base;
 	struct s_camera_raw
 	{
 		t_point		coordinate;
@@ -35,7 +34,7 @@ typedef struct s_camera
 
 extern t_func	camera(enum e_element_func func);
 extern int		debug_camera(void *param);
-extern int		hit_camera(void *this, t_ray *r, t_range ra, t_hit *h);
+extern int		hit_camera(void *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_camera(t_camera *self);
 
 #endif 

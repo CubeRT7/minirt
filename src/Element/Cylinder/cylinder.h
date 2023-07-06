@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/05 07:09:40 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:47:58 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 typedef struct s_cylinder
 {
-	enum e_element			type;
-	t_color					color;
+	struct s_element		base;
 	struct s_cylinder_raw
 	{
 		t_point		coordinate;

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/05 07:10:06 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:48:42 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 typedef struct s_ambient_light
 {
-	enum e_element			type;
-	t_color					color;
+	struct s_element		base;
 	struct s_ambient_light_raw
 	{
 		float		ratio;
@@ -33,7 +32,7 @@ typedef struct s_ambient_light
 
 extern t_func	ambient_light(enum e_element_func func);
 extern int		debug_ambient_light(void *param);
-extern int		hit_ambient_light(void *this, t_ray *r, t_range ra, t_hit *h);
+extern int		hit_ambient_light(void *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_ambient_light(t_ambient_light *self);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 21:42:10 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:24:53 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:51:05 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	init_light(t_light *self)
 			self->raw.rgb.b / 255.0);
 	self->obj.ratio = self->raw.ratio;
 	self->obj.asix = v3_normalize(self->raw.asix);
-	self->color = self->obj.color;
+	self->base.color = self->obj.color;
 	return (EXIT_SUCCESS);
 }

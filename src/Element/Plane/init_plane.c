@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 21:42:14 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:19:51 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/07 05:51:11 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ int	init_plane(t_plane *self)
 			self->raw.rgb.b / 255.0);
 	self->obj.position = self->raw.coordinate;
 	self->obj.axis = v3_normalize(self->raw.axis);
-	self->color = self->obj.color;
+	self->base.color = self->obj.color;
 	return (EXIT_SUCCESS);
 }
