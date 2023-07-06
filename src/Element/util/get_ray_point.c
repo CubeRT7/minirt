@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   metal.h                                            :+:      :+:    :+:   */
+/*   get_ray_point.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 02:27:50 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:27:51 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/05 09:20:47 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/05 09:20:51 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef METAL_H
-# define METAL_H
-# include "material/material.h"
+#include "element_util.h"
 
-extern int	metal_scatter(t_ray *ray, t_hit *hit, t_color *color);
-
-#endif
+inline t_point	get_ray_point(const t_ray *ray, float t)
+{
+	return (v3_add(v3_mul(ray->direction, t), ray->origin));
+}

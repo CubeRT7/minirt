@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material.h                                         :+:      :+:    :+:   */
+/*   range_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 02:30:42 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:30:49 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/06 01:08:15 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/06 01:08:17 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIAL_H
-# define MATERIAL_H
-# include "Element/common.h"
+#include "element_util.h"
 
-enum e_material
+inline int	range_in(float t, t_range range)
 {
-	PHONG,
-	METAL,
-	LAMBERTIAN,
-	MAX_MATERIAL_TYPE
-};
-
-t_func	scatter(enum e_material material_type);
-
-#endif
+	return (t >= range.min && t <= range.max);
+}

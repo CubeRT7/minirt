@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ambient_light.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/03 22:42:56 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/05 07:10:06 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMBIENT_LIGHT_H
 # define AMBIENT_LIGHT_H
 # include "../common.h"
+# include "../util/element_util.h"
 
 typedef struct s_ambient_light
 {

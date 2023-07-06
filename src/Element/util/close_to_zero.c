@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lambertian.h                                       :+:      :+:    :+:   */
+/*   close_to_zero.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 02:28:28 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:29:51 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/06 01:20:01 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/06 01:20:06 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LAMBERTIAN_H
-# define LAMBERTIAN_H
-# include "material/material.h"
+#include "element_util.h"
 
-extern int	lambertian_scatter(t_ray *ray, t_hit *hit, t_color *color);
-
-#endif
+inline int	close_to_zero(float f)
+{
+	return (range_in(f, (t_range){-0.00001f, 0.00001f}));
+}

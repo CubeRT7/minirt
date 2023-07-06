@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/03 22:43:04 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/05 07:09:40 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CYLINDER_H
 # define CYLINDER_H
 # include "../common.h"
+# include "../util/element_util.h"
 
 typedef struct s_cylinder
 {
@@ -43,9 +44,19 @@ typedef struct s_circle
 	float		radius;
 }	t_circle;
 
+typedef struct s_cylinder_body_alias
+{
+	float		r2;
+	t_vector3	w;
+	float		vh;
+	float		wh;
+	float		l;
+	t_vector3	in;
+}	t_cylinder_body_alias;
+
 extern t_func	cylinder(enum e_element_func func);
 extern int		debug_cylinder(void *param);
-extern int		hit_cylinder(void *this, t_ray *r, t_range ra, t_hit *h);
+extern int		hit_cylinder(t_cylinder *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_cylinder(t_cylinder *self);
 
 #endif 

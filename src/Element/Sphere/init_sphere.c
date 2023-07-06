@@ -14,7 +14,6 @@
 
 int	init_sphere(t_sphere *self)
 {
-
 	self->obj.color = vector3(
 			self->raw.rgb.r / 255.0,
 			self->raw.rgb.g / 255.0,

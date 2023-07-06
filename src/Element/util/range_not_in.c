@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phong.h                                            :+:      :+:    :+:   */
+/*   range_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 02:27:09 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:27:10 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/06 01:08:15 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/06 01:08:17 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONG_H
-# define PHONG_H
-# include "material/material.h"
+#include "element_util.h"
 
-extern int	phong_scatter(t_ray *ray, t_hit *hit, t_color *color);
-
-#endif
+inline int	range_not_in(float t, t_range range)
+{
+	return (t < range.min || t > range.max);
+}

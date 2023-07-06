@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+         #
+#    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/04 05:47:12 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/05 07:07:30 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,10 +76,12 @@ MINIRT_SRCS = \
 	Element/Cylinder/cylinder.c \
 	Element/Cylinder/init_cylinder.c \
 	Element/Cylinder/hit_cylinder.c \
-	material/phong/phong.c \
-	material/lambertian/lambertian.c \
-	material/metal/metal.c \
-	material/material.c \
+	Element/util/get_ray_point.c \
+	Element/util/get_face_normal.c \
+	Element/util/range_in.c \
+	Element/util/range_not_in.c \
+	Element/util/close_to_zero.c \
+	Element/util/quadratic_formula_root.c \
 	file/clean_rt.c \
 	file/import_file.c \
 	file/parse_ambient_light.c \
