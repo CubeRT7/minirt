@@ -138,7 +138,7 @@ static t_ray	get_camera_ray(void *camera, int width, int height, int x, int y)
 	t_point		origin = cam->obj.position;
 	t_vector3	horizontal = vector3(viewport_width, 0, 0);
 	t_vector3	vertical = vector3(0, viewport_height, 0);
-	t_point		lower_left_corner = origin;
+	t_point		lower_left_corner = vector3(0, 0, 0);
 	lower_left_corner = v3_sub(lower_left_corner, v3_mul(horizontal, 0.5f));
 	lower_left_corner = v3_sub(lower_left_corner, v3_mul(vertical, 0.5f));
 	lower_left_corner = v3_sub(lower_left_corner, vector3(0, 0, focal_length));
