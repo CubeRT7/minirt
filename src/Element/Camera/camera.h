@@ -27,7 +27,7 @@ typedef struct s_camera
 	struct s_camera_obj
 	{
 		t_point		position;
-		t_vector3	angle;
+		t_vector3	axis;
 		float		fov_radian;
 	}							obj;
 }	t_camera;

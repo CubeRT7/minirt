@@ -102,7 +102,6 @@ t_color	ray_color(t_world *world, t_ray *ray, int depth)
 		light_color.y = light_color.y > 1 ? 1 : light_color.y;
 		light_color.z = light_color.z > 1 ? 1 : light_color.z;
 		light_color.x = (ambient_light->obj.ratio * ambient_light->obj.color.x + (1 - ambient_light->obj.ratio) * light_color.x);
-		light_color.x = (ambient_light->obj.ratio * ambient_light->obj.color.x + (1 - ambient_light->obj.ratio) * light_color.x);
 		light_color.y = (ambient_light->obj.ratio * ambient_light->obj.color.y + (1 - ambient_light->obj.ratio) * light_color.y);
 		light_color.z = (ambient_light->obj.ratio * ambient_light->obj.color.z + (1 - ambient_light->obj.ratio) * light_color.z);
 		return ((t_color){
@@ -134,10 +133,7 @@ static t_ray	get_camera_ray(void *camera, int width, int height, int x, int y)
 	const float		viewport_height =  aspect_ratio * viewport_width;
 	const float		fov_half = cam->obj.fov_radian * 0.5f;
 	if (sin(fov_half) == 0)
-	{
-		t_vector3 cam_axis = v3_rotate(vector3(0, 0, -1), v3_sub(cam->obj.angle, vector3(M_PI_2, M_PI_2, M_PI)));
-		return ((t_ray){ cam->obj.position, cam_axis });
-	}
+		return ((t_ray){ cam->obj.position, cam->obj.axis });
 	float		focal_length = cos(fov_half) / sin(fov_half);
 	t_point		origin = cam->obj.position;
 	t_vector3	horizontal = vector3(viewport_width, 0, 0);
@@ -146,14 +142,19 @@ static t_ray	get_camera_ray(void *camera, int width, int height, int x, int y)
 	lower_left_corner = v3_sub(lower_left_corner, v3_mul(horizontal, 0.5f));
 	lower_left_corner = v3_sub(lower_left_corner, v3_mul(vertical, 0.5f));
 	lower_left_corner = v3_sub(lower_left_corner, vector3(0, 0, focal_length));
-	// TODO: camera fov 적용
+
 	float		u = (float)x / width;
 	float		v = (float)y / height;
 	t_vector3	direction = lower_left_corner;
 	direction = v3_add(direction, v3_mul(horizontal, u));
 	direction = v3_add(direction, v3_mul(vertical, v));
-	direction = v3_rotate(direction, v3_sub(cam->obj.angle, vector3(M_PI_2, M_PI_2, M_PI)));
 	direction = v3_normalize(direction);
+	t_vector3 front = v3_normalize(vector3(cam->obj.axis.x, 0, cam->obj.axis.z));
+	t_vector3 right = v3_normalize(v3_cross_prod(front, vector3(0, 1, 0)));
+	float h_angle = acosf(v3_dot_prod(vector3(0, 0, -1), front) * 0.99999f) * (front.x < 0 ? 1 : -1);
+	float v_angle = acosf(v3_dot_prod(front, cam->obj.axis) * 0.99999f) * (cam->obj.axis.y < 0 ? -1 : 1);
+	direction = v3_rotate_axis(direction, vector3(0, 1, 0), h_angle);
+	direction = v3_rotate_axis(direction, right, v_angle);
 	return ((t_ray){cam->obj.position, direction});
 }
 

@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_camera.c                                      :+:      :+:    :+:   */
+/*   v3_rotate_axis.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 21:42:00 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/07 05:50:48 by minjungk         ###   ########.fr       */
+/*   Created: 2023/07/02 01:57:42 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/02 02:37:36 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camera.h"
+#include "libvector.h"
 
-int	init_camera(t_camera *self)
+t_vector3	v3_rotate_axis(t_vector3 v, t_vector3 a, float theta)
 {
-	self->obj.axis = v3_normalize(self->raw.axis);
-	self->obj.position = self->raw.coordinate;
-	self->obj.fov_radian = self->raw.fov / 180 * M_PI;
-	self->base.color = vector3(0, 0, 0);
-	return (EXIT_SUCCESS);
+	const float		cth = cosf(theta);
+	const float		sth = sinf(theta);
+	const float		dot = v3_dot_prod(a, v);
+    const t_vector3	crs = v3_cross_prod(a, v);
+	t_vector3		res;
+
+	res = v3_mul(v, cth);
+	res = v3_add(res, v3_mul(crs, sth));
+	res = v3_add(res, v3_mul(a, dot * (1 - cth)));
+    return (res);
 }
