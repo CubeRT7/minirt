@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/07 06:26:58 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:25:50 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ static t_ray	get_camera_ray(void *camera, int width, int height, int x, int y)
 	if (sin(fov_half) == 0)
 		return ((t_ray){ cam->obj.position, cam->obj.axis });
 	float		focal_length = cos(fov_half) / sin(fov_half);
-	t_point		origin = cam->obj.position;
 	t_vector3	horizontal = vector3(viewport_width, 0, 0);
 	t_vector3	vertical = vector3(0, viewport_height, 0);
 	t_point		lower_left_corner = vector3(0, 0, 0);
@@ -166,6 +165,7 @@ void	hook_draw(void *param)
 	t_ray			ray;
 	t_color			color;
 
+	rotate_camera(world);
 	x = 0;
 	while (x < world->gui.mlx->width)
 	{

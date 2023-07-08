@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/05 07:07:30 by yonshin          ###   ########.fr        #
+#    Updated: 2023/07/08 18:15:28 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ MINIRT_SRCS = \
 	file/parse_cylinder.c \
 	simulate/simulate.c \
 	simulate/hook_key_event.c \
+	simulate/hook_mouse_event.c \
 	simulate/hook_draw.c \
 	simulate/hook_resize_event.c \
 	simulate/hook_close_event.c \

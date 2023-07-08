@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/04 05:31:52 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:59:22 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int	_gui_setting(t_gui_setting *g, int width, int height, char *title)
 
 static int	_hook_setting(t_world *world)
 {
+	mlx_mouse_hook(world->gui.mlx, hook_mouse_event, world);
 	if (!mlx_loop_hook(world->gui.mlx, hook_key_event, world))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (!mlx_loop_hook(world->gui.mlx, hook_draw, world))
