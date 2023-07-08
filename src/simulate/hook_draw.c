@@ -19,13 +19,6 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void	debug_handler(void *param)
-{
-	t_element *const	elem = param;
-	const t_func		func = element(elem->type, Debug);
-	func(param);
-}
-
 t_color	back_ground_color(t_ray ray)
 {
 	const float	t = (ray.direction.y + 1) * 0.5f;
@@ -41,15 +34,13 @@ int	hit(t_world *world, t_ray *ray, t_range range, t_hit *record)
 	float			closest_so_far;
 	int				hit_anything;
 	t_element		*elem;
-	t_func			elem_hit;
 
 	hit_anything = 0;
 	closest_so_far = range.max;
 	while (next)
 	{
 		elem = next->content;
-		elem_hit = element(elem->type, Hit);
-		if (elem_hit(elem, ray, (t_range){range.min, closest_so_far}, &temp_rec))
+		if (elem->func[Hit](elem, ray, (t_range){range.min, closest_so_far}, &temp_rec))
 		{
 			hit_anything = 1;
 			closest_so_far = temp_rec.t;

@@ -12,6 +12,11 @@
 
 #include "ambient_light.h"
 
+static void	_init_func(t_ambient_light *self)
+{
+	self->base.func[Hit] = nothing;
+}
+
 int	init_ambient_light(t_ambient_light *self)
 {
 	self->base.color = (t_color){
@@ -20,5 +25,6 @@ int	init_ambient_light(t_ambient_light *self)
 		(float)self->raw.rgb.b / 255
 	};
 	self->obj.ratio = self->raw.ratio;
+	_init_func(self);
 	return (EXIT_SUCCESS);
 }

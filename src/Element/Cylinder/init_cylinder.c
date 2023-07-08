@@ -12,6 +12,11 @@
 
 #include "cylinder.h"
 
+static void	_init_func(t_cylinder *self)
+{
+	self->base.func[Hit] = hit_cylinder;
+}
+
 int	init_cylinder(t_cylinder *self)
 {
 	self->base.position = self->raw.coordinate;
@@ -22,5 +27,6 @@ int	init_cylinder(t_cylinder *self)
 			self->raw.rgb.b / 255.0);
 	self->obj.radius = self->raw.diameter * 0.5f;
 	self->obj.height = self->raw.height;
+	_init_func(self);
 	return (EXIT_SUCCESS);
 }

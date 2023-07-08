@@ -17,8 +17,10 @@ static void	move_camera(t_world *world)
 {
 	t_camera *const	camera = world->camera;
 	const float		delta = world->gui.mlx->delta_time;
+
+	const t_vector3 up = vector3(0, 1, 0);
 	const t_vector3	front = vector3(camera->base.axis.x, 0, camera->base.axis.z);
-	const t_vector3	right = v3_cross_prod(front, vector3(0, 1, 0));
+	const t_vector3	right = v3_cross_prod(front, up);
 	const t_vector3	direction[3] = {
 		v3_mul(front, delta), v3_mul(right, delta), vector3(0, delta, 0)};
 

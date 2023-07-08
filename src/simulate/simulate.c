@@ -57,30 +57,10 @@ static int	_hook_setting(t_world *world)
 
 static int	_init_world(t_world *world)
 {
-	t_list		*curr;
-	t_element	*elem;
-	t_func		func;
-
-	init_ambient_light(world->ambient_light);
-	init_camera(world->camera);
-	curr = world->lights;
-	while (curr)
-	{
-		elem = curr->content;
-		func = element(elem->type, Init);
-		if (func(elem))
-			return (ft_error(__func__, __FILE__, __LINE__, 0));
-		curr = curr->next;
-	}
-	curr = world->objs;
-	while (curr)
-	{
-		elem = curr->content;
-		func = element(elem->type, Init);
-		if (func(elem))
-			return (ft_error(__func__, __FILE__, __LINE__, 0));
-		curr = curr->next;
-	}
+	init_element(world->ambient_light);
+	init_element(world->camera);
+	element_iter(world->lights, Init);
+	element_iter(world->objs, Init);
 	return (EXIT_SUCCESS);
 }
 

@@ -78,3 +78,33 @@ t_func	element(enum e_element type, enum e_element_func func)
 
 	return (functions[type](func));
 }
+
+void	init_element(void *elem)
+{
+	const t_element	*self = elem;
+
+	if (self->type == AmbientLight)
+		init_ambient_light(elem);
+	if (self->type == Camera)
+		init_camera(elem);
+	if (self->type == Light)
+		init_light(elem);
+	if (self->type == Plane)
+		init_plane(elem);
+	if (self->type == Sphere)
+		init_sphere(elem);
+	if (self->type == Cylinder)
+		init_cylinder(elem);
+}
+
+void	element_iter(t_list *list, enum e_element_func e)
+{
+	while (list)
+	{
+		if (e == Init)
+			init_element(list->content);
+		else
+			((t_element *)(list->content))->func[e](list->content);
+		list = list->next;
+	}
+}

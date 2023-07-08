@@ -12,10 +12,16 @@
 
 #include "camera.h"
 
+static void	_init_func(t_camera *self)
+{
+	self->base.func[Hit] = nothing;
+}
+
 int	init_camera(t_camera *self)
 {
 	self->base.position = self->raw.coordinate;
 	self->base.axis = v3_normalize(self->raw.axis);
 	self->obj.fov_radian = self->raw.fov / 180 * M_PI;
+	_init_func(self);
 	return (EXIT_SUCCESS);
 }

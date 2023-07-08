@@ -12,6 +12,11 @@
 
 #include "sphere.h"
 
+static void	_init_func(t_sphere *self)
+{
+	self->base.func[Hit] = hit_sphere;
+}
+
 int	init_sphere(t_sphere *self)
 {
 	self->base.position = self->raw.coordinate;
@@ -21,5 +26,6 @@ int	init_sphere(t_sphere *self)
 			self->raw.rgb.g / 255.0,
 			self->raw.rgb.b / 255.0);
 	self->obj.radius = self->raw.diameter * 0.5f;
+	_init_func(self);
 	return (EXIT_SUCCESS);
 }

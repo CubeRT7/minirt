@@ -33,7 +33,6 @@ typedef struct s_light
 
 extern t_func	light(enum e_element_func func);
 extern int		debug_light(void *param);
-extern int		hit_light(void *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_light(t_light *self);
 
 #endif 

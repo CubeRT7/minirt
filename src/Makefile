@@ -60,13 +60,10 @@ MINIRT_SRCS = \
 	Element/common.c \
 	Element/AmbientLight/ambient_light.c \
 	Element/AmbientLight/init_ambient_light.c \
-	Element/AmbientLight/hit_ambient_light.c \
 	Element/Camera/camera.c \
 	Element/Camera/init_camera.c \
-	Element/Camera/hit_camera.c \
 	Element/Light/light.c \
 	Element/Light/init_light.c \
-	Element/Light/hit_light.c \
 	Element/Plane/plane.c \
 	Element/Plane/init_plane.c \
 	Element/Plane/hit_plane.c \

@@ -37,7 +37,6 @@ typedef struct s_camera
 
 extern t_func	camera(enum e_element_func func);
 extern int		debug_camera(void *param);
-extern int		hit_camera(void *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_camera(t_camera *self);
 extern void		init_view(t_camera *self);
 

@@ -12,6 +12,11 @@
 
 #include "light.h"
 
+static void	_init_func(t_light *self)
+{
+	self->base.func[Hit] = nothing;
+}
+
 int	init_light(t_light *self)
 {
 	self->base.position = self->raw.coordinate;
@@ -21,5 +26,6 @@ int	init_light(t_light *self)
 			self->raw.rgb.g / 255.0,
 			self->raw.rgb.b / 255.0);
 	self->obj.ratio = self->raw.ratio;
+	_init_func(self);
 	return (EXIT_SUCCESS);
 }

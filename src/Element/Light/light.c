@@ -30,7 +30,6 @@ t_func	light(enum e_element_func func)
 {
 	static const t_func	functions[MAX_ELEMENT_TYPE] = {
 	[Init] = init_light,
-	[Hit] = hit_light,
 	[Debug] = debug_light};
 
 	return (functions[func]);
