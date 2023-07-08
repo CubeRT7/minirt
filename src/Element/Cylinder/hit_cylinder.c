@@ -40,25 +40,25 @@ static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 	const float				half_height = self->obj.height * 0.5;
 	t_cylinder_body_alias	alias;
 	t_abc					abc;
-	t_hit					tmprec;
+	t_hit					rec;
 
 	alias.r2 = self->obj.radius * self->obj.radius;
-	alias.w = v3_sub(ray->origin, self->obj.position);
-	alias.vh = v3_dot_prod(ray->direction, self->obj.axis);
-	alias.wh = v3_dot_prod(alias.w, self->obj.axis);
+	alias.w = v3_sub(ray->origin, self->base.position);
+	alias.vh = v3_dot_prod(ray->direction, self->base.axis);
+	alias.wh = v3_dot_prod(alias.w, self->base.axis);
 	abc = (t_abc){
 		v3_dot_prod(ray->direction, ray->direction) - alias.vh * alias.vh,
 		v3_dot_prod(ray->direction, alias.w) - (alias.vh * alias.wh),
 		v3_dot_prod(alias.w, alias.w) - (alias.wh * alias.wh) - (alias.r2)
 	};
-	if (quadratic_formula_root(abc, range, &(tmprec.t)))
+	if (quadratic_formula_root(abc, range, &(rec.t)))
 		return (0);
-	tmprec.p = get_ray_point(ray, tmprec.t);
-	alias.l = v3_dot_prod(v3_sub(tmprec.p, self->obj.position), self->obj.axis);
+	rec.p = get_ray_point(ray, rec.t);
+	alias.l = v3_dot_prod(v3_sub(rec.p, self->base.position), self->base.axis);
 	if (range_not_in(alias.l, (t_range){-half_height, half_height}))
 		return (0);
-	ft_memcpy(record, &tmprec, sizeof(t_hit));
-	alias.in = v3_add(self->obj.position, v3_mul(self->obj.axis, alias.l));
+	ft_memcpy(record, &rec, sizeof(t_hit));
+	alias.in = v3_add(self->base.position, v3_mul(self->base.axis, alias.l));
 	record->normal = v3_normalize(v3_sub(record->p, alias.in));
 	record->normal = get_face_normal(*ray, record->normal);
 	return (1);
@@ -66,15 +66,15 @@ static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 
 int	hit_cylinder(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 {
-	const t_vector3	half = v3_mul(self->obj.axis, self->obj.height * 0.5);
+	const t_vector3	half = v3_mul(self->base.axis, self->obj.height * 0.5);
 	const t_circle	top = (t_circle){
-		v3_add(self->obj.position, half),
-		self->obj.axis,
+		v3_add(self->base.position, half),
+		self->base.axis,
 		self->obj.radius
 	};
 	const t_circle	bottom = (t_circle){
-		v3_sub(self->obj.position, half),
-		v3_reverse(self->obj.axis),
+		v3_sub(self->base.position, half),
+		v3_reverse(self->base.axis),
 		self->obj.radius
 	};
 	int				res;

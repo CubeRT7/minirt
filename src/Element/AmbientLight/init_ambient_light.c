@@ -14,12 +14,11 @@
 
 int	init_ambient_light(t_ambient_light *self)
 {
-	self->obj.ratio = self->raw.ratio;
-	self->obj.color = (t_color){
+	self->base.color = (t_color){
 		(float)self->raw.rgb.r / 255,
 		(float)self->raw.rgb.g / 255,
 		(float)self->raw.rgb.b / 255
 	};
-	self->base.color = self->obj.color;
+	self->obj.ratio = self->raw.ratio;
 	return (EXIT_SUCCESS);
 }

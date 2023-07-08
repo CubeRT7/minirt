@@ -14,9 +14,8 @@
 
 int	init_camera(t_camera *self)
 {
-	self->obj.axis = v3_normalize(self->raw.axis);
-	self->obj.position = self->raw.coordinate;
+	self->base.position = self->raw.coordinate;
+	self->base.axis = v3_normalize(self->raw.axis);
 	self->obj.fov_radian = self->raw.fov / 180 * M_PI;
-	self->base.color = vector3(0, 0, 0);
 	return (EXIT_SUCCESS);
 }

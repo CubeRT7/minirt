@@ -26,7 +26,6 @@ typedef struct s_ambient_light
 	struct s_ambient_light_obj
 	{
 		float	ratio;
-		t_color	color;
 	}						obj;
 }	t_ambient_light;
 

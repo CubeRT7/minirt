@@ -31,8 +31,6 @@ typedef struct s_camera
 			int		rotate_flag;
 			int		cursor_xy[2];
 		};
-		t_point		position;
-		t_vector3	axis;
 		float		fov_radian;
 	}							obj;
 }	t_camera;

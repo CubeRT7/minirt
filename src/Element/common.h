@@ -50,9 +50,21 @@ enum e_element
 
 typedef int			(*t_func)();
 
+enum e_element_func
+{
+	Debug,
+	Serialize,
+	Deserialize,
+	Hit,
+	Init,
+	MAX_ELEMENT_FUNC
+};
+
 typedef struct s_element
 {
 	enum e_element	type;
+	t_point			position;
+	t_vector3		axis;
 	t_color			color;
 }	t_element;
 
@@ -69,16 +81,6 @@ typedef struct s_hit
 	t_vector3	normal;
 	t_color		color;
 }	t_hit;
-
-enum e_element_func
-{
-	Debug,
-	Serialize,
-	Deserialize,
-	Hit,
-	Init,
-	MAX_ELEMENT_FUNC
-};
 
 extern t_func	element(enum e_element type, enum e_element_func func);
 extern int		parse_rgb(struct s_rgb *rgb, char *curr);
