@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "hook.h"
+#include "simulate/util/simulate_util.h"
 #define DELTA 0.001f
 #define BIGVALUE 99999999.0f
 
@@ -156,6 +157,7 @@ void	hook_draw(void *param)
 	t_ray			ray;
 	t_color			color;
 
+	world_iter(world, Update);
 	rotate_camera(world);
 	x = 0;
 	while (x < world->gui.mlx->width)

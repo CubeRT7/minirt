@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "simulate.h"
+#include "simulate/util/simulate_util.h"
 
 static void	_init_gui_setting(t_gui_setting *g, char *title)
 {
@@ -55,15 +56,6 @@ static int	_hook_setting(t_world *world)
 	return (EXIT_SUCCESS);
 }
 
-static int	_init_world(t_world *world)
-{
-	init_element(world->ambient_light);
-	init_element(world->camera);
-	element_iter(world->lights, Init);
-	element_iter(world->objs, Init);
-	return (EXIT_SUCCESS);
-}
-
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 {
 	t_world	world;
@@ -74,8 +66,8 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 	world.objs = objs;
 	if (_gui_setting(&(world.gui), WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (_init_world(&world))
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	world_iter(&world, Init);
+	world_iter(&world, Update);
 	if (_hook_setting(&world))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	mlx_loop(world.gui.mlx);

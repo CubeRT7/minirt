@@ -57,6 +57,7 @@ enum e_element_func
 	Deserialize,
 	Hit,
 	Init,
+	Update,
 	MAX_ELEMENT_FUNC
 };
 
@@ -83,7 +84,6 @@ typedef struct s_hit
 	t_color		color;
 }	t_hit;
 
-extern t_func	element(enum e_element type, enum e_element_func func);
 extern void		init_element(void *elem);
 extern void		element_iter(t_list *list, enum e_element_func e);
 extern int		parse_rgb(struct s_rgb *rgb, char *curr);

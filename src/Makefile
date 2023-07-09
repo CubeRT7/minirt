@@ -62,6 +62,7 @@ MINIRT_SRCS = \
 	Element/AmbientLight/init_ambient_light.c \
 	Element/Camera/camera.c \
 	Element/Camera/init_camera.c \
+	Element/Camera/update_camera.c \
 	Element/Light/light.c \
 	Element/Light/init_light.c \
 	Element/Plane/plane.c \
@@ -93,6 +94,7 @@ MINIRT_SRCS = \
 	simulate/hook_draw.c \
 	simulate/hook_resize_event.c \
 	simulate/hook_close_event.c \
+	simulate/util/world_iter.c \
 	$(MINIRT).c
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)
 MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)

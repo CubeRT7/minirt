@@ -14,7 +14,7 @@
 
 static void	_init_func(t_light *self)
 {
-	self->base.func[Hit] = nothing;
+	(void)self;
 }
 
 int	init_light(t_light *self)
