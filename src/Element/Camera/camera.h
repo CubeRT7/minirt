@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/09 06:48:20 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/09 09:35:38 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_camera
 		};
 		t_point		position;
 		t_vector3	axis;
-		t_vector3	up;
 		float		fov_radian;
 	}							obj;
 }	t_camera;

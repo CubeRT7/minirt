@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 21:42:00 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/09 06:48:33 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/09 09:35:44 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	init_camera(t_camera *self)
 {
 	self->obj.axis = v3_normalize(self->raw.axis);
-	self->obj.up = vector3(0, 1, 0);
 	self->obj.position = self->raw.coordinate;
 	self->obj.fov_radian = self->raw.fov / 180 * M_PI;
 	self->base.color = vector3(0, 0, 0);
