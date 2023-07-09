@@ -17,6 +17,7 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 	float		d;
 	float		t;
 	t_vector3	v;
+	t_vector3	p;
 
 	d = v3_dot_prod(ray->direction, circ.axis);
 	if (close_to_zero(d))
@@ -25,10 +26,11 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 	t = -v3_dot_prod(v, circ.axis) / d;
 	if (range_not_in(t, range))
 		return (0);
-	record->t = t;
-	record->p = get_ray_point(ray, t);
-	if (v3_magnitude(v3_sub(circ.center, record->p)) > circ.radius)
+	p = get_ray_point(ray, t);
+	if (v3_magnitude(v3_sub(circ.center, p)) > circ.radius)
 		return (0);
+	record->t = t;
+	record->p = p;
 	record->normal = get_face_normal(*ray, circ.axis);
 	return (1);
 }
