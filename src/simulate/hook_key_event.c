@@ -15,35 +15,25 @@
 
 static void	move_camera(t_world *world)
 {
-	t_camera *const	camera = world->camera;
-	const float		delta = world->gui.mlx->delta_time;
+	t_element *const	camera = &(world->camera->base);
+	const float			delta = world->gui.mlx->delta_time;
+	t_vector3			v[3];
 
-	const t_vector3 up = vector3(0, 1, 0);
-	const t_vector3	front = vector3(camera->base.axis.x, 0, camera->base.axis.z);
-	const t_vector3	right = v3_cross(front, up);
-	const t_vector3	direction[3] = {
-		v3_mul(front, delta), v3_mul(right, delta), vector3(0, delta, 0)};
-
+	enum e_type {FRONT, RIGHT, NEW};
+	v[FRONT] = v3_normalize(v3_hadamard(camera->axis, vector3(1, 0, 1)));
+	v[RIGHT] = v3_cross(v[FRONT], WORLD_AXIS);
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_W))
-		camera->base.position = v3_add(camera->base.position, direction[0]);
+		camera->position = v3_add(camera->position, v3_mul(v[FRONT], delta));
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_S))
-		camera->base.position = v3_sub(camera->base.position, direction[0]);
+		camera->position = v3_sub(camera->position, v3_mul(v[FRONT], delta));
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_A))
-		camera->base.position = v3_sub(camera->base.position, direction[1]);
+		camera->position = v3_sub(camera->position, v3_mul(v[RIGHT], delta));
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_D))
-		camera->base.position = v3_add(camera->base.position, direction[1]);
+		camera->position = v3_add(camera->position, v3_mul(v[RIGHT], delta));
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_SPACE))
-		camera->base.position = v3_add(camera->base.position, direction[2]);
+		camera->position = v3_add(camera->position, v3_mul(WORLD_AXIS, delta));
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_LEFT_CONTROL))
-		camera->base.position = v3_sub(camera->base.position, direction[2]);
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_R))
-		camera->base.axis = v3_rotate_axis(camera->base.axis, right, delta);
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_F))
-		camera->base.axis = v3_rotate_axis(camera->base.axis, right, -delta);
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_Q))
-		camera->base.axis = v3_rotate_axis(camera->base.axis, vector3(0, 1, 0), delta);
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_E))
-		camera->base.axis = v3_rotate_axis(camera->base.axis, vector3(0, 1, 0), -delta);
+		camera->position = v3_sub(camera->position, v3_mul(WORLD_AXIS, delta));
 }
 
 void	hook_key_event(void *param)
