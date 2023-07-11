@@ -27,13 +27,13 @@ void	rotate_camera(void *param)
 		camera->obj.rotate_flag = 0;
 	mlx_get_mouse_pos(world->gui.mlx, &xy[0], &xy[1]);
 	v[UP] = vector3(0, 1, 0);
-	v[FRONT] = v3_normalize(v3_hadamard_prod(camera->base.axis, v[UP]));
-	v[RIGHT] = v3_normalize(v3_cross_prod(v[FRONT], v[UP]));
+	v[FRONT] = v3_normalize(v3_hadamard(camera->base.axis, v[UP]));
+	v[RIGHT] = v3_normalize(v3_cross(v[FRONT], v[UP]));
 	camera->base.axis = v3_rotate_axis(camera->base.axis, v[UP],
 			(camera->obj.cursor_pos.x - xy[0]) / world->gui.image->width);
 	v[NEW] = v3_rotate_axis(world->camera->base.axis, v[RIGHT],
 			(camera->obj.cursor_pos.y - xy[1]) / world->gui.image->height);
-	angle = v3_dot_prod(v3_normalize(v3_cross_prod(v[NEW], v[UP])), v[RIGHT]);
+	angle = v3_dot(v3_normalize(v3_cross(v[NEW], v[UP])), v[RIGHT]);
 	if (angle > 0)
 		camera->base.axis = v[NEW];
 	camera->obj.cursor_pos = vector3(xy[0], xy[1], 0);

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:14:25 by yonshin           #+#    #+#             */
-/*   Updated: 2023/06/09 16:14:26 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/12 01:51:29 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ t_vector3	v3_normalize(t_vector3 v1);
 t_vector3	v3_reverse(t_vector3 v1);
 t_vector3	v3_rotate(t_vector3 v, t_vector3 a);
 t_vector3	v3_rotate_axis(t_vector3 v, t_vector3 a, float theta);
-t_vector3	v3_hadamard_prod(t_vector3 v1, t_vector3 v2);
-t_vector3	v3_cross_prod(t_vector3 v1, t_vector3 v2);
-float		v3_dot_prod(t_vector3 v1, t_vector3 v2);
+t_vector3	v3_hadamard(t_vector3 v1, t_vector3 v2);
+t_vector3	v3_cross(t_vector3 v1, t_vector3 v2);
+float		v3_dot(t_vector3 v1, t_vector3 v2);
 float		v3_magnitude(t_vector3 v1);
 
 #endif

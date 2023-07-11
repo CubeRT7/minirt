@@ -19,11 +19,11 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 	t_vector3	v;
 	t_vector3	p;
 
-	d = v3_dot_prod(ray->direction, circ.axis);
+	d = v3_dot(ray->direction, circ.axis);
 	if (close_to_zero(d))
 		return (0);
 	v = v3_sub(ray->origin, circ.center);
-	t = -v3_dot_prod(v, circ.axis) / d;
+	t = -v3_dot(v, circ.axis) / d;
 	if (range_not_in(t, range))
 		return (0);
 	p = get_ray_point(ray, t);
@@ -44,17 +44,17 @@ static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 
 	alias.r2 = self->obj.radius * self->obj.radius;
 	alias.w = v3_sub(ray->origin, self->base.position);
-	alias.vh = v3_dot_prod(ray->direction, self->base.axis);
-	alias.wh = v3_dot_prod(alias.w, self->base.axis);
+	alias.vh = v3_dot(ray->direction, self->base.axis);
+	alias.wh = v3_dot(alias.w, self->base.axis);
 	abc = (t_abc){
-		v3_dot_prod(ray->direction, ray->direction) - alias.vh * alias.vh,
-		v3_dot_prod(ray->direction, alias.w) - (alias.vh * alias.wh),
-		v3_dot_prod(alias.w, alias.w) - (alias.wh * alias.wh) - (alias.r2)
+		v3_dot(ray->direction, ray->direction) - alias.vh * alias.vh,
+		v3_dot(ray->direction, alias.w) - (alias.vh * alias.wh),
+		v3_dot(alias.w, alias.w) - (alias.wh * alias.wh) - (alias.r2)
 	};
 	if (quadratic_formula_root(abc, range, &(rec.t)))
 		return (0);
 	rec.p = get_ray_point(ray, rec.t);
-	alias.l = v3_dot_prod(v3_sub(rec.p, self->base.position), self->base.axis);
+	alias.l = v3_dot(v3_sub(rec.p, self->base.position), self->base.axis);
 	if (range_not_in(alias.l, (t_range){-half_height, half_height}))
 		return (0);
 	ft_memcpy(record, &rec, sizeof(t_hit));

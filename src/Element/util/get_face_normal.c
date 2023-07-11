@@ -14,7 +14,7 @@
 
 inline t_vector3	get_face_normal(t_ray ray, t_vector3 normal)
 {
-	const int	front_face = v3_dot_prod(ray.direction, normal) < 0;
+	const int	front_face = v3_dot(ray.direction, normal) < 0;
 
 	if (front_face)
 		return (normal);

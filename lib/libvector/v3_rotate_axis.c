@@ -16,8 +16,8 @@ t_vector3	v3_rotate_axis(t_vector3 v, t_vector3 a, float theta)
 {
 	const float		cth = cosf(theta);
 	const float		sth = sinf(theta);
-	const float		dot = v3_dot_prod(a, v);
-	const t_vector3	crs = v3_cross_prod(a, v);
+	const float		dot = v3_dot(a, v);
+	const t_vector3	crs = v3_cross(a, v);
 	t_vector3		res;
 
 	res = v3_mul(v, cth);
