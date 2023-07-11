@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/12 05:22:05 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/12 07:00:44 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 {
 	t_world	world;
 
+	world.axis = (t_vector3){0, 1, 0};
 	world.ambient_light = ambient->content;
 	world.camera = camera->content;
 	world.lights = lights;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_key_event.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:59 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:03:45 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/12 07:01:29 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	move_camera(t_world *world)
 
 	enum e_type {FRONT, RIGHT, NEW};
 	v[FRONT] = v3_normalize(v3_hadamard(camera->axis, vector3(1, 0, 1)));
-	v[RIGHT] = v3_cross(v[FRONT], WORLD_AXIS);
+	v[RIGHT] = v3_cross(v[FRONT], world->axis);
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_W))
 		camera->position = v3_add(camera->position, v3_mul(v[FRONT], delta));
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_S))
@@ -31,9 +31,9 @@ static void	move_camera(t_world *world)
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_D))
 		camera->position = v3_add(camera->position, v3_mul(v[RIGHT], delta));
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_SPACE))
-		camera->position = v3_add(camera->position, v3_mul(WORLD_AXIS, delta));
+		camera->position = v3_add(camera->position, v3_mul(world->axis, delta));
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_LEFT_CONTROL))
-		camera->position = v3_sub(camera->position, v3_mul(WORLD_AXIS, delta));
+		camera->position = v3_sub(camera->position, v3_mul(world->axis, delta));
 }
 
 void	hook_key_event(void *param)
