@@ -29,6 +29,7 @@ SRCS = \
 	v3_mul.c \
 	v3_dot_prod.c \
 	v3_cross_prod.c \
+	v3_hadamard_prod.c \
 	v3_magnitude.c \
 	v3_normalize.c \
 	v3_reverse.c \

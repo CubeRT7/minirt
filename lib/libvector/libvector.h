@@ -29,6 +29,7 @@ t_vector3	v3_normalize(t_vector3 v1);
 t_vector3	v3_reverse(t_vector3 v1);
 t_vector3	v3_rotate(t_vector3 v, t_vector3 a);
 t_vector3	v3_rotate_axis(t_vector3 v, t_vector3 a, float theta);
+t_vector3	v3_hadamard_prod(t_vector3 v1, t_vector3 v2);
 t_vector3	v3_cross_prod(t_vector3 v1, t_vector3 v2);
 float		v3_dot_prod(t_vector3 v1, t_vector3 v2);
 float		v3_magnitude(t_vector3 v1);
