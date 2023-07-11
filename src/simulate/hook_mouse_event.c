@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 02:10:36 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/12 00:45:14 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/12 01:10:26 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,28 @@
 void	rotate_camera(void *param)
 {
 	t_world *const		world = param;
+	t_camera *const		camera = world->camera;
 	int					xy[2];
-	const t_vector3		up = (t_vector3){0, 1, 0};
-	t_vector3			front;
-	t_vector3			right;
+	t_vector3			v[4];
+	float				angle;
 
-	if (world->camera->obj.rotate_flag == 0)
+	enum e_type {UP, FRONT, RIGHT, NEW};
+	if (camera->obj.rotate_flag == 0)
 		return ;
-	if (world->camera->obj.rotate_flag == 2)
-		world->camera->obj.rotate_flag = 0;
+	if (camera->obj.rotate_flag == 2)
+		camera->obj.rotate_flag = 0;
 	mlx_get_mouse_pos(world->gui.mlx, &xy[0], &xy[1]);
-	front = vector3(world->camera->base.axis.x, 0, world->camera->base.axis.z);
-	right = v3_normalize(v3_cross_prod(front, up));
-	world->camera->base.axis = v3_rotate_axis(world->camera->base.axis, up,
-			(world->camera->obj.cursor_pos.x - xy[0])
-			/ world->gui.image->width);
-	world->camera->base.axis = v3_rotate_axis(world->camera->base.axis, right,
-			(world->camera->obj.cursor_pos.y - xy[1])
-			/ world->gui.image->height);
-	world->camera->obj.cursor_pos = vector3(xy[0], xy[1], 0);
+	v[UP] = vector3(0, 1, 0);
+	v[FRONT] = v3_hadamard_prod(camera->base.axis, vector3(1, 0, 1));
+	v[RIGHT] = v3_normalize(v3_cross_prod(v[FRONT], v[UP]));
+	camera->base.axis = v3_rotate_axis(camera->base.axis, v[UP],
+			(camera->obj.cursor_pos.x - xy[0]) / world->gui.image->width);
+	v[NEW] = v3_rotate_axis(world->camera->base.axis, v[RIGHT],
+			(camera->obj.cursor_pos.y - xy[1]) / world->gui.image->height);
+	angle = v3_dot_prod(v3_normalize(v3_cross_prod(v[NEW], v[UP])), v[RIGHT]);
+	if (angle > 0)
+		camera->base.axis = v[NEW];
+	camera->obj.cursor_pos = vector3(xy[0], xy[1], 0);
 }
 
 void	hook_mouse_event(
