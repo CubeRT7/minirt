@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/06/10 01:59:59 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/12 04:31:15 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	parse_rgb(struct s_rgb *rgb, char *curr)
 
 int	parse_vector3(t_vector3 *vector, char *curr, float scope)
 {
+	float	axis_len;
+
 	vector->x = ft_strtof(curr, &curr);
 	if (errno || curr[0] != ',')
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
@@ -59,11 +61,14 @@ int	parse_vector3(t_vector3 *vector, char *curr, float scope)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (scope == AllScope)
 		return (EXIT_SUCCESS);
-	if ((-1.0 <= vector->x && vector->x <= 1.0)
+	if (!((-1.0 <= vector->x && vector->x <= 1.0)
 		&& (-1.0 <= vector->y && vector->y <= 1.0)
-		&& (-1.0 <= vector->z && vector->z <= 1.0))
-		return (EXIT_SUCCESS);
-	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
+		&& (-1.0 <= vector->z && vector->z <= 1.0)))
+		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
+	axis_len = v3_magnitude(*vector);
+	if (!(0.9999f < axis_len && axis_len < 1.0001f))
+		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
+	return (EXIT_SUCCESS);
 }
 
 void	init_element(void *elem)

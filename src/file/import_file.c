@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/04 05:44:40 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/12 04:24:29 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,10 @@ static int	_append_elements(t_list **elements, int fd)
 static int	_read(struct s_rt_file *rt, int fd)
 {
 	int		i;
-	int		ret;
 	t_list	*elements[MAX_ELEMENT_TYPE];
 
 	ft_memset(elements, 0, sizeof(elements));
-	ret = _append_elements(elements, fd);
-	if (ret == EXIT_SUCCESS)
+	if (_append_elements(elements, fd) == EXIT_SUCCESS)
 	{
 		if (ft_lstsize(elements[AmbientLight]) < 2
 			&& ft_lstsize(elements[Camera]) < 2
@@ -111,11 +109,12 @@ static int	_read(struct s_rt_file *rt, int fd)
 				ft_lstadd_back(&rt->objs, elements[i++]);
 			return (EXIT_SUCCESS);
 		}
+		errno = EINVAL;
 	}
 	i = 0;
 	while (i < MAX_ELEMENT_TYPE)
 		ft_lstclear(&elements[i++], free);
-	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
+	return (ft_error(__func__, __FILE__, __LINE__, 0));
 }
 
 int	import_file(struct s_rt_file *rt, int argc, char **argv)
