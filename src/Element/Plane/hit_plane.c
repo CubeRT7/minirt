@@ -18,11 +18,11 @@ int	hit_plane(t_plane *self, t_ray *ray, t_range range, t_hit *record)
 	float		t;
 	t_vector3	v;
 
-	d = v3_dot_prod(ray->direction, self->base.axis);
+	d = v3_dot(ray->direction, self->base.axis);
 	if (close_to_zero(d))
 		return (0);
 	v = v3_sub(ray->origin, self->base.position);
-	t = -v3_dot_prod(v, self->base.axis) / d;
+	t = -v3_dot(v, self->base.axis) / d;
 	if (range_not_in(t, range))
 		return (0);
 	record->t = t;

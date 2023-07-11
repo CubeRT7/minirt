@@ -85,7 +85,7 @@ t_color	ray_color(t_world *world, t_ray *ray, int depth)
 			light_ray = (t_ray){rec.p, v3_normalize(direction)};
 			if (hit(world, &light_ray, (t_range){ DELTA, length }, NULL))
 				continue;
-			dot1 = v3_dot_prod(light_ray.direction, rec.normal);
+			dot1 = v3_dot(light_ray.direction, rec.normal);
 			if (dot1 < 0)
 				continue;
 			light_color = v3_add(light_color, v3_mul(vector3(dot1, dot1, dot1), light->obj.ratio));
@@ -141,9 +141,9 @@ static t_ray	get_camera_ray(void *camera, int width, int height, int x, int y)
 	direction = v3_add(direction, v3_mul(vertical, v));
 	direction = v3_normalize(direction);
 	t_vector3 front = v3_normalize(vector3(cam->base.axis.x, 0, cam->base.axis.z));
-	t_vector3 right = v3_normalize(v3_cross_prod(front, vector3(0, 1, 0)));
-	float h_angle = acosf(v3_dot_prod(vector3(0, 0, -1), front) * 0.99999f) * (front.x < 0 ? 1 : -1);
-	float v_angle = acosf(v3_dot_prod(front, cam->base.axis) * 0.99999f) * (cam->base.axis.y < 0 ? -1 : 1);
+	t_vector3 right = v3_normalize(v3_cross(front, vector3(0, 1, 0)));
+	float h_angle = acosf(v3_dot(vector3(0, 0, -1), front) * 0.99999f) * (front.x < 0 ? 1 : -1);
+	float v_angle = acosf(v3_dot(front, cam->base.axis) * 0.99999f) * (cam->base.axis.y < 0 ? -1 : 1);
 	direction = v3_rotate_axis(direction, vector3(0, 1, 0), h_angle);
 	direction = v3_rotate_axis(direction, right, v_angle);
 	return ((t_ray){cam->base.position, direction});

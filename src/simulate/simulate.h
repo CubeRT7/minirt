@@ -28,6 +28,8 @@
 # define DEFAULT_IGNORE_DELTA 0.001f
 # define DEFAULT_SAMPLE_PER_PIXEL 10
 
+# define WORLD_AXIS ((t_vector3){0, 1, 0})
+
 typedef struct s_gui_setting
 {
 	mlx_t		*mlx;
