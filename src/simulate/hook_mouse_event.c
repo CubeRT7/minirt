@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 02:10:36 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/09 09:39:48 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/12 00:45:14 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	rotate_camera(void *param)
 	if (world->camera->obj.rotate_flag == 2)
 		world->camera->obj.rotate_flag = 0;
 	mlx_get_mouse_pos(world->gui.mlx, &xy[0], &xy[1]);
-	front = vector3(world->camera->obj.axis.x, 0, world->camera->obj.axis.z);
+	front = vector3(world->camera->base.axis.x, 0, world->camera->base.axis.z);
 	right = v3_normalize(v3_cross_prod(front, up));
-	world->camera->obj.axis = v3_rotate_axis(world->camera->obj.axis, up,
-			(world->camera->obj.cursor_pos[0] - xy[0])
+	world->camera->base.axis = v3_rotate_axis(world->camera->base.axis, up,
+			(world->camera->obj.cursor_pos.x - xy[0])
 			/ world->gui.image->width);
-	world->camera->obj.axis = v3_rotate_axis(world->camera->obj.axis, right,
-			(world->camera->obj.cursor_pos[1] - xy[1])
+	world->camera->base.axis = v3_rotate_axis(world->camera->base.axis, right,
+			(world->camera->obj.cursor_pos.y - xy[1])
 			/ world->gui.image->height);
 	world->camera->obj.cursor_pos = vector3(xy[0], xy[1], 0);
 }
