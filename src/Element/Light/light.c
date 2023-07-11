@@ -19,7 +19,7 @@ int	debug_light(void *param)
 	if (c == NULL || DEBUG == 0)
 		return (EXIT_SUCCESS);
 	printf("%s: coordinate[%f, %f, %f]\n", __func__,
-		c->obj.position.x, c->obj.position.y, c->obj.position.z);
+		c->base.position.x, c->base.position.y, c->base.position.z);
 	printf("%s: ratio[%f]\n", __func__, c->raw.ratio);
 	printf("%s: rgb[%d, %d, %d]\n", __func__,
 		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
@@ -30,7 +30,6 @@ t_func	light(enum e_element_func func)
 {
 	static const t_func	functions[MAX_ELEMENT_TYPE] = {
 	[Init] = init_light,
-	[Hit] = hit_light,
 	[Debug] = debug_light};
 
 	return (functions[func]);

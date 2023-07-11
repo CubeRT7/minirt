@@ -31,15 +31,13 @@ typedef struct s_camera
 			int			rotate_flag;
 			t_vector3	cursor_pos;
 		};
-		t_point		position;
-		t_vector3	axis;
 		float		fov_radian;
 	}							obj;
 }	t_camera;
 
 extern t_func	camera(enum e_element_func func);
 extern int		debug_camera(void *param);
-extern int		hit_camera(void *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_camera(t_camera *self);
+extern int		update_camera(t_camera *self);
 
 #endif 

@@ -12,15 +12,20 @@
 
 #include "sphere.h"
 
+static void	_init_func(t_sphere *self)
+{
+	self->base.func[Hit] = hit_sphere;
+}
+
 int	init_sphere(t_sphere *self)
 {
-	self->obj.color = vector3(
+	self->base.position = self->raw.coordinate;
+	self->base.axis = v3_normalize(self->raw.axis);
+	self->base.color = vector3(
 			self->raw.rgb.r / 255.0,
 			self->raw.rgb.g / 255.0,
 			self->raw.rgb.b / 255.0);
-	self->obj.axis = v3_normalize(self->raw.axis);
-	self->obj.position = self->raw.coordinate;
 	self->obj.radius = self->raw.diameter * 0.5f;
-	self->base.color = self->obj.color;
+	_init_func(self);
 	return (EXIT_SUCCESS);
 }

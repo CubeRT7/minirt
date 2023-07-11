@@ -15,7 +15,7 @@
 int	hit_sphere(t_sphere *self, t_ray *ray, t_range range, t_hit *record)
 {
 	const t_vector3	dir = ray->direction;
-	const t_vector3	oc = v3_sub(ray->origin, self->obj.position);
+	const t_vector3	oc = v3_sub(ray->origin, self->base.position);
 	const t_abc		abc = (t_abc){
 		v3_dot_prod(dir, dir),
 		v3_dot_prod(oc, ray->direction),
@@ -25,7 +25,7 @@ int	hit_sphere(t_sphere *self, t_ray *ray, t_range range, t_hit *record)
 	if (quadratic_formula_root(abc, range, &(record->t)) == NO_VALUE)
 		return (0);
 	record->p = get_ray_point(ray, record->t);
-	record->normal = v3_normalize(v3_sub(record->p, self->obj.position));
+	record->normal = v3_normalize(v3_sub(record->p, self->base.position));
 	record->normal = get_face_normal(*ray, record->normal);
 	return (1);
 }

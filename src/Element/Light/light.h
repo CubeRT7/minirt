@@ -21,22 +21,18 @@ typedef struct s_light
 	struct s_light_raw
 	{
 		t_point		coordinate;
-		t_vector3	asix;
+		t_vector3	axis;
 		t_rgb		rgb;
 		float		ratio;
 	}						raw;
 	struct s_light_obj
 	{
-		t_point		position;
-		t_vector3	asix;
-		t_color		color;
 		float		ratio;
 	}						obj;
 }	t_light;
 
 extern t_func	light(enum e_element_func func);
 extern int		debug_light(void *param);
-extern int		hit_light(void *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_light(t_light *self);
 
 #endif 

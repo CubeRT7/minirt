@@ -12,16 +12,21 @@
 
 #include "cylinder.h"
 
+static void	_init_func(t_cylinder *self)
+{
+	self->base.func[Hit] = hit_cylinder;
+}
+
 int	init_cylinder(t_cylinder *self)
 {
-	self->obj.position = self->raw.coordinate;
-	self->obj.axis = v3_normalize(self->raw.axis);
-	self->obj.radius = self->raw.diameter * 0.5f;
-	self->obj.height = self->raw.height;
-	self->obj.color = vector3(
+	self->base.position = self->raw.coordinate;
+	self->base.axis = v3_normalize(self->raw.axis);
+	self->base.color = vector3(
 			self->raw.rgb.r / 255.0,
 			self->raw.rgb.g / 255.0,
 			self->raw.rgb.b / 255.0);
-	self->base.color = self->obj.color;
+	self->obj.radius = self->raw.diameter * 0.5f;
+	self->obj.height = self->raw.height;
+	_init_func(self);
 	return (EXIT_SUCCESS);
 }

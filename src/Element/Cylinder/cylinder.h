@@ -28,9 +28,6 @@ typedef struct s_cylinder
 	}						raw;
 	struct s_cylinder_obj
 	{
-		t_point		position;
-		t_vector3	axis;
-		t_color		color;
 		float		radius;
 		float		height;
 	}						obj;

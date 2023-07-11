@@ -12,15 +12,20 @@
 
 #include "light.h"
 
+static void	_init_func(t_light *self)
+{
+	(void)self;
+}
+
 int	init_light(t_light *self)
 {
-	self->obj.position = self->raw.coordinate;
-	self->obj.color = vector3(
+	self->base.position = self->raw.coordinate;
+	self->base.axis = v3_normalize(self->raw.axis);
+	self->base.color = vector3(
 			self->raw.rgb.r / 255.0,
 			self->raw.rgb.g / 255.0,
 			self->raw.rgb.b / 255.0);
 	self->obj.ratio = self->raw.ratio;
-	self->obj.asix = v3_normalize(self->raw.asix);
-	self->base.color = self->obj.color;
+	_init_func(self);
 	return (EXIT_SUCCESS);
 }

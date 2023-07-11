@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_ambient_light.c                                :+:      :+:    :+:   */
+/*   v3_hadamard_prod.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 02:07:40 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/07 05:48:59 by minjungk         ###   ########.fr       */
+/*   Created: 2023/07/10 09:47:42 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/10 09:47:43 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ambient_light.h"
+#include "libvector.h"
 
-int	hit_ambient_light(void *self, t_ray *ray, t_range range, t_hit *record)
+t_vector3	v3_hadamard_prod(t_vector3 v1, t_vector3 v2)
 {
-	(void)self;
-	(void)ray;
-	(void)range;
-	(void)record;
-	return (0);
+	return ((t_vector3){v1.x * v2.x, v1.y * v2.y, v1.z * v2.z});
 }
