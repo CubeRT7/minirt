@@ -26,13 +26,11 @@ typedef struct s_ambient_light
 	struct s_ambient_light_obj
 	{
 		float	ratio;
-		t_color	color;
 	}						obj;
 }	t_ambient_light;
 
 extern t_func	ambient_light(enum e_element_func func);
 extern int		debug_ambient_light(void *param);
-extern int		hit_ambient_light(void *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_ambient_light(t_ambient_light *self);
 
 #endif 

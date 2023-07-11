@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_ambient_light.c                                :+:      :+:    :+:   */
+/*   simulate_util.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 02:07:40 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/07 05:48:59 by minjungk         ###   ########.fr       */
+/*   Created: 2023/07/09 07:05:59 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/09 07:06:02 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ambient_light.h"
+#ifndef SIMULATE_UTIL_H
+# define SIMULATE_UTIL_H
+# include "simulate.h"
+# include "Element/common.h"
 
-int	hit_ambient_light(void *self, t_ray *ray, t_range range, t_hit *record)
-{
-	(void)self;
-	(void)ray;
-	(void)range;
-	(void)record;
-	return (0);
-}
+extern void	world_iter(t_world *world, enum e_element_func e);
+
+#endif

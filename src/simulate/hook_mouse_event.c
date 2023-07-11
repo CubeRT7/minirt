@@ -27,11 +27,11 @@ void	rotate_camera(void *param)
 	tmp[0] = v3_normalize(v3_sub(vector3(xy[0], xy[1], 0),
 				vector3(world->camera->obj.cursor_xy[0],
 					world->camera->obj.cursor_xy[1], 0)));
-	tmp[1] = v3_cross_prod(tmp[0], world->camera->obj.axis);
-	world->camera->obj.axis = v3_rotate_axis(
-			world->camera->obj.axis, tmp[1],
+	tmp[1] = v3_cross_prod(tmp[0], world->camera->base.axis);
+	world->camera->base.axis = v3_rotate_axis(
+			world->camera->base.axis, tmp[1],
 			world->camera->obj.fov_radian * delta);
-	world->camera->obj.axis = v3_normalize(world->camera->obj.axis);
+	world->camera->base.axis = v3_normalize(world->camera->base.axis);
 	world->camera->obj.cursor_xy[0] = xy[0];
 	world->camera->obj.cursor_xy[1] = xy[1];
 }

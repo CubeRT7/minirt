@@ -28,7 +28,6 @@ t_func	ambient_light(enum e_element_func func)
 {
 	static const t_func	functions[MAX_ELEMENT_TYPE] = {
 	[Init] = init_ambient_light,
-	[Hit] = hit_ambient_light,
 	[Debug] = debug_ambient_light};
 
 	return (functions[func]);

@@ -11,19 +11,13 @@
 /* ************************************************************************** */
 
 #include "hook.h"
+#include "simulate/util/simulate_util.h"
 #define DELTA 0.001f
 #define BIGVALUE 99999999.0f
 
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
-}
-
-void	debug_handler(void *param)
-{
-	t_element *const	elem = param;
-	const t_func		func = element(elem->type, Debug);
-	func(param);
 }
 
 t_color	back_ground_color(t_ray ray)
@@ -41,15 +35,13 @@ int	hit(t_world *world, t_ray *ray, t_range range, t_hit *record)
 	float			closest_so_far;
 	int				hit_anything;
 	t_element		*elem;
-	t_func			elem_hit;
 
 	hit_anything = 0;
 	closest_so_far = range.max;
 	while (next)
 	{
 		elem = next->content;
-		elem_hit = element(elem->type, Hit);
-		if (elem_hit(elem, ray, (t_range){range.min, closest_so_far}, &temp_rec))
+		if (elem->func[Hit](elem, ray, (t_range){range.min, closest_so_far}, &temp_rec))
 		{
 			hit_anything = 1;
 			closest_so_far = temp_rec.t;
@@ -88,7 +80,7 @@ t_color	ray_color(t_world *world, t_ray *ray, int depth)
 		{
 			light = next->content;
 			next = next->next;
-			direction = v3_sub(light->obj.position, rec.p);
+			direction = v3_sub(light->base.position, rec.p);
 			length = v3_magnitude(direction);
 			light_ray = (t_ray){rec.p, v3_normalize(direction)};
 			if (hit(world, &light_ray, (t_range){ DELTA, length }, NULL))
@@ -101,9 +93,9 @@ t_color	ray_color(t_world *world, t_ray *ray, int depth)
 		light_color.x = light_color.x > 1 ? 1 : light_color.x;
 		light_color.y = light_color.y > 1 ? 1 : light_color.y;
 		light_color.z = light_color.z > 1 ? 1 : light_color.z;
-		light_color.x = (ambient_light->obj.ratio * ambient_light->obj.color.x + (1 - ambient_light->obj.ratio) * light_color.x);
-		light_color.y = (ambient_light->obj.ratio * ambient_light->obj.color.y + (1 - ambient_light->obj.ratio) * light_color.y);
-		light_color.z = (ambient_light->obj.ratio * ambient_light->obj.color.z + (1 - ambient_light->obj.ratio) * light_color.z);
+		light_color.x = (ambient_light->obj.ratio * ambient_light->base.color.x + (1 - ambient_light->obj.ratio) * light_color.x);
+		light_color.y = (ambient_light->obj.ratio * ambient_light->base.color.y + (1 - ambient_light->obj.ratio) * light_color.y);
+		light_color.z = (ambient_light->obj.ratio * ambient_light->base.color.z + (1 - ambient_light->obj.ratio) * light_color.z);
 		return ((t_color){
 			light_color.x * rec.color.x,
 			light_color.y * rec.color.y,
@@ -133,7 +125,7 @@ static t_ray	get_camera_ray(void *camera, int width, int height, int x, int y)
 	const float		viewport_height =  aspect_ratio * viewport_width;
 	const float		fov_half = cam->obj.fov_radian * 0.5f;
 	if (sin(fov_half) == 0)
-		return ((t_ray){ cam->obj.position, cam->obj.axis });
+		return ((t_ray){ cam->base.position, cam->base.axis });
 	float		focal_length = cos(fov_half) / sin(fov_half);
 	t_vector3	horizontal = vector3(viewport_width, 0, 0);
 	t_vector3	vertical = vector3(0, viewport_height, 0);
@@ -148,13 +140,13 @@ static t_ray	get_camera_ray(void *camera, int width, int height, int x, int y)
 	direction = v3_add(direction, v3_mul(horizontal, u));
 	direction = v3_add(direction, v3_mul(vertical, v));
 	direction = v3_normalize(direction);
-	t_vector3 front = v3_normalize(vector3(cam->obj.axis.x, 0, cam->obj.axis.z));
+	t_vector3 front = v3_normalize(vector3(cam->base.axis.x, 0, cam->base.axis.z));
 	t_vector3 right = v3_normalize(v3_cross_prod(front, vector3(0, 1, 0)));
 	float h_angle = acosf(v3_dot_prod(vector3(0, 0, -1), front) * 0.99999f) * (front.x < 0 ? 1 : -1);
-	float v_angle = acosf(v3_dot_prod(front, cam->obj.axis) * 0.99999f) * (cam->obj.axis.y < 0 ? -1 : 1);
+	float v_angle = acosf(v3_dot_prod(front, cam->base.axis) * 0.99999f) * (cam->base.axis.y < 0 ? -1 : 1);
 	direction = v3_rotate_axis(direction, vector3(0, 1, 0), h_angle);
 	direction = v3_rotate_axis(direction, right, v_angle);
-	return ((t_ray){cam->obj.position, direction});
+	return ((t_ray){cam->base.position, direction});
 }
 
 void	hook_draw(void *param)
@@ -165,6 +157,7 @@ void	hook_draw(void *param)
 	t_ray			ray;
 	t_color			color;
 
+	world_iter(world, Update);
 	rotate_camera(world);
 	x = 0;
 	while (x < world->gui.mlx->width)

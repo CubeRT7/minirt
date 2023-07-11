@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "simulate.h"
+#include "simulate/util/simulate_util.h"
 
 static void	_init_gui_setting(t_gui_setting *g, char *title)
 {
@@ -55,35 +56,6 @@ static int	_hook_setting(t_world *world)
 	return (EXIT_SUCCESS);
 }
 
-static int	_init_world(t_world *world)
-{
-	t_list		*curr;
-	t_element	*elem;
-	t_func		func;
-
-	init_ambient_light(world->ambient_light);
-	init_camera(world->camera);
-	curr = world->lights;
-	while (curr)
-	{
-		elem = curr->content;
-		func = element(elem->type, Init);
-		if (func(elem))
-			return (ft_error(__func__, __FILE__, __LINE__, 0));
-		curr = curr->next;
-	}
-	curr = world->objs;
-	while (curr)
-	{
-		elem = curr->content;
-		func = element(elem->type, Init);
-		if (func(elem))
-			return (ft_error(__func__, __FILE__, __LINE__, 0));
-		curr = curr->next;
-	}
-	return (EXIT_SUCCESS);
-}
-
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 {
 	t_world	world;
@@ -94,8 +66,8 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 	world.objs = objs;
 	if (_gui_setting(&(world.gui), WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (_init_world(&world))
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	world_iter(&world, Init);
+	world_iter(&world, Update);
 	if (_hook_setting(&world))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	mlx_loop(world.gui.mlx);

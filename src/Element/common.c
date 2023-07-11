@@ -66,15 +66,39 @@ int	parse_vector3(t_vector3 *vector, char *curr, float scope)
 	return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 }
 
-t_func	element(enum e_element type, enum e_element_func func)
+void	init_element(void *elem)
 {
-	static t_func	(*functions[MAX_ELEMENT_TYPE])(enum e_element_func) = {
-	[AmbientLight] = ambient_light,
-	[Camera] = camera,
-	[Light] = light,
-	[Plane] = plane,
-	[Sphere] = sphere,
-	[Cylinder] = cylinder};
+	const t_element	*self = elem;
 
-	return (functions[type](func));
+	if (self->type == AmbientLight)
+		init_ambient_light(elem);
+	if (self->type == Camera)
+		init_camera(elem);
+	if (self->type == Light)
+		init_light(elem);
+	if (self->type == Plane)
+		init_plane(elem);
+	if (self->type == Sphere)
+		init_sphere(elem);
+	if (self->type == Cylinder)
+		init_cylinder(elem);
+}
+
+void	element_iter(t_list *list, enum e_element_func e)
+{
+	if (e == Init)
+	{
+		while (list)
+		{
+			init_element(list->content);
+			list = list->next;
+		}
+		return ;
+	}
+	while (list)
+	{
+		if (((t_element *)(list->content))->func[e])
+			((t_element *)(list->content))->func[e](list->content);
+		list = list->next;
+	}
 }

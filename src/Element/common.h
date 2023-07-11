@@ -50,10 +50,24 @@ enum e_element
 
 typedef int			(*t_func)();
 
+enum e_element_func
+{
+	Debug,
+	Serialize,
+	Deserialize,
+	Hit,
+	Init,
+	Update,
+	MAX_ELEMENT_FUNC
+};
+
 typedef struct s_element
 {
 	enum e_element	type;
+	t_point			position;
+	t_vector3		axis;
 	t_color			color;
+	t_func			func[MAX_ELEMENT_FUNC];
 }	t_element;
 
 typedef struct s_range
@@ -70,17 +84,8 @@ typedef struct s_hit
 	t_color		color;
 }	t_hit;
 
-enum e_element_func
-{
-	Debug,
-	Serialize,
-	Deserialize,
-	Hit,
-	Init,
-	MAX_ELEMENT_FUNC
-};
-
-extern t_func	element(enum e_element type, enum e_element_func func);
+extern void		init_element(void *elem);
+extern void		element_iter(t_list *list, enum e_element_func e);
 extern int		parse_rgb(struct s_rgb *rgb, char *curr);
 extern int		parse_vector3(t_vector3 *vector, char *curr, float scope);
 
