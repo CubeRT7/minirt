@@ -94,6 +94,7 @@ MINIRT_SRCS = \
 	simulate/hook_draw.c \
 	simulate/hook_resize_event.c \
 	simulate/hook_close_event.c \
+	simulate/draw/color_to_pixel.c \
 	simulate/util/world_iter.c \
 	$(MINIRT).c
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)
