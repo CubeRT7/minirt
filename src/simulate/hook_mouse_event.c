@@ -17,23 +17,22 @@ void	rotate_camera(void *param)
 	t_world *const		world = param;
 	t_camera *const		camera = world->camera;
 	int					xy[2];
-	t_vector3			v[4];
+	t_vector3			v[3];
 	float				angle;
 
-	enum e_type {UP, FRONT, RIGHT, NEW};
+	enum e_type {FRONT, RIGHT, NEW};
 	if (camera->obj.rotate_flag == 0)
 		return ;
 	if (camera->obj.rotate_flag == 2)
 		camera->obj.rotate_flag = 0;
 	mlx_get_mouse_pos(world->gui.mlx, &xy[0], &xy[1]);
-	v[UP] = vector3(0, 1, 0);
 	v[FRONT] = v3_normalize(v3_hadamard(camera->base.axis, vector3(1, 0, 1)));
-	v[RIGHT] = v3_normalize(v3_cross(v[FRONT], v[UP]));
-	camera->base.axis = v3_rotate_axis(camera->base.axis, v[UP],
+	v[RIGHT] = v3_normalize(v3_cross(v[FRONT], WORLD_AXIS));
+	camera->base.axis = v3_rotate_axis(camera->base.axis, WORLD_AXIS,
 			(camera->obj.cursor_pos.x - xy[0]) / world->gui.image->width);
 	v[NEW] = v3_rotate_axis(world->camera->base.axis, v[RIGHT],
 			(camera->obj.cursor_pos.y - xy[1]) / world->gui.image->height);
-	angle = v3_dot(v3_normalize(v3_cross(v[NEW], v[UP])), v[RIGHT]);
+	angle = v3_dot(v3_normalize(v3_cross(v[NEW], WORLD_AXIS)), v[RIGHT]);
 	if (angle > 0)
 		camera->base.axis = v[NEW];
 	camera->obj.cursor_pos = vector3(xy[0], xy[1], 0);
