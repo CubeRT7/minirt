@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 02:10:36 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/12 01:10:26 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/12 01:19:18 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	rotate_camera(void *param)
 		camera->obj.rotate_flag = 0;
 	mlx_get_mouse_pos(world->gui.mlx, &xy[0], &xy[1]);
 	v[UP] = vector3(0, 1, 0);
-	v[FRONT] = v3_hadamard_prod(camera->base.axis, vector3(1, 0, 1));
+	v[FRONT] = v3_normalize(v3_hadamard_prod(camera->base.axis, v[UP]));
 	v[RIGHT] = v3_normalize(v3_cross_prod(v[FRONT], v[UP]));
 	camera->base.axis = v3_rotate_axis(camera->base.axis, v[UP],
 			(camera->obj.cursor_pos.x - xy[0]) / world->gui.image->width);
