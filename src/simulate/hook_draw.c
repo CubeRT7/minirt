@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/08 17:25:50 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/12 03:02:36 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,24 +152,24 @@ static t_ray	get_camera_ray(void *camera, int width, int height, int x, int y)
 void	hook_draw(void *param)
 {
 	t_world *const	world = param;
-	int				x;
-	int				y;
+	uint32_t		x;
+	uint32_t		y;
 	t_ray			ray;
 	t_color			color;
 
 	world_iter(world, Update);
 	rotate_camera(world);
 	x = 0;
-	while (x < world->gui.mlx->width)
+	while (x < world->gui.image->width)
 	{
 		y = 0;
-		while (y < world->gui.mlx->height)
+		while (y < world->gui.image->height)
 		{
 			ray = get_camera_ray(world->camera,
-				world->gui.mlx->width,
-				world->gui.mlx->height, x, y);
+				world->gui.image->width,
+				world->gui.image->height, x, y);
 			color = ray_color(world, &ray, 50);
-			mlx_put_pixel(world->gui.image, x, world->gui.mlx->height - y - 1,
+			mlx_put_pixel(world->gui.image, x, world->gui.image->height - y - 1,
 				ft_pixel(sqrt(color.x) * 255, sqrt(color.y) * 255, sqrt(color.z) * 255, 255));
 			++y;
 		}
