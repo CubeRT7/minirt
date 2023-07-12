@@ -12,6 +12,20 @@
 
 #include "../Element/Camera/camera.h"
 
+static int	_debug_camera(void *param)
+{
+	struct s_camera *const	c = param;
+
+	if (c == NULL || DEBUG == 0)
+		return (EXIT_SUCCESS);
+	printf("%s: coordinate[%f, %f, %f]\n", __func__,
+		c->raw.coordinate.x, c->raw.coordinate.y, c->raw.coordinate.z);
+	printf("%s: axis[%f, %f, %f]\n", __func__,
+		c->raw.axis.x, c->raw.axis.y, c->raw.axis.z);
+	printf("%s: fov[%f]\n", __func__, c->raw.fov);
+	return (EXIT_SUCCESS);
+}
+
 int	parse_camera(void *param, char **argv)
 {
 	char					*remain;
@@ -29,6 +43,6 @@ int	parse_camera(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (!(0.0 <= content->raw.fov && content->raw.fov <= 180.0))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	debug_camera(content);
+	_debug_camera(content);
 	return (EXIT_SUCCESS);
 }

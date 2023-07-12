@@ -50,8 +50,6 @@ typedef struct s_cylinder_body_alias
 	t_vector3	in;
 }	t_cylinder_body_alias;
 
-extern t_func	cylinder(enum e_element_func func);
-extern int		debug_cylinder(void *param);
 extern int		hit_cylinder(t_cylinder *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_cylinder(t_cylinder *self);
 

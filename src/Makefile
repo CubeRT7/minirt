@@ -58,26 +58,20 @@ CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
 	Element/common.c \
-	Element/AmbientLight/ambient_light.c \
 	Element/AmbientLight/init_ambient_light.c \
-	Element/Camera/camera.c \
 	Element/Camera/init_camera.c \
 	Element/Camera/update_camera.c \
-	Element/Light/light.c \
 	Element/Light/init_light.c \
-	Element/Plane/plane.c \
-	Element/Plane/init_plane.c \
 	Element/Plane/hit_plane.c \
-	Element/Sphere/sphere.c \
-	Element/Sphere/init_sphere.c \
+	Element/Plane/init_plane.c \
 	Element/Sphere/hit_sphere.c \
-	Element/Cylinder/cylinder.c \
-	Element/Cylinder/init_cylinder.c \
+	Element/Sphere/init_sphere.c \
 	Element/Cylinder/hit_cylinder.c \
-	Element/util/get_ray_point.c \
-	Element/util/get_face_normal.c \
+	Element/Cylinder/init_cylinder.c \
 	Element/util/range_in.c \
 	Element/util/range_not_in.c \
+	Element/util/get_ray_point.c \
+	Element/util/get_face_normal.c \
 	Element/util/close_to_zero.c \
 	Element/util/quadratic_formula_root.c \
 	file/clean_rt.c \

@@ -12,6 +12,18 @@
 
 #include "../Element/AmbientLight/ambient_light.h"
 
+static int	_debug_ambient_light(void *param)
+{
+	struct s_ambient_light *const	c = param;
+
+	if (c == NULL || DEBUG == 0)
+		return (EXIT_SUCCESS);
+	printf("%s: ratio[%f]\n", __func__, c->raw.ratio);
+	printf("%s: rgb[%d, %d, %d]\n", __func__,
+		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
+	return (EXIT_SUCCESS);
+}
+
 int	parse_ambient_light(void *param, char **argv)
 {
 	char							*remain;
@@ -27,6 +39,6 @@ int	parse_ambient_light(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (!(0.0 <= content->raw.ratio && content->raw.ratio <= 1.0))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	debug_ambient_light(content);
+	_debug_ambient_light(content);
 	return (EXIT_SUCCESS);
 }

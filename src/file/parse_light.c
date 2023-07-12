@@ -12,6 +12,20 @@
 
 #include "../Element/Light/light.h"
 
+static int	_debug_light(void *param)
+{
+	struct s_light *const	c = param;
+
+	if (c == NULL || DEBUG == 0)
+		return (EXIT_SUCCESS);
+	printf("%s: coordinate[%f, %f, %f]\n", __func__,
+		c->base.position.x, c->base.position.y, c->base.position.z);
+	printf("%s: ratio[%f]\n", __func__, c->raw.ratio);
+	printf("%s: rgb[%d, %d, %d]\n", __func__,
+		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
+	return (EXIT_SUCCESS);
+}
+
 int	parse_light(void *param, char **argv)
 {
 	char					*remain;
@@ -29,6 +43,6 @@ int	parse_light(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (argv[2] && parse_rgb(&content->raw.rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	debug_light(content);
+	_debug_light(content);
 	return (EXIT_SUCCESS);
 }

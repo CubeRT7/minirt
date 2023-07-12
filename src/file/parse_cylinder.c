@@ -12,6 +12,23 @@
 
 #include "../Element/Cylinder/cylinder.h"
 
+static int	_debug_cylinder(void *param)
+{
+	struct s_cylinder *const	c = param;
+
+	if (c == NULL || DEBUG == 0)
+		return (EXIT_SUCCESS);
+	printf("%s: coordinate[%f, %f, %f]\n", __func__,
+		c->raw.coordinate.x, c->raw.coordinate.y, c->raw.coordinate.z);
+	printf("%s: axis[%f, %f, %f]\n", __func__,
+		c->raw.axis.x, c->raw.axis.y, c->raw.axis.z);
+	printf("%s: diameter[%f]\n", __func__, c->raw.diameter);
+	printf("%s: height[%f]\n", __func__, c->raw.height);
+	printf("%s: rgb[%d, %d, %d]\n", __func__,
+		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
+	return (EXIT_SUCCESS);
+}
+
 int	parse_cylinder(void *param, char **argv)
 {
 	char						*remain;
@@ -32,6 +49,6 @@ int	parse_cylinder(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&content->raw.rgb, argv[4]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	debug_cylinder(content);
+	_debug_cylinder(content);
 	return (EXIT_SUCCESS);
 }

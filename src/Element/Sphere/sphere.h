@@ -31,8 +31,6 @@ typedef struct s_sphere
 	}						obj;
 }	t_sphere;
 
-extern t_func	sphere(enum e_element_func func);
-extern int		debug_sphere(void *param);
 extern int		hit_sphere(t_sphere *self, t_ray *r, t_range ra, t_hit *h);
 extern int		init_sphere(t_sphere *self);
 
