@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/12 08:34:24 by yonshin          ###   ########.fr        #
+#    Updated: 2023/07/13 00:48:37 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,10 @@ LDLIBS		= -lm
 CPPFLAGS	+= -I../external/MLX42/include
 LDFLAGS		+= -L../external/MLX42/build
 LDLIBS		+= -lmlx42
+
+CPPFLAGS	+= -I../lib/libstr
+LDFLAGS		+= -L../lib/libstr
+LDLIBS		+= -lstr
 
 CPPFLAGS	+= -I../lib/libcustom
 LDFLAGS		+= -L../lib/libcustom
