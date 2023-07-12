@@ -12,7 +12,7 @@
 
 #include "../Element/Plane/plane.h"
 
-int	debug_plane(void *param)
+static int	_debug_plane(void *param)
 {
 	struct s_plane *const	c = param;
 
@@ -40,6 +40,6 @@ int	parse_plane(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (parse_rgb(&content->raw.rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	debug_plane(content);
+	_debug_plane(content);
 	return (EXIT_SUCCESS);
 }

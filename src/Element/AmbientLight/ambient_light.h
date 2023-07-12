@@ -29,8 +29,6 @@ typedef struct s_ambient_light
 	}						obj;
 }	t_ambient_light;
 
-extern t_func	ambient_light(enum e_element_func func);
-extern int		debug_ambient_light(void *param);
 extern int		init_ambient_light(t_ambient_light *self);
 
 #endif 

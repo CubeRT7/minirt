@@ -35,8 +35,6 @@ typedef struct s_camera
 	}							obj;
 }	t_camera;
 
-extern t_func	camera(enum e_element_func func);
-extern int		debug_camera(void *param);
 extern int		init_camera(t_camera *self);
 extern int		update_camera(t_camera *self);
 

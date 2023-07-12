@@ -31,8 +31,6 @@ typedef struct s_light
 	}						obj;
 }	t_light;
 
-extern t_func	light(enum e_element_func func);
-extern int		debug_light(void *param);
 extern int		init_light(t_light *self);
 
 #endif 

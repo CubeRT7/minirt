@@ -12,6 +12,20 @@
 
 #include "../Element/Sphere/sphere.h"
 
+static int	_debug_sphere(void *param)
+{
+	struct s_sphere *const	c = param;
+
+	if (c == NULL || DEBUG == 0)
+		return (EXIT_SUCCESS);
+	printf("%s: coordinate[%f, %f, %f]\n", __func__,
+		c->raw.coordinate.x, c->raw.coordinate.y, c->raw.coordinate.z);
+	printf("%s: diameter[%f]\n", __func__, c->raw.diameter);
+	printf("%s: rgb[%d, %d, %d]\n", __func__,
+		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
+	return (EXIT_SUCCESS);
+}
+
 int	parse_sphere(void *param, char **argv)
 {
 	char					*remain;
@@ -27,6 +41,6 @@ int	parse_sphere(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&content->raw.rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	debug_sphere(content);
+	_debug_sphere(content);
 	return (EXIT_SUCCESS);
 }
