@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/12 04:31:15 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/12 08:36:43 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	parse_vector3(t_vector3 *vector, char *curr, float scope)
 	if (scope == AllScope)
 		return (EXIT_SUCCESS);
 	if (!((-1.0 <= vector->x && vector->x <= 1.0)
-		&& (-1.0 <= vector->y && vector->y <= 1.0)
-		&& (-1.0 <= vector->z && vector->z <= 1.0)))
+			&& (-1.0 <= vector->y && vector->y <= 1.0)
+			&& (-1.0 <= vector->z && vector->z <= 1.0)))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	axis_len = v3_magnitude(*vector);
 	if (!(0.9999f < axis_len && axis_len < 1.0001f))

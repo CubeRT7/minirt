@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/12 06:15:44 by yonshin          ###   ########.fr        #
+#    Updated: 2023/07/12 08:34:24 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,9 @@ MINIRT_SRCS = \
 	simulate/hook_resize_event.c \
 	simulate/hook_close_event.c \
 	simulate/draw/hit.c \
+	simulate/draw/ray_color.c \
 	simulate/draw/color_to_pixel.c \
+	simulate/draw/get_camera_ray.c \
 	simulate/util/world_iter.c \
 	$(MINIRT).c
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)
