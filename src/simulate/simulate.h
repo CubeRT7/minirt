@@ -58,6 +58,7 @@ typedef struct s_world
 	t_camera		*camera;
 	t_ambient_light	*ambient_light;
 	t_gui_setting	gui;
+	t_element		*selected;
 }	t_world;
 
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs);

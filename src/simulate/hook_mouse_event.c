@@ -38,6 +38,7 @@ int	motion_notify(int x, int y, void *param)
 	world->gui.mouse.curr = vector3(x, y, 0);
 	return (EXIT_SUCCESS);
 }
+#include "simulate/util/simulate_util.h"
 
 void	rotate_camera(void *param)
 {
@@ -63,4 +64,21 @@ void	rotate_camera(void *param)
 	if (angle > 0)
 		camera->base.axis = v[NEW];
 	gui->mouse.prev[MOUSE_BUTTON_RIGHT] = gui->mouse.curr;
+}
+
+static t_element	*_select_element(t_world *world, int x, int y)
+{
+	t_screen	screen;
+	t_screen	pos;
+	t_ray		ray;
+	t_hit		record;
+
+	screen.w = world->gui.image->width;
+	screen.h = world->gui.image->height;
+	pos.x = x;
+	pos.y = y;
+	ray = get_camera_ray(world->camera, screen, pos);
+	if (hit(world->objs, &ray, (t_range){DELTA, BIGVALUE}, &record))
+		return (record.elem);
+	return (NULL);
 }

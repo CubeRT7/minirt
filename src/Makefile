@@ -90,11 +90,11 @@ MINIRT_SRCS = \
 	simulate/hook_draw.c \
 	simulate/hook_draw_setting.c \
 	simulate/hook_close_event.c \
-	simulate/draw/hit.c \
 	simulate/draw/ray_color.c \
 	simulate/draw/color_to_pixel.c \
-	simulate/draw/get_camera_ray.c \
+	simulate/util/hit.c \
 	simulate/util/world_iter.c \
+	simulate/util/get_camera_ray.c \
 	$(MINIRT).c
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)
 MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)

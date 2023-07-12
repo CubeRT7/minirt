@@ -82,6 +82,7 @@ typedef struct s_hit
 	t_point		p;
 	t_vector3	normal;
 	t_color		color;
+	t_element	*elem;
 }	t_hit;
 
 extern void		init_element(void *elem);

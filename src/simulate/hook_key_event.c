@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "hook.h"
-#include "simulate.h"
-#include "Element/Sphere/sphere.h"
 
 void	move_camera(void *param)
 {
@@ -36,6 +34,8 @@ void	move_camera(void *param)
 		camera->position = v3_add(camera->position, v3_mul(world->axis, delta));
 	if (world->gui.keyboard[KEYBOARD_LSHIFT])
 		camera->position = v3_sub(camera->position, v3_mul(world->axis, delta));
+	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_GRAVE_ACCENT))
+		world->selected = NULL;	
 }
 
 int	key_press(int keycode, void *param)

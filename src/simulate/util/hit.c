@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "simulate_util.h"
 
 int	hit(t_list *objs, t_ray *ray, t_range range, t_hit *record)
 {
@@ -28,6 +28,7 @@ int	hit(t_list *objs, t_ray *ray, t_range range, t_hit *record)
 		{
 			hit_anything = 1;
 			max_len = tmp_rec.t;
+			tmp_rec.elem = elem;
 			if (record != NULL)
 			{
 				tmp_rec.color = elem->color;

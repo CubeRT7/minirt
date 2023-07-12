@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "simulate_util.h"
 #include "Element/Camera/camera.h"
 
 t_ray	get_camera_ray(void *camera, t_screen screen, t_screen pos)
