@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/08 18:59:22 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/12 07:00:44 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static int	_hook_setting(t_world *world)
 	mlx_mouse_hook(world->gui.mlx, hook_mouse_event, world);
 	if (!mlx_loop_hook(world->gui.mlx, hook_key_event, world))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	if (!mlx_loop_hook(world->gui.mlx, hook_draw_setting, world))
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (!mlx_loop_hook(world->gui.mlx, hook_draw, world))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	mlx_resize_hook(world->gui.mlx, hook_resize_event, &(world->gui));
@@ -60,6 +62,7 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 {
 	t_world	world;
 
+	world.axis = (t_vector3){0, 1, 0};
 	world.ambient_light = ambient->content;
 	world.camera = camera->content;
 	world.lights = lights;

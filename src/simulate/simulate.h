@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulate.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/04 05:28:53 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/12 07:00:51 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # define DEFAULT_IGNORE_DELTA 0.001f
 # define DEFAULT_SAMPLE_PER_PIXEL 10
 
-# define WORLD_AXIS ((t_vector3){0, 1, 0})
-
 typedef struct s_gui_setting
 {
 	mlx_t		*mlx;
@@ -43,6 +41,7 @@ typedef struct s_gui_setting
 
 typedef struct s_world
 {
+	t_vector3		axis;
 	t_list			*objs;
 	t_list			*lights;
 	t_camera		*camera;
