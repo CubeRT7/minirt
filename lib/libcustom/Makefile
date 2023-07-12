@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 02:34:32 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/04 22:55:27 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/13 00:33:35 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = \
 	ft_error.c \
 	ft_strtof.c \
 	ft_strarr_free.c \
+	ft_ftoa.c \
 
 OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.d)
