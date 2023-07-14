@@ -15,6 +15,7 @@
 static void	_init_func(t_cylinder *self)
 {
 	self->base.func[Hit] = hit_cylinder;
+	self->base.func[Transform] = transform_cylinder;
 }
 
 int	init_cylinder(t_cylinder *self)

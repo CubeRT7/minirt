@@ -58,7 +58,21 @@ enum e_element_func
 	Hit,
 	Init,
 	Update,
+	Transform,
 	MAX_ELEMENT_FUNC
+};
+
+enum e_transform_type
+{
+	None = 0x0,
+	X = 0x1,
+	Y = 0x2,
+	Z = 0x3,
+	Height = 0x4,
+	Radius = 0x5,
+	Position = 0x100,
+	Rotation = 0x200,
+	Scaling = 0x300,
 };
 
 typedef struct s_element

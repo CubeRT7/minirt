@@ -30,7 +30,12 @@ typedef struct s_plane
 	}						obj;
 }	t_plane;
 
-extern int		hit_plane(t_plane *self, t_ray *r, t_range ra, t_hit *h);
-extern int		init_plane(t_plane *self);
+extern int	hit_plane(t_plane *self, t_ray *r, t_range ra, t_hit *h);
+extern int	init_plane(t_plane *self);
+extern int	transform_plane(
+				t_plane *self,
+				const t_element *camera,
+				enum e_transform_type type,
+				t_vector3 delta);
 
 #endif 

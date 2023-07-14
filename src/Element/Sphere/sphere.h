@@ -31,7 +31,12 @@ typedef struct s_sphere
 	}						obj;
 }	t_sphere;
 
-extern int		hit_sphere(t_sphere *self, t_ray *r, t_range ra, t_hit *h);
-extern int		init_sphere(t_sphere *self);
+extern int	hit_sphere(t_sphere *self, t_ray *r, t_range ra, t_hit *h);
+extern int	init_sphere(t_sphere *self);
+extern int	transform_sphere(
+				t_sphere *self,
+				const t_element *camera,
+				enum e_transform_type type,
+				t_vector3 delta);
 
 #endif 

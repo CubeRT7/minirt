@@ -66,10 +66,13 @@ MINIRT_SRCS = \
 	Element/Light/init_light.c \
 	Element/Plane/hit_plane.c \
 	Element/Plane/init_plane.c \
+	Element/Plane/transform_plane.c \
 	Element/Sphere/hit_sphere.c \
 	Element/Sphere/init_sphere.c \
+	Element/Sphere/transform_sphere.c \
 	Element/Cylinder/hit_cylinder.c \
 	Element/Cylinder/init_cylinder.c \
+	Element/Cylinder/transform_cylinder.c \
 	Element/util/range_in.c \
 	Element/util/range_not_in.c \
 	Element/util/get_ray_point.c \
