@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/12 07:00:44 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/14 16:43:40 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static int	_hook_setting(t_world *world)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	if (!mlx_loop_hook(world->gui.mlx, hook_draw, world))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	mlx_resize_hook(world->gui.mlx, hook_resize_event, &(world->gui));
 	mlx_close_hook(world->gui.mlx, hook_close_event, &(world->gui));
 	return (EXIT_SUCCESS);
 }
