@@ -35,20 +35,12 @@ void	move_camera(void *param)
 	if (world->gui.keyboard[KEYBOARD_LSHIFT])
 		camera->position = v3_sub(camera->position, v3_mul(world->axis, delta));
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_GRAVE_ACCENT))
-		world->selected = NULL;	
+		world->selected = NULL;
 
-	const t_list *node = world->objs;
-	t_element *elem = NULL;
-	while (node)
-	{
-		if (((t_element *)(node->content))->type == Cylinder)
-			elem = node->content;
-		node = node->next;
-	}
-	if (elem && mlx_is_key_down(world->gui.mlx, MLX_KEY_Q))
-		elem->func[Transform](elem, camera, Rotation | X,  v3_mul(vector3(1, 1, 1), -delta));
-	if (elem && mlx_is_key_down(world->gui.mlx, MLX_KEY_E))
-		elem->func[Transform](elem, camera, Rotation | X, v3_mul(vector3(1, 1, 1), delta));
+	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_Q))
+		world->selected->func[Transform](world->selected, camera, Position | Z,  v3_mul(vector3(1, 1, 1), -delta));
+	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_E))
+		world->selected->func[Transform](world->selected, camera, Position | Z, v3_mul(vector3(1, 1, 1), delta));
 }
 
 int	key_press(int keycode, void *param)

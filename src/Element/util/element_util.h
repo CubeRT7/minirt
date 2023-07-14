@@ -29,5 +29,10 @@ extern int			range_in(float t, t_range range);
 extern int			range_not_in(float t, t_range range);
 extern int			close_to_zero(float f);
 extern int			quadratic_formula_root(t_abc abc, t_range range, float *x);
+extern int			transform_element(
+						t_element *self,
+						const t_element *camera,
+						enum e_transform_type type,
+						t_vector3 delta);
 
 #endif

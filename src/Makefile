@@ -66,7 +66,6 @@ MINIRT_SRCS = \
 	Element/Light/init_light.c \
 	Element/Plane/hit_plane.c \
 	Element/Plane/init_plane.c \
-	Element/Plane/transform_plane.c \
 	Element/Sphere/hit_sphere.c \
 	Element/Sphere/init_sphere.c \
 	Element/Sphere/transform_sphere.c \
@@ -79,6 +78,7 @@ MINIRT_SRCS = \
 	Element/util/get_face_normal.c \
 	Element/util/close_to_zero.c \
 	Element/util/quadratic_formula_root.c \
+	Element/util/transform_element.c \
 	file/clean_rt.c \
 	file/import_file.c \
 	file/parse_ambient_light.c \
