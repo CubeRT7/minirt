@@ -37,10 +37,24 @@ void	move_camera(void *param)
 	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_GRAVE_ACCENT))
 		world->selected = NULL;
 
+	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_P))
+		world->transform_type = Position;
+	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_T))
+		world->transform_type = Rotation;
+	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_H))
+		world->transform_type = Scaling | Height;
+	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_R))
+		world->transform_type = Scaling | Radius;
+	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_X))
+		world->transform_type = (world->transform_type & (Position | Rotation)) | X;
+	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_Y))
+		world->transform_type = (world->transform_type & (Position | Rotation)) | Y;
+	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_Z))
+		world->transform_type = (world->transform_type & (Position | Rotation)) | Z;
 	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_Q))
-		world->selected->func[Transform](world->selected, camera, Scaling | Radius,  v3_mul(vector3(1, 1, 1), -delta));
+		world->selected->func[Transform](world->selected, camera, world->transform_type,  v3_mul(vector3(1, 1, 1), -delta));
 	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_E))
-		world->selected->func[Transform](world->selected, camera, Scaling | Radius, v3_mul(vector3(1, 1, 1), delta));
+		world->selected->func[Transform](world->selected, camera, world->transform_type, v3_mul(vector3(1, 1, 1), delta));
 }
 
 int	key_press(int keycode, void *param)
