@@ -20,5 +20,17 @@ int	transform_cylinder(
 {
 	if (type & Position || type & Rotation)
 		transform_element(&(self->base), camera, type, delta);
+	if (type == (Scaling | Radius))
+	{
+		self->obj.radius += delta.x;
+		if (self->obj.radius < 0)
+			self->obj.radius = 0;
+	}
+	if (type == (Scaling | Height))
+	{
+		self->obj.height += delta.x;
+		if (self->obj.height < 0)
+			self->obj.height = 0;
+	}
 	return (EXIT_SUCCESS);
 }

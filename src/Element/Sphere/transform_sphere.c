@@ -18,9 +18,13 @@ int	transform_sphere(
 	enum e_transform_type type,
 	t_vector3 delta)
 {
-	(void)self;
-	(void)camera;
-	(void)type;
-	(void)delta;
+	if (type & Position || type & Rotation)
+		transform_element(&(self->base), camera, type, delta);
+	if (type == (Scaling | Radius))
+	{
+		self->obj.radius += delta.x;
+		if (self->obj.radius < 0)
+			self->obj.radius = 0;
+	}
 	return (EXIT_SUCCESS);
 }

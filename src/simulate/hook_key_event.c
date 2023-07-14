@@ -38,9 +38,9 @@ void	move_camera(void *param)
 		world->selected = NULL;
 
 	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_Q))
-		world->selected->func[Transform](world->selected, camera, Position | Z,  v3_mul(vector3(1, 1, 1), -delta));
+		world->selected->func[Transform](world->selected, camera, Scaling | Radius,  v3_mul(vector3(1, 1, 1), -delta));
 	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_E))
-		world->selected->func[Transform](world->selected, camera, Position | Z, v3_mul(vector3(1, 1, 1), delta));
+		world->selected->func[Transform](world->selected, camera, Scaling | Radius, v3_mul(vector3(1, 1, 1), delta));
 }
 
 int	key_press(int keycode, void *param)
