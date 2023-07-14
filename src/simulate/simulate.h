@@ -6,14 +6,14 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/12 07:00:51 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/14 16:41:16 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SIMULATE_H
 # define SIMULATE_H
 
-# include "MLX42/MLX42.h"
+# include "mlx.h"
 # include "hook.h"
 # include "libcustom.h"
 # include "Element/AmbientLight/ambient_light.h"
