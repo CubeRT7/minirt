@@ -76,7 +76,7 @@ static t_element	*_select_element(t_world *world, int x, int y)
 	screen.w = world->gui.image->width;
 	screen.h = world->gui.image->height;
 	pos.x = x;
-	pos.y = y;
+	pos.y = screen.h - y;
 	ray = get_camera_ray(world->camera, screen, pos);
 	if (hit(world->objs, &ray, (t_range){DELTA, BIGVALUE}, &record))
 		return (record.elem);
