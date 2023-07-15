@@ -6,55 +6,59 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/12 07:00:44 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/15 12:49:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simulate.h"
 #include "simulate/util/simulate_util.h"
 
-static void	_init_gui_setting(t_gui_setting *g, char *title)
+static void	_clean_gui(t_gui_setting *g)
 {
-	g->mlx = NULL;
-	g->image = NULL;
-	g->title = title;
-	g->focal_length = DEFAULT_FOCAL_WIDTH;
-	g->max_depth = DEFAULT_MAX_DEPTH;
-	g->ignore_delta = DEFAULT_IGNORE_DELTA;
-	g->sample_per_pixel = DEFAULT_SAMPLE_PER_PIXEL;
+	if (g->img)
+		mlx_destroy_image(g->mlx, g->img);
+	g->img = NULL;
+	if (g->win)
+		mlx_destroy_window(g->mlx, g->win);
+	g->win = NULL;
 }
 
-static int	_gui_setting(t_gui_setting *g, int width, int height, char *title)
+static int	_gui_setting(t_gui_setting *g)
 {
-	_init_gui_setting(g, title);
-	g->mlx = mlx_init(width, height, g->title, true);
+	int	i;
+
+	ft_bzero(g, sizeof(t_gui_setting));
+	i = 0;
+	while (i < MAX_MOUSE_KEY)
+	{
+		g->mouse.action[i] = MOUSE_IDLE;
+		++i;
+	}
+	g->mlx = mlx_init();
 	if (g->mlx == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	g->image = mlx_new_image(g->mlx, width, height);
-	if (g->image == NULL)
-	{
-		mlx_close_window(g->mlx);
+	g->width = WINDOW_WIDTH;
+	g->height = WINDOW_HEIGHT;
+	g->win = mlx_new_window(g->mlx, g->width, g->height, TITLE);
+	if (g->win == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	}
-	if (mlx_image_to_window(g->mlx, g->image, 0, 0) == -1)
-	{
-		mlx_close_window(g->mlx);
+	g->img = mlx_new_image(g->mlx, g->width, g->height);
+	if (g->img == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	}
 	return (EXIT_SUCCESS);
 }
 
 static int	_hook_setting(t_world *world)
 {
-	mlx_mouse_hook(world->gui.mlx, hook_mouse_event, world);
-	if (!mlx_loop_hook(world->gui.mlx, hook_key_event, world))
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (!mlx_loop_hook(world->gui.mlx, hook_draw_setting, world))
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (!mlx_loop_hook(world->gui.mlx, hook_draw, world))
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	mlx_resize_hook(world->gui.mlx, hook_resize_event, &(world->gui));
-	mlx_close_hook(world->gui.mlx, hook_close_event, &(world->gui));
+	t_gui_setting *const	g = &world->gui;
+
+	mlx_hook(g->win, KeyPress, KeyPressMask, key_press, world);
+	mlx_hook(g->win, KeyRelease, KeyReleaseMask, key_release, world);
+	mlx_hook(g->win, ButtonPress, ButtonPressMask, button_press, world);
+	mlx_hook(g->win, ButtonRelease, ButtonReleaseMask, button_release, world);
+	mlx_hook(g->win, MotionNotify, ButtonMotionMask, motion_notify, world);
+	mlx_hook(g->win, DestroyNotify, 0, hook_close_event, world);
+	mlx_loop_hook(g->mlx, hook_draw, world);
 	return (EXIT_SUCCESS);
 }
 
@@ -67,13 +71,19 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 	world.camera = camera->content;
 	world.lights = lights;
 	world.objs = objs;
-	if (_gui_setting(&(world.gui), WINDOW_WIDTH, WINDOW_HEIGHT, TITLE))
+	if (_gui_setting(&world.gui) == EXIT_FAILURE)
+	{
+		_clean_gui(&world.gui);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	if (_hook_setting(&world))
+	{
+		_clean_gui(&world.gui);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
 	world_iter(&world, Init);
 	world_iter(&world, Update);
-	if (_hook_setting(&world))
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	mlx_loop(world.gui.mlx);
-	mlx_terminate(world.gui.mlx);
+	_clean_gui(&world.gui);
 	return (EXIT_SUCCESS);
 }

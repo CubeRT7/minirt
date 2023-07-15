@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/12 05:39:32 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/15 11:05:28 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ typedef struct s_camera
 	}							raw;
 	struct s_camera_obj
 	{
-		int			rotate_flag;
-		t_vector3	cursor_pos;
 		t_vector3	viewport_lower_left;
 		t_vector3	viewport_horizontal;
 		t_vector3	viewport_vertical;

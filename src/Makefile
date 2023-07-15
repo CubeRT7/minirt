@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/13 00:48:37 by yonshin          ###   ########.fr        #
+#    Updated: 2023/07/15 11:46:45 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ CPPFLAGS	= -I.
 LDFLAGS		= -L.
 LDLIBS		= -lm
 
-CPPFLAGS	+= -I../external/MLX42/include
-LDFLAGS		+= -L../external/MLX42/build
-LDLIBS		+= -lmlx42
+CPPFLAGS	+= -I../external/minilibx
+LDFLAGS		+= -L../external/minilibx
+LDLIBS		+= -lmlx
 
 CPPFLAGS	+= -I../lib/libstr
 LDFLAGS		+= -L../lib/libstr
@@ -42,11 +42,9 @@ LDLIBS		+= -lft
 ifneq ($(shell uname), Darwin)
 	CPPFLAGS	+= -D__LINUX__
 	LDFLAGS		+= -pthread
-	LDLIBS		+= -ldl -lglfw
+	LDLIBS		+= -lXext -lX11 -lbsd
 else
-	LDLIBS		+= -lglfw
-	LDFLAGS 	+= -L$(HOME)/.brew/lib
-	LDFLAGS 	+= -framework Cocoa -framework OpenGL -framework IOKit
+	LDFLAGS 	+= -framework OpenGL -framework AppKit
 endif
 
 ifdef	DEBUG
@@ -91,7 +89,6 @@ MINIRT_SRCS = \
 	simulate/hook_mouse_event.c \
 	simulate/hook_draw.c \
 	simulate/hook_draw_setting.c \
-	simulate/hook_resize_event.c \
 	simulate/hook_close_event.c \
 	simulate/draw/hit.c \
 	simulate/draw/ray_color.c \
@@ -122,5 +119,9 @@ fclean: clean
 
 re: fclean
 	$(MAKE) $(MINIRT)
+
+exe: $(MINIRT)
+	-export DYLD_LIBRARY_PATH=../external/minilibx; \
+	./$(MINIRT) $(ARGS)
 
 .PHONY: all clean fclean re bonus 

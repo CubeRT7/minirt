@@ -6,41 +6,55 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:46:16 by minjungk          #+#    #+#              #
-#    Updated: 2023/05/31 00:27:45 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/14 15:55:03 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .DEFAULT_ON_ERROR:
 .DEFAULT_GOAL := all
 
-RM = rm -rf
-
 # **************************************************************************** #
-LIBMLX_DIR	=	MLX42
-LIBMLX_OBJ	=	$(LIBMLX_DIR)/build
+LIBMLX_DIR	=	minilibx
 LIBMLX_LIB	=	$(LIBMLX_OBJ)/libmlx42.a
 
-$(LIBMLX_OBJ):
-	cmake $(LIBMLX_DIR) -B $(LIBMLX_OBJ)
+$(LIBMLX_DIR):
+	@if [ $(shell uname) = "Darwin" ]; then \
+		ln -sf $(LIBMLX_DIR)-macos $(LIBMLX_DIR); \
+	else \
+		ln -sf $(LIBMLX_DIR)-linux $(LIBMLX_DIR); \
+	fi
 
-$(LIBMLX_LIB): $(LIBMLX_OBJ)
-	$(MAKE) -C $(LIBMLX_OBJ) -j4
+libmlx_fix: $(LIBMLX_DIR)
+	sed -i 's///g' $(LIBMLX_DIR)/configure
+	sed -i'' -r -e "/^CFLAGS\t=/a\CFLAGS+= -Wno-return-type" $(LIBMLX_DIR)/Makefile.mk
+	sed -i'' -r -e "/^CFLAGS\t=/a\CFLAGS+= -Wno-parentheses" $(LIBMLX_DIR)/Makefile.mk
+	sed -i'' -r -e "/^CFLAGS\t=/a\CFLAGS+= -Wno-pointer-sign" $(LIBMLX_DIR)/Makefile.mk
+	sed -i'' -r -e "/^CFLAGS\t=/a\CFLAGS+= -Wno-implicit-function-declaration" $(LIBMLX_DIR)/Makefile.mk
+	sed -i'' -r -e "/^CFLAGS=/a\CFLAGS+= -Wno-return-type" $(LIBMLX_DIR)/test/Makefile.mk
+	sed -i'' -r -e "/^CFLAGS=/a\CFLAGS+= -Wno-parentheses" $(LIBMLX_DIR)/test/Makefile.mk
+	sed -i'' -r -e "/^CFLAGS=/a\CFLAGS+= -Wno-pointer-sign" $(LIBMLX_DIR)/test/Makefile.mk
+	sed -i'' -r -e "/^CFLAGS=/a\CFLAGS+= -Wno-implicit-function-declaration" $(LIBMLX_DIR)/test/Makefile.mk
 
-libmlx_all: $(LIBMLX_LIB)
+libmlx_all: $(LIBMLX_DIR)
+	$(MAKE) -C $(LIBMLX_DIR)
 
-libmlx_fclean:
-	$(RM) $(LIBMLX_OBJ)
+libmlx_clean: $(LIBMLX_DIR)
+	$(MAKE) -C $(LIBMLX_DIR) clean
 
-libmlx_re:
-	$(MAKE) libmlx_fclean
-	$(MAKE) libmlx_all
+libmlx_fclean: libmlx_clean
+	$(RM) $(LIBMLX_DIR)
+
+.PHONY: $(LIBMLX_DIR) libmlx_fix libmlx_all libmlx_clean libmlx_fclean
 
 # **************************************************************************** #
 
 all bonus:
 	$(MAKE) libmlx_all
 
-clean fclean:
+clean:
+	$(MAKE) libmlx_clean
+
+fclean: libmlx_clean
 	$(MAKE) libmlx_fclean
 
 re:
