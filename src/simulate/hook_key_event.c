@@ -6,54 +6,73 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:59 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/12 07:01:29 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/15 12:56:48 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hook.h"
+#include "simulate.h"
 #include "Element/Sphere/sphere.h"
 
-static void	move_camera(t_world *world)
+void	move_camera(void *param)
 {
+	t_world *const		world = param;
 	t_element *const	camera = &(world->camera->base);
-	const float			delta = world->gui.mlx->delta_time;
+	const float			delta = 0.1;
 	t_vector3			v[3];
 
 	enum e_type {FRONT, RIGHT, NEW};
 	v[FRONT] = v3_normalize(v3_hadamard(camera->axis, vector3(1, 0, 1)));
 	v[RIGHT] = v3_cross(v[FRONT], world->axis);
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_W))
+	if (world->gui.keyboard[KEYBOARD_W])
 		camera->position = v3_add(camera->position, v3_mul(v[FRONT], delta));
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_S))
+	if (world->gui.keyboard[KEYBOARD_S])
 		camera->position = v3_sub(camera->position, v3_mul(v[FRONT], delta));
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_A))
+	if (world->gui.keyboard[KEYBOARD_A])
 		camera->position = v3_sub(camera->position, v3_mul(v[RIGHT], delta));
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_D))
+	if (world->gui.keyboard[KEYBOARD_D])
 		camera->position = v3_add(camera->position, v3_mul(v[RIGHT], delta));
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_SPACE))
+	if (world->gui.keyboard[KEYBOARD_SPACE])
 		camera->position = v3_add(camera->position, v3_mul(world->axis, delta));
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_LEFT_CONTROL))
+	if (world->gui.keyboard[KEYBOARD_LSHIFT])
 		camera->position = v3_sub(camera->position, v3_mul(world->axis, delta));
 }
 
-void	hook_key_event(void *param)
+int	key_press(int keycode, void *param)
 {
+	int				i;
 	t_world *const	world = param;
-	const float		delta = world->gui.mlx->delta_time;
 
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(world->gui.mlx);
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_LEFT_BRACKET))
+	if (keycode == g_keycode[KEYBOARD_ESCAPE])
+		exit(EXIT_SUCCESS);
+	i = 0;
+	while (i < MAX_KEYBOARD)
 	{
-		world->camera->obj.fov_radian -= delta;
-		if (world->camera->obj.fov_radian <= 0)
-			world->camera->obj.fov_radian = 0;
+		if (keycode == g_keycode[i])
+		{
+			world->gui.keyboard[i] = 1;
+			return (EXIT_SUCCESS);
+		}
+		++i;
 	}
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_RIGHT_BRACKET))
+	return (EXIT_SUCCESS);
+}
+
+int	key_release(int keycode, void *param)
+
+{
+	int				i;
+	t_world *const	world = param;
+
+	i = 0;
+	while (i < MAX_KEYBOARD)
 	{
-		world->camera->obj.fov_radian += delta;
-		if (world->camera->obj.fov_radian >= M_PI)
-			world->camera->obj.fov_radian = M_PI;
+		if (keycode == g_keycode[i])
+		{
+			world->gui.keyboard[i] = 0;
+			return (EXIT_SUCCESS);
+		}
+		++i;
 	}
-	move_camera(world);
+	return (EXIT_SUCCESS);
 }

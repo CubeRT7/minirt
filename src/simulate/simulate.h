@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/14 16:41:16 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:55:35 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,22 @@
 # define DEFAULT_IGNORE_DELTA 0.001f
 # define DEFAULT_SAMPLE_PER_PIXEL 10
 
+typedef struct s_mouse
+{
+	t_vector3	curr;
+	t_vector3	prev[MAX_MOUSE_KEY];
+	int			action[MAX_MOUSE_KEY];
+}	t_mouse;
+
 typedef struct s_gui_setting
 {
-	mlx_t		*mlx;
-	mlx_image_t	*image;
-	char		*title;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	int			width;
+	int			height;
+	t_mouse		mouse;
+	int			keyboard[MAX_KEYBOARD];
 	float		focal_length;
 	float		max_depth;
 	float		ignore_delta;

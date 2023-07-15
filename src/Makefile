@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/14 16:41:33 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/15 11:46:45 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,9 @@ LDLIBS		+= -lft
 ifneq ($(shell uname), Darwin)
 	CPPFLAGS	+= -D__LINUX__
 	LDFLAGS		+= -pthread
-	LDLIBS		+= -ldl -lglfw
+	LDLIBS		+= -lXext -lX11 -lbsd
 else
-	LDLIBS		+= -lglfw
-	LDFLAGS 	+= -L$(HOME)/.brew/lib
-	LDFLAGS 	+= -framework Cocoa -framework OpenGL -framework IOKit
+	LDFLAGS 	+= -framework OpenGL -framework AppKit
 endif
 
 ifdef	DEBUG
@@ -121,5 +119,9 @@ fclean: clean
 
 re: fclean
 	$(MAKE) $(MINIRT)
+
+exe: $(MINIRT)
+	-export DYLD_LIBRARY_PATH=../external/minilibx; \
+	./$(MINIRT) $(ARGS)
 
 .PHONY: all clean fclean re bonus 

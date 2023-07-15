@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:20:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/06/08 15:16:27 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/15 11:46:44 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,5 +40,9 @@ re: fclean
 test:
 	make DEBUG=1 all
 	./$(MINIRT) data/minimalist.rt
+
+exe: $(MINIRT)
+	-export DYLD_LIBRARY_PATH=./external/minilibx; \
+	./$(MINIRT) $(ARGS)
 
 .PHONY: all clean fclean re bonus $(MINIRT)
