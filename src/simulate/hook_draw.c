@@ -21,7 +21,7 @@ static void	set_pixel(t_world *world, int x, int y, int color)
 	int		bpp;
 	int		endian;
 
-	if (x < 0 || y < 0 || x >= world->gui.width || y >= world->gui.height)
+	if (x < 0 || y < 0 || x >= world->gui.screen.x || y >= world->gui.screen.y)
 		return ;
 	color = mlx_get_color_value(world->gui.mlx, color);
 	addr = mlx_get_data_addr(world->gui.img, &bpp, &size_line, &endian);
@@ -32,21 +32,18 @@ int	hook_draw(void *param)
 {
 	t_world *const			world = param;
 	t_gui_setting *const	gui = &world->gui;
-	t_screen				screen;
-	t_screen				pos;
+	t_vector3				pos;
 	t_ray					ray;
 
 	hook_draw_setting(param);
-	screen.w = gui->width;
-	screen.h = gui->height;
 	pos.x = 0;
-	while (pos.x < screen.w)
+	while (pos.x < gui->screen.x)
 	{
 		pos.y = 0;
-		while (pos.y < screen.h)
+		while (pos.y < gui->screen.y)
 		{
-			ray = get_camera_ray(world->camera, screen, pos);
-			set_pixel(world, pos.x, screen.h - pos.y - 1,
+			ray = get_camera_ray(world->camera, gui->screen, pos);
+			set_pixel(world, pos.x, gui->screen.y - pos.y - 1,
 				color_to_pixel(ray_color(&ray,
 						world->objs, world->ambient_light, world->lights)));
 			++pos.y;

@@ -37,12 +37,11 @@ static int	_gui_setting(t_gui_setting *g)
 	g->mlx = mlx_init();
 	if (g->mlx == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	g->width = WINDOW_WIDTH;
-	g->height = WINDOW_HEIGHT;
-	g->win = mlx_new_window(g->mlx, g->width, g->height, TITLE);
+	g->screen = (t_vector3){WINDOW_WIDTH, WINDOW_HEIGHT, 0};
+	g->win = mlx_new_window(g->mlx, g->screen.x, g->screen.y, TITLE);
 	if (g->win == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	g->img = mlx_new_image(g->mlx, g->width, g->height);
+	g->img = mlx_new_image(g->mlx, g->screen.x, g->screen.y);
 	if (g->img == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	return (EXIT_SUCCESS);

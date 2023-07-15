@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.h                                             :+:      :+:    :+:   */
+/*   select_element.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 04:00:10 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/12 08:33:54 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/16 04:16:02 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/16 04:16:03 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_H
-# define DRAW_H
-# include "Element/common.h"
-# include "simulate/util/simulate_util.h"
+#include "simulate_util.h"
 
-extern uint32_t	color_to_pixel(t_color c);
-extern t_color	ray_color(t_ray *ray, t_list *objs, void *amb_lgt, t_list *lgt);
+t_element	*select_element(t_world *world, t_vector3 pos)
+{
+	const t_vector3	screen = world->gui.screen;
+	t_ray			ray;
+	t_hit			record;
 
-#endif
+	ray = get_camera_ray(world->camera, screen, pos);
+	if (hit(world->objs, &ray, (t_range){DELTA, BIGVALUE}, &record))
+		return (record.elem);
+	return (NULL);
+}

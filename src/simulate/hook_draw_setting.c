@@ -17,8 +17,9 @@ int	hook_draw_setting(void *param)
 {
 	t_world *const	world = param;
 
-	world->camera->obj.ratio = (float)world->gui.height / world->gui.width;
-	world_iter(world, Update);
+	world->camera->obj.ratio = (float)world->gui.screen.y / world->gui.screen.x;
+	if (world->gui.mouse.action[MOUSE_BUTTON_LEFT] == MOUSE_PRESS)
+		world->selected = select_element(world, world->gui.mouse.curr);
 	move_camera(world);
 	rotate_camera(world);
 	transform_objs(world);

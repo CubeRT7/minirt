@@ -10,16 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "simulate_util.h"
 #include "Element/Camera/camera.h"
 
-t_ray	get_camera_ray(void *camera, t_screen screen, t_screen pos)
+t_ray	get_camera_ray(void *camera, t_vector3 screen, t_vector3 pos)
 {
 	const t_camera	*cam = camera;
-	const t_vector3	uv = vector3(
-			(float)pos.x / screen.w,
-			(float)pos.y / screen.h,
-			0);
+	const t_vector3	uv = vector3(pos.x / screen.x, pos.y / screen.y, 0);
 	t_vector3		v[3];
 	float			h_angle;
 	float			v_angle;

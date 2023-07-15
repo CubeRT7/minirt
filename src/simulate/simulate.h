@@ -40,8 +40,7 @@ typedef struct s_gui_setting
 	void		*mlx;
 	void		*win;
 	void		*img;
-	int			width;
-	int			height;
+	t_vector3	screen;
 	t_mouse		mouse;
 	int			keyboard[MAX_KEYBOARD];
 	float		focal_length;
