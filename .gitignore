@@ -2,14 +2,15 @@
 *.d
 .vscode
 .DS_Store*
-external/MLX42/build
-miniRT
+external/minilibx
 
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
+*.siwftdoc
+*.siwftmodule
 
 # Linker output
 *.ilk
@@ -39,6 +40,7 @@ miniRT
 *.i*86
 *.x86_64
 *.hex
+miniRT
 
 # Debug files
 *.dSYM/

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 12:52:25 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:22:40 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static const int	g_keycode[MAX_KEYBOARD] = {
 [KEYBOARD_TAB] = 0x0030,
 [KEYBOARD_ESCAPE] = 0x0035,
 [KEYBOARD_SPACE] = 0x31,
-[KEYBOARD_LSHIFT] = 0x100,
+[KEYBOARD_LSHIFT] = 0x101,
 [KEYBOARD_W] = 0x0D,
 [KEYBOARD_A] = 0x00,
 [KEYBOARD_S] = 0x01,
