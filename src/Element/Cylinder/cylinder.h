@@ -50,7 +50,12 @@ typedef struct s_cylinder_body_alias
 	t_vector3	in;
 }	t_cylinder_body_alias;
 
-extern int		hit_cylinder(t_cylinder *self, t_ray *r, t_range ra, t_hit *h);
-extern int		init_cylinder(t_cylinder *self);
+extern int	hit_cylinder(t_cylinder *self, t_ray *r, t_range ra, t_hit *h);
+extern int	init_cylinder(t_cylinder *self);
+extern int	transform_cylinder(
+				t_cylinder *self,
+				const t_element *camera,
+				enum e_transform_type type,
+				t_vector3 delta);
 
 #endif 

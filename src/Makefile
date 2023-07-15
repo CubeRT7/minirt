@@ -68,14 +68,17 @@ MINIRT_SRCS = \
 	Element/Plane/init_plane.c \
 	Element/Sphere/hit_sphere.c \
 	Element/Sphere/init_sphere.c \
+	Element/Sphere/transform_sphere.c \
 	Element/Cylinder/hit_cylinder.c \
 	Element/Cylinder/init_cylinder.c \
+	Element/Cylinder/transform_cylinder.c \
 	Element/util/range_in.c \
 	Element/util/range_not_in.c \
 	Element/util/get_ray_point.c \
 	Element/util/get_face_normal.c \
 	Element/util/close_to_zero.c \
 	Element/util/quadratic_formula_root.c \
+	Element/util/transform_element.c \
 	file/clean_rt.c \
 	file/import_file.c \
 	file/parse_ambient_light.c \
@@ -90,11 +93,12 @@ MINIRT_SRCS = \
 	simulate/hook_draw.c \
 	simulate/hook_draw_setting.c \
 	simulate/hook_close_event.c \
-	simulate/draw/hit.c \
 	simulate/draw/ray_color.c \
 	simulate/draw/color_to_pixel.c \
-	simulate/draw/get_camera_ray.c \
+	simulate/util/hit.c \
 	simulate/util/world_iter.c \
+	simulate/util/get_camera_ray.c \
+	simulate/util/select_element.c \
 	$(MINIRT).c
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)
 MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)

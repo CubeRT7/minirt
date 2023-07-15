@@ -56,9 +56,9 @@ void	rotate_camera(void *param)
 	v[FRONT] = v3_normalize(v3_hadamard(camera->base.axis, vector3(1, 0, 1)));
 	v[RIGHT] = v3_normalize(v3_cross(v[FRONT], world->axis));
 	camera->base.axis = v3_rotate_axis(camera->base.axis, world->axis,
-			v[MOVE].x / gui->width);
+			v[MOVE].x / gui->screen.x);
 	v[NEW] = v3_rotate_axis(camera->base.axis, v[RIGHT],
-			v[MOVE].y / gui->height);
+			v[MOVE].y / gui->screen.y);
 	angle = v3_dot(v3_normalize(v3_cross(v[NEW], world->axis)), v[RIGHT]);
 	if (angle > 0)
 		camera->base.axis = v[NEW];

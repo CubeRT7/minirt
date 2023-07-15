@@ -15,6 +15,7 @@
 static void	_init_func(t_plane *self)
 {
 	self->base.func[Hit] = hit_plane;
+	self->base.func[Transform] = transform_element;
 }
 
 int	init_plane(t_plane *self)

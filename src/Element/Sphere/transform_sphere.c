@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_draw_setting.c                                :+:      :+:    :+:   */
+/*   transform_sphere.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 05:15:47 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 12:56:02 by minjungk         ###   ########.fr       */
+/*   Created: 2023/07/14 08:48:50 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/14 08:50:28 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
-#include "simulate/util/simulate_util.h"
+#include "sphere.h"
 
-int	hook_draw_setting(void *param)
+int	transform_sphere(
+	t_sphere *self,
+	const t_element *camera,
+	enum e_transform_type type,
+	t_vector3 delta)
 {
-	t_world *const	world = param;
-
-	world->camera->obj.ratio = (float)world->gui.screen.y / world->gui.screen.x;
-	if (world->gui.mouse.action[MOUSE_BUTTON_LEFT] == MOUSE_PRESS)
-		world->selected = select_element(world, world->gui.mouse.curr);
-	move_camera(world);
-	rotate_camera(world);
-	transform_objs(world);
-	world_iter(world, Update);
+	if (type & Position || type & Rotation)
+		transform_element(&(self->base), camera, type, delta);
+	if (type == (Scaling | Radius))
+	{
+		self->obj.radius += delta.x;
+		if (self->obj.radius < 0)
+			self->obj.radius = 0;
+	}
 	return (EXIT_SUCCESS);
 }

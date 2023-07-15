@@ -40,8 +40,7 @@ typedef struct s_gui_setting
 	void		*mlx;
 	void		*win;
 	void		*img;
-	int			width;
-	int			height;
+	t_vector3	screen;
 	t_mouse		mouse;
 	int			keyboard[MAX_KEYBOARD];
 	float		focal_length;
@@ -52,12 +51,14 @@ typedef struct s_gui_setting
 
 typedef struct s_world
 {
-	t_vector3		axis;
-	t_list			*objs;
-	t_list			*lights;
-	t_camera		*camera;
-	t_ambient_light	*ambient_light;
-	t_gui_setting	gui;
+	t_vector3				axis;
+	t_list					*objs;
+	t_list					*lights;
+	t_camera				*camera;
+	t_ambient_light			*ambient_light;
+	t_gui_setting			gui;
+	t_element				*selected;
+	enum e_transform_type	transform_type;
 }	t_world;
 
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs);
