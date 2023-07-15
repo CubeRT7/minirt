@@ -9,8 +9,8 @@ external/minilibx
 *.ko
 *.obj
 *.elf
-*.siwftdoc
-*.siwftmodule
+*.swiftdoc
+*.swiftmodule
 
 # Linker output
 *.ilk
