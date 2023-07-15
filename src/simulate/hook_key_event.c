@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "hook.h"
+#include "simulate.h"
 
 void	move_camera(void *param)
 {
@@ -34,26 +35,26 @@ void	move_camera(void *param)
 		camera->position = v3_add(camera->position, v3_mul(world->axis, delta));
 	if (world->gui.keyboard[KEYBOARD_LSHIFT])
 		camera->position = v3_sub(camera->position, v3_mul(world->axis, delta));
-	if (mlx_is_key_down(world->gui.mlx, MLX_KEY_GRAVE_ACCENT))
+	if (world->gui.keyboard[KEYBOARD_TAB])
 		world->selected = NULL;
 
-	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_P))
+	if (world->selected && world->gui.keyboard[KEYBOARD_P])
 		world->transform_type = Position;
-	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_T))
+	if (world->selected && world->gui.keyboard[KEYBOARD_T])
 		world->transform_type = Rotation;
-	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_H))
+	if (world->selected && world->gui.keyboard[KEYBOARD_H])
 		world->transform_type = Scaling | Height;
-	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_R))
+	if (world->selected && world->gui.keyboard[KEYBOARD_R])
 		world->transform_type = Scaling | Radius;
-	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_X))
+	if (world->selected && world->gui.keyboard[KEYBOARD_X])
 		world->transform_type = (world->transform_type & (Position | Rotation)) | X;
-	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_Y))
+	if (world->selected && world->gui.keyboard[KEYBOARD_Y])
 		world->transform_type = (world->transform_type & (Position | Rotation)) | Y;
-	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_Z))
+	if (world->selected && world->gui.keyboard[KEYBOARD_Z])
 		world->transform_type = (world->transform_type & (Position | Rotation)) | Z;
-	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_Q))
+	if (world->selected && world->gui.keyboard[KEYBOARD_Q])
 		world->selected->func[Transform](world->selected, camera, world->transform_type,  v3_mul(vector3(1, 1, 1), -delta));
-	if (world->selected && mlx_is_key_down(world->gui.mlx, MLX_KEY_E))
+	if (world->selected && world->gui.keyboard[KEYBOARD_E])
 		world->selected->func[Transform](world->selected, camera, world->transform_type, v3_mul(vector3(1, 1, 1), delta));
 }
 
