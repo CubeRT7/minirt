@@ -28,6 +28,18 @@ static void	set_pixel(t_world *world, int x, int y, int color)
 	*(unsigned int *)(addr + (y * size_line + x * (bpp / 8))) = color;
 }
 
+static void	_update_next_render_idx(t_gui_setting *gui)
+{
+	gui->separated_render_curr.x++;
+	if (gui->separated_render_curr.x >= gui->separated_render_max.x)
+	{
+		gui->separated_render_curr.x = 0;
+		gui->separated_render_curr.y++;
+	}
+	if (gui->separated_render_curr.y >= gui->separated_render_max.y)
+		gui->separated_render_curr.y = 0;
+}
+
 int	hook_draw(void *param)
 {
 	t_world *const			world = param;
@@ -36,20 +48,23 @@ int	hook_draw(void *param)
 	t_ray					ray;
 
 	hook_draw_setting(param);
-	pos.x = 0;
+	pos.x = gui->separated_render_curr.x;
 	while (pos.x < gui->screen.x)
 	{
-		pos.y = 0;
+		pos.y = gui->separated_render_curr.y;
 		while (pos.y < gui->screen.y)
 		{
+			if (pos.x > gui->screen.x || pos.y > gui->screen.y)
+				break ;
 			ray = get_camera_ray(world->camera, gui->screen, pos);
 			set_pixel(world, pos.x, gui->screen.y - pos.y - 1,
 				color_to_pixel(ray_color(&ray,
 						world->objs, world->ambient_light, world->lights)));
-			++pos.y;
+			pos.y += gui->separated_render_max.y;
 		}
-		++pos.x;
+		pos.x += gui->separated_render_max.x;
 	}
 	mlx_put_image_to_window(gui->mlx, gui->win, gui->img, 0, 0);
+	_update_next_render_idx(gui);
 	return (EXIT_SUCCESS);
 }

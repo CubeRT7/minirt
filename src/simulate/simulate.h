@@ -20,8 +20,8 @@
 # include "Element/Camera/camera.h"
 
 # define TITLE "CubeRT7"
-# define WINDOW_WIDTH 400
-# define WINDOW_HEIGHT 300
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 600
 
 # define DEFAULT_FOCAL_WIDTH 2.0f
 # define DEFAULT_MAX_DEPTH 50
@@ -41,6 +41,8 @@ typedef struct s_gui_setting
 	void		*win;
 	void		*img;
 	t_vector3	screen;
+	t_vector3	separated_render_max;
+	t_vector3	separated_render_curr;
 	t_mouse		mouse;
 	int			keyboard[MAX_KEYBOARD];
 	float		focal_length;
