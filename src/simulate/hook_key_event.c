@@ -12,7 +12,6 @@
 
 #include "hook.h"
 #include "simulate.h"
-#include "Element/Sphere/sphere.h"
 
 void	move_camera(void *param)
 {
@@ -36,6 +35,35 @@ void	move_camera(void *param)
 		camera->position = v3_add(camera->position, v3_mul(world->axis, delta));
 	if (world->gui.keyboard[KEYBOARD_LSHIFT])
 		camera->position = v3_sub(camera->position, v3_mul(world->axis, delta));
+	if (world->gui.keyboard[KEYBOARD_TAB])
+		world->selected = NULL;
+}
+
+void	transform_objs(void *param)
+{
+	t_world *const		w = param;
+	t_element *const	c = &(w->camera->base);
+	const t_vector3		delta = v3_mul(vector3(1, 1, 1), 0.1);
+
+	if (w->selected && w->gui.keyboard[KEYBOARD_P])
+		w->transform_type = Position;
+	if (w->selected && w->gui.keyboard[KEYBOARD_T])
+		w->transform_type = Rotation;
+	if (w->selected && w->gui.keyboard[KEYBOARD_H])
+		w->transform_type = Scaling | Height;
+	if (w->selected && w->gui.keyboard[KEYBOARD_R])
+		w->transform_type = Scaling | Radius;
+	if (w->selected && w->gui.keyboard[KEYBOARD_X])
+		w->transform_type = (w->transform_type & (Position | Rotation)) | X;
+	if (w->selected && w->gui.keyboard[KEYBOARD_Y])
+		w->transform_type = (w->transform_type & (Position | Rotation)) | Y;
+	if (w->selected && w->gui.keyboard[KEYBOARD_Z])
+		w->transform_type = (w->transform_type & (Position | Rotation)) | Z;
+	if (w->selected && w->gui.keyboard[KEYBOARD_Q])
+		w->selected->func[Transform](w->selected, c, w->transform_type,
+			v3_mul(delta, -1));
+	if (w->selected && w->gui.keyboard[KEYBOARD_E])
+		w->selected->func[Transform](w->selected, c, w->transform_type, delta);
 }
 
 int	key_press(int keycode, void *param)

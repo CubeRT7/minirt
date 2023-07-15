@@ -27,6 +27,7 @@ extern int	motion_notify(int x, int y, void *param);
 
 extern void	rotate_camera(void *param);
 extern void	move_camera(void *param);
+extern void	transform_objs(void *param);
 
 enum e_mouse_action
 {
@@ -58,6 +59,15 @@ enum e_keyboard_key
 	KEYBOARD_A,
 	KEYBOARD_S,
 	KEYBOARD_D,
+	KEYBOARD_P,
+	KEYBOARD_T,
+	KEYBOARD_H,
+	KEYBOARD_R,
+	KEYBOARD_X,
+	KEYBOARD_Y,
+	KEYBOARD_Z,
+	KEYBOARD_Q,
+	KEYBOARD_E,
 	MAX_KEYBOARD
 };
 
@@ -78,7 +88,16 @@ static const int	g_keycode[MAX_KEYBOARD] = {
 [KEYBOARD_W] = 0x0D,
 [KEYBOARD_A] = 0x00,
 [KEYBOARD_S] = 0x01,
-[KEYBOARD_D] = 0x02
+[KEYBOARD_D] = 0x02,
+[KEYBOARD_P] = 0x23,
+[KEYBOARD_T] = 0x11,
+[KEYBOARD_H] = 0x04,
+[KEYBOARD_R] = 0x0F,
+[KEYBOARD_X] = 0x07,
+[KEYBOARD_Y] = 0x10,
+[KEYBOARD_Z] = 0x06,
+[KEYBOARD_Q] = 0x0C,
+[KEYBOARD_E] = 0x0E
 };
 # else
 /*
@@ -93,7 +112,16 @@ static const int	g_keycode[MAX_KEYBOARD] = {
 [KEYBOARD_W] = 0x77,
 [KEYBOARD_A] = 0x61,
 [KEYBOARD_S] = 0x73,
-[KEYBOARD_D] = 0x64
+[KEYBOARD_D] = 0x64,
+[KEYBOARD_P] = 0x050,
+[KEYBOARD_T] = 0x054,
+[KEYBOARD_H] = 0x048,
+[KEYBOARD_R] = 0x052,
+[KEYBOARD_X] = 0x058,
+[KEYBOARD_Y] = 0x059,
+[KEYBOARD_Z] = 0x05a,
+[KEYBOARD_Q] = 0x051,
+[KEYBOARD_E] = 0x045
 };
 # endif
 
