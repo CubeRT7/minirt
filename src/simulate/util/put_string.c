@@ -6891,20 +6891,6 @@ uint32_t	get_font_pixel(unsigned char c, int w, int h)
 	return (a << 24 | r << 16 | g << 8 | b << 4);
 }
 
-static void	set_pixel(t_world *world, int x, int y, int color)
-{
-	char	*addr;
-	int		size_line;
-	int		bpp;
-	int		endian;
-
-	if (x < 0 || y < 0 || x >= world->gui.screen.x || y >= world->gui.screen.y)
-		return ;
-	color = mlx_get_color_value(world->gui.mlx, color);
-	addr = mlx_get_data_addr(world->gui.img, &bpp, &size_line, &endian);
-	*(unsigned int *)(addr + (y * size_line + x * (bpp / 8))) = color;
-}
-
 void	put_string(t_world *world, t_vector3 pos, const char *s, int len)
 {
 	int			i;

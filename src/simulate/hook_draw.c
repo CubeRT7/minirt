@@ -14,20 +14,6 @@
 #include "simulate/util/simulate_util.h"
 #include "simulate/draw/draw.h"
 
-static void	set_pixel(t_world *world, int x, int y, int color)
-{
-	char	*addr;
-	int		size_line;
-	int		bpp;
-	int		endian;
-
-	if (x < 0 || y < 0 || x >= world->gui.screen.x || y >= world->gui.screen.y)
-		return ;
-	color = mlx_get_color_value(world->gui.mlx, color);
-	addr = mlx_get_data_addr(world->gui.img, &bpp, &size_line, &endian);
-	*(unsigned int *)(addr + (y * size_line + x * (bpp / 8))) = color;
-}
-
 static void	_update_next_render_idx(t_gui_setting *gui)
 {
 	gui->separated_render_curr.x++;

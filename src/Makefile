@@ -96,6 +96,7 @@ MINIRT_SRCS = \
 	simulate/draw/ray_color.c \
 	simulate/draw/color_to_pixel.c \
 	simulate/util/hit.c \
+	simulate/util/set_pixel.c \
 	simulate/util/put_string.c \
 	simulate/util/world_iter.c \
 	simulate/util/get_camera_ray.c \
