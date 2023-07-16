@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:59 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 12:56:48 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/16 11:42:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	move_camera(void *param)
 	enum e_type {FRONT, RIGHT, NEW};
 	v[FRONT] = v3_normalize(v3_hadamard(camera->axis, vector3(1, 0, 1)));
 	v[RIGHT] = v3_cross(v[FRONT], world->axis);
-	if (world->gui.keyboard[KEYBOARD_W])
+	if (world->gui.keyboard[KEYBOARD_w])
 		camera->position = v3_add(camera->position, v3_mul(v[FRONT], delta));
-	if (world->gui.keyboard[KEYBOARD_S])
+	if (world->gui.keyboard[KEYBOARD_s])
 		camera->position = v3_sub(camera->position, v3_mul(v[FRONT], delta));
-	if (world->gui.keyboard[KEYBOARD_A])
+	if (world->gui.keyboard[KEYBOARD_a])
 		camera->position = v3_sub(camera->position, v3_mul(v[RIGHT], delta));
-	if (world->gui.keyboard[KEYBOARD_D])
+	if (world->gui.keyboard[KEYBOARD_d])
 		camera->position = v3_add(camera->position, v3_mul(v[RIGHT], delta));
 	if (world->gui.keyboard[KEYBOARD_SPACE])
 		camera->position = v3_add(camera->position, v3_mul(world->axis, delta));
@@ -45,24 +45,24 @@ void	transform_objs(void *param)
 	t_element *const	c = &(w->camera->base);
 	const t_vector3		delta = v3_mul(vector3(1, 1, 1), 0.1);
 
-	if (w->selected && w->gui.keyboard[KEYBOARD_P])
+	if (w->selected && w->gui.keyboard[KEYBOARD_p])
 		w->transform_type = Position;
-	if (w->selected && w->gui.keyboard[KEYBOARD_T])
+	if (w->selected && w->gui.keyboard[KEYBOARD_t])
 		w->transform_type = Rotation;
-	if (w->selected && w->gui.keyboard[KEYBOARD_H])
+	if (w->selected && w->gui.keyboard[KEYBOARD_h])
 		w->transform_type = Scaling | Height;
-	if (w->selected && w->gui.keyboard[KEYBOARD_R])
+	if (w->selected && w->gui.keyboard[KEYBOARD_r])
 		w->transform_type = Scaling | Radius;
-	if (w->selected && w->gui.keyboard[KEYBOARD_X])
+	if (w->selected && w->gui.keyboard[KEYBOARD_x])
 		w->transform_type = (w->transform_type & (Position | Rotation)) | X;
-	if (w->selected && w->gui.keyboard[KEYBOARD_Y])
+	if (w->selected && w->gui.keyboard[KEYBOARD_y])
 		w->transform_type = (w->transform_type & (Position | Rotation)) | Y;
-	if (w->selected && w->gui.keyboard[KEYBOARD_Z])
+	if (w->selected && w->gui.keyboard[KEYBOARD_z])
 		w->transform_type = (w->transform_type & (Position | Rotation)) | Z;
-	if (w->selected && w->gui.keyboard[KEYBOARD_Q])
+	if (w->selected && w->gui.keyboard[KEYBOARD_q])
 		w->selected->func[Transform](w->selected, c, w->transform_type,
 			v3_mul(delta, -1));
-	if (w->selected && w->gui.keyboard[KEYBOARD_E])
+	if (w->selected && w->gui.keyboard[KEYBOARD_e])
 		w->selected->func[Transform](w->selected, c, w->transform_type, delta);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 14:22:40 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/16 10:01:03 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,19 @@ enum e_keyboard_key
 	KEYBOARD_ESCAPE,
 	KEYBOARD_SPACE,
 	KEYBOARD_LSHIFT,
-	KEYBOARD_W,
-	KEYBOARD_A,
-	KEYBOARD_S,
-	KEYBOARD_D,
-	KEYBOARD_P,
-	KEYBOARD_T,
-	KEYBOARD_H,
-	KEYBOARD_R,
-	KEYBOARD_X,
-	KEYBOARD_Y,
-	KEYBOARD_Z,
-	KEYBOARD_Q,
-	KEYBOARD_E,
+	KEYBOARD_w,
+	KEYBOARD_a,
+	KEYBOARD_s,
+	KEYBOARD_d,
+	KEYBOARD_p,
+	KEYBOARD_t,
+	KEYBOARD_h,
+	KEYBOARD_r,
+	KEYBOARD_x,
+	KEYBOARD_y,
+	KEYBOARD_z,
+	KEYBOARD_q,
+	KEYBOARD_e,
 	MAX_KEYBOARD
 };
 
@@ -85,19 +85,19 @@ static const int	g_keycode[MAX_KEYBOARD] = {
 [KEYBOARD_ESCAPE] = 0x0035,
 [KEYBOARD_SPACE] = 0x31,
 [KEYBOARD_LSHIFT] = 0x101,
-[KEYBOARD_W] = 0x0D,
-[KEYBOARD_A] = 0x00,
-[KEYBOARD_S] = 0x01,
-[KEYBOARD_D] = 0x02,
-[KEYBOARD_P] = 0x23,
-[KEYBOARD_T] = 0x11,
-[KEYBOARD_H] = 0x04,
-[KEYBOARD_R] = 0x0F,
-[KEYBOARD_X] = 0x07,
-[KEYBOARD_Y] = 0x10,
-[KEYBOARD_Z] = 0x06,
-[KEYBOARD_Q] = 0x0C,
-[KEYBOARD_E] = 0x0E
+[KEYBOARD_w] = 0x0D,
+[KEYBOARD_a] = 0x00,
+[KEYBOARD_s] = 0x01,
+[KEYBOARD_d] = 0x02,
+[KEYBOARD_p] = 0x23,
+[KEYBOARD_t] = 0x11,
+[KEYBOARD_h] = 0x04,
+[KEYBOARD_r] = 0x0F,
+[KEYBOARD_x] = 0x07,
+[KEYBOARD_y] = 0x10,
+[KEYBOARD_z] = 0x06,
+[KEYBOARD_q] = 0x0C,
+[KEYBOARD_e] = 0x0E
 };
 # else
 /*
@@ -109,19 +109,19 @@ static const int	g_keycode[MAX_KEYBOARD] = {
 [KEYBOARD_ESCAPE] = 0xFF1B,
 [KEYBOARD_SPACE] = 0x020,
 [KEYBOARD_LSHIFT] = 0xFFE1,
-[KEYBOARD_W] = 0x77,
-[KEYBOARD_A] = 0x61,
-[KEYBOARD_S] = 0x73,
-[KEYBOARD_D] = 0x64,
-[KEYBOARD_P] = 0x050,
-[KEYBOARD_T] = 0x054,
-[KEYBOARD_H] = 0x048,
-[KEYBOARD_R] = 0x052,
-[KEYBOARD_X] = 0x058,
-[KEYBOARD_Y] = 0x059,
-[KEYBOARD_Z] = 0x05a,
-[KEYBOARD_Q] = 0x051,
-[KEYBOARD_E] = 0x045
+[KEYBOARD_w] = 0x77,
+[KEYBOARD_a] = 0x61,
+[KEYBOARD_s] = 0x73,
+[KEYBOARD_d] = 0x64,
+[KEYBOARD_p] = 0x070,
+[KEYBOARD_t] = 0x074,
+[KEYBOARD_h] = 0x068,
+[KEYBOARD_r] = 0x072,
+[KEYBOARD_x] = 0x078,
+[KEYBOARD_y] = 0x079,
+[KEYBOARD_z] = 0x07a,
+[KEYBOARD_q] = 0x071,
+[KEYBOARD_e] = 0x065
 };
 # endif
 
