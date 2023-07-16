@@ -64,7 +64,8 @@ int mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *
 	val = *string - 32;
       else
 	val = 31;
-      mlx_put_image_to_window_scale(mlx_ptr, win_ptr, font, val*(FONT_WIDTH+2), 0, FONT_WIDTH, font_atlas.height, x+pos*dest_w, y, dest_w, dest_h, color);
+      mlx_put_image_to_window_scale(mlx_ptr, win_ptr, font, val*(FONT_WIDTH+2), 
+      0, FONT_WIDTH, font_atlas.height, x+pos*dest_w, y, dest_w, dest_h, color);
       pos ++;
       string ++;
     }

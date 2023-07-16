@@ -48,6 +48,7 @@ int	hook_draw(void *param)
 	t_ray					ray;
 
 	hook_draw_setting(param);
+	mlx_clear_window(gui->mlx, gui->win);
 	pos.x = gui->separated_render_curr.x;
 	while (pos.x < gui->screen.x)
 	{
@@ -64,6 +65,13 @@ int	hook_draw(void *param)
 		}
 		pos.x += gui->separated_render_max.x;
 	}
+	static int frame = 0;
+	frame++;
+	char *edit = "edit....";
+	int len = (frame / 4) % ft_strlen(edit);
+	static int zzzz = 0;
+	for (int i = 0; i < len && world->selected != NULL; i++)
+		put_string(world, vector3(10, zzzz++, 0), edit, len);
 	mlx_put_image_to_window(gui->mlx, gui->win, gui->img, 0, 0);
 	_update_next_render_idx(gui);
 	return (EXIT_SUCCESS);
