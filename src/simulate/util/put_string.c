@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   font.c                                             :+:      :+:    :+:   */
+/*   put_string.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 17:11:45 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/16 17:11:47 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/17 06:56:38 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -6880,68 +6880,54 @@ V\000\000\000\000\000\000\000\000"
 	"\377\377\377\377\377\377\377\377",
 };
 
-static const unsigned char	*get_font(void)
+uint32_t	get_font_pixel(unsigned char c, int w, int h)
 {
-	return (g_font_atlas);
+	const int		o = (c - 32) * 12;
+	const uint8_t	a = (0xFF - g_font_atlas[h * 1140 * 4 + (w + o) * 4 + 3]);
+	const uint8_t	r = g_font_atlas[h * 1140 * 4 + (w + o) * 4 + 2];
+	const uint8_t	g = g_font_atlas[h * 1140 * 4 + (w + o) * 4 + 1];
+	const uint8_t	b = g_font_atlas[h * 1140 * 4 + (w + o) * 4 + 0];
+
+	return (a << 24 | r << 16 | g << 8 | b << 4);
 }
 
-
-void mlx_int_fill(unsigned char *data, int sl)
+static void	set_pixel(t_world *world, int x, int y, int color)
 {
-  int i, j;
-  j = 0;
-  while (j < 20) // height
-    {
-      i = 0;
-      while (i < 1140) // width
-	{
-	  data[j*sl+i*4] = get_font()[j*1140*4+i*4+2];
-	  data[j*sl+i*4+1] = get_font()[j*1140*4+i*4+1];
-	  data[j*sl+i*4+2] = get_font()[j*1140*4+i*4];
-	  data[j*sl+i*4+3] = 0xFF - get_font()[j*1140*4+i*4+3];
-	  i ++;
-	}
-      j ++;
-    }
-    
+	char	*addr;
+	int		size_line;
+	int		bpp;
+	int		endian;
+
+	if (x < 0 || y < 0 || x >= world->gui.screen.x || y >= world->gui.screen.y)
+		return ;
+	color = mlx_get_color_value(world->gui.mlx, color);
+	addr = mlx_get_data_addr(world->gui.img, &bpp, &size_line, &endian);
+	*(unsigned int *)(addr + (y * size_line + x * (bpp / 8))) = color;
 }
 
 void	put_string(t_world *world, t_vector3 pos, char *s, int len)
 {
-	int x = pos.x;
-	int y = pos.y;
-	int bpp;
-	static int size_line;
-	int endian;
-	static void *font = NULL;
-	static unsigned char *data = NULL;
-	unsigned char *addr = NULL;
+	int			i;
+	int			h;
+	int			w;
+	const int	x = pos.x;
+	const int	y = pos.y;
 
-	if (font == NULL)
+	i = 0;
+	while (i < len && s[i] != 0)
 	{
-		font = mlx_new_image(world->gui.mlx, 1140, 20);
-		data = (unsigned char *)mlx_get_data_addr(font, &bpp, &size_line, &endian);
-		mlx_int_fill(data, size_line);
-	}
-	addr = (unsigned char *)mlx_get_data_addr(world->gui.img, &bpp, &size_line, &endian);
-	for (int i = 0; s[i] != 0 && i < len; i++) {
-		if (s[i] <= 32 || s[i] > 127)
-			continue ;
-		int xx = x + 20 + i * 10;
-		int yy = y + 10;
-		if (xx >= world->gui.screen.x || yy >= world->gui.screen.y)
-			break;
-		char c = s[i] - 32;
-		for (int h = 0; h < 20; h++) {
-			for (int w = 0; w < 10; w++) {
-				int a = (h * 4608) + (c * 12 + w) * 4;
-				int cx = x + w + i * 10;
-				int cy = y + h;
-				unsigned int *val = (unsigned int *)(data + a);
-				if (*val & 0x00FFFFFF)
-					*(unsigned int *)(addr + (cy * size_line + cx * (bpp / 8))) = 0x00FFFFFF;
+		h = 0;
+		while (h < 20 && !(s[i] <= 32 || s[i] > 127))
+		{
+			w = 0;
+			while (w < 10)
+			{
+				if (0x00FFFFFF & get_font_pixel(s[i], w, h))
+					set_pixel(world, x + w + i * 10, y + h, 0x00FFFFFF);
+				++w;
 			}
+			++h;
 		}
+		++i;
 	}
 }
-
