@@ -15,11 +15,16 @@
 
 int	hook_draw_setting(void *param)
 {
-	t_world *const	world = param;
+	t_world *const			world = param;
+	t_gui_setting *const	gui = &(world->gui);
+	const t_vector3			point_in_world = vector3(
+			gui->mouse.curr.x,
+			gui->screen.y - gui->mouse.curr.y,
+			0);
 
-	world->camera->obj.ratio = (float)world->gui.screen.y / world->gui.screen.x;
-	if (world->gui.mouse.action[MOUSE_BUTTON_LEFT] == MOUSE_PRESS)
-		world->selected = select_element(world, world->gui.mouse.curr);
+	world->camera->obj.ratio = (float)gui->screen.y / gui->screen.x;
+	if (gui->mouse.action[MOUSE_BUTTON_LEFT] == MOUSE_PRESS)
+		world->selected = select_element(world, point_in_world);
 	move_camera(world);
 	rotate_camera(world);
 	transform_objs(world);
