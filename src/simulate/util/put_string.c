@@ -6905,7 +6905,7 @@ static void	set_pixel(t_world *world, int x, int y, int color)
 	*(unsigned int *)(addr + (y * size_line + x * (bpp / 8))) = color;
 }
 
-void	put_string(t_world *world, t_vector3 pos, char *s, int len)
+void	put_string(t_world *world, t_vector3 pos, const char *s, int len)
 {
 	int			i;
 	int			h;
