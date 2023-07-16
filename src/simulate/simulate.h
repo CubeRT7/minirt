@@ -23,11 +23,6 @@
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 
-# define DEFAULT_FOCAL_WIDTH 2.0f
-# define DEFAULT_MAX_DEPTH 50
-# define DEFAULT_IGNORE_DELTA 0.001f
-# define DEFAULT_SAMPLE_PER_PIXEL 10
-
 typedef struct s_mouse
 {
 	t_vector3	curr;
