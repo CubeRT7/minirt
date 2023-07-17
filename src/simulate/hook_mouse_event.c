@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 02:10:36 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/17 15:35:35 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:51:38 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,19 @@ void	rotate_camera(void *param)
 	if (angle > 0)
 		camera->base.axis = v[NEW];
 	gui->mouse.press[MOUSE_BUTTON_RIGHT] = gui->mouse.curr;
+}
+
+void	transform_objs_with_mouse(void *param)
+{
+	t_world *const		w = param;
+	t_element *const	c = &(w->camera->base);
+	t_vector3			delta;
+
+	if (w->selected == NULL || !(w->transform_type & 0xf00))
+		return ;
+	delta = v3_sub(w->gui.mouse.curr, w->gui.mouse.prev);
+	delta.y = -delta.y;
+	delta.z = delta.x - delta.y;
+	delta = v3_mul(delta, 0.01);
+	w->selected->func[Transform](w->selected, c, w->transform_type, delta);
 }

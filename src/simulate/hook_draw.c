@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/17 14:58:53 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:49:31 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ int	hook_draw(void *param)
 	t_world *const			world = param;
 	t_gui_setting *const	gui = &world->gui;
 
+	gui->mouse.prev = gui->mouse.curr;
 	gui->mouse.curr = get_mouse_pos(world);
+	transform_objs_with_mouse(world);
 	hook_draw_setting(param);
 	mlx_clear_window(gui->mlx, gui->win);
 	render_main_frame(world);
