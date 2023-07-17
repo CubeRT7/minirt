@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/17 16:50:00 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:12:39 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 # include "mlx.h"
 # include "Element/common.h"
 
-extern int	hook_draw(void *param);
-extern int	hook_draw_setting(void *param);
-extern int	hook_close_event(void *param);
+extern int			hook_draw(void *param);
+extern int			hook_draw_setting(void *param);
+extern int			hook_close_event(void *param);
 
-extern int	key_press(int keycode, void *param);
-extern int	key_release(int keycode, void *param);
-extern int	button_press(int button, int x, int y, void *param);
-extern int	button_release(int button, int x, int y, void *param);
+extern int			key_press(int keycode, void *param);
+extern int			key_release(int keycode, void *param);
+extern int			button_press(int button, int x, int y, void *param);
+extern int			button_release(int button, int x, int y, void *param);
 
-extern void	rotate_camera(void *param);
-extern void	move_camera(void *param);
-extern void	transform_objs(void *param);
-extern void	transform_objs_with_mouse(void *param);
+extern void			rotate_camera(void *param);
+extern void			move_camera(void *param);
+extern void			transform_objs(void *param);
+extern void			transform_objs_with_mouse(void *param);
 
 enum e_mouse_action
 {

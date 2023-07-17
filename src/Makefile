@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/15 11:46:45 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/17 17:04:54 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,15 @@ MINIRT_SRCS = \
 	simulate/util/get_camera_ray.c \
 	simulate/util/select_element.c \
 	$(MINIRT).c
+ifneq ($(shell uname), Darwin)
+MINIRT_SRCS += \
+	simulate/util/get_mouse_pos_linux.c \
+
+else
+MINIRT_SRCS += \
+	simulate/util/get_mouse_pos_macos.c \
+
+endif
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)
 MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)
 -include $(MINIRT_DEPS)
