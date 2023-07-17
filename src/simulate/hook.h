@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/16 10:01:03 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:53:43 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ extern int	key_press(int keycode, void *param);
 extern int	key_release(int keycode, void *param);
 extern int	button_press(int button, int x, int y, void *param);
 extern int	button_release(int button, int x, int y, void *param);
-extern int	motion_notify(int x, int y, void *param);
 
 extern void	rotate_camera(void *param);
 extern void	move_camera(void *param);

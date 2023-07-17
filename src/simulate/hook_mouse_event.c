@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 02:10:36 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/15 11:32:00 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:53:07 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ int	button_release(int button, int x, int y, void *param)
 
 	world->gui.mouse.action[button] = MOUSE_RELEASE;
 	world->gui.mouse.prev[button] = vector3(x, y, 0);
-	return (EXIT_SUCCESS);
-}
-
-int	motion_notify(int x, int y, void *param)
-{
-	t_world *const	world = param;
-
-	world->gui.mouse.curr = vector3(x, y, 0);
 	return (EXIT_SUCCESS);
 }
 

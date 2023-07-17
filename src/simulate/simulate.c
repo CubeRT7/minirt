@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 12:49:09 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:55:18 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static int	_hook_setting(t_world *world)
 	mlx_hook(g->win, KeyRelease, KeyReleaseMask, key_release, world);
 	mlx_hook(g->win, ButtonPress, ButtonPressMask, button_press, world);
 	mlx_hook(g->win, ButtonRelease, ButtonReleaseMask, button_release, world);
-	mlx_hook(g->win, MotionNotify, ButtonMotionMask, motion_notify, world);
 	mlx_hook(g->win, DestroyNotify, 0, hook_close_event, world);
 	mlx_loop_hook(g->mlx, hook_draw, world);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 12:51:47 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:58:53 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,21 @@ static void	render_main_frame(t_world *world)
 	_update_next_render_idx(gui);
 }
 
+static t_vector3	get_mouse_pos(t_world *world)
+{
+	int	x;
+	int	y;
+
+	mlx_mouse_get_pos(world->gui.mlx, world->gui.win, &x, &y);
+	return (vector3(x, y, 0));
+}
+
 int	hook_draw(void *param)
 {
 	t_world *const			world = param;
 	t_gui_setting *const	gui = &world->gui;
 
+	gui->mouse.curr = get_mouse_pos(world);
 	hook_draw_setting(param);
 	mlx_clear_window(gui->mlx, gui->win);
 	render_main_frame(world);
