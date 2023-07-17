@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 12:55:35 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:36:02 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 typedef struct s_mouse
 {
 	t_vector3	curr;
-	t_vector3	prev[MAX_MOUSE_KEY];
+	t_vector3	press[MAX_MOUSE_KEY];
 	int			action[MAX_MOUSE_KEY];
 }	t_mouse;
 
