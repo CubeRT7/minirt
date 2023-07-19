@@ -23,10 +23,6 @@ CPPFLAGS	+= -I../external/minilibx
 LDFLAGS		+= -L../external/minilibx
 LDLIBS		+= -lmlx
 
-CPPFLAGS	+= -I../lib/libstr
-LDFLAGS		+= -L../lib/libstr
-LDLIBS		+= -lstr
-
 CPPFLAGS	+= -I../lib/libcustom
 LDFLAGS		+= -L../lib/libcustom
 LDLIBS		+= -lcustom
