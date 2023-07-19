@@ -14,7 +14,7 @@
 
 static void	_init_func(t_light *self)
 {
-	(void)self;
+	self->base.func[Transform] = transform_element;
 }
 
 int	init_light(t_light *self)
