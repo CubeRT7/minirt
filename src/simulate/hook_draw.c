@@ -14,7 +14,7 @@
 #include "simulate/util/simulate_util.h"
 #include "simulate/draw/draw.h"
 
-static void	render_text(t_world *world)
+static void	render_mode(t_world *world)
 {
 	static const char	*edit = "edit....";
 	static int			frame = 0;
