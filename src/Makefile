@@ -79,6 +79,7 @@ MINIRT_SRCS = \
 	Element/util/close_to_zero.c \
 	Element/util/quadratic_formula_root.c \
 	Element/util/transform_element.c \
+	Element/util/rgb_to_color.c \
 	file/clean_rt.c \
 	file/import_file.c \
 	file/parse_ambient_light.c \

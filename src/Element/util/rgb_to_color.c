@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_light.c                                       :+:      :+:    :+:   */
+/*   rgb_to_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 21:42:10 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/07 05:51:05 by minjungk         ###   ########.fr       */
+/*   Created: 2023/07/19 14:52:04 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/19 14:52:06 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "light.h"
+#include "element_util.h"
 
-static void	_init_func(t_light *self)
+t_color	rgb_to_color(t_rgb rgb)
 {
-	(void)self;
-}
-
-int	init_light(t_light *self)
-{
-	self->base.position = self->raw.coordinate;
-	self->base.axis = v3_normalize(self->raw.axis);
-	self->base.color = rgb_to_color(self->raw.rgb);
-	self->obj.ratio = self->raw.ratio;
-	_init_func(self);
-	return (EXIT_SUCCESS);
+	return (vector3(rgb.r / 255.0f, rgb.g / 255.0f, rgb.b / 255.0f));
 }

@@ -34,5 +34,6 @@ extern int			transform_element(
 						const t_element *camera,
 						enum e_transform_type type,
 						t_vector3 delta);
+extern t_color		rgb_to_color(t_rgb rgb);
 
 #endif

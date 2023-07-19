@@ -22,10 +22,7 @@ int	init_plane(t_plane *self)
 {
 	self->base.position = self->raw.coordinate;
 	self->base.axis = v3_normalize(self->raw.axis);
-	self->base.color = vector3(
-			self->raw.rgb.r / 255.0,
-			self->raw.rgb.g / 255.0,
-			self->raw.rgb.b / 255.0);
+	self->base.color = rgb_to_color(self->raw.rgb);
 	_init_func(self);
 	return (EXIT_SUCCESS);
 }
