@@ -42,8 +42,6 @@ void	move_camera(void *param)
 void	transform_objs(void *param)
 {
 	t_world *const		w = param;
-	t_element *const	c = &(w->camera->base);
-	const t_vector3		delta = v3_mul(v3_preset(V3_ONE), 0.1);
 
 	if (w->selected && w->gui.keyboard[KEYBOARD_p])
 		w->transform_type = Position;
@@ -59,11 +57,6 @@ void	transform_objs(void *param)
 		w->transform_type = (w->transform_type & (Position | Rotation)) | Y;
 	if (w->selected && w->gui.keyboard[KEYBOARD_z])
 		w->transform_type = (w->transform_type & (Position | Rotation)) | Z;
-	if (w->selected && w->gui.keyboard[KEYBOARD_q])
-		w->selected->func[Transform](w->selected, c, w->transform_type,
-			v3_mul(delta, -1));
-	if (w->selected && w->gui.keyboard[KEYBOARD_e])
-		w->selected->func[Transform](w->selected, c, w->transform_type, delta);
 }
 
 int	key_press(int keycode, void *param)
@@ -87,7 +80,6 @@ int	key_press(int keycode, void *param)
 }
 
 int	key_release(int keycode, void *param)
-
 {
 	int				i;
 	t_world *const	world = param;
