@@ -17,5 +17,6 @@
 
 extern uint32_t	color_to_pixel(t_color c);
 extern t_color	ray_color(t_ray *ray, t_list *objs, void *amb_lgt, t_list *lgt);
+extern void		render_main_frame(t_world *world);
 
 #endif

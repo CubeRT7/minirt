@@ -96,6 +96,7 @@ MINIRT_SRCS = \
 	simulate/hook_close_event.c \
 	simulate/draw/ray_color.c \
 	simulate/draw/color_to_pixel.c \
+	simulate/draw/render_main_frame.c \
 	simulate/util/hit.c \
 	simulate/util/set_pixel.c \
 	simulate/util/put_string.c \
