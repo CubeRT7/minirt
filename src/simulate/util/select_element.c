@@ -18,7 +18,7 @@ t_element	*select_element(t_world *world, t_vector3 pos)
 	t_ray			ray;
 	t_hit			record;
 
-	ray = get_camera_ray(world->camera, screen, pos);
+	ray = get_camera_ray(world->camera, screen, pos, v3_preset(V3_ZERO));
 	if (hit(world->objs, &ray, (t_range){DELTA, BIGVALUE}, &record))
 		return (record.elem);
 	return (NULL);

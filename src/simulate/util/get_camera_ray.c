@@ -22,14 +22,20 @@ static float	_angle(t_vector3 axis, t_vector3 v, int minus)
 	return (angle);
 }
 
-t_ray	get_camera_ray(t_camera *cam, t_vector3 screen, t_vector3 pos)
+t_ray	get_camera_ray(
+	t_camera *cam,
+	t_vector3 screen,
+	t_vector3 pos,
+	t_vector3 delta)
 {
-	const t_vector3	uv = vector3(pos.x / screen.x, pos.y / screen.y, 0);
-	t_vector3		v[3];
-	float			h_angle;
-	float			v_angle;
+	t_vector3	uv;
+	t_vector3	v[3];
+	float		h_angle;
+	float		v_angle;
 
 	enum e_type {DIREC, FRONT, RIGHT};
+	uv.x = (pos.x + delta.x) / screen.x;
+	uv.y = (pos.y + delta.y) / screen.y;
 	v[DIREC] = cam->obj.viewport_lower_left;
 	v[DIREC] = v3_add(v[DIREC], v3_mul(cam->obj.viewport_horizontal, uv.x));
 	v[DIREC] = v3_add(v[DIREC], v3_mul(cam->obj.viewport_vertical, uv.y));
