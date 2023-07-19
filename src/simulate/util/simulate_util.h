@@ -12,8 +12,8 @@
 
 #ifndef SIMULATE_UTIL_H
 # define SIMULATE_UTIL_H
-# define DELTA 0.001f
-# define BIGVALUE 99999999.0f
+# define DELTA 0.00000001
+# define BIGVALUE 99999999.0
 # include "simulate.h"
 # include "Element/common.h"
 

@@ -14,5 +14,5 @@
 
 t_color	rgb_to_color(t_rgb rgb)
 {
-	return (vector3(rgb.r / 255.0f, rgb.g / 255.0f, rgb.b / 255.0f));
+	return (vector3(rgb.r / 255.0, rgb.g / 255.0, rgb.b / 255.0));
 }

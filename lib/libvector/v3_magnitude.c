@@ -12,7 +12,7 @@
 
 #include "libvector.h"
 
-float	v3_magnitude(t_vector3 v1)
+double	v3_magnitude(t_vector3 v1)
 {
 	return (sqrt(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z));
 }

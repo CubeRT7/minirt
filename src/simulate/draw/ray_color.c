@@ -31,7 +31,7 @@ static t_vector3	_get_diffuse_light(t_hit rec, t_list *objs, t_list *lights)
 	t_ray		light_ray;
 	t_vector3	direction;
 	t_vector3	res;
-	float		d;
+	double		d;
 
 	res = v3_preset(V3_ZERO);
 	while (lights)

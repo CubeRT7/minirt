@@ -12,7 +12,7 @@
 
 #include "element_util.h"
 
-inline int	close_to_zero(float f)
+inline int	close_to_zero(double f)
 {
-	return (range_in(f, (t_range){-0.00001f, 0.00001f}));
+	return (range_in(f, (t_range){-0.00000001, 0.00000001}));
 }

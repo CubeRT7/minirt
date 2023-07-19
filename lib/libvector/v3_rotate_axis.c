@@ -12,11 +12,11 @@
 
 #include "libvector.h"
 
-t_vector3	v3_rotate_axis(t_vector3 v, t_vector3 a, float theta)
+t_vector3	v3_rotate_axis(t_vector3 v, t_vector3 a, double theta)
 {
-	const float		cth = cosf(theta);
-	const float		sth = sinf(theta);
-	const float		dot = v3_dot(a, v);
+	const double	cth = cos(theta);
+	const double	sth = sin(theta);
+	const double	dot = v3_dot(a, v);
 	const t_vector3	crs = v3_cross(a, v);
 	t_vector3		res;
 

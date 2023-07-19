@@ -12,7 +12,7 @@
 
 #include "libvector.h"
 
-t_vector3	vector3(float x, float y, float z)
+t_vector3	vector3(double x, double y, double z)
 {
 	return ((t_vector3){x, y, z});
 }

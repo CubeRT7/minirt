@@ -13,9 +13,9 @@
 #include "simulate_util.h"
 #include "Element/Camera/camera.h"
 
-static float	_angle(t_vector3 axis, t_vector3 v, int minus)
+static double	_angle(t_vector3 axis, t_vector3 v, int minus)
 {
-	const float	angle = acosf(v3_dot(axis, v) * 0.9999f);
+	const double	angle = acos(v3_dot(axis, v) * 0.9999);
 
 	if (minus)
 		return (-angle);
@@ -30,8 +30,8 @@ t_ray	get_camera_ray(
 {
 	t_vector3	uv;
 	t_vector3	v[3];
-	float		h_angle;
-	float		v_angle;
+	double		h_angle;
+	double		v_angle;
 
 	enum e_type {DIREC, FRONT, RIGHT};
 	uv.x = (pos.x + delta.x) / screen.x;

@@ -29,23 +29,23 @@ enum e_v3_preset
 
 typedef struct s_vector3
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_vector3;
 
-t_vector3	vector3(float x, float y, float z);
+t_vector3	vector3(double x, double y, double z);
 t_vector3	v3_add(t_vector3 v1, t_vector3 v2);
 t_vector3	v3_sub(t_vector3 v1, t_vector3 v2);
-t_vector3	v3_mul(t_vector3 v1, float v2);
+t_vector3	v3_mul(t_vector3 v1, double v2);
 t_vector3	v3_normalize(t_vector3 v1);
 t_vector3	v3_reverse(t_vector3 v1);
 t_vector3	v3_rotate(t_vector3 v, t_vector3 a);
-t_vector3	v3_rotate_axis(t_vector3 v, t_vector3 a, float theta);
+t_vector3	v3_rotate_axis(t_vector3 v, t_vector3 a, double theta);
 t_vector3	v3_hadamard(t_vector3 v1, t_vector3 v2);
 t_vector3	v3_cross(t_vector3 v1, t_vector3 v2);
-float		v3_dot(t_vector3 v1, t_vector3 v2);
-float		v3_magnitude(t_vector3 v1);
+double		v3_dot(t_vector3 v1, t_vector3 v2);
+double		v3_magnitude(t_vector3 v1);
 t_vector3	v3_preset(enum e_v3_preset type);
 
 #endif

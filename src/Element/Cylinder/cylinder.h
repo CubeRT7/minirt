@@ -23,13 +23,13 @@ typedef struct s_cylinder
 		t_point		coordinate;
 		t_vector3	axis;
 		t_rgb		rgb;
-		float		diameter;
-		float		height;
+		double		diameter;
+		double		height;
 	}						raw;
 	struct s_cylinder_obj
 	{
-		float		radius;
-		float		height;
+		double		radius;
+		double		height;
 	}						obj;
 }	t_cylinder;
 
@@ -37,16 +37,16 @@ typedef struct s_circle
 {
 	t_point		center;
 	t_vector3	axis;
-	float		radius;
+	double		radius;
 }	t_circle;
 
 typedef struct s_cylinder_body_alias
 {
-	float		r2;
+	double		r2;
 	t_vector3	w;
-	float		vh;
-	float		wh;
-	float		l;
+	double		vh;
+	double		wh;
+	double		l;
 	t_vector3	in;
 }	t_cylinder_body_alias;
 

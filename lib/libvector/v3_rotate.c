@@ -29,15 +29,15 @@ t_vector3	v3_rotate(t_vector3 v, t_vector3 a)
 {
 	const t_vector3	angle_x[3] = {
 		vector3(1, 0, 0),
-		vector3(0, cosf(a.x), -sinf(a.x)),
-		vector3(0, sinf(a.x), cosf(a.x))};
+		vector3(0, cos(a.x), -sin(a.x)),
+		vector3(0, sin(a.x), cos(a.x))};
 	const t_vector3	angle_y[3] = {
-		vector3(cosf(a.y), 0, sinf(a.y)),
+		vector3(cos(a.y), 0, sin(a.y)),
 		vector3(0, 1, 0),
-		vector3(-sinf(a.y), 0, cosf(a.y))};
+		vector3(-sin(a.y), 0, cos(a.y))};
 	const t_vector3	angle_z[3] = {
-		vector3(cosf(a.z), -sinf(a.z), 0),
-		vector3(sinf(a.z), cosf(a.z), 0),
+		vector3(cos(a.z), -sin(a.z), 0),
+		vector3(sin(a.z), cos(a.z), 0),
 		vector3(0, 0, 1)};
 	t_vector3		mul_xy[3];
 	t_vector3		rotate[3];

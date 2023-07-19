@@ -12,7 +12,7 @@
 
 #include "element_util.h"
 
-inline t_point	get_ray_point(const t_ray *ray, float t)
+inline t_point	get_ray_point(const t_ray *ray, double t)
 {
 	return (v3_add(v3_mul(ray->direction, t), ray->origin));
 }

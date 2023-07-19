@@ -12,10 +12,10 @@
 
 #include "element_util.h"
 
-inline int	quadratic_formula_root(t_abc abc, t_range range, float *x)
+inline int	quadratic_formula_root(t_abc abc, t_range range, double *x)
 {
-	const float	discriminant = abc.b * abc.b - abc.a * abc.c;
-	float		sqrtd;
+	const double	discriminant = abc.b * abc.b - abc.a * abc.c;
+	double			sqrtd;
 
 	if (discriminant < 0)
 		return (NO_VALUE);

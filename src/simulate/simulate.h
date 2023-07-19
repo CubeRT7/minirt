@@ -41,10 +41,6 @@ typedef struct s_gui_setting
 	t_vector3	separated_render_curr;
 	t_mouse		mouse;
 	int			keyboard[MAX_KEYBOARD];
-	float		focal_length;
-	float		max_depth;
-	float		ignore_delta;
-	float		sample_per_pixel;
 }	t_gui_setting;
 
 typedef struct s_world

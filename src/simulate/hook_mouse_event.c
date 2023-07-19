@@ -37,7 +37,7 @@ void	rotate_camera(void *param)
 	t_camera *const			camera = world->camera;
 	t_gui_setting *const	gui = &world->gui;
 	t_vector3				v[4];
-	float					angle;
+	double					angle;
 
 	enum e_type {FRONT, RIGHT, NEW, MOVE};
 	if (gui->mouse.action[MOUSE_BUTTON_RIGHT] == MOUSE_IDLE)

@@ -22,7 +22,7 @@ int	hook_draw_setting(void *param)
 			gui->screen.y - gui->mouse.curr.y,
 			0);
 
-	world->camera->obj.ratio = (float)gui->screen.y / gui->screen.x;
+	world->camera->obj.ratio = (double)gui->screen.y / gui->screen.x;
 	if (gui->mouse.action[MOUSE_BUTTON_LEFT] == MOUSE_PRESS)
 		world->selected = select_element(world, point_in_world);
 	move_camera(world);
