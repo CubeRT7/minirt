@@ -43,7 +43,7 @@ void	transform_objs(void *param)
 {
 	t_world *const		w = param;
 	t_element *const	c = &(w->camera->base);
-	const t_vector3		delta = v3_mul(vector3(1, 1, 1), 0.1);
+	const t_vector3		delta = v3_mul(v3_preset(V3_ONE), 0.1f);
 
 	if (w->selected && w->gui.keyboard[KEYBOARD_p])
 		w->transform_type = Position;

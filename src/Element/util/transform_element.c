@@ -19,7 +19,7 @@ int	transform_element(
 	t_vector3 delta)
 {
 	const t_vector3	front = v3_normalize(vector3(cam->axis.x, 0, cam->axis.z));
-	const t_vector3	right = v3_normalize(v3_cross(front, vector3(0, 1, 0)));
+	const t_vector3	right = v3_normalize(v3_cross(front, v3_preset(V3_UP)));
 	const t_vector3	camera_up = v3_normalize(v3_cross(right, cam->axis));
 
 	if (type & Rotation)

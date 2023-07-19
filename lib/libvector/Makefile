@@ -35,6 +35,7 @@ SRCS = \
 	v3_reverse.c \
 	v3_rotate.c \
 	v3_rotate_axis.c \
+	v3_preset.c \
 
 OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.d)

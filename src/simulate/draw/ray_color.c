@@ -22,7 +22,7 @@ static t_vector3	get_diffuse_light(t_hit rec, t_list *objs, t_list *lights)
 	t_vector3	res;
 	float		d;
 
-	res = vector3(0, 0, 0);
+	res = v3_preset(V3_ZERO);
 	while (lights)
 	{
 		light = lights->content;
@@ -60,5 +60,5 @@ t_color	ray_color(t_ray *ray, t_list *objs, void *ambient_light, t_list *lights)
 				v3_mul(brightness, 1 - a_lgt->obj.ratio));
 		return (v3_hadamard(brightness, rec.color));
 	}
-	return (vector3(0, 0, 0));
+	return (v3_preset(V3_ZERO));
 }

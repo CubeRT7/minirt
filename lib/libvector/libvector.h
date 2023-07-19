@@ -14,6 +14,19 @@
 # define LIBVECTOR_H
 # include <math.h>
 
+enum e_v3_preset
+{
+	V3_ZERO,
+	V3_ONE,
+	V3_UP,
+	V3_DOWN,
+	V3_RIGHT,
+	V3_LEFT,
+	V3_FRONT,
+	V3_BACK,
+	V3_MAX_PRESET_IDX
+};
+
 typedef struct s_vector3
 {
 	float	x;
@@ -33,5 +46,6 @@ t_vector3	v3_hadamard(t_vector3 v1, t_vector3 v2);
 t_vector3	v3_cross(t_vector3 v1, t_vector3 v2);
 float		v3_dot(t_vector3 v1, t_vector3 v2);
 float		v3_magnitude(t_vector3 v1);
+t_vector3	v3_preset(enum e_v3_preset type);
 
 #endif

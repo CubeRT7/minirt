@@ -69,7 +69,7 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 	t_world	world;
 
 	ft_bzero(&world, sizeof(t_world));
-	world.axis = (t_vector3){0, 1, 0};
+	world.axis = v3_preset(V3_UP);
 	world.ambient_light = ambient->content;
 	world.camera = camera->content;
 	world.lights = lights;
