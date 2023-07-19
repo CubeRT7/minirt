@@ -25,7 +25,8 @@ static void	render_text(t_world *world)
 		frame = 0;
 		return ;
 	}
-	put_string(world, vector3(10, 10, 0), edit, len);
+	put_str(world, vector3(10, 10, 0), world->selected->type_name, SIZE_MAX);
+	put_str(world, vector3(10, 30, 0), edit, len);
 }
 
 int	hook_draw(void *param)

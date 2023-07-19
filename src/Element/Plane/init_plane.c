@@ -14,6 +14,7 @@
 
 static void	_init_func(t_plane *self)
 {
+	self->base.type_name = "Plane";
 	self->base.func[Hit] = hit_plane;
 	self->base.func[Transform] = transform_element;
 }

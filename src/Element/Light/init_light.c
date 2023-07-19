@@ -14,6 +14,7 @@
 
 static void	_init_func(t_light *self)
 {
+	self->base.type_name = "Light";
 	self->base.func[Transform] = transform_element;
 }
 

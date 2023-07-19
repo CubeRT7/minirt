@@ -95,7 +95,7 @@ MINIRT_SRCS = \
 	simulate/draw/render_main_frame.c \
 	simulate/util/hit.c \
 	simulate/util/set_pixel.c \
-	simulate/util/put_string.c \
+	simulate/util/put_str.c \
 	simulate/util/world_iter.c \
 	simulate/util/get_camera_ray.c \
 	simulate/util/select_element.c \

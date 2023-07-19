@@ -78,6 +78,7 @@ enum e_transform_type
 typedef struct s_element
 {
 	enum e_element	type;
+	char			*type_name;
 	t_point			position;
 	t_vector3		axis;
 	t_color			color;

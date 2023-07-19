@@ -14,6 +14,7 @@
 
 static void	_init_func(t_sphere *self)
 {
+	self->base.type_name = "Sphere";
 	self->base.func[Hit] = hit_sphere;
 	self->base.func[Transform] = transform_sphere;
 }

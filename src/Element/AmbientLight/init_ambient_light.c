@@ -14,7 +14,7 @@
 
 static void	_init_func(t_ambient_light *self)
 {
-	(void)self;
+	self->base.type_name = "AmbientLight";
 }
 
 int	init_ambient_light(t_ambient_light *self)

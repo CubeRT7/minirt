@@ -14,6 +14,7 @@
 
 static void	_init_func(t_camera *self)
 {
+	self->base.type_name = "Camera";
 	self->base.func[Update] = update_camera;
 }
 

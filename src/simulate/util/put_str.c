@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_string.c                                       :+:      :+:    :+:   */
+/*   put_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -6891,16 +6891,16 @@ uint32_t	get_font_pixel(unsigned char c, int w, int h)
 	return (a << 24 | r << 16 | g << 8 | b << 4);
 }
 
-void	put_string(t_world *world, t_vector3 pos, const char *s, int len)
+void	put_str(t_world *world, t_vector3 pos, const char *s, size_t len)
 {
-	int			i;
-	int			h;
-	int			w;
+	size_t		i;
+	size_t		h;
+	size_t		w;
 	const int	x = pos.x;
 	const int	y = pos.y;
 
 	i = 0;
-	while (i < len && s[i] != 0)
+	while (i < len && s[i] != '\0')
 	{
 		h = 0;
 		while (h < 20 && !(s[i] <= 32 || s[i] > 127))
