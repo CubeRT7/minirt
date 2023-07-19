@@ -45,8 +45,8 @@ static int	_gui_setting(t_gui_setting *g)
 	if (g->img == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	g->separated_render_max = vector3(
-			(int)(1 + WINDOW_WIDTH / 128),
-			(int)(1 + WINDOW_HEIGHT / 128),
+			(int)(1 + WINDOW_WIDTH / WINDOW_WIDTH_SEPARATE),
+			(int)(1 + WINDOW_HEIGHT / WINDOW_HEIGHT_SEPARATE),
 			0);
 	return (EXIT_SUCCESS);
 }

@@ -22,6 +22,8 @@
 # define TITLE "CubeRT7"
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH_SEPARATE 128
+# define WINDOW_HEIGHT_SEPARATE 128
 
 typedef struct s_mouse
 {
