@@ -27,7 +27,6 @@ typedef struct s_mouse
 {
 	t_vector3	prev;
 	t_vector3	curr;
-	t_vector3	press[MAX_MOUSE_KEY];
 	int			action[MAX_MOUSE_KEY];
 }	t_mouse;
 

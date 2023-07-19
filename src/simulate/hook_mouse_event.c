@@ -17,8 +17,12 @@ int	button_press(int button, int x, int y, void *param)
 {
 	t_world *const	world = param;
 
-	world->gui.mouse.action[button] = MOUSE_PRESS;
-	world->gui.mouse.press[button] = vector3(x, y, 0);
+	if (x < 0 || x >= world->gui.screen.x || y < 0 || y >= world->gui.screen.y)
+		return (EXIT_SUCCESS);
+	if (world->gui.mouse.action[button] == MOUSE_PRESS)
+		world->gui.mouse.action[button] = MOUSE_REPEAT;
+	else
+		world->gui.mouse.action[button] = MOUSE_PRESS;
 	return (EXIT_SUCCESS);
 }
 
@@ -26,8 +30,9 @@ int	button_release(int button, int x, int y, void *param)
 {
 	t_world *const	world = param;
 
-	world->gui.mouse.action[button] = MOUSE_RELEASE;
-	world->gui.mouse.press[button] = vector3(x, y, 0);
+	(void)x;
+	(void)y;
+	world->gui.mouse.action[button] = MOUSE_IDLE;
 	return (EXIT_SUCCESS);
 }
 
@@ -42,9 +47,7 @@ void	rotate_camera(void *param)
 	enum e_type {FRONT, RIGHT, NEW, MOVE};
 	if (gui->mouse.action[MOUSE_BUTTON_RIGHT] == MOUSE_IDLE)
 		return ;
-	if (gui->mouse.action[MOUSE_BUTTON_RIGHT] == MOUSE_RELEASE)
-		gui->mouse.action[MOUSE_BUTTON_RIGHT] = MOUSE_IDLE;
-	v[MOVE] = v3_sub(gui->mouse.press[MOUSE_BUTTON_RIGHT], gui->mouse.curr);
+	v[MOVE] = v3_sub(gui->mouse.prev, gui->mouse.curr);
 	v[FRONT] = v3_normalize(v3_hadamard(camera->base.axis, vector3(1, 0, 1)));
 	v[RIGHT] = v3_normalize(v3_cross(v[FRONT], world->axis));
 	camera->base.axis = v3_rotate_axis(camera->base.axis, world->axis,
@@ -54,7 +57,6 @@ void	rotate_camera(void *param)
 	angle = v3_dot(v3_normalize(v3_cross(v[NEW], world->axis)), v[RIGHT]);
 	if (angle > 0)
 		camera->base.axis = v[NEW];
-	gui->mouse.press[MOUSE_BUTTON_RIGHT] = gui->mouse.curr;
 }
 
 void	transform_objs_with_mouse(void *param)
