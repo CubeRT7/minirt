@@ -51,7 +51,7 @@ static int	_gui_setting(t_gui_setting *g)
 	return (EXIT_SUCCESS);
 }
 
-static int	_hook_setting(t_world *world)
+static void	_hook_setting(t_world *world)
 {
 	t_gui_setting *const	g = &world->gui;
 
@@ -61,7 +61,6 @@ static int	_hook_setting(t_world *world)
 	mlx_hook(g->win, ButtonRelease, ButtonReleaseMask, button_release, world);
 	mlx_hook(g->win, DestroyNotify, 0, hook_close_event, world);
 	mlx_loop_hook(g->mlx, hook_draw, world);
-	return (EXIT_SUCCESS);
 }
 
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
@@ -79,11 +78,7 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 		_clean_gui(&world.gui);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
-	if (_hook_setting(&world))
-	{
-		_clean_gui(&world.gui);
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	}
+	_hook_setting(&world);
 	world_iter(&world, Init);
 	world_iter(&world, Update);
 	mlx_loop(world.gui.mlx);
