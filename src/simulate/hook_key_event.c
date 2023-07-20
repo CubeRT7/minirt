@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:59 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 08:22:27 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:19:35 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	transform_objs(void *param)
 
 int	key_press(int keycode, void *param)
 {
-	int				i;
-	t_world *const	world = param;
+	int					i;
+	t_viewport *const	viewport = param;
 
 	if (keycode == g_keycode[KEYBOARD_ESCAPE])
 		exit(EXIT_SUCCESS);
@@ -71,7 +71,7 @@ int	key_press(int keycode, void *param)
 	{
 		if (keycode == g_keycode[i])
 		{
-			world->viewport.keyboard[i] = 1;
+			viewport->keyboard[i] = 1;
 			return (EXIT_SUCCESS);
 		}
 		++i;
@@ -81,15 +81,15 @@ int	key_press(int keycode, void *param)
 
 int	key_release(int keycode, void *param)
 {
-	int				i;
-	t_world *const	world = param;
+	int					i;
+	t_viewport *const	viewport = param;
 
 	i = 0;
 	while (i < MAX_KEYBOARD)
 	{
 		if (keycode == g_keycode[i])
 		{
-			world->viewport.keyboard[i] = 0;
+			viewport->keyboard[i] = 0;
 			return (EXIT_SUCCESS);
 		}
 		++i;

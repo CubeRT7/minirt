@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 09:10:28 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:18:23 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,13 @@ static int	_viewport_setting(t_viewport *view)
 	return (EXIT_SUCCESS);
 }
 
-static void	_hook_setting(t_world *world)
+static void	_hook_setting(t_viewport *view)
 {
-	t_viewport *const	view = &world->viewport;
-
-	mlx_hook(view->win, KeyPress, KeyPressMask, key_press, world);
-	mlx_hook(view->win, KeyRelease, KeyReleaseMask, key_release, world);
-	mlx_hook(view->win, ButtonPress, ButtonPressMask, button_press, world);
-	mlx_hook(view->win, ButtonRelease, ButtonReleaseMask, button_release, world);
-	mlx_hook(view->win, DestroyNotify, 0, destroy_notify, world);
+	mlx_hook(view->win, KeyPress, KeyPressMask, key_press, view);
+	mlx_hook(view->win, KeyRelease, KeyReleaseMask, key_release, view);
+	mlx_hook(view->win, ButtonPress, ButtonPressMask, button_press, view);
+	mlx_hook(view->win, ButtonRelease, ButtonReleaseMask, button_release, view);
+	mlx_hook(view->win, DestroyNotify, 0, destroy_notify, view);
 }
 
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
@@ -77,7 +75,7 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 		_clean_viewport(&world.viewport);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
-	_hook_setting(&world);
+	_hook_setting(&world.viewport);
 	world_iter(&world, Init);
 	world_iter(&world, Update);
 	mlx_loop_hook(world.viewport.mlx, hook_draw, &world);
