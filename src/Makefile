@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/20 09:51:58 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/20 10:04:19 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,13 +86,13 @@ MINIRT_SRCS = \
 	file/parse_sphere.c \
 	file/parse_cylinder.c \
 	viewport/viewport.c \
+	viewport/hook_key_event.c \
+	viewport/hook_mouse_event.c \
+	viewport/hook_close_event.c \
 	simulate/simulate.c \
 	simulate/controller.c \
-	simulate/hook_key_event.c \
-	simulate/hook_mouse_event.c \
 	simulate/hook_draw.c \
 	simulate/hook_draw_setting.c \
-	simulate/hook_close_event.c \
 	simulate/draw/ray_color.c \
 	simulate/draw/color_to_pixel.c \
 	simulate/draw/render_main_frame.c \
