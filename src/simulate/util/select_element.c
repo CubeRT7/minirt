@@ -14,7 +14,7 @@
 
 t_element	*select_element(t_world *world, t_vector3 pos)
 {
-	const t_vector3	size = world->viewport.size;
+	const t_vector3	size = world->workspace.size;
 	t_ray			ray;
 	t_hit			record;
 

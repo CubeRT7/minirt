@@ -12,16 +12,16 @@
 
 #include "draw.h"
 
-static void	_update_next_render_idx(t_viewport *viewport)
+static void	_update_next_render_idx(t_workspace *workspace)
 {
-	viewport->separated_render_curr.x++;
-	if (viewport->separated_render_curr.x >= viewport->separated_render_max.x)
+	workspace->separated_render_curr.x++;
+	if (workspace->separated_render_curr.x >= workspace->separated_render_max.x)
 	{
-		viewport->separated_render_curr.x = 0;
-		viewport->separated_render_curr.y++;
+		workspace->separated_render_curr.x = 0;
+		workspace->separated_render_curr.y++;
 	}
-	if (viewport->separated_render_curr.y >= viewport->separated_render_max.y)
-		viewport->separated_render_curr.y = 0;
+	if (workspace->separated_render_curr.y >= workspace->separated_render_max.y)
+		workspace->separated_render_curr.y = 0;
 }
 
 static int	_get_pixel(t_world *w, t_vector3 pos)
@@ -39,7 +39,7 @@ static int	_get_pixel(t_world *w, t_vector3 pos)
 	idx = 0;
 	while (idx < 3)
 	{
-		ray = get_camera_ray(w->camera, w->viewport.size, pos, v[idx]);
+		ray = get_camera_ray(w->camera, w->workspace.size, pos, v[idx]);
 		color = ray_color(&ray, w->objs, w->ambient_light, w->lights);
 		res = v3_add(res, color);
 		idx++;
@@ -49,23 +49,23 @@ static int	_get_pixel(t_world *w, t_vector3 pos)
 
 void	render_main_frame(t_world *world)
 {
-	t_viewport *const	viewport = &world->viewport;
+	t_workspace *const	workspace = &world->workspace;
 	t_vector3			pos;
 	int					pixel_color;
 
-	pos.x = viewport->separated_render_curr.x;
-	while (pos.x < viewport->size.x)
+	pos.x = workspace->separated_render_curr.x;
+	while (pos.x < workspace->size.x)
 	{
-		pos.y = viewport->separated_render_curr.y;
-		while (pos.y < viewport->size.y)
+		pos.y = workspace->separated_render_curr.y;
+		while (pos.y < workspace->size.y)
 		{
-			if (pos.x > viewport->size.x || pos.y > viewport->size.y)
+			if (pos.x > workspace->size.x || pos.y > workspace->size.y)
 				break ;
 			pixel_color = _get_pixel(world, pos);
-			set_pixel(world, pos.x, viewport->size.y - pos.y - 1, pixel_color);
-			pos.y += viewport->separated_render_max.y;
+			set_pixel(world, pos.x, workspace->size.y - pos.y - 1, pixel_color);
+			pos.y += workspace->separated_render_max.y;
 		}
-		pos.x += viewport->separated_render_max.x;
+		pos.x += workspace->separated_render_max.x;
 	}
-	_update_next_render_idx(viewport);
+	_update_next_render_idx(workspace);
 }

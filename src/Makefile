@@ -52,7 +52,7 @@ endif
 MINIRT = miniRT
 
 CPPFLAGS	+= -Ifile
-CPPFLAGS	+= -Iviewport
+CPPFLAGS	+= -Iworkspace
 CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
@@ -85,10 +85,10 @@ MINIRT_SRCS = \
 	file/parse_plane.c \
 	file/parse_sphere.c \
 	file/parse_cylinder.c \
-	viewport/viewport.c \
-	viewport/hook.c \
-	viewport/hook_mouse_event.c \
-	viewport/hook_close_event.c \
+	workspace/workspace.c \
+	workspace/hook.c \
+	workspace/hook_mouse_event.c \
+	workspace/hook_close_event.c \
 	simulate/simulate.c \
 	simulate/hook_draw.c \
 	simulate/hook_draw_setting.c \
@@ -104,12 +104,12 @@ MINIRT_SRCS = \
 	$(MINIRT).c
 ifneq ($(shell uname), Darwin)
 MINIRT_SRCS += \
-	viewport/hook_key_event_linux.c \
+	workspace/hook_key_event_linux.c \
 	simulate/util/get_mouse_pos_linux.c \
 
 else
 MINIRT_SRCS += \
-	viewport/hook_key_event_macos.c \
+	workspace/hook_key_event_macos.c \
 	simulate/util/get_mouse_pos_macos.c \
 
 endif
