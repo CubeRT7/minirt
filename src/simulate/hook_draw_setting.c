@@ -6,11 +6,10 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 05:15:47 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 09:09:01 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:24:30 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
 #include "simulate/util/simulate_util.h"
 
 int	hook_draw_setting(void *param)

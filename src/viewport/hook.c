@@ -1,67 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 10:17:28 by minjungk         ###   ########.fr       */
+/*   Created: 2023/07/20 09:38:24 by minjungk          #+#    #+#             */
+/*   Updated: 2023/07/20 10:23:42 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
-# include "mlx.h"
-# include "Element/common.h"
-
-extern int	destroy_notify(void *param);
-extern int	key_press(int keycode, void *param);
-extern int	key_release(int keycode, void *param);
-extern int	button_press(int button, int x, int y, void *param);
-extern int	button_release(int button, int x, int y, void *param);
-
-enum e_mouse_action
-{
-	MOUSE_PRESS = 0,
-	MOUSE_RELEASE = 1,
-	MOUSE_REPEAT = 2,
-	MOUSE_IDLE = 3
-};
-
-enum e_mouse_key
-{
-	MOUSE_BUTTON_UNKNOWN = 0,
-	MOUSE_BUTTON_LEFT = 1,
-	MOUSE_BUTTON_RIGHT	= 2,
-	MOUSE_BUTTON_MIDDLE	= 3,
-	MOUSE_SCROLL_UP = 4,
-	MOUSE_SCROLL_DOWN = 5,
-	MAX_MOUSE_KEY
-};
-
-enum e_keyboard_key
-{
-	KEYBOARD_RETURN,
-	KEYBOARD_TAB,
-	KEYBOARD_ESCAPE,
-	KEYBOARD_SPACE,
-	KEYBOARD_LSHIFT,
-	KEYBOARD_w,
-	KEYBOARD_a,
-	KEYBOARD_s,
-	KEYBOARD_d,
-	KEYBOARD_p,
-	KEYBOARD_t,
-	KEYBOARD_h,
-	KEYBOARD_r,
-	KEYBOARD_x,
-	KEYBOARD_y,
-	KEYBOARD_z,
-	KEYBOARD_q,
-	KEYBOARD_e,
-	MAX_KEYBOARD
-};
+#include "viewport.h"
 
 /*
  * Reference: X11/X.h
@@ -134,4 +83,25 @@ enum e_event
 	LASTEvent = 35
 };
 
-#endif
+extern int	destroy_notify(void *param);
+extern int	key_press(int keycode, void *param);
+extern int	key_release(int keycode, void *param);
+extern int	button_press(int button, int x, int y, void *param);
+extern int	button_release(int button, int x, int y, void *param);
+
+void	init_hook(struct s_viewport *view)
+{
+	int	i;
+
+	i = 0;
+	while (i < MAX_MOUSE_KEY)
+		view->mouse.action[i++] = MOUSE_IDLE;
+	i = 0;
+	while (i < MAX_KEYBOARD)
+		view->keyboard[i++] = 0;
+	mlx_hook(view->win, DestroyNotify, 0, destroy_notify, view);
+	mlx_hook(view->win, KeyPress, KeyPressMask, key_press, view);
+	mlx_hook(view->win, KeyRelease, KeyReleaseMask, key_release, view);
+	mlx_hook(view->win, ButtonPress, ButtonPressMask, button_press, view);
+	mlx_hook(view->win, ButtonRelease, ButtonReleaseMask, button_release, view);
+}

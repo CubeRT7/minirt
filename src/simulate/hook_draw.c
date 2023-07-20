@@ -6,11 +6,10 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 08:27:25 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:24:26 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
 #include "simulate/util/simulate_util.h"
 #include "simulate/draw/draw.h"
 

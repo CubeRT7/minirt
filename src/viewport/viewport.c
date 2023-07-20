@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   viewport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 07:27:25 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/20 08:50:35 by minjungk         ###   ########.fr       */
+/*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/20 10:26:30 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "viewport.h"
+
+extern void	init_hook(struct s_viewport *view);
 
 void	destroy_viewport(struct s_viewport *view)
 {
@@ -22,24 +24,6 @@ void	destroy_viewport(struct s_viewport *view)
 	if (view->win)
 		mlx_destroy_window(view->mlx, view->win);
 	view->win = NULL;
-}
-
-static void	_init_viewport(struct s_viewport *view)
-{
-	int	i;
-
-	mlx_hook(view->win, KeyPress, KeyPressMask, key_press, view);
-	mlx_hook(view->win, KeyRelease, KeyReleaseMask, key_release, view);
-	mlx_hook(view->win, ButtonPress, ButtonPressMask, button_press, view);
-	mlx_hook(view->win, ButtonRelease, ButtonReleaseMask, button_release, view);
-	mlx_hook(view->win, DestroyNotify, 0, destroy_notify, view);
-	view->separated_render_max = vector3(
-			(int)(1 + WINDOW_WIDTH / WINDOW_WIDTH_SEPARATE),
-			(int)(1 + WINDOW_HEIGHT / WINDOW_HEIGHT_SEPARATE),
-			0);
-	i = 0;
-	while (i < MAX_MOUSE_KEY)
-		view->mouse.action[i++] = MOUSE_IDLE;
 }
 
 int	create_viewport(struct s_viewport *view)
@@ -62,6 +46,10 @@ int	create_viewport(struct s_viewport *view)
 		destroy_viewport(view);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
-	_init_viewport(view);
+	init_hook(view);
+	view->separated_render_max = vector3(
+			(int)(1 + WINDOW_WIDTH / WINDOW_WIDTH_SEPARATE),
+			(int)(1 + WINDOW_HEIGHT / WINDOW_HEIGHT_SEPARATE),
+			0);
 	return (EXIT_SUCCESS);
 }
