@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 08:25:07 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:08:14 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_viewport
 	void		*mlx;
 	void		*win;
 	void		*img;
-	t_vector3	screen;
+	t_vector3	size;
 	t_vector3	separated_render_max;
 	t_vector3	separated_render_curr;
 	t_mouse		mouse;

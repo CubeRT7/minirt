@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 02:10:36 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/20 08:24:40 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:08:53 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	button_press(int button, int x, int y, void *param)
 {
 	t_world *const	world = param;
 
-	if (x < 0 || x >= world->viewport.screen.x)
+	if (x < 0 || x >= world->viewport.size.x)
 		return (EXIT_SUCCESS);
-	if (y < 0 || y >= world->viewport.screen.y)
+	if (y < 0 || y >= world->viewport.size.y)
 		return (EXIT_SUCCESS);
 	if (world->viewport.mouse.action[button] == MOUSE_PRESS)
 		world->viewport.mouse.action[button] = MOUSE_REPEAT;
@@ -53,9 +53,9 @@ void	rotate_camera(void *param)
 	v[FRONT] = v3_normalize(v3_hadamard(camera->base.axis, vector3(1, 0, 1)));
 	v[RIGHT] = v3_normalize(v3_cross(v[FRONT], world->axis));
 	camera->base.axis = v3_rotate_axis(camera->base.axis, world->axis,
-			v[MOVE].x / viewport->screen.x);
+			v[MOVE].x / viewport->size.x);
 	v[NEW] = v3_rotate_axis(camera->base.axis, v[RIGHT],
-			v[MOVE].y / viewport->screen.y);
+			v[MOVE].y / viewport->size.y);
 	angle = v3_dot(v3_normalize(v3_cross(v[NEW], world->axis)), v[RIGHT]);
 	if (angle > 0)
 		camera->base.axis = v[NEW];

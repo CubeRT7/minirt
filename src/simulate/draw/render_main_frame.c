@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:13:07 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 08:28:16 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:08:34 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	_get_pixel(t_world *w, t_vector3 pos)
 	idx = 0;
 	while (idx < 3)
 	{
-		ray = get_camera_ray(w->camera, w->viewport.screen, pos, v[idx]);
+		ray = get_camera_ray(w->camera, w->viewport.size, pos, v[idx]);
 		color = ray_color(&ray, w->objs, w->ambient_light, w->lights);
 		res = v3_add(res, color);
 		idx++;
@@ -54,15 +54,15 @@ void	render_main_frame(t_world *world)
 	int					pixel_color;
 
 	pos.x = viewport->separated_render_curr.x;
-	while (pos.x < viewport->screen.x)
+	while (pos.x < viewport->size.x)
 	{
 		pos.y = viewport->separated_render_curr.y;
-		while (pos.y < viewport->screen.y)
+		while (pos.y < viewport->size.y)
 		{
-			if (pos.x > viewport->screen.x || pos.y > viewport->screen.y)
+			if (pos.x > viewport->size.x || pos.y > viewport->size.y)
 				break ;
 			pixel_color = _get_pixel(world, pos);
-			set_pixel(world, pos.x, viewport->screen.y - pos.y - 1, pixel_color);
+			set_pixel(world, pos.x, viewport->size.y - pos.y - 1, pixel_color);
 			pos.y += viewport->separated_render_max.y;
 		}
 		pos.x += viewport->separated_render_max.x;

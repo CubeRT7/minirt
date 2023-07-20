@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 09:05:52 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:08:18 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static int	_viewport_setting(t_viewport *view)
 	view->mlx = mlx_init();
 	if (view->mlx == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	view->screen = (t_vector3){WINDOW_WIDTH, WINDOW_HEIGHT, 0};
-	view->win = mlx_new_window(view->mlx, view->screen.x, view->screen.y, TITLE);
+	view->size = (t_vector3){WINDOW_WIDTH, WINDOW_HEIGHT, 0};
+	view->win = mlx_new_window(view->mlx, view->size.x, view->size.y, TITLE);
 	if (view->win == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	view->img = mlx_new_image(view->mlx, view->screen.x, view->screen.y);
+	view->img = mlx_new_image(view->mlx, view->size.x, view->size.y);
 	if (view->img == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	view->separated_render_max = vector3(
