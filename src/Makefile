@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/20 10:04:19 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/20 10:16:00 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,6 @@ MINIRT_SRCS = \
 	file/parse_sphere.c \
 	file/parse_cylinder.c \
 	viewport/viewport.c \
-	viewport/hook_key_event.c \
 	viewport/hook_mouse_event.c \
 	viewport/hook_close_event.c \
 	simulate/simulate.c \
@@ -105,10 +104,12 @@ MINIRT_SRCS = \
 	$(MINIRT).c
 ifneq ($(shell uname), Darwin)
 MINIRT_SRCS += \
+	viewport/hook_key_event_linux.c \
 	simulate/util/get_mouse_pos_linux.c \
 
 else
 MINIRT_SRCS += \
+	viewport/hook_key_event_macos.c \
 	simulate/util/get_mouse_pos_macos.c \
 
 endif

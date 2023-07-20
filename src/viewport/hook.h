@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 09:48:51 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:17:28 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,60 +62,6 @@ enum e_keyboard_key
 	KEYBOARD_e,
 	MAX_KEYBOARD
 };
-
-# ifndef __LINUX__
-/*
- * Reference:
- * /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library
- * /Frameworks/Carbon.framework/Versions/A
- * /Frameworks/HIToolbox.framework/Versions/A
- * /Headers/Events.h 
- * */
-static const int	g_keycode[MAX_KEYBOARD] = {
-[KEYBOARD_RETURN] = 0x0024,
-[KEYBOARD_TAB] = 0x0030,
-[KEYBOARD_ESCAPE] = 0x0035,
-[KEYBOARD_SPACE] = 0x31,
-[KEYBOARD_LSHIFT] = 0x101,
-[KEYBOARD_w] = 0x0D,
-[KEYBOARD_a] = 0x00,
-[KEYBOARD_s] = 0x01,
-[KEYBOARD_d] = 0x02,
-[KEYBOARD_p] = 0x23,
-[KEYBOARD_t] = 0x11,
-[KEYBOARD_h] = 0x04,
-[KEYBOARD_r] = 0x0F,
-[KEYBOARD_x] = 0x07,
-[KEYBOARD_y] = 0x10,
-[KEYBOARD_z] = 0x06,
-[KEYBOARD_q] = 0x0C,
-[KEYBOARD_e] = 0x0E
-};
-# else
-/*
- * Reference: X11/keysymdef.h
- */
-static const int	g_keycode[MAX_KEYBOARD] = {
-[KEYBOARD_RETURN] = 0xFF0D,
-[KEYBOARD_TAB] = 0xFF09,
-[KEYBOARD_ESCAPE] = 0xFF1B,
-[KEYBOARD_SPACE] = 0x020,
-[KEYBOARD_LSHIFT] = 0xFFE1,
-[KEYBOARD_w] = 0x77,
-[KEYBOARD_a] = 0x61,
-[KEYBOARD_s] = 0x73,
-[KEYBOARD_d] = 0x64,
-[KEYBOARD_p] = 0x070,
-[KEYBOARD_t] = 0x074,
-[KEYBOARD_h] = 0x068,
-[KEYBOARD_r] = 0x072,
-[KEYBOARD_x] = 0x078,
-[KEYBOARD_y] = 0x079,
-[KEYBOARD_z] = 0x07a,
-[KEYBOARD_q] = 0x071,
-[KEYBOARD_e] = 0x065
-};
-# endif
 
 /*
  * Reference: X11/X.h
