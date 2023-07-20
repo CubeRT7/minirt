@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   viewport.c                                         :+:      :+:    :+:   */
+/*   device.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "viewport.h"
+#include "device.h"
 
-extern void	init_hook(struct s_viewport *view);
+extern void	init_hook(struct s_device *view);
 
-void	destroy_viewport(struct s_viewport *view)
+void	destroy_device(struct s_device *view)
 {
 	if (view == NULL)
 		return ;
@@ -26,7 +26,7 @@ void	destroy_viewport(struct s_viewport *view)
 	view->win = NULL;
 }
 
-int	create_viewport(struct s_viewport *view)
+int	create_device(struct s_device *view)
 {
 	if (view == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
@@ -37,13 +37,13 @@ int	create_viewport(struct s_viewport *view)
 	view->win = mlx_new_window(view->mlx, view->size.x, view->size.y, TITLE);
 	if (view->win == NULL)
 	{
-		destroy_viewport(view);
+		destroy_device(view);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
 	view->img = mlx_new_image(view->mlx, view->size.x, view->size.y);
 	if (view->img == NULL)
 	{
-		destroy_viewport(view);
+		destroy_device(view);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
 	init_hook(view);

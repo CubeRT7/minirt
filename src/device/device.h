@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   viewport.h                                         :+:      :+:    :+:   */
+/*   device.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VIEWPORT_H
-# define VIEWPORT_H
+#ifndef DEVICE_H
+# define DEVICE_H
 # include "mlx.h"
 # include "libcustom.h"
 # include "libvector.h"
@@ -80,10 +80,10 @@ enum e_keyboard_key
 };
 
 /* ************************************************************************** */
-// viewport
+// device
 /* ************************************************************************** */
 
-typedef struct s_viewport
+typedef struct s_device
 {
 	void		*mlx;
 	void		*win;
@@ -93,9 +93,9 @@ typedef struct s_viewport
 	t_vector3	separated_render_curr;
 	t_mouse		mouse;
 	int			keyboard[MAX_KEYBOARD];
-}	t_viewport;
+}	t_device;
 
-extern void	destroy_viewport(struct s_viewport *viewport);
-extern int	create_viewport(struct s_viewport *viewport);
+extern void	destroy_device(struct s_device *device);
+extern int	create_device(struct s_device *device);
 
 #endif

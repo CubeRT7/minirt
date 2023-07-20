@@ -31,15 +31,15 @@ static void	render_text(t_world *world)
 int	hook_draw(void *param)
 {
 	t_world *const		world = param;
-	t_viewport *const	viewport = &world->viewport;
+	t_device *const		device = &world->device;
 
-	viewport->mouse.prev = viewport->mouse.curr;
-	viewport->mouse.curr = get_mouse_pos(world);
+	device->mouse.prev = device->mouse.curr;
+	device->mouse.curr = get_mouse_pos(world);
 	transform_objs_with_mouse(world);
 	hook_draw_setting(param);
-	mlx_clear_window(viewport->mlx, viewport->win);
+	mlx_clear_window(device->mlx, device->win);
 	render_main_frame(world);
 	render_text(world);
-	mlx_put_image_to_window(viewport->mlx, viewport->win, viewport->img, 0, 0);
+	mlx_put_image_to_window(device->mlx, device->win, device->img, 0, 0);
 	return (EXIT_SUCCESS);
 }

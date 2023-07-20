@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "viewport.h"
+#include "device.h"
 
 /*
  * Reference: X11/X.h
@@ -89,19 +89,19 @@ extern int	key_release(int keycode, void *param);
 extern int	button_press(int button, int x, int y, void *param);
 extern int	button_release(int button, int x, int y, void *param);
 
-void	init_hook(struct s_viewport *view)
+void	init_hook(struct s_device *dev)
 {
 	int	i;
 
 	i = 0;
 	while (i < MAX_MOUSE_KEY)
-		view->mouse.action[i++] = MOUSE_IDLE;
+		dev->mouse.action[i++] = MOUSE_IDLE;
 	i = 0;
 	while (i < MAX_KEYBOARD)
-		view->keyboard[i++] = 0;
-	mlx_hook(view->win, DestroyNotify, 0, destroy_notify, view);
-	mlx_hook(view->win, KeyPress, KeyPressMask, key_press, view);
-	mlx_hook(view->win, KeyRelease, KeyReleaseMask, key_release, view);
-	mlx_hook(view->win, ButtonPress, ButtonPressMask, button_press, view);
-	mlx_hook(view->win, ButtonRelease, ButtonReleaseMask, button_release, view);
+		dev->keyboard[i++] = 0;
+	mlx_hook(dev->win, DestroyNotify, 0, destroy_notify, dev);
+	mlx_hook(dev->win, KeyPress, KeyPressMask, key_press, dev);
+	mlx_hook(dev->win, KeyRelease, KeyReleaseMask, key_release, dev);
+	mlx_hook(dev->win, ButtonPress, ButtonPressMask, button_press, dev);
+	mlx_hook(dev->win, ButtonRelease, ButtonReleaseMask, button_release, dev);
 }

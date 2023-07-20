@@ -23,12 +23,12 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 	world.camera = camera->content;
 	world.lights = lights;
 	world.objs = objs;
-	if (create_viewport(&world.viewport) == EXIT_FAILURE)
+	if (create_device(&world.device) == EXIT_FAILURE)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	world_iter(&world, Init);
 	world_iter(&world, Update);
-	mlx_loop_hook(world.viewport.mlx, hook_draw, &world);
-	mlx_loop(world.viewport.mlx);
-	destroy_viewport(&world.viewport);
+	mlx_loop_hook(world.device.mlx, hook_draw, &world);
+	mlx_loop(world.device.mlx);
+	destroy_device(&world.device);
 	return (EXIT_SUCCESS);
 }

@@ -10,29 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "viewport.h"
+#include "device.h"
 
 int	button_press(int button, int x, int y, void *param)
 {
-	t_viewport *const	viewport = param;
+	t_device *const	device = param;
 
-	if (x < 0 || x >= viewport->size.x)
+	if (x < 0 || x >= device->size.x)
 		return (EXIT_SUCCESS);
-	if (y < 0 || y >= viewport->size.y)
+	if (y < 0 || y >= device->size.y)
 		return (EXIT_SUCCESS);
-	if (viewport->mouse.action[button] == MOUSE_PRESS)
-		viewport->mouse.action[button] = MOUSE_REPEAT;
+	if (device->mouse.action[button] == MOUSE_PRESS)
+		device->mouse.action[button] = MOUSE_REPEAT;
 	else
-		viewport->mouse.action[button] = MOUSE_PRESS;
+		device->mouse.action[button] = MOUSE_PRESS;
 	return (EXIT_SUCCESS);
 }
 
 int	button_release(int button, int x, int y, void *param)
 {
-	t_viewport *const	viewport = param;
+	t_device *const	device = param;
 
 	(void)x;
 	(void)y;
-	viewport->mouse.action[button] = MOUSE_IDLE;
+	device->mouse.action[button] = MOUSE_IDLE;
 	return (EXIT_SUCCESS);
 }

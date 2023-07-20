@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "viewport.h"
+#include "device.h"
 
 /*
  * Reference: X11/keysymdef.h
@@ -38,8 +38,8 @@ static const int	g_keycode[MAX_KEYBOARD] = {
 
 int	key_press(int keycode, void *param)
 {
-	int					i;
-	t_viewport *const	viewport = param;
+	int				i;
+	t_device *const	device = param;
 
 	if (keycode == g_keycode[KEYBOARD_ESCAPE])
 		exit(EXIT_SUCCESS);
@@ -48,7 +48,7 @@ int	key_press(int keycode, void *param)
 	{
 		if (keycode == g_keycode[i])
 		{
-			viewport->keyboard[i] = 1;
+			device->keyboard[i] = 1;
 			return (EXIT_SUCCESS);
 		}
 		++i;
@@ -58,15 +58,15 @@ int	key_press(int keycode, void *param)
 
 int	key_release(int keycode, void *param)
 {
-	int					i;
-	t_viewport *const	viewport = param;
+	int				i;
+	t_device *const	device = param;
 
 	i = 0;
 	while (i < MAX_KEYBOARD)
 	{
 		if (keycode == g_keycode[i])
 		{
-			viewport->keyboard[i] = 0;
+			device->keyboard[i] = 0;
 			return (EXIT_SUCCESS);
 		}
 		++i;
