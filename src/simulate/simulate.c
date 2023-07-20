@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 09:08:18 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:10:28 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	_hook_setting(t_world *world)
 	mlx_hook(view->win, KeyRelease, KeyReleaseMask, key_release, world);
 	mlx_hook(view->win, ButtonPress, ButtonPressMask, button_press, world);
 	mlx_hook(view->win, ButtonRelease, ButtonReleaseMask, button_release, world);
-	mlx_hook(view->win, DestroyNotify, 0, hook_close_event, world);
+	mlx_hook(view->win, DestroyNotify, 0, destroy_notify, world);
 }
 
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)

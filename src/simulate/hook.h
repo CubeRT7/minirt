@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/17 17:12:39 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:09:55 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 extern int			hook_draw(void *param);
 extern int			hook_draw_setting(void *param);
-extern int			hook_close_event(void *param);
 
+extern int			destroy_notify(void *param);
 extern int			key_press(int keycode, void *param);
 extern int			key_release(int keycode, void *param);
 extern int			button_press(int button, int x, int y, void *param);
