@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/17 17:04:54 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/20 07:43:10 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ endif
 MINIRT = miniRT
 
 CPPFLAGS	+= -Ifile
+CPPFLAGS	+= -Iviewport
 CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
@@ -84,6 +85,7 @@ MINIRT_SRCS = \
 	file/parse_plane.c \
 	file/parse_sphere.c \
 	file/parse_cylinder.c \
+	viewport/viewport.c \
 	simulate/simulate.c \
 	simulate/hook_key_event.c \
 	simulate/hook_mouse_event.c \
