@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 05:15:47 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 12:56:02 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 08:23:06 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 
 int	hook_draw_setting(void *param)
 {
-	t_world *const			world = param;
-	t_gui_setting *const	gui = &(world->gui);
-	const t_vector3			point_in_world = vector3(
-			gui->mouse.curr.x,
-			gui->screen.y - gui->mouse.curr.y,
+	t_world *const		world = param;
+	t_viewport *const	viewport = &world->viewport;
+	const t_vector3		point_in_world = vector3(
+			viewport->mouse.curr.x,
+			viewport->screen.y - viewport->mouse.curr.y,
 			0);
 
-	world->camera->obj.ratio = (double)gui->screen.y / gui->screen.x;
-	if (gui->mouse.action[MOUSE_BUTTON_LEFT] == MOUSE_PRESS)
+	world->camera->obj.ratio = (double)viewport->screen.y / viewport->screen.x;
+	if (viewport->mouse.action[MOUSE_BUTTON_LEFT] == MOUSE_PRESS)
 		world->selected = select_element(world, point_in_world);
-	if (gui->keyboard[KEYBOARD_RETURN] && world->lights)
+	if (viewport->keyboard[KEYBOARD_RETURN] && world->lights)
 		world->selected = (t_element *)(world->lights->content);
 	move_camera(world);
 	rotate_camera(world);

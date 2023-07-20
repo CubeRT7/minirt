@@ -6,45 +6,45 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/17 14:55:18 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:05:52 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simulate.h"
 #include "simulate/util/simulate_util.h"
 
-static void	_clean_gui(t_gui_setting *g)
+static void	_clean_viewport(t_viewport *view)
 {
-	if (g->img)
-		mlx_destroy_image(g->mlx, g->img);
-	g->img = NULL;
-	if (g->win)
-		mlx_destroy_window(g->mlx, g->win);
-	g->win = NULL;
+	if (view->img)
+		mlx_destroy_image(view->mlx, view->img);
+	view->img = NULL;
+	if (view->win)
+		mlx_destroy_window(view->mlx, view->win);
+	view->win = NULL;
 }
 
-static int	_gui_setting(t_gui_setting *g)
+static int	_viewport_setting(t_viewport *view)
 {
 	int	i;
 
-	ft_bzero(g, sizeof(t_gui_setting));
+	ft_bzero(view, sizeof(t_viewport));
 	i = 0;
 	while (i < MAX_MOUSE_KEY)
 	{
-		g->mouse.action[i] = MOUSE_IDLE;
+		view->mouse.action[i] = MOUSE_IDLE;
 		++i;
 	}
-	g->mlx = mlx_init();
-	if (g->mlx == NULL)
+	view->mlx = mlx_init();
+	if (view->mlx == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	g->screen = (t_vector3){WINDOW_WIDTH, WINDOW_HEIGHT, 0};
-	g->win = mlx_new_window(g->mlx, g->screen.x, g->screen.y, TITLE);
-	if (g->win == NULL)
+	view->screen = (t_vector3){WINDOW_WIDTH, WINDOW_HEIGHT, 0};
+	view->win = mlx_new_window(view->mlx, view->screen.x, view->screen.y, TITLE);
+	if (view->win == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	g->img = mlx_new_image(g->mlx, g->screen.x, g->screen.y);
-	if (g->img == NULL)
+	view->img = mlx_new_image(view->mlx, view->screen.x, view->screen.y);
+	if (view->img == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	g->separated_render_max = vector3(
+	view->separated_render_max = vector3(
 			(int)(1 + WINDOW_WIDTH / WINDOW_WIDTH_SEPARATE),
 			(int)(1 + WINDOW_HEIGHT / WINDOW_HEIGHT_SEPARATE),
 			0);
@@ -53,14 +53,13 @@ static int	_gui_setting(t_gui_setting *g)
 
 static void	_hook_setting(t_world *world)
 {
-	t_gui_setting *const	g = &world->gui;
+	t_viewport *const	view = &world->viewport;
 
-	mlx_hook(g->win, KeyPress, KeyPressMask, key_press, world);
-	mlx_hook(g->win, KeyRelease, KeyReleaseMask, key_release, world);
-	mlx_hook(g->win, ButtonPress, ButtonPressMask, button_press, world);
-	mlx_hook(g->win, ButtonRelease, ButtonReleaseMask, button_release, world);
-	mlx_hook(g->win, DestroyNotify, 0, hook_close_event, world);
-	mlx_loop_hook(g->mlx, hook_draw, world);
+	mlx_hook(view->win, KeyPress, KeyPressMask, key_press, world);
+	mlx_hook(view->win, KeyRelease, KeyReleaseMask, key_release, world);
+	mlx_hook(view->win, ButtonPress, ButtonPressMask, button_press, world);
+	mlx_hook(view->win, ButtonRelease, ButtonReleaseMask, button_release, world);
+	mlx_hook(view->win, DestroyNotify, 0, hook_close_event, world);
 }
 
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
@@ -73,15 +72,16 @@ int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 	world.camera = camera->content;
 	world.lights = lights;
 	world.objs = objs;
-	if (_gui_setting(&world.gui) == EXIT_FAILURE)
+	if (_viewport_setting(&world.viewport) == EXIT_FAILURE)
 	{
-		_clean_gui(&world.gui);
+		_clean_viewport(&world.viewport);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
 	_hook_setting(&world);
 	world_iter(&world, Init);
 	world_iter(&world, Update);
-	mlx_loop(world.gui.mlx);
-	_clean_gui(&world.gui);
+	mlx_loop_hook(world.viewport.mlx, hook_draw, &world);
+	mlx_loop(world.viewport.mlx);
+	_clean_viewport(&world.viewport);
 	return (EXIT_SUCCESS);
 }

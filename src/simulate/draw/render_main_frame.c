@@ -6,22 +6,22 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:13:07 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/19 15:13:08 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/20 08:28:16 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-static void	_update_next_render_idx(t_gui_setting *gui)
+static void	_update_next_render_idx(t_viewport *viewport)
 {
-	gui->separated_render_curr.x++;
-	if (gui->separated_render_curr.x >= gui->separated_render_max.x)
+	viewport->separated_render_curr.x++;
+	if (viewport->separated_render_curr.x >= viewport->separated_render_max.x)
 	{
-		gui->separated_render_curr.x = 0;
-		gui->separated_render_curr.y++;
+		viewport->separated_render_curr.x = 0;
+		viewport->separated_render_curr.y++;
 	}
-	if (gui->separated_render_curr.y >= gui->separated_render_max.y)
-		gui->separated_render_curr.y = 0;
+	if (viewport->separated_render_curr.y >= viewport->separated_render_max.y)
+		viewport->separated_render_curr.y = 0;
 }
 
 static int	_get_pixel(t_world *w, t_vector3 pos)
@@ -39,7 +39,7 @@ static int	_get_pixel(t_world *w, t_vector3 pos)
 	idx = 0;
 	while (idx < 3)
 	{
-		ray = get_camera_ray(w->camera, w->gui.screen, pos, v[idx]);
+		ray = get_camera_ray(w->camera, w->viewport.screen, pos, v[idx]);
 		color = ray_color(&ray, w->objs, w->ambient_light, w->lights);
 		res = v3_add(res, color);
 		idx++;
@@ -49,23 +49,23 @@ static int	_get_pixel(t_world *w, t_vector3 pos)
 
 void	render_main_frame(t_world *world)
 {
-	t_gui_setting *const	gui = &world->gui;
-	t_vector3				pos;
-	int						pixel_color;
+	t_viewport *const	viewport = &world->viewport;
+	t_vector3			pos;
+	int					pixel_color;
 
-	pos.x = gui->separated_render_curr.x;
-	while (pos.x < gui->screen.x)
+	pos.x = viewport->separated_render_curr.x;
+	while (pos.x < viewport->screen.x)
 	{
-		pos.y = gui->separated_render_curr.y;
-		while (pos.y < gui->screen.y)
+		pos.y = viewport->separated_render_curr.y;
+		while (pos.y < viewport->screen.y)
 		{
-			if (pos.x > gui->screen.x || pos.y > gui->screen.y)
+			if (pos.x > viewport->screen.x || pos.y > viewport->screen.y)
 				break ;
 			pixel_color = _get_pixel(world, pos);
-			set_pixel(world, pos.x, gui->screen.y - pos.y - 1, pixel_color);
-			pos.y += gui->separated_render_max.y;
+			set_pixel(world, pos.x, viewport->screen.y - pos.y - 1, pixel_color);
+			pos.y += viewport->separated_render_max.y;
 		}
-		pos.x += gui->separated_render_max.x;
+		pos.x += viewport->separated_render_max.x;
 	}
-	_update_next_render_idx(gui);
+	_update_next_render_idx(viewport);
 }

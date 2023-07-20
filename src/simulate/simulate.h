@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/17 15:37:10 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 08:25:07 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_mouse
 	int			action[MAX_MOUSE_KEY];
 }	t_mouse;
 
-typedef struct s_gui_setting
+typedef struct s_viewport
 {
 	void		*mlx;
 	void		*win;
@@ -42,7 +42,7 @@ typedef struct s_gui_setting
 	t_vector3	separated_render_curr;
 	t_mouse		mouse;
 	int			keyboard[MAX_KEYBOARD];
-}	t_gui_setting;
+}	t_viewport;
 
 typedef struct s_world
 {
@@ -51,7 +51,7 @@ typedef struct s_world
 	t_list					*lights;
 	t_camera				*camera;
 	t_ambient_light			*ambient_light;
-	t_gui_setting			gui;
+	t_viewport				viewport;
 	t_element				*selected;
 	enum e_transform_type	transform_type;
 }	t_world;

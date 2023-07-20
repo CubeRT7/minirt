@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 04:16:02 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/16 04:16:03 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/20 08:29:03 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_element	*select_element(t_world *world, t_vector3 pos)
 {
-	const t_vector3	screen = world->gui.screen;
+	const t_vector3	screen = world->viewport.screen;
 	t_ray			ray;
 	t_hit			record;
 
