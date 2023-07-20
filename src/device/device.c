@@ -6,50 +6,66 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 10:26:30 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:14:54 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "device.h"
 
-extern void	init_hook(struct s_device *view);
+extern void	init_hook(struct s_device *dev);
 
-void	destroy_device(struct s_device *view)
+void	destroy_device(struct s_device *device)
 {
-	if (view == NULL)
+	if (device == NULL)
 		return ;
-	if (view->img)
-		mlx_destroy_image(view->mlx, view->img);
-	view->img = NULL;
-	if (view->win)
-		mlx_destroy_window(view->mlx, view->win);
-	view->win = NULL;
+	if (device->img)
+		mlx_destroy_image(device->mlx, device->img);
+	device->img = NULL;
+	if (device->win)
+		mlx_destroy_window(device->mlx, device->win);
+	device->win = NULL;
 }
 
-int	create_device(struct s_device *view)
+static void	_init_screen_size(struct s_device *device)
 {
-	if (view == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	view->mlx = mlx_init();
-	if (view->mlx == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	view->size = (t_vector3){WINDOW_WIDTH, WINDOW_HEIGHT, 0};
-	view->win = mlx_new_window(view->mlx, view->size.x, view->size.y, TITLE);
-	if (view->win == NULL)
-	{
-		destroy_device(view);
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	}
-	view->img = mlx_new_image(view->mlx, view->size.x, view->size.y);
-	if (view->img == NULL)
-	{
-		destroy_device(view);
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	}
-	init_hook(view);
-	view->separated_render_max = vector3(
-			(int)(1 + WINDOW_WIDTH / WINDOW_WIDTH_SEPARATE),
-			(int)(1 + WINDOW_HEIGHT / WINDOW_HEIGHT_SEPARATE),
+	int			x;
+	int			y;
+
+	mlx_get_screen_size(device->mlx, &x, &y);
+	x /= 3;
+	y /= 3;
+	if (WINDOW_WIDTH > 0)
+		x = WINDOW_WIDTH;
+	if (WINDOW_HEIGHT > 0)
+		y = WINDOW_HEIGHT;
+		
+	device->size = vector3(x, y, 0);
+	device->separated_render_max = vector3(
+			(int)(1 + (int)device->size.x / WINDOW_WIDTH_SEPARATE),
+			(int)(1 + (int)device->size.y / WINDOW_HEIGHT_SEPARATE),
 			0);
+}
+
+int	create_device(struct s_device *dev)
+{
+	if (dev == NULL)
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	dev->mlx = mlx_init();
+	if (dev->mlx == NULL)
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	_init_screen_size(dev);
+	dev->win = mlx_new_window(dev->mlx, dev->size.x, dev->size.y, TITLE);
+	if (dev->win == NULL)
+	{
+		destroy_device(dev);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	dev->img = mlx_new_image(dev->mlx, dev->size.x, dev->size.y);
+	if (dev->img == NULL)
+	{
+		destroy_device(dev);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	init_hook(dev);
 	return (EXIT_SUCCESS);
 }

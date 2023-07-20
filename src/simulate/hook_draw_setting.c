@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 05:15:47 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 11:03:42 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:01:44 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	rotate_camera(void *param)
 {
 	t_world *const		world = param;
 	t_camera *const		camera = world->camera;
-	t_device *const	device = &world->device;
+	t_device *const		device = &world->device;
 	t_vector3			v[4];
 	double				angle;
 
@@ -99,7 +99,7 @@ void	transform_objs_with_mouse(void *param)
 int	hook_draw_setting(void *param)
 {
 	t_world *const		world = param;
-	t_device *const	device = &world->device;
+	t_device *const		device = &world->device;
 	const t_vector3		point_in_world = vector3(
 			device->mouse.curr.x,
 			device->size.y - device->mouse.curr.y,

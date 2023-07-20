@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 10:25:53 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:54:16 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@
 # include "libvector.h"
 
 # define TITLE "CubeRT7"
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
 # define WINDOW_WIDTH_SEPARATE 128
 # define WINDOW_HEIGHT_SEPARATE 128
+# ifndef WINDOW_WIDTH 
+#  define WINDOW_WIDTH 0
+# endif
+# ifndef WINDOW_HEIGHT
+#  define WINDOW_HEIGHT 0
+# endif
 
 /* ************************************************************************** */
 // mouse

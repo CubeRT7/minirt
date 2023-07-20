@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/20 11:03:59 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/20 16:54:13 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -MMD -MP -O2 -ffast-math
-CPPFLAGS	= -I.
+CPPFLAGS	= -I. $(MFLAGS)
 LDFLAGS		= -L.
 LDLIBS		= -lm
 
@@ -140,5 +140,10 @@ re: fclean
 exe: $(MINIRT)
 	-export DYLD_LIBRARY_PATH=../external/minilibx; \
 	./$(MINIRT) $(ARGS)
+
+aaa:
+	$(info $(MFLAGS) yonshin)
+	$(info $(MAKEFLAGS) minjungk)
+	$(info hhello)
 
 .PHONY: all clean fclean re bonus 
