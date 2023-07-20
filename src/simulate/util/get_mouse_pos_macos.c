@@ -17,6 +17,6 @@ t_vector3	get_mouse_pos(t_world *world)
 	int	x;
 	int	y;
 
-	mlx_mouse_get_pos(world->workspace.win, &x, &y);
+	mlx_mouse_get_pos(world->viewport.win, &x, &y);
 	return (vector3(x, y, 0));
 }

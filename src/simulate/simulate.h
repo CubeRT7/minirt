@@ -12,7 +12,7 @@
 
 #ifndef SIMULATE_H
 # define SIMULATE_H
-# include "workspace.h"
+# include "viewport.h"
 # include "Element/AmbientLight/ambient_light.h"
 # include "Element/Camera/camera.h"
 
@@ -23,7 +23,7 @@ typedef struct s_world
 	t_list					*lights;
 	t_camera				*camera;
 	t_ambient_light			*ambient_light;
-	t_workspace				workspace;
+	t_viewport				viewport;
 	t_element				*selected;
 	enum e_transform_type	transform_type;
 }	t_world;

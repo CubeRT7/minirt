@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "workspace.h"
+#include "viewport.h"
 
 /*
  * Reference: X11/X.h
@@ -89,7 +89,7 @@ extern int	key_release(int keycode, void *param);
 extern int	button_press(int button, int x, int y, void *param);
 extern int	button_release(int button, int x, int y, void *param);
 
-void	init_hook(struct s_workspace *view)
+void	init_hook(struct s_viewport *view)
 {
 	int	i;
 

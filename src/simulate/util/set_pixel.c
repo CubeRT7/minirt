@@ -19,11 +19,11 @@ void	set_pixel(t_world *world, int x, int y, int color)
 	int		bpp;
 	int		endian;
 
-	if (x < 0 || x >= world->workspace.size.x)
+	if (x < 0 || x >= world->viewport.size.x)
 		return ;
-	if (y < 0 || y >= world->workspace.size.y)
+	if (y < 0 || y >= world->viewport.size.y)
 		return ;
-	color = mlx_get_color_value(world->workspace.mlx, color);
-	addr = mlx_get_data_addr(world->workspace.img, &bpp, &size_line, &endian);
+	color = mlx_get_color_value(world->viewport.mlx, color);
+	addr = mlx_get_data_addr(world->viewport.img, &bpp, &size_line, &endian);
 	*(unsigned int *)(addr + (y * size_line + x * (bpp / 8))) = color;
 }

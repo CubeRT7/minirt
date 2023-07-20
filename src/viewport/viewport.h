@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   workspace.h                                        :+:      :+:    :+:   */
+/*   viewport.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 13:27:22 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:25:53 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WORKSPACE_H
-# define WORKSPACE_H
+#ifndef VIEWPORT_H
+# define VIEWPORT_H
 # include "mlx.h"
 # include "libcustom.h"
 # include "libvector.h"
@@ -80,10 +80,10 @@ enum e_keyboard_key
 };
 
 /* ************************************************************************** */
-// workspace
+// viewport
 /* ************************************************************************** */
 
-typedef struct s_workspace
+typedef struct s_viewport
 {
 	void		*mlx;
 	void		*win;
@@ -93,9 +93,9 @@ typedef struct s_workspace
 	t_vector3	separated_render_curr;
 	t_mouse		mouse;
 	int			keyboard[MAX_KEYBOARD];
-}	t_workspace;
+}	t_viewport;
 
-extern void	destroy_workspace(struct s_workspace *workspace);
-extern int	create_workspace(struct s_workspace *workspace);
+extern void	destroy_viewport(struct s_viewport *viewport);
+extern int	create_viewport(struct s_viewport *viewport);
 
 #endif

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   workspace.c                                        :+:      :+:    :+:   */
+/*   viewport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 13:27:16 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:26:30 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "workspace.h"
+#include "viewport.h"
 
-extern void	init_hook(struct s_workspace *view);
+extern void	init_hook(struct s_viewport *view);
 
-void	destroy_workspace(struct s_workspace *view)
+void	destroy_viewport(struct s_viewport *view)
 {
 	if (view == NULL)
 		return ;
@@ -26,7 +26,7 @@ void	destroy_workspace(struct s_workspace *view)
 	view->win = NULL;
 }
 
-int	create_workspace(struct s_workspace *view)
+int	create_viewport(struct s_viewport *view)
 {
 	if (view == NULL)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
@@ -37,13 +37,13 @@ int	create_workspace(struct s_workspace *view)
 	view->win = mlx_new_window(view->mlx, view->size.x, view->size.y, TITLE);
 	if (view->win == NULL)
 	{
-		destroy_workspace(view);
+		destroy_viewport(view);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
 	view->img = mlx_new_image(view->mlx, view->size.x, view->size.y);
 	if (view->img == NULL)
 	{
-		destroy_workspace(view);
+		destroy_viewport(view);
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
 	init_hook(view);
