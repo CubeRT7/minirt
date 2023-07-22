@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/20 16:54:13 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/22 18:59:44 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,7 +129,7 @@ all: $(MINIRT)
 bonus: $(MINIRT)
 
 clean:
-	$(RM) $(MINIRT_OBJS) $(MINIRT_DEPS)
+	find . -type f \( -name '*.o' -or -name '*.d' \) -print -delete
 
 fclean: clean
 	$(RM) $(MINIRT)
@@ -140,10 +140,5 @@ re: fclean
 exe: $(MINIRT)
 	-export DYLD_LIBRARY_PATH=../external/minilibx; \
 	./$(MINIRT) $(ARGS)
-
-aaa:
-	$(info $(MFLAGS) yonshin)
-	$(info $(MAKEFLAGS) minjungk)
-	$(info hhello)
 
 .PHONY: all clean fclean re bonus 
