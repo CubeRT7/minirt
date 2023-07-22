@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "device.h"
 
-uint32_t	color_to_pixel(t_color c)
+uint32_t	color_to_pixel(t_vector3 c)
 {
 	const uint8_t	r = c.x * 255;
 	const uint8_t	g = c.y * 255;

@@ -62,7 +62,7 @@ void	render_main_frame(t_world *world)
 			if (pos.x > device->size.x || pos.y > device->size.y)
 				break ;
 			pixel_color = _get_pixel(world, pos);
-			set_pixel(world, pos.x, device->size.y - pos.y - 1, pixel_color);
+			set_pixel(device, pos.x, device->size.y - pos.y - 1, pixel_color);
 			pos.y += device->separated_render_max.y;
 		}
 		pos.x += device->separated_render_max.x;

@@ -24,8 +24,5 @@ extern t_ray		get_camera_ray(t_camera *camera,
 						t_vector3 pos,
 						t_vector3 delta);
 extern t_element	*select_element(t_world *world, t_vector3 pos);
-extern void			put_str(t_world *w, t_vector3 p, const char *s, size_t len);
-extern void			set_pixel(t_world *world, int x, int y, int color);
-extern t_vector3	get_mouse_pos(t_world *world);
 
 #endif
