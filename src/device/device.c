@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 16:14:54 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/22 09:29:48 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	_init_screen_size(struct s_device *device)
 		x = WINDOW_WIDTH;
 	if (WINDOW_HEIGHT > 0)
 		y = WINDOW_HEIGHT;
-		
 	device->size = vector3(x, y, 0);
 	device->separated_render_max = vector3(
 			(int)(1 + (int)device->size.x / WINDOW_WIDTH_SEPARATE),

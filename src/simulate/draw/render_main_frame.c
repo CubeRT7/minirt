@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:13:07 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 09:08:34 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/22 09:30:52 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static int	_get_pixel(t_world *w, t_vector3 pos)
 void	render_main_frame(t_world *world)
 {
 	t_device *const	device = &world->device;
-	t_vector3			pos;
-	int					pixel_color;
+	t_vector3		pos;
+	int				pixel_color;
 
 	pos.x = device->separated_render_curr.x;
 	while (pos.x < device->size.x)
