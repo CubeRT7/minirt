@@ -101,7 +101,7 @@ typedef struct s_device
 
 extern void			destroy_device(struct s_device *device);
 extern int			create_device(struct s_device *device);
-extern t_vector3	get_mouse_pos(void *mlx, void *win);
+extern t_vector3	get_mouse_pos(t_device *device);
 extern void			put_str(
 						t_device *device,
 						t_vector3 position,

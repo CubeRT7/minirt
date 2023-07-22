@@ -35,7 +35,7 @@ int	hook_draw(void *param)
 	t_device *const		device = &world->device;
 
 	device->mouse.prev = device->mouse.curr;
-	device->mouse.curr = get_mouse_pos(world->device.mlx, world->device.win);
+	device->mouse.curr = get_mouse_pos(device);
 	transform_objs_with_mouse(world);
 	hook_draw_setting(param);
 	mlx_clear_window(device->mlx, device->win);

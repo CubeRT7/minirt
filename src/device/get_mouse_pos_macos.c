@@ -12,12 +12,11 @@
 
 #include "device.h"
 
-t_vector3	get_mouse_pos(void *mlx, void *win)
+t_vector3	get_mouse_pos(t_device *device)
 {
 	int	x;
 	int	y;
 
-	(void)mlx;
-	mlx_mouse_get_pos(win, &x, &y);
+	mlx_mouse_get_pos(device->win, &x, &y);
 	return (vector3(x, y, 0));
 }
