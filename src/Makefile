@@ -87,17 +87,17 @@ MINIRT_SRCS = \
 	file/parse_cylinder.c \
 	device/device.c \
 	device/hook.c \
+	device/put_str.c \
+	device/put_pixel.c \
+	device/color_to_pixel.c \
 	device/hook_mouse_event.c \
 	device/hook_close_event.c \
 	simulate/simulate.c \
 	simulate/hook_draw.c \
 	simulate/hook_draw_setting.c \
 	simulate/draw/ray_color.c \
-	simulate/draw/color_to_pixel.c \
 	simulate/draw/render_main_frame.c \
 	simulate/util/hit.c \
-	simulate/util/set_pixel.c \
-	simulate/util/put_str.c \
 	simulate/util/world_iter.c \
 	simulate/util/get_camera_ray.c \
 	simulate/util/select_element.c \
@@ -105,12 +105,12 @@ MINIRT_SRCS = \
 ifneq ($(shell uname), Darwin)
 MINIRT_SRCS += \
 	device/hook_key_event_linux.c \
-	simulate/util/get_mouse_pos_linux.c \
+	device/get_mouse_pos_linux.c \
 
 else
 MINIRT_SRCS += \
 	device/hook_key_event_macos.c \
-	simulate/util/get_mouse_pos_macos.c \
+	device/get_mouse_pos_macos.c \
 
 endif
 MINIRT_OBJS = $(MINIRT_SRCS:.c=.o)

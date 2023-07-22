@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simulate_util.h"
+#include "device.h"
 
-t_vector3	get_mouse_pos(t_world *world)
+t_vector3	get_mouse_pos(t_device *device)
 {
 	int	x;
 	int	y;
 
-	mlx_mouse_get_pos(world->device.win, &x, &y);
+	mlx_mouse_get_pos(device->win, &x, &y);
 	return (vector3(x, y, 0));
 }

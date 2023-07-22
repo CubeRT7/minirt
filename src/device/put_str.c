@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simulate_util.h"
+#include "device.h"
 
 static const unsigned char	g_font_atlas[1140 * 20 * 4 + 1] = {
 	"\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
@@ -5049,7 +5049,7 @@ uint32_t	get_font_pixel(unsigned char c, int w, int h)
 	return (a << 24 | r << 16 | g << 8 | b << 4);
 }
 
-void	put_str(t_world *world, t_vector3 pos, const char *s, size_t len)
+void	put_str(t_device *device, t_vector3 pos, const char *s, size_t len)
 {
 	size_t		i;
 	size_t		h;
@@ -5067,7 +5067,7 @@ void	put_str(t_world *world, t_vector3 pos, const char *s, size_t len)
 			while (w < 10)
 			{
 				if (0x00FFFFFF & get_font_pixel(s[i], w, h))
-					set_pixel(world, x + w + i * 10, y + h, 0x00FFFFFF);
+					put_pixel(device, x + w + i * 10, y + h, 0x00FFFFFF);
 				++w;
 			}
 			++h;

@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_to_pixel.c                                   :+:      :+:    :+:   */
+/*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 03:59:29 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 12:12:10 by minjungk         ###   ########.fr       */
+/*   Created: 2023/07/17 07:26:17 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/20 09:10:45 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "device.h"
 
-uint32_t	color_to_pixel(t_color c)
+void	put_pixel(t_device *device, int x, int y, int color)
 {
-	const uint8_t	r = c.x * 255;
-	const uint8_t	g = c.y * 255;
-	const uint8_t	b = c.z * 255;
+	char	*addr;
+	int		size_line;
+	int		bpp;
+	int		endian;
 
-	return (r << 16 | g << 8 | b);
+	if (x < 0 || x >= device->size.x)
+		return ;
+	if (y < 0 || y >= device->size.y)
+		return ;
+	color = mlx_get_color_value(device->mlx, color);
+	addr = mlx_get_data_addr(device->img, &bpp, &size_line, &endian);
+	*(unsigned int *)(addr + (y * size_line + x * (bpp / 8))) = color;
 }

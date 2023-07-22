@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_mouse_pos_linux.c                              :+:      :+:    :+:   */
+/*   color_to_pixel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 17:02:11 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/20 08:29:12 by minjungk         ###   ########.fr       */
+/*   Created: 2023/07/12 03:59:29 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/15 12:12:10 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simulate_util.h"
+#include "device.h"
 
-t_vector3	get_mouse_pos(t_world *world)
+uint32_t	color_to_pixel(t_vector3 c)
 {
-	int	x;
-	int	y;
+	const uint8_t	r = c.x * 255;
+	const uint8_t	g = c.y * 255;
+	const uint8_t	b = c.z * 255;
 
-	mlx_mouse_get_pos(world->device.mlx, world->device.win, &x, &y);
-	return (vector3(x, y, 0));
+	return (r << 16 | g << 8 | b);
 }

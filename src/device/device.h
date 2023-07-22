@@ -99,7 +99,15 @@ typedef struct s_device
 	int			keyboard[MAX_KEYBOARD];
 }	t_device;
 
-extern void	destroy_device(struct s_device *device);
-extern int	create_device(struct s_device *device);
+extern void			destroy_device(struct s_device *device);
+extern int			create_device(struct s_device *device);
+extern t_vector3	get_mouse_pos(t_device *device);
+extern void			put_str(
+						t_device *device,
+						t_vector3 position,
+						const char *str,
+						size_t len);
+extern void			put_pixel(t_device *device, int x, int y, int color);
+extern uint32_t		color_to_pixel(t_vector3 c);
 
 #endif
