@@ -6,11 +6,10 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/17 17:03:28 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:24:26 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
 #include "simulate/util/simulate_util.h"
 #include "simulate/draw/draw.h"
 
@@ -31,16 +30,16 @@ static void	render_text(t_world *world)
 
 int	hook_draw(void *param)
 {
-	t_world *const			world = param;
-	t_gui_setting *const	gui = &world->gui;
+	t_world *const		world = param;
+	t_device *const		device = &world->device;
 
-	gui->mouse.prev = gui->mouse.curr;
-	gui->mouse.curr = get_mouse_pos(world);
+	device->mouse.prev = device->mouse.curr;
+	device->mouse.curr = get_mouse_pos(world);
 	transform_objs_with_mouse(world);
 	hook_draw_setting(param);
-	mlx_clear_window(gui->mlx, gui->win);
+	mlx_clear_window(device->mlx, device->win);
 	render_main_frame(world);
 	render_text(world);
-	mlx_put_image_to_window(gui->mlx, gui->win, gui->img, 0, 0);
+	mlx_put_image_to_window(device->mlx, device->win, device->img, 0, 0);
 	return (EXIT_SUCCESS);
 }

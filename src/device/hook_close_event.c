@@ -6,13 +6,13 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:35:52 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/15 11:43:12 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:26:49 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
+#include <stdlib.h>
 
-int	hook_close_event(void *param)
+int	destroy_notify(void *param)
 {
 	(void)param;
 	exit(EXIT_SUCCESS);

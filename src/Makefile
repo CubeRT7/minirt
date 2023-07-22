@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/17 17:04:54 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/20 16:54:13 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -MMD -MP -O2 -ffast-math
-CPPFLAGS	= -I.
+CPPFLAGS	= -I. $(MFLAGS)
 LDFLAGS		= -L.
 LDLIBS		= -lm
 
@@ -52,6 +52,7 @@ endif
 MINIRT = miniRT
 
 CPPFLAGS	+= -Ifile
+CPPFLAGS	+= -Idevice
 CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
@@ -84,12 +85,13 @@ MINIRT_SRCS = \
 	file/parse_plane.c \
 	file/parse_sphere.c \
 	file/parse_cylinder.c \
+	device/device.c \
+	device/hook.c \
+	device/hook_mouse_event.c \
+	device/hook_close_event.c \
 	simulate/simulate.c \
-	simulate/hook_key_event.c \
-	simulate/hook_mouse_event.c \
 	simulate/hook_draw.c \
 	simulate/hook_draw_setting.c \
-	simulate/hook_close_event.c \
 	simulate/draw/ray_color.c \
 	simulate/draw/color_to_pixel.c \
 	simulate/draw/render_main_frame.c \
@@ -102,10 +104,12 @@ MINIRT_SRCS = \
 	$(MINIRT).c
 ifneq ($(shell uname), Darwin)
 MINIRT_SRCS += \
+	device/hook_key_event_linux.c \
 	simulate/util/get_mouse_pos_linux.c \
 
 else
 MINIRT_SRCS += \
+	device/hook_key_event_macos.c \
 	simulate/util/get_mouse_pos_macos.c \
 
 endif
@@ -136,5 +140,10 @@ re: fclean
 exe: $(MINIRT)
 	-export DYLD_LIBRARY_PATH=../external/minilibx; \
 	./$(MINIRT) $(ARGS)
+
+aaa:
+	$(info $(MFLAGS) yonshin)
+	$(info $(MAKEFLAGS) minjungk)
+	$(info hhello)
 
 .PHONY: all clean fclean re bonus 
