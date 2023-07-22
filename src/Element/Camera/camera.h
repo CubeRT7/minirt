@@ -22,15 +22,15 @@ typedef struct s_camera
 	{
 		t_point		coordinate;
 		t_vector3	axis;
-		float		fov;
+		double		fov;
 	}							raw;
 	struct s_camera_obj
 	{
 		t_vector3	viewport_lower_left;
 		t_vector3	viewport_horizontal;
 		t_vector3	viewport_vertical;
-		float		ratio;
-		float		fov_radian;
+		double		ratio;
+		double		fov_radian;
 	}							obj;
 }	t_camera;
 

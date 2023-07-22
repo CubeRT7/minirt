@@ -14,7 +14,7 @@
 
 t_vector3	v3_normalize(t_vector3 v1)
 {
-	const float	mag = v3_magnitude(v1);
+	const double	mag = v3_magnitude(v1);
 
 	if (mag == 0)
 		return ((t_vector3){0, 0, 0});

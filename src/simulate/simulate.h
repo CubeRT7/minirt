@@ -22,12 +22,13 @@
 # define TITLE "CubeRT7"
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH_SEPARATE 128
+# define WINDOW_HEIGHT_SEPARATE 128
 
 typedef struct s_mouse
 {
 	t_vector3	prev;
 	t_vector3	curr;
-	t_vector3	press[MAX_MOUSE_KEY];
 	int			action[MAX_MOUSE_KEY];
 }	t_mouse;
 
@@ -41,10 +42,6 @@ typedef struct s_gui_setting
 	t_vector3	separated_render_curr;
 	t_mouse		mouse;
 	int			keyboard[MAX_KEYBOARD];
-	float		focal_length;
-	float		max_depth;
-	float		ignore_delta;
-	float		sample_per_pixel;
 }	t_gui_setting;
 
 typedef struct s_world

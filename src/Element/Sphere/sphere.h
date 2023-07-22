@@ -23,11 +23,11 @@ typedef struct s_sphere
 		t_point		coordinate;
 		t_vector3	axis;
 		t_rgb		rgb;
-		float		diameter;
+		double		diameter;
 	}						raw;
 	struct s_sphere_obj
 	{
-		float		radius;
+		double		radius;
 	}						obj;
 }	t_sphere;
 

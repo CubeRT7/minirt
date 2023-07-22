@@ -78,6 +78,7 @@ enum e_transform_type
 typedef struct s_element
 {
 	enum e_element	type;
+	char			*type_name;
 	t_point			position;
 	t_vector3		axis;
 	t_color			color;
@@ -86,13 +87,13 @@ typedef struct s_element
 
 typedef struct s_range
 {
-	float	min;
-	float	max;
+	double	min;
+	double	max;
 }	t_range;
 
 typedef struct s_hit
 {
-	float		t;
+	double		t;
 	t_point		p;
 	t_vector3	normal;
 	t_color		color;
@@ -102,6 +103,6 @@ typedef struct s_hit
 extern void		init_element(void *elem);
 extern void		element_iter(t_list *list, enum e_element_func e);
 extern int		parse_rgb(struct s_rgb *rgb, char *curr);
-extern int		parse_vector3(t_vector3 *vector, char *curr, float scope);
+extern int		parse_vector3(t_vector3 *vector, char *curr, int scope);
 
 #endif

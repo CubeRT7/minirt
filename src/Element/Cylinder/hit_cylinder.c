@@ -14,8 +14,8 @@
 
 static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 {
-	float		d;
-	float		t;
+	double		d;
+	double		t;
 	t_vector3	v;
 	t_vector3	p;
 
@@ -37,7 +37,7 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 
 static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 {
-	const float				half_height = self->obj.height * 0.5;
+	const double			half_height = self->obj.height * 0.5;
 	t_cylinder_body_alias	alias;
 	t_abc					abc;
 	t_hit					rec;

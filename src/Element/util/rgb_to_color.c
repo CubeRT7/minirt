@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strb_fail_clear.c                                  :+:      :+:    :+:   */
+/*   rgb_to_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 00:10:15 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/13 01:03:25 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/19 14:52:04 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/19 14:52:06 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libstr_private.h"
+#include "element_util.h"
 
-int	strb_fail_clear(t_strb *sb, char *str, t_del del)
+t_color	rgb_to_color(t_rgb rgb)
 {
-	sb->err = STRB_FAIL;
-	strb_delete_str(str, del);
-	strb_clear(sb);
-	return (STRB_FAIL);
+	return (vector3(rgb.r / 255.0, rgb.g / 255.0, rgb.b / 255.0));
 }

@@ -14,8 +14,8 @@
 
 int	hit_plane(t_plane *self, t_ray *ray, t_range range, t_hit *record)
 {
-	float		d;
-	float		t;
+	double		d;
+	double		t;
 	t_vector3	v;
 
 	d = v3_dot(ray->direction, self->base.axis);

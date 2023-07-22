@@ -46,9 +46,9 @@ int	parse_rgb(struct s_rgb *rgb, char *curr)
 	return (EXIT_SUCCESS);
 }
 
-int	parse_vector3(t_vector3 *vector, char *curr, float scope)
+int	parse_vector3(t_vector3 *vector, char *curr, int scope)
 {
-	float	axis_len;
+	double	axis_len;
 
 	vector->x = ft_strtof(curr, &curr);
 	if (errno || curr[0] != ',')
@@ -66,7 +66,7 @@ int	parse_vector3(t_vector3 *vector, char *curr, float scope)
 			&& (-1.0 <= vector->z && vector->z <= 1.0)))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	axis_len = v3_magnitude(*vector);
-	if (!(0.9999f < axis_len && axis_len < 1.0001f))
+	if (!(0.9999 < axis_len && axis_len < 1.0001))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	return (EXIT_SUCCESS);
 }

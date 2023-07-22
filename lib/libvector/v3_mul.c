@@ -12,7 +12,7 @@
 
 #include "libvector.h"
 
-t_vector3	v3_mul(t_vector3 v1, float v2)
+t_vector3	v3_mul(t_vector3 v1, double v2)
 {
 	return ((t_vector3){v1.x * v2, v1.y * v2, v1.z * v2});
 }

@@ -19,7 +19,6 @@ LIBS = \
 	libft/libft.a \
 	libcustom/libcustom.a \
 	libvector/libvector.a \
-	libstr/libstr.a \
 
 all bonus clean fclean re:
 	@for dir in $(dir $(LIBS)); do \

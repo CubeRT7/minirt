@@ -20,12 +20,12 @@ typedef struct s_ambient_light
 	struct s_element		base;
 	struct s_ambient_light_raw
 	{
-		float		ratio;
+		double		ratio;
 		t_rgb		rgb;
 	}						raw;
 	struct s_ambient_light_obj
 	{
-		float	ratio;
+		double	ratio;
 	}						obj;
 }	t_ambient_light;
 

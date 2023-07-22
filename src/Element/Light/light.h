@@ -23,11 +23,11 @@ typedef struct s_light
 		t_point		coordinate;
 		t_vector3	axis;
 		t_rgb		rgb;
-		float		ratio;
+		double		ratio;
 	}						raw;
 	struct s_light_obj
 	{
-		float		ratio;
+		double		ratio;
 	}						obj;
 }	t_light;
 

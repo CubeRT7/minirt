@@ -14,16 +14,12 @@
 
 static void	_init_func(t_ambient_light *self)
 {
-	(void)self;
+	self->base.type_name = "AmbientLight";
 }
 
 int	init_ambient_light(t_ambient_light *self)
 {
-	self->base.color = (t_color){
-		(float)self->raw.rgb.r / 255,
-		(float)self->raw.rgb.g / 255,
-		(float)self->raw.rgb.b / 255
-	};
+	self->base.color = rgb_to_color(self->raw.rgb);
 	self->obj.ratio = self->raw.ratio;
 	_init_func(self);
 	return (EXIT_SUCCESS);

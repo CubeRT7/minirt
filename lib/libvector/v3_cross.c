@@ -14,9 +14,9 @@
 
 t_vector3	v3_cross(t_vector3 v1, t_vector3 v2)
 {
-	const float	x = v1.y * v2.z - v1.z * v2.y;
-	const float	y = v1.z * v2.x - v1.x * v2.z;
-	const float	z = v1.x * v2.y - v1.y * v2.x;
+	const double	x = v1.y * v2.z - v1.z * v2.y;
+	const double	y = v1.z * v2.x - v1.x * v2.z;
+	const double	z = v1.x * v2.y - v1.y * v2.x;
 
 	return ((t_vector3){x, y, z});
 }

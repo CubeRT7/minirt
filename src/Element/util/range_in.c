@@ -12,7 +12,7 @@
 
 #include "element_util.h"
 
-inline int	range_in(float t, t_range range)
+inline int	range_in(double t, t_range range)
 {
 	return (t >= range.min && t <= range.max);
 }

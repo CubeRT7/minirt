@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:46:16 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/15 14:26:36 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/19 21:45:04 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,9 @@ libmlx_fix: $(LIBMLX_DIR)
 libmlx_all: $(LIBMLX_LIB)
 
 libmlx_clean:
-	$(MAKE) -C $(LIBMLX_DIR) clean
+	if [ -d $(LIBMLX_DIR) ]; then \
+		$(MAKE) -C $(LIBMLX_DIR) clean; \
+	fi
 
 libmlx_fclean: libmlx_clean
 	$(RM) $(LIBMLX_DIR)

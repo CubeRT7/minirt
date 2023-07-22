@@ -23,10 +23,6 @@ CPPFLAGS	+= -I../external/minilibx
 LDFLAGS		+= -L../external/minilibx
 LDLIBS		+= -lmlx
 
-CPPFLAGS	+= -I../lib/libstr
-LDFLAGS		+= -L../lib/libstr
-LDLIBS		+= -lstr
-
 CPPFLAGS	+= -I../lib/libcustom
 LDFLAGS		+= -L../lib/libcustom
 LDLIBS		+= -lcustom
@@ -79,6 +75,7 @@ MINIRT_SRCS = \
 	Element/util/close_to_zero.c \
 	Element/util/quadratic_formula_root.c \
 	Element/util/transform_element.c \
+	Element/util/rgb_to_color.c \
 	file/clean_rt.c \
 	file/import_file.c \
 	file/parse_ambient_light.c \
@@ -95,9 +92,10 @@ MINIRT_SRCS = \
 	simulate/hook_close_event.c \
 	simulate/draw/ray_color.c \
 	simulate/draw/color_to_pixel.c \
+	simulate/draw/render_main_frame.c \
 	simulate/util/hit.c \
 	simulate/util/set_pixel.c \
-	simulate/util/put_string.c \
+	simulate/util/put_str.c \
 	simulate/util/world_iter.c \
 	simulate/util/get_camera_ray.c \
 	simulate/util/select_element.c \

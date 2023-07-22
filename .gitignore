@@ -12,6 +12,7 @@ external/minilibx
 *.swiftdoc
 *.swiftmodule
 external/minilibx-macos/*.json
+external/minilibx-macos/*.swiftsourceinfo
 
 # Linker output
 *.ilk

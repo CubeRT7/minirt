@@ -14,6 +14,7 @@
 
 static void	_init_func(t_cylinder *self)
 {
+	self->base.type_name = "Cylinder";
 	self->base.func[Hit] = hit_cylinder;
 	self->base.func[Transform] = transform_cylinder;
 }
@@ -22,11 +23,8 @@ int	init_cylinder(t_cylinder *self)
 {
 	self->base.position = self->raw.coordinate;
 	self->base.axis = v3_normalize(self->raw.axis);
-	self->base.color = vector3(
-			self->raw.rgb.r / 255.0,
-			self->raw.rgb.g / 255.0,
-			self->raw.rgb.b / 255.0);
-	self->obj.radius = self->raw.diameter * 0.5f;
+	self->base.color = rgb_to_color(self->raw.rgb);
+	self->obj.radius = self->raw.diameter * 0.5;
 	self->obj.height = self->raw.height;
 	_init_func(self);
 	return (EXIT_SUCCESS);

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   v3_rotate_axis.c                                   :+:      :+:    :+:   */
+/*   v3_preset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/02 01:57:42 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/02 02:37:36 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/19 14:32:32 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/19 14:32:34 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvector.h"
 
-t_vector3	v3_rotate_axis(t_vector3 v, t_vector3 a, double theta)
+t_vector3	v3_preset(enum e_v3_preset type)
 {
-	const double	cth = cos(theta);
-	const double	sth = sin(theta);
-	const double	dot = v3_dot(a, v);
-	const t_vector3	crs = v3_cross(a, v);
-	t_vector3		res;
+	static const t_vector3	preset[V3_MAX_PRESET_IDX] = {
+	[V3_ZERO] = (t_vector3){0, 0, 0},
+	[V3_ONE] = (t_vector3){1, 1, 1},
+	[V3_UP] = (t_vector3){0, 1, 0},
+	[V3_DOWN] = (t_vector3){0, -1, 0},
+	[V3_RIGHT] = (t_vector3){1, 0, 0},
+	[V3_LEFT] = (t_vector3){-1, 0, 0},
+	[V3_FRONT] = (t_vector3){0, 0, -1},
+	[V3_BACK] = (t_vector3){0, 0, 1}};
 
-	res = v3_mul(v, cth);
-	res = v3_add(res, v3_mul(crs, sth));
-	res = v3_add(res, v3_mul(a, dot * (1 - cth)));
-	return (res);
+	return (preset[type]);
 }

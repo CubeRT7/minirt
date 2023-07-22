@@ -15,7 +15,7 @@
 int	hit(t_list *objs, t_ray *ray, t_range range, t_hit *record)
 {
 	t_hit			tmp_rec;
-	float			max_len;
+	double			max_len;
 	int				hit_anything;
 	t_element		*elem;
 

@@ -14,17 +14,15 @@
 
 static void	_init_func(t_light *self)
 {
-	(void)self;
+	self->base.type_name = "Light";
+	self->base.func[Transform] = transform_element;
 }
 
 int	init_light(t_light *self)
 {
 	self->base.position = self->raw.coordinate;
 	self->base.axis = v3_normalize(self->raw.axis);
-	self->base.color = vector3(
-			self->raw.rgb.r / 255.0,
-			self->raw.rgb.g / 255.0,
-			self->raw.rgb.b / 255.0);
+	self->base.color = rgb_to_color(self->raw.rgb);
 	self->obj.ratio = self->raw.ratio;
 	_init_func(self);
 	return (EXIT_SUCCESS);
