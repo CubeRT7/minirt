@@ -107,7 +107,7 @@ extern void			put_str(
 						t_vector3 position,
 						const char *str,
 						size_t len);
-extern void			set_pixel(t_device *device, int x, int y, int color);
+extern void			put_pixel(t_device *device, int x, int y, int color);
 extern uint32_t		color_to_pixel(t_vector3 c);
 
 #endif

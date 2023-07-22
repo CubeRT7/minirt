@@ -88,7 +88,7 @@ MINIRT_SRCS = \
 	device/device.c \
 	device/hook.c \
 	device/put_str.c \
-	device/set_pixel.c \
+	device/put_pixel.c \
 	device/color_to_pixel.c \
 	device/hook_mouse_event.c \
 	device/hook_close_event.c \
