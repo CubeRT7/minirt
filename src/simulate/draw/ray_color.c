@@ -25,34 +25,47 @@ static t_vector3	_trim_bright(t_vector3 bright)
 	return (bright);
 }
 
-static t_vector3	_get_diffuse_light(t_hit rec, t_list *objs, t_list *lights)
+static t_vector3	_get_diffuse_light(
+	t_ray ray,
+	t_hit rec,
+	t_list *objs,
+	t_list *lights)
 {
 	t_light		*light;
 	t_ray		light_ray;
-	t_vector3	direction;
+	t_vector3	light_direction;
 	t_vector3	res;
 	double		distance;
 	double		dot;
-	t_vector3	diffuse_brightness;
+	t_vector3	brightness;
 
 	res = v3_preset(V3_ZERO);
 	while (lights)
 	{
 		light = lights->content;
 		lights = lights->next;
-		direction = v3_sub(light->base.position, rec.p);
-		distance = v3_magnitude(direction);
-		light_ray = (t_ray){rec.p, v3_normalize(direction)};
+		light_direction = v3_sub(light->base.position, rec.p);
+		distance = v3_magnitude(light_direction);
+		light_ray = (t_ray){rec.p, v3_normalize(light_direction)};
 		if (hit(objs, &light_ray, (t_range){DELTA, distance}, NULL))
 			continue ;
 		dot = v3_dot(light_ray.direction, rec.normal);
 		if (dot < 0)
 			continue ;
 		if (close_to_zero(distance))
-			distance = 0.0000001;
+			distance = DELTA;
 		distance = sqrt(distance);
-		diffuse_brightness = v3_mul(light->base.color, dot * light->obj.ratio / distance);
-		res = v3_add(res, diffuse_brightness);
+
+		// diffuse_light
+		brightness = v3_mul(light->base.color, dot * light->obj.ratio / distance);
+		res = v3_add(res, brightness);
+
+		// specular_light
+		t_vector3 origin_direction = v3_normalize(v3_sub(ray.origin, rec.p));
+		t_vector3 h = v3_normalize(v3_sub(light_direction, origin_direction));
+		double v = pow(v3_dot(h, rec.normal), 100);
+		brightness = _trim_bright(v3_mul(light->base.color, v));
+		res = v3_add(res, brightness);
 	}
 	return (_trim_bright(res));
 }
@@ -65,7 +78,7 @@ t_color	ray_color(t_ray *ray, t_list *objs, void *ambient_light, t_list *lights)
 
 	if (hit(objs, ray, (t_range){DELTA, BIGVALUE}, &rec))
 	{
-		brightness = _get_diffuse_light(rec, objs, lights);
+		brightness = _get_diffuse_light(*ray, rec, objs, lights);
 		brightness = v3_add(
 				v3_mul(a_lgt->base.color, a_lgt->obj.ratio),
 				v3_mul(brightness, 1 - a_lgt->obj.ratio));
