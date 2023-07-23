@@ -12,33 +12,38 @@
 
 #include "element_util.h"
 
+static void	_move_elem(t_element *elem, t_vector3 delta)
+{
+	elem->position = v3_add(elem->position, delta);
+}
+
 int	transform_element(
 	t_element *self,
 	const t_element *cam,
 	enum e_transform_type type,
 	t_vector3 delta)
 {
-	const t_vector3	front = v3_normalize(vector3(cam->axis.x, 0, cam->axis.z));
-	const t_vector3	right = v3_normalize(v3_cross(front, v3_preset(V3_UP)));
-	const t_vector3	camera_up = v3_normalize(v3_cross(right, cam->axis));
+	const t_vector3	xz_plane = vector3(cam->front.x, 0, cam->front.z);
+	const t_vector3	xz_front = v3_normalize(xz_plane);
+	const t_vector3	right = v3_normalize(v3_cross(xz_front, v3_preset(V3_UP)));
 
 	if (type & Rotation)
 	{
 		if ((type & 0xf) == None || (type & X))
-			self->axis = v3_rotate_axis(self->axis, right, delta.x);
+			rotate_element(self, right, delta.x);
 		if ((type & 0xf) == None || (type & Y))
-			self->axis = v3_rotate_axis(self->axis, camera_up, delta.y);
+			rotate_element(self, cam->up, delta.y);
 		if (type & Z)
-			self->axis = v3_rotate_axis(self->axis, cam->axis, delta.z);
+			rotate_element(self, cam->front, delta.z);
 	}
 	if (type & Position)
 	{
 		if ((type & 0xf) == None || (type & X))
-			self->position = v3_add(self->position, v3_mul(right, delta.x));
+			_move_elem(self, v3_mul(right, delta.x));
 		if ((type & 0xf) == None || (type & Y))
-			self->position = v3_add(self->position, v3_mul(camera_up, delta.y));
+			_move_elem(self, v3_mul(cam->up, delta.y));
 		if (type & Z)
-			self->position = v3_add(self->position, v3_mul(cam->axis, delta.z));
+			_move_elem(self, v3_mul(cam->front, delta.z));
 	}
 	return (EXIT_SUCCESS);
 }

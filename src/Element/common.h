@@ -80,7 +80,9 @@ typedef struct s_element
 	enum e_element	type;
 	char			*type_name;
 	t_point			position;
-	t_vector3		axis;
+	t_vector3		front;
+	t_vector3		up;
+	t_vector3		right;
 	t_color			color;
 	t_func			func[MAX_ELEMENT_FUNC];
 }	t_element;

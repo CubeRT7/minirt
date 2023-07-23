@@ -20,7 +20,7 @@ void	move_camera(void *param)
 	t_vector3			v[3];
 
 	enum e_type {FRONT, RIGHT, NEW};
-	v[FRONT] = v3_normalize(v3_hadamard(camera->axis, vector3(1, 0, 1)));
+	v[FRONT] = v3_normalize(v3_hadamard(camera->front, vector3(1, 0, 1)));
 	v[RIGHT] = v3_cross(v[FRONT], world->axis);
 	if (world->device.keyboard[KEYBOARD_w])
 		camera->position = v3_add(camera->position, v3_mul(v[FRONT], delta));
@@ -63,22 +63,21 @@ void	rotate_camera(void *param)
 	t_world *const		world = param;
 	t_camera *const		camera = world->camera;
 	t_device *const		device = &world->device;
-	t_vector3			v[4];
+	t_vector3			v[3];
 	double				angle;
 
-	enum e_type {FRONT, RIGHT, NEW, MOVE};
+	enum e_type {RIGHT, NEW, MOVE};
 	if (device->mouse.action[MOUSE_BUTTON_RIGHT] == MOUSE_IDLE)
 		return ;
 	v[MOVE] = v3_sub(device->mouse.prev, device->mouse.curr);
-	v[FRONT] = v3_normalize(v3_hadamard(camera->base.axis, vector3(1, 0, 1)));
-	v[RIGHT] = v3_normalize(v3_cross(v[FRONT], world->axis));
-	camera->base.axis = v3_rotate_axis(camera->base.axis, world->axis,
-			v[MOVE].x / device->size.x);
-	v[NEW] = v3_rotate_axis(camera->base.axis, v[RIGHT],
+	rotate_element(&(camera->base), world->axis, v[MOVE].x / device->size.x);
+	v[RIGHT] = vector3(camera->base.right.x, 0, camera->base.right.z);
+	v[NEW] = v3_rotate_axis(camera->base.front, v[RIGHT],
 			v[MOVE].y / device->size.y);
 	angle = v3_dot(v3_normalize(v3_cross(v[NEW], world->axis)), v[RIGHT]);
-	if (angle > 0)
-		camera->base.axis = v[NEW];
+	if (angle <= 0)
+		return ;
+	rotate_element(&(camera->base), v[RIGHT], v[MOVE].y / device->size.y);
 }
 
 void	transform_objs_with_mouse(void *param)

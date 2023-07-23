@@ -22,7 +22,9 @@ static void	_init_func(t_sphere *self)
 int	init_sphere(t_sphere *self)
 {
 	self->base.position = self->raw.coordinate;
-	self->base.axis = v3_normalize(self->raw.axis);
+	self->base.front = v3_preset(V3_FRONT);
+	self->base.up = v3_preset(V3_UP);
+	self->base.right = v3_preset(V3_RIGHT);
 	self->base.color = rgb_to_color(self->raw.rgb);
 	self->obj.radius = self->raw.diameter * 0.5;
 	_init_func(self);
