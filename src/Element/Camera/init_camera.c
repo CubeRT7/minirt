@@ -21,9 +21,12 @@ static void	_init_func(t_camera *self)
 int	init_camera(t_camera *self)
 {
 	self->base.position = self->raw.coordinate;
-	self->base.axis = v3_normalize(self->raw.axis);
-	self->base.axis.z -= 0.00000001;
-	self->base.axis = v3_normalize(self->base.axis);
+	self->base.front = v3_normalize(self->raw.axis);
+	self->base.up = v3_preset(V3_UP);
+	self->base.right = v3_cross(self->base.front, self->base.up);
+	if (close_to_zero(v3_magnitude(self->base.right)))
+		self->base.right = v3_preset(V3_RIGHT);
+	self->base.up = v3_cross(self->base.right, self->base.front);
 	self->obj.fov_radian = self->raw.fov / 180 * M_PI;
 	_init_func(self);
 	return (EXIT_SUCCESS);

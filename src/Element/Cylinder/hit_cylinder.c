@@ -44,8 +44,8 @@ static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 
 	alias.r2 = self->obj.radius * self->obj.radius;
 	alias.w = v3_sub(ray->origin, self->base.position);
-	alias.vh = v3_dot(ray->direction, self->base.axis);
-	alias.wh = v3_dot(alias.w, self->base.axis);
+	alias.vh = v3_dot(ray->direction, self->base.front);
+	alias.wh = v3_dot(alias.w, self->base.front);
 	abc = (t_abc){
 		v3_dot(ray->direction, ray->direction) - alias.vh * alias.vh,
 		v3_dot(ray->direction, alias.w) - (alias.vh * alias.wh),
@@ -54,11 +54,11 @@ static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 	if (quadratic_formula_root(abc, range, &(rec.t)))
 		return (0);
 	rec.p = get_ray_point(ray, rec.t);
-	alias.l = v3_dot(v3_sub(rec.p, self->base.position), self->base.axis);
+	alias.l = v3_dot(v3_sub(rec.p, self->base.position), self->base.front);
 	if (range_not_in(alias.l, (t_range){-half_height, half_height}))
 		return (0);
 	ft_memcpy(record, &rec, sizeof(t_hit));
-	alias.in = v3_add(self->base.position, v3_mul(self->base.axis, alias.l));
+	alias.in = v3_add(self->base.position, v3_mul(self->base.front, alias.l));
 	record->normal = v3_normalize(v3_sub(record->p, alias.in));
 	record->normal = get_face_normal(*ray, record->normal);
 	return (1);
@@ -66,15 +66,15 @@ static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 
 int	hit_cylinder(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 {
-	const t_vector3	half = v3_mul(self->base.axis, self->obj.height * 0.5);
+	const t_vector3	half = v3_mul(self->base.front, self->obj.height * 0.5);
 	const t_circle	top = (t_circle){
 		v3_add(self->base.position, half),
-		self->base.axis,
+		self->base.front,
 		self->obj.radius
 	};
 	const t_circle	bottom = (t_circle){
 		v3_sub(self->base.position, half),
-		v3_reverse(self->base.axis),
+		v3_reverse(self->base.front),
 		self->obj.radius
 	};
 	int				res;

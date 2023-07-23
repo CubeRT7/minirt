@@ -35,5 +35,9 @@ extern int			transform_element(
 						enum e_transform_type type,
 						t_vector3 delta);
 extern t_color		rgb_to_color(t_rgb rgb);
+extern void			rotate_element(
+						t_element *elem,
+						t_vector3 axis,
+						float delta);
 
 #endif
