@@ -31,7 +31,9 @@ static t_vector3	_get_diffuse_light(t_hit rec, t_list *objs, t_list *lights)
 	t_ray		light_ray;
 	t_vector3	direction;
 	t_vector3	res;
-	double		d;
+	double		distance;
+	double		dot;
+	t_vector3	diffuse_brightness;
 
 	res = v3_preset(V3_ZERO);
 	while (lights)
@@ -39,14 +41,18 @@ static t_vector3	_get_diffuse_light(t_hit rec, t_list *objs, t_list *lights)
 		light = lights->content;
 		lights = lights->next;
 		direction = v3_sub(light->base.position, rec.p);
-		d = v3_magnitude(direction);
+		distance = v3_magnitude(direction);
 		light_ray = (t_ray){rec.p, v3_normalize(direction)};
-		if (hit(objs, &light_ray, (t_range){DELTA, d}, NULL))
+		if (hit(objs, &light_ray, (t_range){DELTA, distance}, NULL))
 			continue ;
-		d = v3_dot(light_ray.direction, rec.normal);
-		if (d < 0)
+		dot = v3_dot(light_ray.direction, rec.normal);
+		if (dot < 0)
 			continue ;
-		res = v3_add(res, v3_mul(vector3(d, d, d), light->obj.ratio));
+		if (close_to_zero(distance))
+			distance = 0.0000001;
+		distance = sqrt(distance);
+		diffuse_brightness = v3_mul(light->base.color, dot * light->obj.ratio / distance);
+		res = v3_add(res, diffuse_brightness);
 	}
 	return (_trim_bright(res));
 }
