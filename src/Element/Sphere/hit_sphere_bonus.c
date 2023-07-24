@@ -13,6 +13,20 @@
 #include "sphere.h"
 #include "Element/util/element_util_bonus.h"
 
+static t_color	_checkerboard(t_sphere *self, t_vector3 world_point)
+{
+	const t_vector3	local = v3_sub(world_point, self->base.position);
+	const t_vector3	point = v3_mul(local, 1 / self->obj.radius);
+	const t_vector3	dot = vector3(
+			v3_dot(point, self->base.right),
+			v3_dot(point, self->base.up),
+			v3_dot(point, self->base.front));
+	const double	plane_x = (atan(dot.z / dot.x) + M_PI_2) / M_PI * 4;
+	const double	plane_y = acos(dot.y) / M_PI * 4;
+
+	return (get_checkerboard_color(self->base.color, plane_x, plane_y));
+}
+
 int	hit_sphere(t_sphere *self, t_ray *ray, t_range range, t_hit *record)
 {
 	const t_vector3	dir = ray->direction;
@@ -28,11 +42,6 @@ int	hit_sphere(t_sphere *self, t_ray *ray, t_range range, t_hit *record)
 	record->p = get_ray_point(ray, record->t);
 	record->normal = v3_normalize(v3_sub(record->p, self->base.position));
 	record->normal = get_face_normal(*ray, record->normal);
-
-	// TODO
-	// t_vector3 p = v3_sub(record->p, self->base.position);
-	// t_vector3 uv = v3_mul(p, sqrt(v3_dot(p, p)) * 30);
-	// record->color = get_checkerboard_color(vector3(1, 1, 1), uv.x, uv.y);
-
+	record->color = _checkerboard(self, record->p);
 	return (1);
 }
