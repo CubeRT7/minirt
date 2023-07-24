@@ -6,13 +6,28 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:27:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/25 03:10:18 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/25 08:08:31 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "Element/Light/light.h"
 #include "Element/AmbientLight/ambient_light.h"
+
+t_color	alpha_blend(t_vector3 old, t_vector3 new, double new_alpha)
+{
+	t_color			color;
+	const double	old_alpha = 1 - new_alpha;
+
+	if (old_alpha <= 0)
+		return (new);
+	if (new_alpha <= 0)
+		return (old);
+	color.x = old.x * old_alpha + new.x * new_alpha;
+	color.y = old.y * old_alpha + new.y * new_alpha;
+	color.z = old.z * old_alpha + new.z * new_alpha;
+	return (color);
+}
 
 static t_vector3	_trim_bright(t_vector3 bright)
 {
@@ -72,15 +87,18 @@ static t_vector3	_get_diffuse_light(
 
 t_color	ray_color(t_ray *ray, t_world *world)
 {
-	t_vector3	brightness;
-	t_hit		rec;
+	t_hit	rec;
 
 	if (hit(world->objs, ray, (t_range){DELTA, BIGVALUE}, &rec) == 0)
 		return (v3_preset(V3_ZERO));
-	brightness = _get_diffuse_light(*ray, rec, world->objs, world->lights);
-	brightness = v3_add(
-			v3_mul(world->ambient_light->base.color,
-				world->ambient_light->obj.ratio),
-			v3_mul(brightness, 1 - world->ambient_light->obj.ratio));
-	return (v3_hadamard(brightness, rec.color));
+	if ((world->render_mode & RENDER_ORIGINAL) == 0)
+		rec.color = v3_preset(V3_ZERO);
+	if (world->render_mode & RENDER_AMBIENT)
+		rec.color = alpha_blend(rec.color,
+				world->ambient_light->base.color,
+				world->ambient_light->obj.ratio);
+	if (world->render_mode & (RENDER_DIFFUSE | RENDER_SPECULAR))
+		rec.color = v3_hadamard(rec.color,
+				_get_diffuse_light(*ray, rec, world->objs, world->lights));
+	return (rec.color);
 }
