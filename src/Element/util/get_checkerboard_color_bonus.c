@@ -21,10 +21,17 @@ static double	_fix(double d)
 
 t_color	get_checkerboard_color(t_color color, double u, double v)
 {
-	const t_vector3	newcolor = v3_add(color, vector3(0.1, 0.1, 0.1));
-	const int		reverse = (int)(_fix(u) * 2) + (int)(_fix(v) * 2);
+	const int	reverse = (int)(_fix(u) * 2) + (int)(_fix(v) * 2);
+	t_vector3	newcolor;
 
+	newcolor = v3_add(color, vector3(0.1, 0.1, 0.1));
+	if (newcolor.x > 1)
+		newcolor.x = color.x - 0.1;
+	if (newcolor.y > 1)
+		newcolor.y = color.y - 0.1;
+	if (newcolor.z > 1)
+		newcolor.z = color.z - 0.1;
 	if (reverse % 2)
-		return (vector3(_fix(newcolor.x), _fix(newcolor.y), _fix(newcolor.z)));
+		return (newcolor);
 	return (color);
 }
