@@ -13,6 +13,40 @@
 #include "cylinder.h"
 #include "Element/util/element_util_bonus.h"
 
+static t_color	_checkerboard_body(t_cylinder *self, t_vector3 world_point)
+{
+	// const double	r = s->obj.radius / (s->obj.radius + s->obj.height * 0.5);
+	const t_vector3	bottom_center = v3_add(self->base.position, v3_mul(self->base.front, self->obj.height * 0.5));
+	const t_vector3	local = v3_sub(world_point, bottom_center);
+	const t_vector3	dot = vector3(
+			v3_dot(local, self->base.right),
+			v3_dot(local, self->base.up),
+			0);
+	t_vector3		uv;
+	
+	uv.x = (atan(dot.y / dot.x) + M_PI_2) / M_PI * 4;
+	uv.y = v3_dot(self->base.front, local) / self->obj.height * 4;
+	return (get_checkerboard_color(self->base.color, uv.x, uv.y));
+}
+
+static t_color	_checkerboard_circle(
+	t_cylinder *self,
+	t_vector3 world_point,
+	t_circle circle)
+{
+	// const double	r = s->obj.radius / (s->obj.radius + s->obj.height * 0.5);
+	const t_vector3	local = v3_sub(world_point, circle.center);
+	const t_vector3	dot = vector3(
+			v3_dot(local, self->base.right),
+			v3_dot(local, self->base.up),
+			0);
+	t_vector3		uv;
+	
+	uv.x = (atan(dot.y / dot.x) + M_PI_2) / M_PI * 4;
+	uv.y = v3_magnitude(local) / circle.radius;
+	return (get_checkerboard_color(self->base.color, uv.x, uv.y));
+}
+
 static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 {
 	double		d;
@@ -69,24 +103,26 @@ int	hit_cylinder(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 {
 	const t_vector3	half = v3_mul(self->base.front, self->obj.height * 0.5);
 	const t_circle	top = (t_circle){
-		v3_add(self->base.position, half),
-		self->base.front,
-		self->obj.radius
+		v3_add(self->base.position, half), self->base.front, self->obj.radius
 	};
 	const t_circle	bottom = (t_circle){
-		v3_sub(self->base.position, half),
-		v3_reverse(self->base.front),
+		v3_sub(self->base.position, half), v3_reverse(self->base.front),
 		self->obj.radius
 	};
 	int				res;
 
 	res = 0;
 	record->t = range.max;
-	res = res | hit_body(self, ray, range, record);
+	res = res | (hit_body(self, ray, range, record) << 0);
 	range.max = record->t;
-	res = res | hit_circle(top, ray, range, record);
+	res = res | (hit_circle(top, ray, range, record) << 1);
 	range.max = record->t;
-	res = res | hit_circle(bottom, ray, range, record);
-	record->color = get_checkerboard_color(vector3(1, 1, 1), 0, 0);
+	res = res | (hit_circle(bottom, ray, range, record) << 2);
+	if (res & 0b100)
+		record->color = _checkerboard_circle(self, record->p, bottom);
+	else if (res & 0b10)
+		record->color = _checkerboard_circle(self, record->p, top);
+	else if (res & 0b1)
+		record->color = _checkerboard_body(self, record->p);
 	return (res);
 }
