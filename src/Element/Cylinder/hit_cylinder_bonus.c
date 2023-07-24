@@ -15,8 +15,8 @@
 
 static t_color	_checkerboard_body(t_cylinder *self, t_vector3 world_point)
 {
-	// const double	r = s->obj.radius / (s->obj.radius + s->obj.height * 0.5);
-	const t_vector3	bottom_center = v3_add(self->base.position, v3_mul(self->base.front, self->obj.height * 0.5));
+	const double	asdf = self->obj.radius / (self->obj.radius + self->obj.height * 0.5) * 0.5;
+	const t_vector3	bottom_center = v3_sub(self->base.position, v3_mul(self->base.front, self->obj.height * 0.5));
 	const t_vector3	local = v3_sub(world_point, bottom_center);
 	const t_vector3	dot = vector3(
 			v3_dot(local, self->base.right),
@@ -25,7 +25,9 @@ static t_color	_checkerboard_body(t_cylinder *self, t_vector3 world_point)
 	t_vector3		uv;
 	
 	uv.x = (atan(dot.y / dot.x) + M_PI_2) / M_PI * 4;
-	uv.y = v3_dot(self->base.front, local) / self->obj.height * 4;
+	uv.y = v3_dot(self->base.front, local) / self->obj.height * (1 - asdf * 2);
+	uv.y += asdf;
+	uv.y *= 4;
 	return (get_checkerboard_color(self->base.color, uv.x, uv.y));
 }
 
@@ -34,7 +36,7 @@ static t_color	_checkerboard_circle(
 	t_vector3 world_point,
 	t_circle circle)
 {
-	// const double	r = s->obj.radius / (s->obj.radius + s->obj.height * 0.5);
+	const double	asdf = self->obj.radius / (self->obj.radius + self->obj.height * 0.5) * 0.5;
 	const t_vector3	local = v3_sub(world_point, circle.center);
 	const t_vector3	dot = vector3(
 			v3_dot(local, self->base.right),
@@ -43,7 +45,10 @@ static t_color	_checkerboard_circle(
 	t_vector3		uv;
 	
 	uv.x = (atan(dot.y / dot.x) + M_PI_2) / M_PI * 4;
-	uv.y = v3_magnitude(local) / circle.radius;
+	uv.y = v3_magnitude(local) / circle.radius * asdf;
+	if (v3_dot(self->base.front, circle.axis) > 0)
+		uv.y += (1 - asdf);
+	uv.y *= 4;
 	return (get_checkerboard_color(self->base.color, uv.x, uv.y));
 }
 
