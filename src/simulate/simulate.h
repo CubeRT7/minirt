@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 09:48:37 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/25 05:29:01 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,20 @@
 # include "Element/AmbientLight/ambient_light.h"
 # include "Element/Camera/camera.h"
 
+enum e_render_mode
+{
+	RENDER_ORIGINAL = 0x01,
+	RENDER_AMBIENT = 0x02,
+	RENDER_DIFFUSE = 0x04,
+	RENDER_SPECULAR = 0x08,
+	RENDER_FULL = \
+		RENDER_ORIGINAL | RENDER_AMBIENT | RENDER_DIFFUSE | RENDER_SPECULAR
+};
+
 typedef struct s_world
 {
 	t_device				device;
+	unsigned int			render_mode;
 	t_vector3				axis;
 	t_list					*objs;
 	t_list					*lights;

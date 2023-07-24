@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:59 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 10:36:34 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/25 01:39:02 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ static const int	g_keycode[MAX_KEYBOARD] = {
 [KEYBOARD_y] = 0x10,
 [KEYBOARD_z] = 0x06,
 [KEYBOARD_q] = 0x0C,
-[KEYBOARD_e] = 0x0E
+[KEYBOARD_e] = 0x0E,
+[KEYBOARD_F1] = 0x7A,
+[KEYBOARD_F2] = 0x78,
+[KEYBOARD_F3] = 0x63,
+[KEYBOARD_F4] = 0x76
 };
 
 int	key_press(int keycode, void *param)
