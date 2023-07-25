@@ -30,12 +30,11 @@ int	hit(t_list *objs, t_ray *ray, t_range range, t_hit *record)
 			max_len = tmp_rec.t;
 			tmp_rec.elem = elem;
 			if (record != NULL)
-			{
-				tmp_rec.color = elem->color;
 				*record = tmp_rec;
-			}
 		}
 		objs = objs->next;
 	}
+	if (hit_anything && record != NULL && record->elem->func[HitColor])
+		record->elem->func[HitColor](record->elem, record);
 	return (hit_anything);
 }

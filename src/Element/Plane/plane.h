@@ -31,6 +31,7 @@ typedef struct s_plane
 }	t_plane;
 
 extern int	hit_plane(t_plane *self, t_ray *r, t_range ra, t_hit *h);
+extern int	hit_color_plane(t_plane *self, t_hit *record);
 extern int	init_plane(t_plane *self);
 
 #endif 

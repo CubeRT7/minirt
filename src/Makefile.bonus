@@ -63,13 +63,17 @@ MINIRT_SRCS = \
 	Element/Camera/init_camera.c \
 	Element/Camera/update_camera.c \
 	Element/Light/init_light.c \
-	Element/Plane/hit_plane_bonus.c \
+	Element/Plane/hit_plane.c \
+	Element/Plane/hit_color_plane_bonus.c \
 	Element/Plane/init_plane.c \
-	Element/Sphere/hit_sphere_bonus.c \
+	Element/Sphere/hit_sphere.c \
+	Element/Sphere/hit_color_sphere_bonus.c \
 	Element/Sphere/init_sphere.c \
 	Element/Sphere/transform_sphere.c \
-	Element/Cylinder/hit_cylinder_bonus.c \
+	Element/Cylinder/hit_cylinder.c \
+	Element/Cylinder/hit_color_cylinder_bonus.c \
 	Element/Cylinder/init_cylinder.c \
+	Element/Cylinder/update_cylinder.c \
 	Element/Cylinder/transform_cylinder.c \
 	Element/util/range_in.c \
 	Element/util/range_not_in.c \
@@ -101,7 +105,7 @@ MINIRT_SRCS = \
 	simulate/hook_draw_setting.c \
 	simulate/draw/ray_color.c \
 	simulate/draw/render_main_frame.c \
-	simulate/util/hit_bonus.c \
+	simulate/util/hit.c \
 	simulate/util/world_iter.c \
 	simulate/util/get_camera_ray.c \
 	simulate/util/select_element.c \

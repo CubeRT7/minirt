@@ -32,6 +32,7 @@ typedef struct s_sphere
 }	t_sphere;
 
 extern int	hit_sphere(t_sphere *self, t_ray *r, t_range ra, t_hit *h);
+extern int	hit_color_sphere(t_sphere *self, t_hit *record);
 extern int	init_sphere(t_sphere *self);
 extern int	transform_sphere(
 				t_sphere *self,

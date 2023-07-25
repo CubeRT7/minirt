@@ -15,6 +15,17 @@
 # include "../common.h"
 # include "../util/element_util.h"
 
+# define HIT_BODY 0b1
+# define HIT_TOP 0b10
+# define HIT_BOTTOM 0b100
+
+typedef struct s_circle
+{
+	t_point		center;
+	t_vector3	axis;
+	double		radius;
+}	t_circle;
+
 typedef struct s_cylinder
 {
 	struct s_element		base;
@@ -30,15 +41,10 @@ typedef struct s_cylinder
 	{
 		double		radius;
 		double		height;
+		t_circle	top;
+		t_circle	bottom;
 	}						obj;
 }	t_cylinder;
-
-typedef struct s_circle
-{
-	t_point		center;
-	t_vector3	axis;
-	double		radius;
-}	t_circle;
 
 typedef struct s_cylinder_body_alias
 {
@@ -51,11 +57,13 @@ typedef struct s_cylinder_body_alias
 }	t_cylinder_body_alias;
 
 extern int	hit_cylinder(t_cylinder *self, t_ray *r, t_range ra, t_hit *h);
+extern int	hit_color_cylinder(t_cylinder *self, t_hit *record);
 extern int	init_cylinder(t_cylinder *self);
 extern int	transform_cylinder(
 				t_cylinder *self,
 				const t_element *camera,
 				enum e_transform_type type,
 				t_vector3 delta);
+extern int	update_cylinder(t_cylinder *self);
 
-#endif 
+#endif
