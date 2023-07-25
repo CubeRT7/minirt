@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:27:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/25 08:08:31 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/25 10:54:56 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,49 +40,60 @@ static t_vector3	_trim_bright(t_vector3 bright)
 	return (bright);
 }
 
-static t_vector3	_get_diffuse_light(
+static t_vector3	_get_light(
 	t_ray ray,
 	t_hit rec,
 	t_list *objs,
-	t_list *lights)
+	t_light *light)
 {
-	t_light		*light;
 	t_ray		light_ray;
 	t_vector3	light_direction;
-	t_vector3	res;
+	t_vector3	half_direction;
+	t_vector3	view_direction;
 	double		distance;
-	double		dot;
-	t_vector3	brightness;
+	double		diffuse;
+	double		specular;
 
-	res = v3_preset(V3_ZERO);
-	while (lights)
+	light_direction = v3_sub(light->base.position, rec.p);
+	distance = v3_magnitude(light_direction);
+	light_ray = (t_ray){rec.p, v3_normalize(light_direction)};
+	if (hit(objs, &light_ray, (t_range){DELTA, distance}, NULL))
+		return (v3_preset(V3_ZERO));
+	// diffuse_light
+	diffuse = v3_dot(light_ray.direction, rec.normal);
+	if (diffuse < 0)
+		return (v3_preset(V3_ZERO));
+	if (close_to_zero(distance))
+		distance = DELTA;
+	distance = sqrt(distance);
+	// specular_light
+	view_direction = v3_normalize(v3_sub(ray.origin, rec.p));
+	half_direction = v3_normalize(v3_sub(light_direction, view_direction));
+	specular = pow(v3_dot(half_direction, rec.normal), 100);
+	return (_trim_bright(v3_mul(light->base.color,
+				(diffuse + specular) * light->obj.ratio / distance)));
+}
+
+static t_color	_get_lights(t_ray *ray, t_world *world, t_hit *rec)
+{
+	t_list	*curr;
+	t_color	brightness;
+	t_color	brightness_sum;
+	int		brightness_cnt;
+
+	brightness_cnt = 0;
+	brightness_sum = v3_preset(V3_ZERO);
+	curr = world->lights;
+	while (curr)
 	{
-		light = lights->content;
-		lights = lights->next;
-		light_direction = v3_sub(light->base.position, rec.p);
-		distance = v3_magnitude(light_direction);
-		light_ray = (t_ray){rec.p, v3_normalize(light_direction)};
-		if (hit(objs, &light_ray, (t_range){DELTA, distance}, NULL))
-			continue ;
-		dot = v3_dot(light_ray.direction, rec.normal);
-		if (dot < 0)
-			continue ;
-		if (close_to_zero(distance))
-			distance = DELTA;
-		distance = sqrt(distance);
-
-		// diffuse_light
-		brightness = v3_mul(light->base.color, dot * light->obj.ratio / distance);
-		res = v3_add(res, brightness);
-
-		// specular_light
-		t_vector3 origin_direction = v3_normalize(v3_sub(ray.origin, rec.p));
-		t_vector3 h = v3_normalize(v3_sub(light_direction, origin_direction));
-		double v = pow(v3_dot(h, rec.normal), 100);
-		brightness = _trim_bright(v3_mul(light->base.color, v));
-		res = v3_add(res, brightness);
+		// TODO: empty light skip and none counting
+		brightness = (_get_light(*ray, *rec, world->objs, curr->content));
+		brightness_sum = v3_add(brightness_sum, brightness);
+		brightness_cnt++;
+		curr = curr->next;
 	}
-	return (_trim_bright(res));
+	brightness = _trim_bright(v3_mul(brightness_sum, 1.0 / brightness_cnt));
+	return (v3_hadamard(rec->color, brightness));
 }
 
 t_color	ray_color(t_ray *ray, t_world *world)
@@ -98,7 +109,6 @@ t_color	ray_color(t_ray *ray, t_world *world)
 				world->ambient_light->base.color,
 				world->ambient_light->obj.ratio);
 	if (world->render_mode & (RENDER_DIFFUSE | RENDER_SPECULAR))
-		rec.color = v3_hadamard(rec.color,
-				_get_diffuse_light(*ray, rec, world->objs, world->lights));
+		rec.color = _get_lights(ray, world, &rec);
 	return (rec.color);
 }
