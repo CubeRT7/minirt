@@ -12,6 +12,7 @@
 
 #include "sphere.h"
 #include "Element/util/element_util_bonus.h"
+#define DENSITY 4
 
 static t_color	_checkerboard(t_sphere *self, t_vector3 world_point)
 {
@@ -21,10 +22,12 @@ static t_color	_checkerboard(t_sphere *self, t_vector3 world_point)
 			v3_dot(point, self->base.right),
 			v3_dot(point, self->base.up),
 			v3_dot(point, self->base.front));
-	const double	plane_x = (atan(local_axis.z / local_axis.x) + M_PI_2) / M_PI * 4;
-	const double	plane_y = acos(local_axis.y) / M_PI * 4;
+	const t_vector3	uv = vector3(
+			(atan(local_axis.z / local_axis.x) + M_PI_2) / M_PI * DENSITY,
+			acos(local_axis.y) / M_PI * DENSITY,
+			0);
 
-	return (get_checkerboard_color(self->base.color, plane_x, plane_y));
+	return (get_checkerboard_color(self->base.color, uv.x, uv.y));
 }
 
 int	hit_color_sphere(t_sphere *self, t_hit *record)
