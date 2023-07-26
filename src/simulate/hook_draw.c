@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 10:24:26 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:55:18 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ static void	render_text(t_world *world)
 	const int			len = (frame++ / 10) % 8;
 	t_device *const		device = &world->device;
 
+	if (world->render_mode & RENDER_ORIGINAL)
+		put_str(device, vector3(5, -8, 0), ".", 1);
+	if (world->render_mode & RENDER_AMBIENT)
+		put_str(device, vector3(10, -8, 0), ".", 1);
+	if (world->render_mode & RENDER_DIFFUSE)
+		put_str(device, vector3(15, -8, 0), ".", 1);
+	if (world->render_mode & RENDER_SPECULAR)
+		put_str(device, vector3(20, -8, 0), ".", 1);
 	if (world->selected == NULL)
 	{
 		frame = 0;

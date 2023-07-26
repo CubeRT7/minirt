@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 05:15:47 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/25 10:58:07 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:52:58 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,45 +95,27 @@ void	transform_objs_with_mouse(void *param)
 	w->selected->func[Transform](w->selected, c, w->transform_type, delta);
 }
 
-void	_debug_mode(unsigned int mode)
-{
-	printf("mode: ");
-	if (mode & RENDER_ORIGINAL)
-		printf("ORIGINAL | ");
-	if (mode & RENDER_AMBIENT)
-		printf("AMBIENT | ");
-	if (mode & RENDER_DIFFUSE)
-		printf("DIFFUSE | ");
-	if (mode & RENDER_SPECULAR)
-		printf("SPECULAR | ");
-	printf("\n");
-}
-
 void	set_render_mode(t_world *world)
 {
 	if (world->device.keyboard[KEYBOARD_F1])
 	{
 		world->render_mode ^= RENDER_ORIGINAL;
 		world->device.keyboard[KEYBOARD_F1] = 0;
-		_debug_mode(world->render_mode);
 	}
 	if (world->device.keyboard[KEYBOARD_F2])
 	{
 		world->render_mode ^= RENDER_AMBIENT;
 		world->device.keyboard[KEYBOARD_F2] = 0;
-		_debug_mode(world->render_mode);
 	}
 	if (world->device.keyboard[KEYBOARD_F3])
 	{
 		world->render_mode ^= RENDER_DIFFUSE;
 		world->device.keyboard[KEYBOARD_F3] = 0;
-		_debug_mode(world->render_mode);
 	}
 	if (world->device.keyboard[KEYBOARD_F4])
 	{
 		world->render_mode ^= RENDER_SPECULAR;
 		world->device.keyboard[KEYBOARD_F4] = 0;
-		_debug_mode(world->render_mode);
 	}
 }
 
