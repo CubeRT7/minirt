@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:13:07 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/22 09:30:52 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/25 01:42:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	_get_pixel(t_world *w, t_vector3 pos)
 	while (idx < 3)
 	{
 		ray = get_camera_ray(w->camera, w->device.size, pos, v[idx]);
-		color = ray_color(&ray, w->objs, w->ambient_light, w->lights);
+		color = ray_color(&ray, w);
 		res = v3_add(res, color);
 		idx++;
 	}
