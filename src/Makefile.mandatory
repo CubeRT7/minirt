@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/23 06:05:50 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/28 01:35:05 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,14 +100,14 @@ MINIRT_SRCS = \
 	device/hook_mouse_event.c \
 	device/hook_close_event.c \
 	simulate/simulate.c \
-	simulate/hook_draw.c \
-	simulate/hook_draw_setting.c \
+	simulate/draw/hook_draw.c \
+	simulate/draw/hook_draw_setting.c \
 	simulate/draw/ray_color.c \
 	simulate/draw/render_main_frame.c \
-	simulate/util/hit.c \
-	simulate/util/world_iter.c \
-	simulate/util/get_camera_ray.c \
-	simulate/util/select_element.c \
+	simulate/draw/hit.c \
+	simulate/draw/world_iter.c \
+	simulate/draw/get_camera_ray.c \
+	simulate/draw/select_element.c \
 	$(MINIRT).c
 ifneq ($(shell uname), Darwin)
 MINIRT_SRCS += \

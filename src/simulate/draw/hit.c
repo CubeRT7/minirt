@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 04:11:34 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/12 05:57:37 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 01:37:04 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simulate_util.h"
+#include "simulate.h"
 
 int	hit(t_list *objs, t_ray *ray, t_range range, t_hit *record)
 {

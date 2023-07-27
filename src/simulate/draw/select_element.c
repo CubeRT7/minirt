@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 04:16:02 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/20 09:11:03 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 01:37:25 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simulate_util.h"
+#include "simulate.h"
 
 t_element	*select_element(t_world *world, t_vector3 pos)
 {

@@ -6,12 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/25 02:04:16 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 01:34:36 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simulate.h"
-#include "simulate/util/simulate_util.h"
 
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 {
