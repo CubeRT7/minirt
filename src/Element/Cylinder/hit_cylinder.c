@@ -66,25 +66,15 @@ static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 
 int	hit_cylinder(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 {
-	const t_vector3	half = v3_mul(self->base.front, self->obj.height * 0.5);
-	const t_circle	top = (t_circle){
-		v3_add(self->base.position, half),
-		self->base.front,
-		self->obj.radius
-	};
-	const t_circle	bottom = (t_circle){
-		v3_sub(self->base.position, half),
-		v3_reverse(self->base.front),
-		self->obj.radius
-	};
-	int				res;
+	int	res;
 
 	res = 0;
 	record->t = range.max;
-	res = res | hit_body(self, ray, range, record);
+	res = res | (hit_body(self, ray, range, record) * HIT_BODY);
 	range.max = record->t;
-	res = res | hit_circle(top, ray, range, record);
+	res = res | (hit_circle(self->obj.top, ray, range, record) * HIT_TOP);
 	range.max = record->t;
-	res = res | hit_circle(bottom, ray, range, record);
+	res = res | (hit_circle(self->obj.bottom, ray, range, record) * HIT_BOTTOM);
+	record->hit_status = res;
 	return (res);
 }

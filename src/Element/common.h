@@ -15,6 +15,8 @@
 # include "libcustom.h"
 # include "libvector.h"
 
+# define HIT 0b1
+
 typedef struct s_rgb
 {
 	int	r;
@@ -56,6 +58,7 @@ enum e_element_func
 	Serialize,
 	Deserialize,
 	Hit,
+	HitColor,
 	Init,
 	Update,
 	Transform,
@@ -100,6 +103,7 @@ typedef struct s_hit
 	t_vector3	normal;
 	t_color		color;
 	t_element	*elem;
+	int			hit_status;
 }	t_hit;
 
 extern void		init_element(void *elem);

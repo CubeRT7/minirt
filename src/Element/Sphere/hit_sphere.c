@@ -27,5 +27,6 @@ int	hit_sphere(t_sphere *self, t_ray *ray, t_range range, t_hit *record)
 	record->p = get_ray_point(ray, record->t);
 	record->normal = v3_normalize(v3_sub(record->p, self->base.position));
 	record->normal = get_face_normal(*ray, record->normal);
-	return (1);
+	record->hit_status = HIT;
+	return (HIT);
 }

@@ -16,7 +16,9 @@ static void	_init_func(t_cylinder *self)
 {
 	self->base.type_name = "Cylinder";
 	self->base.func[Hit] = hit_cylinder;
+	self->base.func[HitColor] = hit_color_cylinder;
 	self->base.func[Transform] = transform_cylinder;
+	self->base.func[Update] = update_cylinder;
 }
 
 int	init_cylinder(t_cylinder *self)

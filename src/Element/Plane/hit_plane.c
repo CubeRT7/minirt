@@ -28,5 +28,6 @@ int	hit_plane(t_plane *self, t_ray *ray, t_range range, t_hit *record)
 	record->t = t;
 	record->p = get_ray_point(ray, t);
 	record->normal = get_face_normal(*ray, self->base.front);
-	return (1);
+	record->hit_status = HIT;
+	return (HIT);
 }	
