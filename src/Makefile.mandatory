@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/28 01:35:05 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/28 02:09:04 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,6 @@ MINIRT_SRCS = \
 	device/color_to_pixel.c \
 	device/hook_mouse_event.c \
 	device/hook_close_event.c \
-	simulate/simulate.c \
 	simulate/draw/hook_draw.c \
 	simulate/draw/hook_draw_setting.c \
 	simulate/draw/ray_color.c \
