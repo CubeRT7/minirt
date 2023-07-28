@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_draw.c                                        :+:      :+:    :+:   */
+/*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 11:04:06 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:23:36 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	render_text(t_world *world)
 	put_str(device, vector3(10, 30, 0), edit, len);
 }
 
-int	hook_draw(void *param)
+int	main_loop(void *param)
 {
 	t_world *const		world = param;
 	t_device *const		device = &world->device;

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 11:12:33 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:23:53 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_world
 	enum e_transform_type	transform_type;
 }	t_world;
 
-extern int			hook_draw(void *param);
+extern int			main_loop(void *param);
 extern int			hook_draw_setting(void *param);
 
 extern void			rotate_camera(void *param);

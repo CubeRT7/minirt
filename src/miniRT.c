@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 11:11:54 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:23:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
 	}
 	_init_world(&world, &rt);
-	mlx_loop_hook(world.device.mlx, hook_draw, &world);
+	mlx_loop_hook(world.device.mlx, main_loop, &world);
 	mlx_loop(world.device.mlx);
 	destroy_device(&world.device);
 	clean_rt(&rt);
