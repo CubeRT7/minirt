@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:07:03 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:46 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	_init(void *param, struct s_parse_dto dto)
 	if (close_to_zero(v3_magnitude(self->base.right)))
 		self->base.right = v3_preset(V3_RIGHT);
 	self->base.up = v3_cross(self->base.right, self->base.front);
-	self->obj.fov_radian = dto.fov / 180 * M_PI;
+	self->fov_radian = dto.fov / 180 * M_PI;
 }
 
 int	parse_camera(void *param, char **argv)

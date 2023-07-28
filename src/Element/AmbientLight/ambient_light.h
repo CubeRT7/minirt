@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:18:25 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:57:09 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@
 
 typedef struct s_ambient_light
 {
-	struct s_element		base;
-	struct s_ambient_light_obj
-	{
-		double	ratio;
-	}						obj;
+	struct s_element	base;
+	double				ratio;
 }	t_ambient_light;
 
 extern int		init_ambient_light(t_ambient_light *self);

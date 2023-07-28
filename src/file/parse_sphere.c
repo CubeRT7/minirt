@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:16:39 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:58:39 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	_init(void *param, struct s_parse_dto dto)
 	self->base.up = v3_preset(V3_UP);
 	self->base.right = v3_preset(V3_RIGHT);
 	self->base.color = rgb_to_color(dto.rgb);
-	self->obj.radius = dto.diameter * 0.5;
+	self->radius = dto.diameter * 0.5;
 }
 
 int	parse_sphere(void *param, char **argv)

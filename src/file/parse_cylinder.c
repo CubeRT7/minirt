@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:07:03 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:56:42 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	_init(void *param, struct s_parse_dto dto)
 	if (close_to_zero(v3_magnitude(self->base.right)))
 		self->base.right = v3_preset(V3_RIGHT);
 	self->base.up = v3_cross(self->base.right, self->base.front);
-	self->obj.radius = dto.diameter * 0.5;
-	self->obj.height = dto.height;
+	self->radius = dto.diameter * 0.5;
+	self->height = dto.height;
 }
 
 int	parse_cylinder(void *param, char **argv)

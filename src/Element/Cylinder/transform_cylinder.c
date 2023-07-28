@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 08:48:15 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/14 08:48:17 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:46 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int	transform_cylinder(
 		transform_element(&(self->base), camera, type, delta);
 	if (type == (Scaling | Radius))
 	{
-		self->obj.radius += delta.x;
-		if (self->obj.radius < 0)
-			self->obj.radius = 0;
+		self->radius += delta.x;
+		if (self->radius < 0)
+			self->radius = 0;
 	}
 	if (type == (Scaling | Height))
 	{
-		self->obj.height += delta.x;
-		if (self->obj.height < 0)
-			self->obj.height = 0;
+		self->height += delta.x;
+		if (self->height < 0)
+			self->height = 0;
 	}
 	return (EXIT_SUCCESS);
 }

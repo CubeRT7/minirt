@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:10:35 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 11:01:56 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:47 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ t_ray	get_camera_ray(
 	enum e_type {DIREC, FRONT};
 	uv.x = (pos.x + delta.x) / screen.x;
 	uv.y = (pos.y + delta.y) / screen.y;
-	v[DIREC] = cam->obj.viewport_lower_left;
-	v[DIREC] = v3_add(v[DIREC], v3_mul(cam->obj.viewport_horizontal, uv.x));
-	v[DIREC] = v3_add(v[DIREC], v3_mul(cam->obj.viewport_vertical, uv.y));
+	v[DIREC] = cam->viewport_lower_left;
+	v[DIREC] = v3_add(v[DIREC], v3_mul(cam->viewport_horizontal, uv.x));
+	v[DIREC] = v3_add(v[DIREC], v3_mul(cam->viewport_vertical, uv.y));
 	v[DIREC] = v3_normalize(v[DIREC]);
 	v[FRONT] = v3_normalize(vector3(cam->base.front.x, 0, cam->base.front.z));
 	if (v3_magnitude(v[FRONT]) == 0)

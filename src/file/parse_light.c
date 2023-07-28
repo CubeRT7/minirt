@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:31:50 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:57:35 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	_init(void *param, struct s_parse_dto dto)
 	self->base.position = dto.coordinate;
 	self->base.front = v3_normalize(dto.axis);
 	self->base.color = rgb_to_color(dto.rgb);
-	self->obj.ratio = dto.ratio;
+	self->ratio = dto.ratio;
 }
 
 int	parse_light(void *param, char **argv)
