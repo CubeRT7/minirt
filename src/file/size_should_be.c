@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_light.c                                       :+:      :+:    :+:   */
+/*   size_should_be.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 21:42:10 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 19:57:13 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/28 18:48:33 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/28 20:17:37 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "light.h"
+#include "file_private.h"
 
-int	init_light(t_light *self)
+int	size_should_be(char **argv, int size)
 {
-	self->base.func[Transform] = transform_element;
+	int	i;
+
+	if (argv == NULL)
+		return (EXIT_FAILURE);
+	i = 0;
+	while (i < size)
+	{
+		if (argv[i] == NULL)
+			return (EXIT_FAILURE);
+		i++;
+	}
+	if (argv[i] != NULL)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

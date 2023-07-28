@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:52:36 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 18:03:04 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:10:31 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@
 
 typedef t_vector3	t_point;
 typedef t_vector3	t_color;
-
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_rgb;
 
 typedef struct s_ray
 {

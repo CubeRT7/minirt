@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_light.c                                       :+:      :+:    :+:   */
+/*   parse_double.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 21:42:10 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 19:57:13 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/28 19:02:12 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/28 20:16:17 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "light.h"
+#include "file_private.h"
 
-int	init_light(t_light *self)
+int	parse_double(double *res, char *str)
 {
-	self->base.func[Transform] = transform_element;
+	char	*remain;
+
+	if (res == NULL || str == NULL)
+		return (EXIT_FAILURE);
+	*res = ft_strtof(str, &remain);
+	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

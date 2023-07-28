@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:59 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 18:36:16 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@
 typedef struct s_sphere
 {
 	struct s_element		base;
-	struct s_sphere_raw
-	{
-		t_point		coordinate;
-		t_vector3	axis;
-		t_rgb		rgb;
-		double		diameter;
-	}						raw;
 	struct s_sphere_obj
 	{
 		double		radius;

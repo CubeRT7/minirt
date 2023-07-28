@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 06:58:48 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:46 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:11:33 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ extern int			transform_element(
 						const t_element *camera,
 						enum e_transform_type type,
 						t_vector3 delta);
-extern t_color		rgb_to_color(t_rgb rgb);
 extern void			rotate_element(
 						t_element *elem,
 						t_vector3 axis,

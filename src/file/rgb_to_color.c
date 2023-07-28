@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_to_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:52:04 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/19 14:52:06 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:14:15 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "element_util.h"
+#include "file_private.h"
 
 t_color	rgb_to_color(t_rgb rgb)
 {
