@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:18:35 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/04 05:28:02 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:01:10 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@
 # include "../Element/Plane/plane.h"
 # include "../Element/Sphere/sphere.h"
 # include "../Element/Cylinder/cylinder.h"
-
-struct s_parse_info
-{
-	const char	*type;
-	size_t		size;
-	int			(*parse)(void *, char **);
-};
 
 struct s_rt_file
 {

@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/23 06:05:50 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/28 14:31:23 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ endif
 # **************************************************************************** #
 CPPFLAGS	+= -Ifile
 CPPFLAGS	+= -Idevice
-CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
 	Element/common.c \
@@ -86,28 +85,30 @@ MINIRT_SRCS = \
 	Element/util/rgb_to_color.c \
 	file/clean_rt.c \
 	file/import_file.c \
+	file/parse_rgb.c \
+	file/parse_vector3.c \
 	file/parse_ambient_light.c \
 	file/parse_camera.c \
 	file/parse_light.c \
 	file/parse_plane.c \
 	file/parse_sphere.c \
 	file/parse_cylinder.c \
-	device/device.c \
+	device/create_device.c \
+	device/destroy_device.c \
 	device/hook.c \
 	device/put_str.c \
 	device/put_pixel.c \
 	device/color_to_pixel.c \
 	device/hook_mouse_event.c \
 	device/hook_close_event.c \
-	simulate/simulate.c \
-	simulate/hook_draw.c \
-	simulate/hook_draw_setting.c \
-	simulate/draw/ray_color.c \
-	simulate/draw/render_main_frame.c \
-	simulate/util/hit.c \
-	simulate/util/world_iter.c \
-	simulate/util/get_camera_ray.c \
-	simulate/util/select_element.c \
+	draw/main_loop.c \
+	draw/hook_draw_setting.c \
+	draw/ray_color.c \
+	draw/render_main_frame.c \
+	draw/hit.c \
+	draw/world_iter.c \
+	draw/get_camera_ray.c \
+	draw/select_element.c \
 	$(MINIRT).c
 ifneq ($(shell uname), Darwin)
 MINIRT_SRCS += \

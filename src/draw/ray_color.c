@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:27:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/26 17:36:19 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:06:37 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,19 @@ static t_color	_get_lights(t_ray *ray, t_world *world, t_hit *rec)
 
 t_color	ray_color(t_ray *ray, t_world *world)
 {
-	t_hit	rec;
+	t_hit		rec;
+	t_color		color;
 
 	if (hit(world->objs, ray, (t_range){DELTA, BIGVALUE}, &rec) == 0)
 		return (v3_preset(V3_ZERO));
-	rec.color = v3_preset(V3_ZERO);
+	color = v3_preset(V3_ZERO);
 	if (world->render_mode & RENDER_AMBIENT)
-		rec.color = v3_mul(
+		color = v3_mul(
 				world->ambient_light->base.color,
 				world->ambient_light->obj.ratio);
 	if (world->render_mode & (RENDER_DIFFUSE | RENDER_SPECULAR))
-		rec.color = _trim_bright(v3_add(rec.color, _get_lights(ray, world, &rec)));
+		color = _trim_bright(v3_add(color, _get_lights(ray, world, &rec)));
 	if ((world->render_mode & RENDER_ORIGINAL) == 0)
-		return (rec.color);
-	return (alpha_blend(rec.color, rec.elem->color, 0.5));
+		return (color);
+	return (alpha_blend(color, rec.color, 0.5));
 }

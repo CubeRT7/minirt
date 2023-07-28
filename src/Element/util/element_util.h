@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 06:58:48 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/05 07:01:42 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 15:11:46 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define ELEMENT_UTIL_H
 # define HAS_VALUE 0
 # define NO_VALUE 1
-# include "../common.h"
+# include "../element.h"
 
 typedef struct s_abc
 {

@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   destroy_device.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:35 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/28 13:15:48 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/28 13:16:24 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_H
-# define LIGHT_H
-# include "../element.h"
-# include "../util/element_util.h"
+#include "device.h"
 
-typedef struct s_light
+void	destroy_device(struct s_device *device)
 {
-	struct s_element		base;
-	struct s_light_raw
-	{
-		t_point		coordinate;
-		t_vector3	axis;
-		t_rgb		rgb;
-		double		ratio;
-	}						raw;
-	struct s_light_obj
-	{
-		double		ratio;
-	}						obj;
-}	t_light;
-
-extern int		init_light(t_light *self);
-
-#endif 
+	if (device == NULL)
+		return ;
+	if (device->img)
+		mlx_destroy_image(device->mlx, device->img);
+	device->img = NULL;
+	if (device->win)
+		mlx_destroy_window(device->mlx, device->win);
+	device->win = NULL;
+}

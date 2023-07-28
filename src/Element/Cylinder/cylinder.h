@@ -6,13 +6,13 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/07 05:47:58 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:11:31 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CYLINDER_H
 # define CYLINDER_H
-# include "../common.h"
+# include "../element.h"
 # include "../util/element_util.h"
 
 # define HIT_BODY 0b1

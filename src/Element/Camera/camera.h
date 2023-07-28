@@ -6,13 +6,13 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/15 11:05:28 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:11:54 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAMERA_H
 # define CAMERA_H
-# include "../common.h"
+# include "../element.h"
 # include "../util/element_util.h"
 
 typedef struct s_camera

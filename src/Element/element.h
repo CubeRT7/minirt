@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   element.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/17 16:41:33 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:11:21 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#ifndef ELEMENT_H
+# define ELEMENT_H
 # include "libcustom.h"
 # include "libvector.h"
 
 # define HIT 0b1
 
+
+
+
+
+
+// TODO: move
 typedef struct s_rgb
 {
 	int	r;
@@ -24,11 +30,6 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
-enum e_vector_scope
-{
-	UnitScope,
-	AllScope
-};
 
 typedef t_vector3	t_point;
 typedef t_vector3	t_color;
@@ -38,6 +39,33 @@ typedef struct s_ray
 	t_point		origin;
 	t_vector3	direction;
 }	t_ray;
+
+typedef struct s_range
+{
+	double	min;
+	double	max;
+}	t_range;
+
+// TODO: move
+typedef struct s_hit
+{
+	double		t;
+	t_point		p;
+	t_vector3	normal;
+	t_color		color;
+	void		*elem;
+	int			hit_status;
+}	t_hit;
+
+
+
+
+
+
+
+
+
+
 
 enum e_element
 {
@@ -90,25 +118,7 @@ typedef struct s_element
 	t_func			func[MAX_ELEMENT_FUNC];
 }	t_element;
 
-typedef struct s_range
-{
-	double	min;
-	double	max;
-}	t_range;
-
-typedef struct s_hit
-{
-	double		t;
-	t_point		p;
-	t_vector3	normal;
-	t_color		color;
-	t_element	*elem;
-	int			hit_status;
-}	t_hit;
-
 extern void		init_element(void *elem);
 extern void		element_iter(t_list *list, enum e_element_func e);
-extern int		parse_rgb(struct s_rgb *rgb, char *curr);
-extern int		parse_vector3(t_vector3 *vector, char *curr, int scope);
 
 #endif
