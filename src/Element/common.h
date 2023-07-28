@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 14:27:44 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 14:55:18 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ typedef struct s_range
 	double	min;
 	double	max;
 }	t_range;
+
+// TODO: move
+typedef struct s_hit
+{
+	double		t;
+	t_point		p;
+	t_vector3	normal;
+	t_color		color;
+	void		*elem;
+	int			hit_status;
+}	t_hit;
+
+
+
 
 
 
@@ -103,29 +117,6 @@ typedef struct s_element
 	t_color			color;
 	t_func			func[MAX_ELEMENT_FUNC];
 }	t_element;
-
-
-
-
-// TODO: move
-typedef struct s_hit
-{
-	double		t;
-	t_point		p;
-	t_vector3	normal;
-	t_color		color;
-	t_element	*elem;
-	int			hit_status;
-}	t_hit;
-
-
-
-
-
-
-
-
-
 
 extern void		init_element(void *elem);
 extern void		element_iter(t_list *list, enum e_element_func e);

@@ -6,18 +6,18 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 04:11:34 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 11:01:59 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:02:24 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	hit(t_list *objs, t_ray *ray, t_range range, t_hit *record)
+static int	_hit(t_list *objs, t_ray *ray, t_range range, t_hit *record)
 {
-	t_hit			tmp_rec;
-	double			max_len;
-	int				hit_anything;
-	t_element		*elem;
+	t_hit		tmp_rec;
+	double		max_len;
+	int			hit_anything;
+	t_element	*elem;
 
 	hit_anything = 0;
 	max_len = range.max;
@@ -28,13 +28,25 @@ int	hit(t_list *objs, t_ray *ray, t_range range, t_hit *record)
 		{
 			hit_anything = 1;
 			max_len = tmp_rec.t;
-			tmp_rec.elem = elem;
+			tmp_rec.elem = (void *)elem;
 			if (record != NULL)
 				*record = tmp_rec;
 		}
 		objs = objs->next;
 	}
-	if (hit_anything && record != NULL && record->elem->func[HitColor])
-		record->elem->func[HitColor](record->elem, record);
+	return (hit_anything);
+}
+
+int	hit(t_list *objs, t_ray *ray, t_range range, t_hit *record)
+{
+	const int	hit_anything = _hit(objs, ray, range, record);
+	t_element	*elem;
+
+	if (hit_anything && record != NULL)
+	{
+		elem = (t_element *)(record->elem);
+		if (hit_anything && record != NULL && elem->func[HitColor])
+			elem->func[HitColor](elem, record);
+	}
 	return (hit_anything);
 }
