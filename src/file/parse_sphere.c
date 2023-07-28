@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/07 05:52:14 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:04:04 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "file_private.h"
 #include "../Element/Sphere/sphere.h"
 
 static int	_debug_sphere(void *param)

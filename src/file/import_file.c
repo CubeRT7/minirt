@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   import_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/12 04:24:29 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:03:06 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
-
-extern int	parse_ambient_light(void *param, char **argv);
-extern int	parse_camera(void *param, char **argv);
-extern int	parse_light(void *param, char **argv);
-extern int	parse_sphere(void *param, char **argv);
-extern int	parse_plane(void *param, char **argv);
-extern int	parse_cylinder(void *param, char **argv);
+#include "file_private.h"
 
 static int	_append(t_list **elements, t_list *node, char **cols)
 {

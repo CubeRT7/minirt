@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/17 16:41:33 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:11:42 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 
 # define HIT 0b1
 
+
+
+
+
+
+// TODO: move
 typedef struct s_rgb
 {
 	int	r;
@@ -38,6 +44,19 @@ typedef struct s_ray
 	t_point		origin;
 	t_vector3	direction;
 }	t_ray;
+
+typedef struct s_range
+{
+	double	min;
+	double	max;
+}	t_range;
+
+
+
+
+
+
+
 
 enum e_element
 {
@@ -90,12 +109,10 @@ typedef struct s_element
 	t_func			func[MAX_ELEMENT_FUNC];
 }	t_element;
 
-typedef struct s_range
-{
-	double	min;
-	double	max;
-}	t_range;
 
+
+
+// TODO: move
 typedef struct s_hit
 {
 	double		t;
@@ -106,9 +123,16 @@ typedef struct s_hit
 	int			hit_status;
 }	t_hit;
 
+
+
+
+
+
+
+
+
+
 extern void		init_element(void *elem);
 extern void		element_iter(t_list *list, enum e_element_func e);
-extern int		parse_rgb(struct s_rgb *rgb, char *curr);
-extern int		parse_vector3(t_vector3 *vector, char *curr, int scope);
 
 #endif

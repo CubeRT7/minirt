@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/07 05:52:07 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:03:52 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "file_private.h"
 #include "../Element/Cylinder/cylinder.h"
 
 static int	_debug_cylinder(void *param)

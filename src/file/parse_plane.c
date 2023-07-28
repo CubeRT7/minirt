@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/07 05:52:11 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:03:59 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "file_private.h"
 #include "../Element/Plane/plane.h"
 
 static int	_debug_plane(void *param)
