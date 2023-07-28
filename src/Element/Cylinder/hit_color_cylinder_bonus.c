@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_color_cylinder_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 06:55:17 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/26 06:55:20 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:46 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 static double	_get_uv_ratio(t_cylinder *self)
 {
-	const double	total = self->obj.radius * 2 + self->obj.height;
+	const double	total = self->radius * 2 + self->height;
 
-	return (self->obj.radius / total);
+	return (self->radius / total);
 }
 
 static t_color	_checkerboard_body(t_cylinder *self, t_vector3 world_point)
@@ -26,7 +26,7 @@ static t_color	_checkerboard_body(t_cylinder *self, t_vector3 world_point)
 	const double	uv_ratio = _get_uv_ratio(self);
 	const t_vector3	bottom_center = v3_sub(
 			self->base.position,
-			v3_mul(self->base.front, self->obj.height * 0.5));
+			v3_mul(self->base.front, self->height * 0.5));
 	const t_vector3	local = v3_sub(world_point, bottom_center);
 	const t_vector3	dot = vector3(
 			v3_dot(local, self->base.right),
@@ -36,7 +36,7 @@ static t_color	_checkerboard_body(t_cylinder *self, t_vector3 world_point)
 
 	uv.x = (atan(dot.y / dot.x) + M_PI_2) / M_PI;
 	uv.x *= DENSITY;
-	uv.y = v3_dot(self->base.front, local) / self->obj.height;
+	uv.y = v3_dot(self->base.front, local) / self->height;
 	uv.y *= 1 - uv_ratio * 2;
 	uv.y += uv_ratio;
 	uv.y *= DENSITY;
@@ -72,9 +72,9 @@ static t_color	_checkerboard_circle(
 int	hit_color_cylinder(t_cylinder *self, t_hit *record)
 {
 	if (record->hit_status & HIT_BOTTOM)
-		record->color = _checkerboard_circle(self, record->p, self->obj.bottom);
+		record->color = _checkerboard_circle(self, record->p, self->bottom);
 	else if (record->hit_status & HIT_TOP)
-		record->color = _checkerboard_circle(self, record->p, self->obj.top);
+		record->color = _checkerboard_circle(self, record->p, self->top);
 	else if (record->hit_status & HIT_BODY)
 		record->color = _checkerboard_body(self, record->p);
 	return (EXIT_SUCCESS);

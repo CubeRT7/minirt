@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:54 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:57:03 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,12 @@
 
 typedef struct s_camera
 {
-	struct s_element			base;
-	struct s_camera_raw
-	{
-		t_point		coordinate;
-		t_vector3	axis;
-		double		fov;
-	}							raw;
-	struct s_camera_obj
-	{
-		t_vector3	viewport_lower_left;
-		t_vector3	viewport_horizontal;
-		t_vector3	viewport_vertical;
-		double		ratio;
-		double		fov_radian;
-	}							obj;
+	struct s_element	base;
+	t_vector3			viewport_lower_left;
+	t_vector3			viewport_horizontal;
+	t_vector3			viewport_vertical;
+	double				ratio;
+	double				fov_radian;
 }	t_camera;
 
 extern int		init_camera(t_camera *self);

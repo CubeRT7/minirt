@@ -6,66 +6,15 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:21 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 18:02:32 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ELEMENT_H
 # define ELEMENT_H
-# include "libcustom.h"
-# include "libvector.h"
+# include "common.h"
 
 # define HIT 0b1
-
-
-
-
-
-
-// TODO: move
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_rgb;
-
-
-typedef t_vector3	t_point;
-typedef t_vector3	t_color;
-
-typedef struct s_ray
-{
-	t_point		origin;
-	t_vector3	direction;
-}	t_ray;
-
-typedef struct s_range
-{
-	double	min;
-	double	max;
-}	t_range;
-
-// TODO: move
-typedef struct s_hit
-{
-	double		t;
-	t_point		p;
-	t_vector3	normal;
-	t_color		color;
-	void		*elem;
-	int			hit_status;
-}	t_hit;
-
-
-
-
-
-
-
-
-
-
 
 enum e_element
 {

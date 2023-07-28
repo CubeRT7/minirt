@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 08:48:50 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/14 08:50:28 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:44 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	transform_sphere(
 		transform_element(&(self->base), camera, type, delta);
 	if (type == (Scaling | Radius))
 	{
-		self->obj.radius += delta.x;
-		if (self->obj.radius < 0)
-			self->obj.radius = 0;
+		self->radius += delta.x;
+		if (self->radius < 0)
+			self->radius = 0;
 	}
 	return (EXIT_SUCCESS);
 }

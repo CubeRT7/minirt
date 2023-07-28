@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 05:15:47 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 11:02:09 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 21:00:04 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	hook_draw_setting(void *param)
 			0);
 
 	set_render_mode(world);
-	world->camera->obj.ratio = (double)device->size.y / device->size.x;
+	world->camera->ratio = (double)device->size.y / device->size.x;
 	if (device->mouse.action[MOUSE_BUTTON_LEFT] == MOUSE_PRESS)
 		world->selected = select_element(world, point_in_world);
 	if (device->keyboard[KEYBOARD_RETURN] && world->lights)

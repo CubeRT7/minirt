@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   size_should_be.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:57:45 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/28 18:48:33 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/28 20:17:37 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_H
-# define LIGHT_H
-# include "../element.h"
-# include "../util/element_util.h"
+#include "file_private.h"
 
-typedef struct s_light
+int	size_should_be(char **argv, int size)
 {
-	struct s_element	base;
-	double				ratio;
-}	t_light;
+	int	i;
 
-extern int		init_light(t_light *self);
-
-#endif 
+	if (argv == NULL)
+		return (EXIT_FAILURE);
+	i = 0;
+	while (i < size)
+	{
+		if (argv[i] == NULL)
+			return (EXIT_FAILURE);
+		i++;
+	}
+	if (argv[i] != NULL)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}

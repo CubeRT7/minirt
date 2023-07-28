@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   size_range_in.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:57:45 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/28 18:48:33 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/28 20:17:33 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_H
-# define LIGHT_H
-# include "../element.h"
-# include "../util/element_util.h"
+#include "file_private.h"
 
-typedef struct s_light
+int	size_range_in(char **argv, int min, int max)
 {
-	struct s_element	base;
-	double				ratio;
-}	t_light;
+	int	i;
 
-extern int		init_light(t_light *self);
-
-#endif 
+	if (argv == NULL)
+		return (EXIT_FAILURE);
+	i = 0;
+	while (i < min)
+	{
+		if (argv[i] == NULL)
+			return (EXIT_FAILURE);
+		i++;
+	}
+	while (i < max)
+	{
+		if (argv[i] == NULL)
+			return (EXIT_SUCCESS);
+		i++;
+	}
+	if (i == max && argv[i] != NULL)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   parse_double.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:57:45 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/28 19:02:12 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/28 20:16:17 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_H
-# define LIGHT_H
-# include "../element.h"
-# include "../util/element_util.h"
+#include "file_private.h"
 
-typedef struct s_light
+int	parse_double(double *res, char *str)
 {
-	struct s_element	base;
-	double				ratio;
-}	t_light;
+	char	*remain;
 
-extern int		init_light(t_light *self);
-
-#endif 
+	if (res == NULL || str == NULL)
+		return (EXIT_FAILURE);
+	*res = ft_strtof(str, &remain);
+	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}

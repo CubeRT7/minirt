@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:31 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:56:57 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,11 @@ typedef struct s_circle
 
 typedef struct s_cylinder
 {
-	struct s_element		base;
-	struct s_cylinder_raw
-	{
-		t_point		coordinate;
-		t_vector3	axis;
-		t_rgb		rgb;
-		double		diameter;
-		double		height;
-	}						raw;
-	struct s_cylinder_obj
-	{
-		double		radius;
-		double		height;
-		t_circle	top;
-		t_circle	bottom;
-	}						obj;
+	struct s_element	base;
+	double				radius;
+	double				height;
+	t_circle			top;
+	t_circle			bottom;
 }	t_cylinder;
 
 typedef struct s_cylinder_body_alias

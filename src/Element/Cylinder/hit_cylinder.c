@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 02:08:42 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/07 05:49:15 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:46 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ static int	hit_circle(t_circle circ, t_ray *ray, t_range range, t_hit *record)
 
 static int	hit_body(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 {
-	const double			half_height = self->obj.height * 0.5;
+	const double			half_height = self->height * 0.5;
 	t_cylinder_body_alias	alias;
 	t_abc					abc;
 	t_hit					rec;
 
-	alias.r2 = self->obj.radius * self->obj.radius;
+	alias.r2 = self->radius * self->radius;
 	alias.w = v3_sub(ray->origin, self->base.position);
 	alias.vh = v3_dot(ray->direction, self->base.front);
 	alias.wh = v3_dot(alias.w, self->base.front);
@@ -72,9 +72,9 @@ int	hit_cylinder(t_cylinder *self, t_ray *ray, t_range range, t_hit *record)
 	record->t = range.max;
 	res = res | (hit_body(self, ray, range, record) * HIT_BODY);
 	range.max = record->t;
-	res = res | (hit_circle(self->obj.top, ray, range, record) * HIT_TOP);
+	res = res | (hit_circle(self->top, ray, range, record) * HIT_TOP);
 	range.max = record->t;
-	res = res | (hit_circle(self->obj.bottom, ray, range, record) * HIT_BOTTOM);
+	res = res | (hit_circle(self->bottom, ray, range, record) * HIT_BOTTOM);
 	record->hit_status = res;
 	return (res);
 }
