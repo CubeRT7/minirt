@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 01:36:38 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:04:06 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simulate/draw/draw.h"
+#include "draw/draw.h"
 
 static void	render_text(t_world *world)
 {

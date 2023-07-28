@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/28 02:09:04 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/28 11:03:55 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ endif
 # **************************************************************************** #
 CPPFLAGS	+= -Ifile
 CPPFLAGS	+= -Idevice
-CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
 	Element/common.c \
@@ -99,14 +98,14 @@ MINIRT_SRCS = \
 	device/color_to_pixel.c \
 	device/hook_mouse_event.c \
 	device/hook_close_event.c \
-	simulate/draw/hook_draw.c \
-	simulate/draw/hook_draw_setting.c \
-	simulate/draw/ray_color.c \
-	simulate/draw/render_main_frame.c \
-	simulate/draw/hit.c \
-	simulate/draw/world_iter.c \
-	simulate/draw/get_camera_ray.c \
-	simulate/draw/select_element.c \
+	draw/hook_draw.c \
+	draw/hook_draw_setting.c \
+	draw/ray_color.c \
+	draw/render_main_frame.c \
+	draw/hit.c \
+	draw/world_iter.c \
+	draw/get_camera_ray.c \
+	draw/select_element.c \
 	$(MINIRT).c
 ifneq ($(shell uname), Darwin)
 MINIRT_SRCS += \
