@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/28 11:03:55 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/28 13:17:27 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,8 @@ MINIRT_SRCS = \
 	file/parse_plane.c \
 	file/parse_sphere.c \
 	file/parse_cylinder.c \
-	device/device.c \
+	device/create_device.c \
+	device/destroy_device.c \
 	device/hook.c \
 	device/put_str.c \
 	device/put_pixel.c \
