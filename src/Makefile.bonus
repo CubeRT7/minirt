@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/28 13:24:24 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/28 14:31:30 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,8 @@ MINIRT_SRCS = \
 	Element/util/get_checkerboard_color_bonus.c \
 	file/clean_rt.c \
 	file/import_file.c \
+	file/parse_rgb.c \
+	file/parse_vector3.c \
 	file/parse_ambient_light.c \
 	file/parse_camera.c \
 	file/parse_light.c \
