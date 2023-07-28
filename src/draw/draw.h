@@ -6,13 +6,13 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 04:00:10 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 11:01:46 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:12:03 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
-# include "Element/common.h"
+# include "Element/element.h"
 # include "miniRT.h"
 
 extern t_color	ray_color(t_ray *ray, t_world *world);

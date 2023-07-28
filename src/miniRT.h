@@ -6,14 +6,14 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 13:23:53 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:11:00 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 # include "device.h"
-# include "Element/common.h"
+# include "Element/element.h"
 # include "Element/AmbientLight/ambient_light.h"
 # include "Element/Camera/camera.h"
 # define DELTA 0.00000001

@@ -6,13 +6,13 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/07 05:48:10 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:11:39 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLANE_H
 # define PLANE_H
-# include "../common.h"
+# include "../element.h"
 # include "../util/element_util.h"
 
 typedef struct s_plane

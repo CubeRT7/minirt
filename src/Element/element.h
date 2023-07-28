@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   element.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 14:55:18 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 15:11:21 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#ifndef ELEMENT_H
+# define ELEMENT_H
 # include "libcustom.h"
 # include "libvector.h"
 

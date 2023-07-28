@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 14:32:15 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 15:11:03 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
+#include "element.h"
 #include "Element/AmbientLight/ambient_light.h"
 #include "Element/Camera/camera.h"
 #include "Element/Light/light.h"
