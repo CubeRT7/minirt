@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:07:03 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:31:50 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	parse_light(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (argv[2] && parse_rgb(&dto.rgb, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	if (argv[2] == NULL)
+		dto.rgb = (t_rgb){255, 255, 255};
 	_debug(dto);
 	_init(param, dto);
 	return (EXIT_SUCCESS);
