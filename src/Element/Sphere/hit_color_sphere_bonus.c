@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_color_sphere_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 06:55:17 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/26 06:55:20 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:45 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static t_color	_checkerboard(t_sphere *self, t_vector3 world_point)
 {
 	const t_vector3	local = v3_sub(world_point, self->base.position);
-	const t_vector3	point = v3_mul(local, 1 / self->obj.radius);
+	const t_vector3	point = v3_mul(local, 1 / self->radius);
 	const t_vector3	local_axis = vector3(
 			v3_dot(point, self->base.right),
 			v3_dot(point, self->base.up),

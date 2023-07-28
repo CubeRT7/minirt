@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 02:11:24 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/05 07:08:28 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:44 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	hit_sphere(t_sphere *self, t_ray *ray, t_range range, t_hit *record)
 	const t_abc		abc = (t_abc){
 		v3_dot(dir, dir),
 		v3_dot(oc, ray->direction),
-		v3_dot(oc, oc) - self->obj.radius * self->obj.radius
+		v3_dot(oc, oc) - self->radius * self->radius
 	};
 
 	if (quadratic_formula_root(abc, range, &(record->t)) == NO_VALUE)

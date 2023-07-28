@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:27:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 15:06:37 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:48 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static t_vector3	_get_light(
 	diffuse = 0;
 	if (world->render_mode & RENDER_DIFFUSE)
 		diffuse = fmax(0, v3_dot(light_direction, rec.normal));
-	diffuse_color = (v3_mul(light->base.color, light->obj.ratio * diffuse));
+	diffuse_color = (v3_mul(light->base.color, light->ratio * diffuse));
 	specular = 0;
 	if (world->render_mode & RENDER_SPECULAR)
 	{
@@ -73,7 +73,7 @@ static t_vector3	_get_light(
 		half_direction = v3_normalize(v3_add(light_direction, view_direction));
 		specular = pow(fmax(0, v3_dot(half_direction, rec.normal)), 100);
 	}
-	specular_color = (v3_mul(light->base.color, light->obj.ratio * specular));
+	specular_color = (v3_mul(light->base.color, light->ratio * specular));
 	return (v3_add(diffuse_color, specular_color));
 }
 
@@ -109,7 +109,7 @@ t_color	ray_color(t_ray *ray, t_world *world)
 	if (world->render_mode & RENDER_AMBIENT)
 		color = v3_mul(
 				world->ambient_light->base.color,
-				world->ambient_light->obj.ratio);
+				world->ambient_light->ratio);
 	if (world->render_mode & (RENDER_DIFFUSE | RENDER_SPECULAR))
 		color = _trim_bright(v3_add(color, _get_lights(ray, world, &rec)));
 	if ((world->render_mode & RENDER_ORIGINAL) == 0)

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:07:03 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:59:47 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	_init(void *param, struct s_parse_dto dto)
 	self->base.type = AmbientLight;
 	self->base.type_name = "AmbientLight";
 	self->base.color = rgb_to_color(dto.rgb);
-	self->obj.ratio = dto.ratio;
+	self->ratio = dto.ratio;
 }
 
 int	parse_ambient_light(void *param, char **argv)
