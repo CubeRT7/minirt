@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 14:11:42 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 14:27:44 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
-enum e_vector_scope
-{
-	UnitScope,
-	AllScope
-};
 
 typedef t_vector3	t_point;
 typedef t_vector3	t_color;

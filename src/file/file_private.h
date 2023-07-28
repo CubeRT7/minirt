@@ -6,13 +6,19 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 13:59:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 14:03:02 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 14:27:57 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILE_PRIVATE_H
 # define FILE_PRIVATE_H
 # include "file.h"
+
+enum e_vector_scope
+{
+	UnitScope,
+	AllScope
+};
 
 struct s_parse_info
 {
