@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:39 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 18:36:07 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 typedef struct s_plane
 {
 	struct s_element		base;
-	struct s_plane_raw
-	{
-		t_point		coordinate;
-		t_vector3	axis;
-		t_rgb		rgb;
-	}						raw;
 	struct s_plane_obj
 	{
 		void		*tbd;

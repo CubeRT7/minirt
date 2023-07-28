@@ -1,19 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_light.c                                       :+:      :+:    :+:   */
+/*   size_range_in.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 21:42:10 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 19:57:13 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/28 18:48:33 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/28 20:17:33 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "light.h"
+#include "file_private.h"
 
-int	init_light(t_light *self)
+int	size_range_in(char **argv, int min, int max)
 {
-	self->base.func[Transform] = transform_element;
+	int	i;
+
+	if (argv == NULL)
+		return (EXIT_FAILURE);
+	i = 0;
+	while (i < min)
+	{
+		if (argv[i] == NULL)
+			return (EXIT_FAILURE);
+		i++;
+	}
+	while (i < max)
+	{
+		if (argv[i] == NULL)
+			return (EXIT_SUCCESS);
+		i++;
+	}
+	if (i == max && argv[i] != NULL)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

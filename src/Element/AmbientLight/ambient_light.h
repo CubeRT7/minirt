@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:27 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:18:25 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 typedef struct s_ambient_light
 {
 	struct s_element		base;
-	struct s_ambient_light_raw
-	{
-		double		ratio;
-		t_rgb		rgb;
-	}						raw;
 	struct s_ambient_light_obj
 	{
 		double	ratio;

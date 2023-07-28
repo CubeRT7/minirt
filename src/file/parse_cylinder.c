@@ -6,50 +6,62 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 14:03:52 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:07:03 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_private.h"
 #include "../Element/Cylinder/cylinder.h"
 
-static int	_debug_cylinder(void *param)
+static void	_debug(struct s_parse_dto dto)
 {
-	struct s_cylinder *const	c = param;
-
-	if (c == NULL || DEBUG == 0)
-		return (EXIT_SUCCESS);
+	if (DEBUG == 0)
+		return ;
 	printf("%s: coordinate[%f, %f, %f]\n", __func__,
-		c->raw.coordinate.x, c->raw.coordinate.y, c->raw.coordinate.z);
+		dto.coordinate.x, dto.coordinate.y, dto.coordinate.z);
 	printf("%s: axis[%f, %f, %f]\n", __func__,
-		c->raw.axis.x, c->raw.axis.y, c->raw.axis.z);
-	printf("%s: diameter[%f]\n", __func__, c->raw.diameter);
-	printf("%s: height[%f]\n", __func__, c->raw.height);
+		dto.axis.x, dto.axis.y, dto.axis.z);
+	printf("%s: diameter[%f]\n", __func__, dto.diameter);
+	printf("%s: height[%f]\n", __func__, dto.height);
 	printf("%s: rgb[%d, %d, %d]\n", __func__,
-		c->raw.rgb.r, c->raw.rgb.g, c->raw.rgb.b);
-	return (EXIT_SUCCESS);
+		dto.rgb.r, dto.rgb.g, dto.rgb.b);
+}
+
+static void	_init(void *param, struct s_parse_dto dto)
+{
+	struct s_cylinder *const	self = param;
+
+	self->base.type = Cylinder;
+	self->base.type_name = "Cylinder";
+	self->base.position = dto.coordinate;
+	self->base.color = rgb_to_color(dto.rgb);
+	self->base.front = v3_normalize(dto.axis);
+	self->base.up = v3_preset(V3_UP);
+	self->base.right = v3_cross(self->base.front, self->base.up);
+	if (close_to_zero(v3_magnitude(self->base.right)))
+		self->base.right = v3_preset(V3_RIGHT);
+	self->base.up = v3_cross(self->base.right, self->base.front);
+	self->obj.radius = dto.diameter * 0.5;
+	self->obj.height = dto.height;
 }
 
 int	parse_cylinder(void *param, char **argv)
 {
-	char						*remain;
-	struct s_cylinder *const	content = param;
+	struct s_parse_dto	dto;
 
-	if (!argv || !argv[0] || !argv[1] || !argv[2] || !argv[3] || !argv[4])
+	if (size_should_be(argv, 5))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	content->base.type = Cylinder;
-	if (parse_vector3(&content->raw.coordinate, argv[0], AllScope))
+	if (parse_vector3(&dto.coordinate, argv[0], AllScope))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (parse_vector3(&content->raw.axis, argv[1], UnitScope))
+	if (parse_vector3(&dto.axis, argv[1], UnitScope))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	content->raw.diameter = ft_strtof(argv[2], &remain);
-	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
+	if (parse_double(&dto.diameter, argv[2]))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	content->raw.height = ft_strtof(argv[3], &remain);
-	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
+	if (parse_double(&dto.height, argv[3]))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	if (parse_rgb(&content->raw.rgb, argv[4]))
+	if (parse_rgb(&dto.rgb, argv[4]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	_debug_cylinder(content);
+	_debug(dto);
+	_init(param, dto);
 	return (EXIT_SUCCESS);
 }
