@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulate.h                                         :+:      :+:    :+:   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 01:36:12 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:00:55 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIMULATE_H
-# define SIMULATE_H
+#ifndef MINIRT_H
+# define MINIRT_H
 # include "device.h"
 # include "Element/common.h"
 # include "Element/AmbientLight/ambient_light.h"
@@ -57,11 +57,5 @@ extern t_ray		get_camera_ray(t_camera *camera,
 						t_vector3 pos,
 						t_vector3 delta);
 extern t_element	*select_element(t_world *world, t_vector3 pos);
-
-extern int	simulate(
-				t_list *ambient,
-				t_list *camera,
-				t_list *lights,
-				t_list *objs);
 
 #endif

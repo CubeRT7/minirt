@@ -6,12 +6,12 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 02:08:40 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:01:33 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file.h"
-#include "simulate.h"
+#include "miniRT.h"
 
 int	simulate(t_list *ambient, t_list *camera, t_list *lights, t_list *objs)
 {

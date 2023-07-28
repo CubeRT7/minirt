@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:10:35 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 01:37:19 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:01:56 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simulate.h"
+#include "miniRT.h"
 #include "Element/Camera/camera.h"
 
 static double	_angle(t_vector3 axis, t_vector3 v, int minus)

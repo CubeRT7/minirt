@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 07:06:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 01:37:11 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:02:19 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simulate.h"
+#include "miniRT.h"
 
 void	world_iter(t_world *world, enum e_element_func e)
 {

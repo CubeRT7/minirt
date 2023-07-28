@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 05:15:47 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 01:36:56 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:02:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simulate.h"
+#include "miniRT.h"
 
 void	move_camera(void *param)
 {
