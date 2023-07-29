@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_color_plane_bonus.c                            :+:      :+:    :+:   */
+/*   hit_color_plane_checker_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 06:55:17 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/29 12:20:42 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/29 12:12:07 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/29 12:23:03 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plane.h"
 #include "Element/util/element_util_bonus.h"
-#include "mlx.h"
 
-t_color	hit_color_plane_checker(t_plane *self, t_vector3 world_point);
-t_color	hit_color_plane_bumpmap(t_plane *s, t_vector3 point, t_vector3 *normal);
-
-int	hit_color_plane(t_plane *self, t_hit *rec)
+t_color	hit_color_plane_checker(t_plane *self, t_vector3 world_point)
 {
-	rec->color = hit_color_plane_checker(self, rec->p);
-	if (1)
-		rec->color = hit_color_plane_bumpmap(self, rec->p, &(rec->normal));
-	return (EXIT_SUCCESS);
+	static const double	rate = 0.1;
+	const t_vector3		local = v3_sub(world_point, self->base.position);
+	const t_vector3		right = self->base.right;
+	const t_vector3		up = self->base.up;
+	const t_vector3		uv = vector3(
+			v3_dot(local, right) * rate,
+			v3_dot(local, up) * rate,
+			0);
+
+	return (get_checkerboard_color(self->base.color, uv.x, uv.y));
 }
