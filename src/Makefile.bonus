@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/29 23:19:41 by yonshin          ###   ########.fr        #
+#    Updated: 2023/07/30 15:52:43 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,9 +100,9 @@ MINIRT_SRCS = \
 	file/parse_ambient_light.c \
 	file/parse_camera.c \
 	file/parse_light.c \
-	file/parse_plane.c \
-	file/parse_sphere.c \
-	file/parse_cylinder.c \
+	file/parse_plane_bonus.c \
+	file/parse_sphere_bonus.c \
+	file/parse_cylinder_bonus.c \
 	device/create_device.c \
 	device/destroy_device.c \
 	device/hook.c \
@@ -119,7 +119,11 @@ MINIRT_SRCS = \
 	draw/world_iter.c \
 	draw/get_camera_ray.c \
 	draw/select_element.c \
-	$(MINIRT).c
+	bumpmap/get_bumpmap_pixel_bonus.c \
+	bumpmap/clear_bumpmaps_bonus.c \
+	bumpmap/create_bumpmap_bonus.c \
+	bumpmap/bumpmap_arr_bonus.c \
+	miniRT_bonus.c
 ifneq ($(shell uname), Darwin)
 MINIRT_SRCS += \
 	device/hook_key_event_linux.c \
@@ -138,5 +142,5 @@ MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)
 $(MINIRT): $(MINIRT_OBJS) \
 	../lib/libft/libft.a \
 	../lib/libcustom/libcustom.a \
-	../lib/libvector/libvector.a \
-#	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+	../lib/libvector/libvector.a
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@

@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_color_cylinder_checker_bonus.c                 :+:      :+:    :+:   */
+/*   bumpmap_arr_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 12:37:12 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/29 20:48:12 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/30 11:11:17 by yonshin           #+#    #+#             */
+/*   Updated: 2023/07/30 16:19:35 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cylinder.h"
-#include "Element/util/element_util_bonus.h"
-#define DENSITY 4
+#include "bumpmap_bonus.h"
 
-t_color	hit_color_cylinder_checker(t_cylinder *self, t_vector3 uv)
+t_bump_map	**bumpmap_arr(void)
 {
-	const t_vector3	fixed_uv = v3_mul(uv, DENSITY);
+	static t_bump_map	*bumpmap = NULL;
 
-	return (get_checkerboard_color(self->base.color, fixed_uv.x, fixed_uv.y));
+	return (&bumpmap);
 }
