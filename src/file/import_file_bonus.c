@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   import_file.c                                      :+:      :+:    :+:   */
+/*   import_file_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/29 22:56:15 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/30 00:11:19 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ static int	_read(struct s_rt_file *rt, int fd)
 	{
 		if (ft_lstsize(elements[AmbientLight]) < 2
 			&& ft_lstsize(elements[Camera]) < 2)
-//			&& ft_lstsize(elements[Light]) < 2)
 		{
 			rt->ambient_light = elements[AmbientLight];
 			rt->camera = elements[Camera];
