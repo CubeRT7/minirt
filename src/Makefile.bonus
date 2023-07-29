@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/28 20:13:42 by yonshin          ###   ########.fr        #
+#    Updated: 2023/07/29 23:09:55 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ endif
 # **************************************************************************** #
 CPPFLAGS	+= -Ifile
 CPPFLAGS	+= -Idevice
-CPPFLAGS	+= -Isimulate
 
 MINIRT_SRCS = \
 	Element/common.c \
@@ -85,7 +84,7 @@ MINIRT_SRCS = \
 	Element/util/rotate_element.c \
 	Element/util/get_checkerboard_color_bonus.c \
 	file/clean_rt.c \
-	file/import_file.c \
+	file/import_file_bonus.c \
 	file/rgb_to_color.c \
 	file/parse_rgb.c \
 	file/parse_double.c \
