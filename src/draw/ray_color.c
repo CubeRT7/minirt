@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:27:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/29 22:37:19 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/29 22:47:45 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static t_color	_bright(t_ray ray, t_world *world, t_hit rec, t_light *light)
 	if (world->render_mode & RENDER_DIFFUSE)
 		brightness = fmax(0, v3_dot(to_light.direction, rec.normal));
 	if (world->render_mode & RENDER_SPECULAR)
-		brightness = _calc_specular(rec, ray, to_light);
-	return (_trim_bright(v3_add(ambient,
+		brightness += _calc_specular(rec, ray, to_light);
+	return ((v3_add(ambient,
 				v3_mul(light->base.color, light->ratio * brightness))));
 }
 
