@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:27:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/29 23:02:17 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/30 18:30:27 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,15 @@ static t_color	_bright(t_ray ray, t_world *world, t_hit rec, t_light *light)
 	return (v3_mul(light->base.color, light->ratio * brightness));
 }
 
-t_color	ray_color(t_ray *ray, t_world *world)
+t_color	ray_color(t_world *world, t_vector3	pos)
 {
-	t_hit	rec;
-	t_list	*curr;
-	t_color	brightness;
-	t_color	brightness_sum;
+	const t_ray	ray = get_camera_ray(world->camera, world->device.size, pos);
+	t_hit		rec;
+	t_list		*curr;
+	t_color		brightness;
+	t_color		brightness_sum;
 
-	if (hit(world->objs, ray, (t_range){DELTA, BIGVALUE}, &rec) == 0)
+	if (hit(world->objs, &ray, (t_range){DELTA, BIGVALUE}, &rec) == 0)
 		return (v3_preset(V3_ZERO));
 	brightness_sum = v3_preset(V3_ZERO);
 	if (world->render_mode & RENDER_AMBIENT)
@@ -68,7 +69,7 @@ t_color	ray_color(t_ray *ray, t_world *world)
 	curr = world->lights;
 	while (curr)
 	{
-		brightness = _bright(*ray, world, rec, curr->content);
+		brightness = _bright(ray, world, rec, curr->content);
 		brightness_sum = v3_add(brightness_sum, brightness);
 		curr = curr->next;
 	}

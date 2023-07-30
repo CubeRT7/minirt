@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:13:07 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/30 18:22:53 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/30 18:29:07 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	_get_pixel(t_world *w, t_vector3 pos)
 		(t_vector3){0, 0.5, 0},
 		(t_vector3){-0.5, -0.5, 0},
 		(t_vector3){0.5, -0.5, 0}};
-	t_ray					ray;
 	int						idx;
 	t_color					color;
 	t_color					res;
@@ -39,8 +38,7 @@ static int	_get_pixel(t_world *w, t_vector3 pos)
 	idx = 0;
 	while (idx < 3)
 	{
-		ray = get_camera_ray(w->camera, w->device.size, v3_add(pos, v[idx]));
-		color = ray_color(&ray, w);
+		color = ray_color(w, v3_add(pos, v[idx]));
 		res = v3_add(res, color);
 		idx++;
 	}
