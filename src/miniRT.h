@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/30 18:22:17 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/31 08:20:31 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_world
 }	t_world;
 
 extern int			main_loop(void *param);
-extern int			hook_draw_setting(void *param);
 
 extern void			rotate_camera(void *param);
 extern void			move_camera(void *param);
@@ -52,6 +51,7 @@ extern void			transform_objs_with_mouse(void *param);
 
 extern void			world_iter(t_world *world, enum e_element_func e);
 extern int			hit(t_list *objs, t_ray *r, t_range ran, t_hit *h);
+extern t_color		ray_color(t_world *world, t_vector3 pos);
 extern t_ray		get_camera_ray(t_camera *camera,
 						t_vector3 screen,
 						t_vector3 pos);

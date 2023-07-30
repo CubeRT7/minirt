@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:27:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/30 18:30:27 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/31 08:21:34 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "miniRT.h"
 #include "Element/Light/light.h"
 #include "Element/AmbientLight/ambient_light.h"
 
