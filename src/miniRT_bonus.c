@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:51:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/30 16:12:25 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/30 17:21:59 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 
 static void	_init_bumpmaps(void *mlx)
 {
-	create_bumpmap(1, mlx, "data/wall.xpm", "data/wall_norm.xpm");
+	create_bumpmap(1, mlx,
+		"data/bumpmap/wall.xpm", "data/bumpmap/wall_norm.xpm");
+	create_bumpmap(2, mlx,
+		"data/bumpmap/plane.xpm", "data/bumpmap/stone_norm.xpm");
 }
 
 static void	_init_world(struct s_world *world, struct s_rt_file *rt)
