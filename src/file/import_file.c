@@ -6,30 +6,31 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 14:03:06 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 08:39:53 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_private.h"
 
+static const struct s_parse_info	g_data[MAX_ELEMENT_TYPE] = {
+[AmbientLight] = {"A", sizeof(t_ambient_light), parse_ambient_light},
+[Camera] = {"C", sizeof(t_camera), parse_camera},
+[Light] = {"L", sizeof(t_light), parse_light},
+[Plane] = {"pl", sizeof(t_plane), parse_plane},
+[Sphere] = {"sp", sizeof(t_sphere), parse_sphere},
+[Cylinder] = {"cy", sizeof(t_cylinder), parse_cylinder}};
+
 static int	_append(t_list **elements, t_list *node, char **cols)
 {
-	int									i;
-	static const struct s_parse_info	data[MAX_ELEMENT_TYPE] = {
-	[AmbientLight] = {"A", sizeof(t_ambient_light), parse_ambient_light},
-	[Camera] = {"C", sizeof(t_camera), parse_camera},
-	[Light] = {"L", sizeof(t_light), parse_light},
-	[Plane] = {"pl", sizeof(t_plane), parse_plane},
-	[Sphere] = {"sp", sizeof(t_sphere), parse_sphere},
-	[Cylinder] = {"cy", sizeof(t_cylinder), parse_cylinder}};
+	int	i;
 
 	i = 0;
 	while (i < MAX_ELEMENT_TYPE)
 	{
-		if (!ft_strncmp(cols[0], data[i].type, ft_strlen(data[i].type) + 1))
+		if (!ft_strncmp(cols[0], g_data[i].type, ft_strlen(g_data[i].type) + 1))
 		{
-			node->content = ft_calloc(1, data[i].size);
-			if (node->content && !(data[i].parse(node->content, cols + 1)))
+			node->content = ft_calloc(1, g_data[i].size);
+			if (node->content && !(g_data[i].parse(node->content, cols + 1)))
 			{
 				ft_lstadd_back(&elements[i], node);
 				return (EXIT_SUCCESS);
