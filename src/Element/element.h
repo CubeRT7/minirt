@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/31 04:19:40 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/31 06:45:14 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,6 @@ enum e_element_func
 	Update,
 	Transform,
 	MAX_ELEMENT_FUNC
-};
-
-enum e_transform_type
-{
-	None = 0x0,
-	X = 0x1,
-	Y = 0x2,
-	Z = 0x4,
-	Height = 0x8,
-	Radius = 0x10,
-	Position = 0x100,
-	Rotation = 0x200,
-	Scaling = 0x400,
 };
 
 typedef struct s_element
