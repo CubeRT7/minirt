@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 18:02:32 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/30 01:40:58 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct s_element
 	t_vector3		right;
 	t_color			color;
 	t_func			func[MAX_ELEMENT_FUNC];
+	int				mapid;
+	void			*bumpmap;
 }	t_element;
 
 extern void		init_element(void *elem);

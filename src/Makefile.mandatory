@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/28 20:13:33 by yonshin          ###   ########.fr        #
+#    Updated: 2023/07/29 22:30:23 by yonshin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -131,4 +131,4 @@ MINIRT_DEPS = $(MINIRT_SRCS:.c=.d)
 $(MINIRT): $(MINIRT_OBJS) \
 	../lib/libft/libft.a \
 	../lib/libcustom/libcustom.a \
-	../lib/libvector/libvector.a \
+	../lib/libvector/libvector.a

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 13:59:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 20:12:20 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/30 01:26:27 by yonshin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ struct s_parse_dto
 	double		fov;
 	double		diameter;
 	double		height;
+	double		mapid;
 };
 
 extern t_color	rgb_to_color(t_rgb rgb);
