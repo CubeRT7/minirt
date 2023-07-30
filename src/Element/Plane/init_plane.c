@@ -6,11 +6,14 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 21:42:14 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 20:00:23 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 04:20:57 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plane.h"
+
+extern int	hit_plane(t_plane *self, t_ray *r, t_range ra, t_hit *h);
+extern int	hit_color_plane(t_plane *self, t_hit *record);
 
 int	init_plane(t_plane *self)
 {

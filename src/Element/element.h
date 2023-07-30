@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/30 01:40:58 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 04:19:40 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct s_element
 	void			*bumpmap;
 }	t_element;
 
-extern void		init_element(void *elem);
 extern void		element_iter(t_list *list, enum e_element_func e);
 
 #endif

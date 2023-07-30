@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:57:45 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 04:22:21 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,5 @@ typedef struct s_light
 	struct s_element	base;
 	double				ratio;
 }	t_light;
-
-extern int		init_light(t_light *self);
 
 #endif 

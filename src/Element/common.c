@@ -6,34 +6,33 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:03 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 04:23:38 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "element.h"
-#include "Element/AmbientLight/ambient_light.h"
-#include "Element/Camera/camera.h"
-#include "Element/Light/light.h"
-#include "Element/Plane/plane.h"
-#include "Element/Sphere/sphere.h"
-#include "Element/Cylinder/cylinder.h"
 
-void	init_element(void *elem)
+extern int	init_ambient_light(void *self);
+extern int	init_light(void *self);
+extern int	init_camera(void *self);
+extern int	init_plane(void *self);
+extern int	init_sphere(void *self);
+extern int	init_cylinder(void *self);
+
+static void	_init_element(t_element *self)
 {
-	const t_element	*self = elem;
-
 	if (self->type == AmbientLight)
-		init_ambient_light(elem);
+		init_ambient_light(self);
 	if (self->type == Camera)
-		init_camera(elem);
+		init_camera(self);
 	if (self->type == Light)
-		init_light(elem);
+		init_light(self);
 	if (self->type == Plane)
-		init_plane(elem);
+		init_plane(self);
 	if (self->type == Sphere)
-		init_sphere(elem);
+		init_sphere(self);
 	if (self->type == Cylinder)
-		init_cylinder(elem);
+		init_cylinder(self);
 }
 
 void	element_iter(t_list *list, enum e_element_func e)
@@ -42,7 +41,7 @@ void	element_iter(t_list *list, enum e_element_func e)
 	{
 		while (list)
 		{
-			init_element(list->content);
+			_init_element(list->content);
 			list = list->next;
 		}
 		return ;
