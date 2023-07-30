@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 19:36:38 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 15:11:00 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/30 18:22:17 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ extern void			world_iter(t_world *world, enum e_element_func e);
 extern int			hit(t_list *objs, t_ray *r, t_range ran, t_hit *h);
 extern t_ray		get_camera_ray(t_camera *camera,
 						t_vector3 screen,
-						t_vector3 pos,
-						t_vector3 delta);
+						t_vector3 pos);
 extern t_element	*select_element(t_world *world, t_vector3 pos);
 
 #endif

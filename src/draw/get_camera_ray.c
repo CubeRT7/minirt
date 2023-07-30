@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:10:35 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 20:59:47 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/30 19:15:17 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@ static double	_angle(t_vector3 axis, t_vector3 v, int minus)
 	return (angle);
 }
 
-t_ray	get_camera_ray(
-	t_camera *cam,
-	t_vector3 screen,
-	t_vector3 pos,
-	t_vector3 delta)
+t_ray	get_camera_ray(t_camera *cam, t_vector3 screen, t_vector3 pos)
 {
 	t_vector3	uv;
 	t_vector3	v[2];
@@ -34,8 +30,8 @@ t_ray	get_camera_ray(
 	double		v_angle;
 
 	enum e_type {DIREC, FRONT};
-	uv.x = (pos.x + delta.x) / screen.x;
-	uv.y = (pos.y + delta.y) / screen.y;
+	uv.x = pos.x / screen.x;
+	uv.y = pos.y / screen.y;
 	v[DIREC] = cam->viewport_lower_left;
 	v[DIREC] = v3_add(v[DIREC], v3_mul(cam->viewport_horizontal, uv.x));
 	v[DIREC] = v3_add(v[DIREC], v3_mul(cam->viewport_vertical, uv.y));
