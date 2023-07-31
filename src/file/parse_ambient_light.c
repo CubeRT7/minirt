@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:59:47 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 16:57:29 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	parse_ambient_light(void *param, char **argv)
 {
 	struct s_parse_dto	dto;
 
+	ft_bzero(&dto, sizeof(struct s_parse_dto));
 	if (size_should_be(argv, 2))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_double(&dto.ratio, argv[0]))

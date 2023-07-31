@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:56:57 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 04:22:01 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,5 @@ typedef struct s_cylinder_body_alias
 	double		l;
 	t_vector3	in;
 }	t_cylinder_body_alias;
-
-extern int	hit_cylinder(t_cylinder *self, t_ray *r, t_range ra, t_hit *h);
-extern int	hit_color_cylinder(t_cylinder *self, t_hit *record);
-extern int	init_cylinder(t_cylinder *self);
-extern int	transform_cylinder(
-				t_cylinder *self,
-				const t_element *camera,
-				enum e_transform_type type,
-				t_vector3 delta);
-extern int	update_cylinder(t_cylinder *self);
 
 #endif

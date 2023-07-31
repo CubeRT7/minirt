@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:58:56 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 04:21:17 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,5 @@ typedef struct s_sphere
 	struct s_element	base;
 	double				radius;
 }	t_sphere;
-
-extern int	hit_sphere(t_sphere *self, t_ray *r, t_range ra, t_hit *h);
-extern int	hit_color_sphere(t_sphere *self, t_hit *record);
-extern int	init_sphere(t_sphere *self);
-extern int	transform_sphere(
-				t_sphere *self,
-				const t_element *camera,
-				enum e_transform_type type,
-				t_vector3 delta);
 
 #endif 

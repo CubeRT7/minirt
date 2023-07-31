@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:22 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:08:33 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 16:57:54 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	parse_plane(void *param, char **argv)
 {
 	struct s_parse_dto	dto;
 
+	ft_bzero(&dto, sizeof(struct s_parse_dto));
 	if (size_should_be(argv, 3))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_vector3(&dto.coordinate, argv[0], AllScope))

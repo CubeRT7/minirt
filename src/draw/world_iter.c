@@ -6,11 +6,14 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 07:06:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 11:02:19 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:22:06 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+extern int	init_ambient_light(void *self);
+extern int	init_camera(void *self);
 
 void	world_iter(t_world *world, enum e_element_func e)
 {

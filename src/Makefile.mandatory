@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/29 22:30:23 by yonshin          ###   ########.fr        #
+#    Updated: 2023/07/31 16:46:01 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ CPPFLAGS	+= -Ifile
 CPPFLAGS	+= -Idevice
 
 MINIRT_SRCS = \
-	Element/common.c \
 	Element/AmbientLight/init_ambient_light.c \
 	Element/Camera/init_camera.c \
 	Element/Camera/update_camera.c \
@@ -78,10 +77,13 @@ MINIRT_SRCS = \
 	Element/util/range_not_in.c \
 	Element/util/get_ray_point.c \
 	Element/util/get_face_normal.c \
+	Element/util/get_camera_ray.c \
 	Element/util/close_to_zero.c \
 	Element/util/quadratic_formula_root.c \
 	Element/util/transform_element.c \
 	Element/util/rotate_element.c \
+	Element/element_iter.c \
+	Element/hit.c \
 	file/clean_rt.c \
 	file/import_file.c \
 	file/rgb_to_color.c \
@@ -105,12 +107,10 @@ MINIRT_SRCS = \
 	device/hook_mouse_event.c \
 	device/hook_close_event.c \
 	draw/main_loop.c \
-	draw/hook_draw_setting.c \
+	draw/update.c \
 	draw/ray_color.c \
-	draw/render_main_frame.c \
-	draw/hit.c \
+	draw/render.c \
 	draw/world_iter.c \
-	draw/get_camera_ray.c \
 	draw/select_element.c \
 	$(MINIRT).c
 ifneq ($(shell uname), Darwin)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_draw_setting.c                                :+:      :+:    :+:   */
+/*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 05:15:47 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 21:00:04 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 08:57:42 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	move_camera(void *param)
 void	transform_objs(void *param)
 {
 	t_world *const		w = param;
+	t_element *const	c = &(w->camera->base);
+	t_vector3			delta;
 
 	if (w->selected && w->device.keyboard[KEYBOARD_p])
 		w->transform_type = Position;
@@ -56,6 +58,13 @@ void	transform_objs(void *param)
 		w->transform_type = (w->transform_type & (Position | Rotation)) | Y;
 	if (w->selected && w->device.keyboard[KEYBOARD_z])
 		w->transform_type = (w->transform_type & (Position | Rotation)) | Z;
+	if (w->selected == NULL || !(w->transform_type & 0xf00))
+		return ;
+	delta = v3_sub(w->device.mouse.curr, w->device.mouse.prev);
+	delta.y = -delta.y;
+	delta.z = delta.x - delta.y;
+	delta = v3_mul(delta, 0.01);
+	w->selected->func[Transform](w->selected, c, w->transform_type, delta);
 }
 
 void	rotate_camera(void *param)
@@ -78,21 +87,6 @@ void	rotate_camera(void *param)
 	if (angle <= 0)
 		return ;
 	rotate_element(&(camera->base), v[RIGHT], v[MOVE].y / device->size.y);
-}
-
-void	transform_objs_with_mouse(void *param)
-{
-	t_world *const		w = param;
-	t_element *const	c = &(w->camera->base);
-	t_vector3			delta;
-
-	if (w->selected == NULL || !(w->transform_type & 0xf00))
-		return ;
-	delta = v3_sub(w->device.mouse.curr, w->device.mouse.prev);
-	delta.y = -delta.y;
-	delta.z = delta.x - delta.y;
-	delta = v3_mul(delta, 0.01);
-	w->selected->func[Transform](w->selected, c, w->transform_type, delta);
 }
 
 void	set_render_mode(t_world *world)
@@ -119,9 +113,8 @@ void	set_render_mode(t_world *world)
 	}
 }
 
-int	hook_draw_setting(void *param)
+int	update(t_world *world)
 {
-	t_world *const		world = param;
 	t_device *const		device = &world->device;
 	const t_vector3		point_in_world = vector3(
 			device->mouse.curr.x,
@@ -129,11 +122,13 @@ int	hook_draw_setting(void *param)
 			0);
 
 	set_render_mode(world);
-	world->camera->ratio = (double)device->size.y / device->size.x;
+	device->mouse.prev = device->mouse.curr;
+	device->mouse.curr = get_mouse_pos(device);
 	if (device->mouse.action[MOUSE_BUTTON_LEFT] == MOUSE_PRESS)
 		world->selected = select_element(world, point_in_world);
 	if (device->keyboard[KEYBOARD_RETURN] && world->lights)
 		world->selected = (t_element *)(world->lights->content);
+	world->camera->ratio = (double)device->size.y / device->size.x;
 	move_camera(world);
 	rotate_camera(world);
 	transform_objs(world);
