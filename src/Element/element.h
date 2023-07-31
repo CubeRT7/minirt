@@ -28,6 +28,7 @@ enum e_element
 	Plane,
 	Sphere,
 	Cylinder,
+	Cone,
 	MAX_ELEMENT_TYPE
 };
 

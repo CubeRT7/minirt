@@ -79,6 +79,13 @@ MINIRT_SRCS = \
 	Element/Cylinder/init_cylinder.c \
 	Element/Cylinder/update_cylinder.c \
 	Element/Cylinder/transform_cylinder.c \
+	Element/Cone/hit_color_cone_bonus.c \
+	Element/Cone/hit_color_cone_bumpmap_bonus.c \
+	Element/Cone/hit_color_cone_checker_bonus.c \
+	Element/Cone/hit_cone_bonus.c \
+	Element/Cone/init_cone_bonus.c \
+	Element/Cone/transform_cone_bonus.c \
+	Element/Cone/update_cone_bonus.c \
 	Element/util/range_in.c \
 	Element/util/range_not_in.c \
 	Element/util/get_ray_point.c \
@@ -88,7 +95,7 @@ MINIRT_SRCS = \
 	Element/util/quadratic_formula_root.c \
 	Element/util/transform_element.c \
 	Element/util/rotate_element.c \
-	Element/element_iter.c \
+	Element/element_iter_bonus.c \
 	Element/hit.c \
 	Element/util/get_checkerboard_color_bonus.c \
 	file/clean_rt.c \
@@ -105,6 +112,7 @@ MINIRT_SRCS = \
 	file/parse_plane_bonus.c \
 	file/parse_sphere_bonus.c \
 	file/parse_cylinder_bonus.c \
+	file/parse_cone_bonus.c \
 	device/create_device.c \
 	device/destroy_device.c \
 	device/hook.c \

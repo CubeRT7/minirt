@@ -11,17 +11,22 @@
 /* ************************************************************************** */
 
 #include "file_private.h"
+#include "../Element/Cone/cone_bonus.h"
+
+int	parse_cone(void *param, char **argv);
+
+static const struct s_parse_info	data[MAX_ELEMENT_TYPE] = {
+[AmbientLight] = {"A", sizeof(t_ambient_light), parse_ambient_light},
+[Camera] = {"C", sizeof(t_camera), parse_camera},
+[Light] = {"L", sizeof(t_light), parse_light},
+[Plane] = {"pl", sizeof(t_plane), parse_plane},
+[Sphere] = {"sp", sizeof(t_sphere), parse_sphere},
+[Cylinder] = {"cy", sizeof(t_cylinder), parse_cylinder},
+[Cone] = {"co", sizeof(t_cone), parse_cone}};
 
 static int	_append(t_list **elements, t_list *node, char **cols)
 {
 	int									i;
-	static const struct s_parse_info	data[MAX_ELEMENT_TYPE] = {
-	[AmbientLight] = {"A", sizeof(t_ambient_light), parse_ambient_light},
-	[Camera] = {"C", sizeof(t_camera), parse_camera},
-	[Light] = {"L", sizeof(t_light), parse_light},
-	[Plane] = {"pl", sizeof(t_plane), parse_plane},
-	[Sphere] = {"sp", sizeof(t_sphere), parse_sphere},
-	[Cylinder] = {"cy", sizeof(t_cylinder), parse_cylinder}};
 
 	i = 0;
 	while (i < MAX_ELEMENT_TYPE)
