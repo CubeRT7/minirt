@@ -33,16 +33,8 @@ typedef struct s_cylinder
 	double				height;
 	t_circle			top;
 	t_circle			bottom;
+	double				r_pow_2;
+	double				half_height;
 }	t_cylinder;
-
-typedef struct s_cylinder_body_alias
-{
-	double		r2;
-	t_vector3	w;
-	double		vh;
-	double		wh;
-	double		l;
-	t_vector3	in;
-}	t_cylinder_body_alias;
 
 #endif

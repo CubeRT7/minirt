@@ -30,8 +30,15 @@ static void	_update_circle(t_cylinder *self)
 	self->bottom = bottom;
 }
 
+static void	_update_constant_for_hit(t_cylinder *self)
+{
+	self->r_pow_2 = self->radius * self->radius;
+	self->half_height = self->height * 0.5;
+}
+
 int	update_cylinder(t_cylinder *self)
 {
 	_update_circle(self);
+	_update_constant_for_hit(self);
 	return (EXIT_SUCCESS);
 }
