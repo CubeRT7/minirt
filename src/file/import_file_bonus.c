@@ -15,7 +15,7 @@
 
 int	parse_cone(void *param, char **argv);
 
-static const struct s_parse_info	data[MAX_ELEMENT_TYPE] = {
+static const struct s_parse_info	g_data[MAX_ELEMENT_TYPE] = {
 [AmbientLight] = {"A", sizeof(t_ambient_light), parse_ambient_light},
 [Camera] = {"C", sizeof(t_camera), parse_camera},
 [Light] = {"L", sizeof(t_light), parse_light},
@@ -31,10 +31,10 @@ static int	_append(t_list **elements, t_list *node, char **cols)
 	i = 0;
 	while (i < MAX_ELEMENT_TYPE)
 	{
-		if (!ft_strncmp(cols[0], data[i].type, ft_strlen(data[i].type) + 1))
+		if (!ft_strncmp(cols[0], g_data[i].type, ft_strlen(g_data[i].type) + 1))
 		{
-			node->content = ft_calloc(1, data[i].size);
-			if (node->content && !(data[i].parse(node->content, cols + 1)))
+			node->content = ft_calloc(1, g_data[i].size);
+			if (node->content && !(g_data[i].parse(node->content, cols + 1)))
 			{
 				ft_lstadd_back(&elements[i], node);
 				return (EXIT_SUCCESS);
