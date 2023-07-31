@@ -6,13 +6,15 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:27:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/31 08:21:34 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:07:04 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "Element/Light/light.h"
 #include "Element/AmbientLight/ambient_light.h"
+
+extern int	hit(t_list *objs, t_ray *ray, t_range range, t_hit *record);
 
 static t_vector3	_trim_bright(t_vector3 bright)
 {

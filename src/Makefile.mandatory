@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/31 15:38:20 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/31 16:07:36 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ MINIRT_SRCS = \
 	Element/util/quadratic_formula_root.c \
 	Element/util/transform_element.c \
 	Element/util/rotate_element.c \
+	Element/hit.c \
 	file/clean_rt.c \
 	file/import_file.c \
 	file/rgb_to_color.c \
@@ -109,7 +110,6 @@ MINIRT_SRCS = \
 	draw/update.c \
 	draw/ray_color.c \
 	draw/render.c \
-	draw/hit.c \
 	draw/world_iter.c \
 	draw/select_element.c \
 	$(MINIRT).c
