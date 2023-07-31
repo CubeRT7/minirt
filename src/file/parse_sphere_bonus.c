@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/30 01:32:54 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 16:58:07 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	parse_sphere(void *param, char **argv)
 {
 	struct s_parse_dto	dto;
 
+	ft_bzero(&dto, sizeof(struct s_parse_dto));
 	if (size_range_in(argv, 3, 4))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_vector3(&dto.coordinate, argv[0], AllScope))

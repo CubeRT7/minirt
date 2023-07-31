@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/28 20:56:42 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/07/31 16:57:42 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	parse_cylinder(void *param, char **argv)
 {
 	struct s_parse_dto	dto;
 
+	ft_bzero(&dto, sizeof(struct s_parse_dto));
 	if (size_should_be(argv, 5))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_vector3(&dto.coordinate, argv[0], AllScope))
