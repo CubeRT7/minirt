@@ -26,7 +26,7 @@ static const struct s_parse_info	g_data[MAX_ELEMENT_TYPE] = {
 
 static int	_append(t_list **elements, t_list *node, char **cols)
 {
-	int									i;
+	int	i;
 
 	i = 0;
 	while (i < MAX_ELEMENT_TYPE)
