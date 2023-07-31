@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 07:27:05 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/31 16:07:04 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:21:25 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ static t_color	_bright(t_ray ray, t_world *world, t_hit rec, t_light *light)
 
 t_color	ray_color(t_world *world, t_vector3	pos)
 {
-	const t_ray	ray = get_camera_ray(world->camera, world->device.size, pos);
-	t_hit		rec;
-	t_list		*curr;
-	t_color		brightness;
-	t_color		brightness_sum;
+	t_ray	ray;
+	t_hit	rec;
+	t_list	*curr;
+	t_color	brightness;
+	t_color	brightness_sum;
 
+	ray = get_camera_ray(world->camera, world->device.size, pos);
 	if (hit(world->objs, &ray, (t_range){DELTA, BIGVALUE}, &rec) == 0)
 		return (v3_preset(V3_ZERO));
 	brightness_sum = v3_preset(V3_ZERO);
