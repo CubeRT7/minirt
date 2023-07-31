@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 06:58:48 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/31 15:29:05 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:37:52 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ typedef struct s_hit
 
 extern t_point		get_ray_point(const t_ray *ray, double t);
 extern t_vector3	get_face_normal(t_ray ray, t_vector3 normal);
+extern t_ray		get_camera_ray(void *camera,
+						t_vector3 screen,
+						t_vector3 pos);
 extern int			range_in(double t, t_range range);
 extern int			range_not_in(double t, t_range range);
 extern int			close_to_zero(double f);

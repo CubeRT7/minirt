@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/31 08:04:32 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/31 15:38:20 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ MINIRT_SRCS = \
 	Element/util/range_not_in.c \
 	Element/util/get_ray_point.c \
 	Element/util/get_face_normal.c \
+	Element/util/get_camera_ray.c \
 	Element/util/close_to_zero.c \
 	Element/util/quadratic_formula_root.c \
 	Element/util/transform_element.c \
@@ -110,7 +111,6 @@ MINIRT_SRCS = \
 	draw/render.c \
 	draw/hit.c \
 	draw/world_iter.c \
-	draw/get_camera_ray.c \
 	draw/select_element.c \
 	$(MINIRT).c
 ifneq ($(shell uname), Darwin)
