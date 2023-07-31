@@ -6,15 +6,19 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:09:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/31 06:45:14 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:26:25 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ELEMENT_H
 # define ELEMENT_H
-# include "common.h"
+# include "libcustom.h"
+# include "libvector.h"
 
 # define HIT 0b1
+
+typedef t_vector3	t_point;
+typedef t_vector3	t_color;
 
 enum e_element
 {

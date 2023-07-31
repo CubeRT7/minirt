@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 06:58:48 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/31 06:45:27 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:29:05 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,28 @@ enum e_transform_type
 	Rotation = 0x200,
 	Scaling = 0x400,
 };
+
+typedef struct s_ray
+{
+	t_point		origin;
+	t_vector3	direction;
+}	t_ray;
+
+typedef struct s_range
+{
+	double	min;
+	double	max;
+}	t_range;
+
+typedef struct s_hit
+{
+	double		t;
+	t_point		p;
+	t_vector3	normal;
+	t_color		color;
+	void		*elem;
+	int			hit_status;
+}	t_hit;
 
 extern t_point		get_ray_point(const t_ray *ray, double t);
 extern t_vector3	get_face_normal(t_ray ray, t_vector3 normal);
