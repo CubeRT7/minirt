@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/31 16:08:25 by minjungk         ###   ########.fr        #
+#    Updated: 2023/07/31 16:46:18 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ CPPFLAGS	+= -Ifile
 CPPFLAGS	+= -Idevice
 
 MINIRT_SRCS = \
-	Element/common.c \
 	Element/AmbientLight/init_ambient_light.c \
 	Element/Camera/init_camera.c \
 	Element/Camera/update_camera.c \
@@ -89,6 +88,7 @@ MINIRT_SRCS = \
 	Element/util/quadratic_formula_root.c \
 	Element/util/transform_element.c \
 	Element/util/rotate_element.c \
+	Element/element_iter.c \
 	Element/hit.c \
 	Element/util/get_checkerboard_color_bonus.c \
 	file/clean_rt.c \
