@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ambient_light.c                              :+:      :+:    :+:   */
+/*   deserialize_ambient_light.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:35:38 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/31 16:57:29 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:22:44 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_private.h"
+#include "../util/parse_util.h"
 #include "../Element/AmbientLight/ambient_light.h"
 
 static void	_debug(struct s_parse_dto dto)
@@ -22,17 +22,15 @@ static void	_debug(struct s_parse_dto dto)
 		dto.rgb.r, dto.rgb.g, dto.rgb.b);
 }
 
-static void	_init(void *param, struct s_parse_dto dto)
+static void	_init(t_ambient_light *self, struct s_parse_dto dto)
 {
-	struct s_ambient_light *const	self = param;
-
 	self->base.type = AmbientLight;
 	self->base.type_name = "AmbientLight";
 	self->base.color = rgb_to_color(dto.rgb);
 	self->ratio = dto.ratio;
 }
 
-int	parse_ambient_light(void *param, char **argv)
+int	parse_ambient_light(t_ambient_light *self, char **argv)
 {
 	struct s_parse_dto	dto;
 
@@ -46,6 +44,30 @@ int	parse_ambient_light(void *param, char **argv)
 	if (!(0.0 <= dto.ratio && dto.ratio <= 1.0))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	_debug(dto);
-	_init(param, dto);
+	_init(self, dto);
 	return (EXIT_SUCCESS);
+}
+
+t_element	*deserialize_ambient_light(const char *line)
+{
+	int						ret;
+	char					**cols;
+	t_ambient_light *const	self = ft_calloc(1, sizeof(t_ambient_light));
+
+	if (self == NULL)
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	cols = ft_split(line, ' ');
+	if (cols == NULL)
+	{
+		free(self);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	ret = parse_ambient_light(self, cols);
+	ft_strarr_free(cols);
+	if (ret == EXIT_FAILURE)
+	{
+		free(self);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	return (self);
 }

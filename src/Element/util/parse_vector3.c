@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 14:30:01 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 14:30:28 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:23:52 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_private.h"
+#include "parse_util.h"
 
 int	parse_vector3(t_vector3 *vector, char *curr, int scope)
 {

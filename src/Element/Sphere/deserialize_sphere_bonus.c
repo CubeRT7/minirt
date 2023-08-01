@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_sphere_bonus.c                               :+:      :+:    :+:   */
+/*   deserialize_sphere_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/31 16:58:07 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:23:00 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_private.h"
+#include "../util/parse_util.h"
 #include "../Element/Sphere/sphere.h"
 
 static void	_debug(struct s_parse_dto dto)
@@ -59,4 +59,28 @@ int	parse_sphere(void *param, char **argv)
 	_debug(dto);
 	_init(param, dto);
 	return (EXIT_SUCCESS);
+}
+
+t_element	*deserialize_sphere(const char *line)
+{
+	int				ret;
+	char			**cols;
+	t_sphere *const	self = ft_calloc(1, sizeof(t_sphere));
+
+	if (self == NULL)
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	cols = ft_split(line, ' ');
+	if (cols == NULL)
+	{
+		free(self);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	ret = parse_sphere(self, cols);
+	ft_strarr_free(cols);
+	if (ret == EXIT_FAILURE)
+	{
+		free(self);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	return (self);
 }

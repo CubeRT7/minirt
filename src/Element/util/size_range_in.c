@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:48:33 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 20:17:33 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:24:02 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_private.h"
+#include "parse_util.h"
 
 int	size_range_in(char **argv, int min, int max)
 {

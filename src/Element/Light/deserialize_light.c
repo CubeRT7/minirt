@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_light.c                                      :+:      :+:    :+:   */
+/*   deserialize_light.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:19 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/31 16:56:26 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:22:54 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_private.h"
+#include "../util/parse_util.h"
 #include "../Element/Light/light.h"
 
 static void	_debug(struct s_parse_dto dto)
@@ -56,4 +56,28 @@ int	parse_light(void *param, char **argv)
 	_debug(dto);
 	_init(param, dto);
 	return (EXIT_SUCCESS);
+}
+
+t_element	*deserialize_light(const char *line)
+{
+	int				ret;
+	char			**cols;
+	t_light *const	self = ft_calloc(1, sizeof(t_light));
+
+	if (self == NULL)
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	cols = ft_split(line, ' ');
+	if (cols == NULL)
+	{
+		free(self);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	ret = parse_light(self, cols);
+	ft_strarr_free(cols);
+	if (ret == EXIT_FAILURE)
+	{
+		free(self);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	return (self);
 }

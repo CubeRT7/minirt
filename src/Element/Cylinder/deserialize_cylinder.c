@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_cone_bonus.c                                 :+:      :+:    :+:   */
+/*   deserialize_cylinder.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/30 19:15:38 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:22:50 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_private.h"
-#include "../Element/Cone/cone_bonus.h"
+#include "../util/parse_util.h"
+#include "../Element/Cylinder/cylinder.h"
 
 static void	_debug(struct s_parse_dto dto)
 {
@@ -29,10 +29,10 @@ static void	_debug(struct s_parse_dto dto)
 
 static void	_init(void *param, struct s_parse_dto dto)
 {
-	struct s_cone *const	self = param;
+	struct s_cylinder *const	self = param;
 
-	self->base.type = Cone;
-	self->base.type_name = "Cone";
+	self->base.type = Cylinder;
+	self->base.type_name = "Cylinder";
 	self->base.position = dto.coordinate;
 	self->base.color = rgb_to_color(dto.rgb);
 	self->base.front = v3_normalize(dto.axis);
@@ -43,14 +43,14 @@ static void	_init(void *param, struct s_parse_dto dto)
 	self->base.up = v3_cross(self->base.right, self->base.front);
 	self->radius = dto.diameter * 0.5;
 	self->height = dto.height;
-	self->base.mapid = (int)dto.mapid;
 }
 
-int	parse_cone(void *param, char **argv)
+int	parse_cylinder(void *param, char **argv)
 {
 	struct s_parse_dto	dto;
 
-	if (size_range_in(argv, 5, 6))
+	ft_bzero(&dto, sizeof(struct s_parse_dto));
+	if (size_should_be(argv, 5))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_vector3(&dto.coordinate, argv[0], AllScope))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
@@ -62,11 +62,31 @@ int	parse_cone(void *param, char **argv)
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	if (parse_rgb(&dto.rgb, argv[4]))
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
-	if (argv[5] != NULL && parse_double(&dto.mapid, argv[5]))
-		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
-	if (argv[5] == NULL)
-		dto.mapid = 0;
 	_debug(dto);
 	_init(param, dto);
 	return (EXIT_SUCCESS);
+}
+
+t_element	*deserialize_cylinder(const char *line)
+{
+	int					ret;
+	char				**cols;
+	t_cylinder *const	self = ft_calloc(1, sizeof(t_cylinder));
+
+	if (self == NULL)
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	cols = ft_split(line, ' ');
+	if (cols == NULL)
+	{
+		free(self);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	ret = parse_cylinder(self, cols);
+	ft_strarr_free(cols);
+	if (ret == EXIT_FAILURE)
+	{
+		free(self);
+		return (ft_error(__func__, __FILE__, __LINE__, 0));
+	}
+	return (self);
 }

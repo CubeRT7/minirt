@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:52:04 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 20:14:15 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:23:19 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_private.h"
+#include "parse_util.h"
 
 t_color	rgb_to_color(t_rgb rgb)
 {

@@ -6,11 +6,11 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 14:30:08 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 14:32:20 by yonshin          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:23:47 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_private.h"
+#include "parse_util.h"
 
 static char	*next_rgb(int *buf, char *curr)
 {

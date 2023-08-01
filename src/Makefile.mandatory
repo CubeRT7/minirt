@@ -6,7 +6,7 @@
 #    By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 21:51:46 by minjungk          #+#    #+#              #
-#    Updated: 2023/07/31 16:46:01 by minjungk         ###   ########.fr        #
+#    Updated: 2023/08/01 19:29:44 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,16 +58,22 @@ CPPFLAGS	+= -Idevice
 
 MINIRT_SRCS = \
 	Element/AmbientLight/init_ambient_light.c \
+	Element/AmbientLight/deserialize_ambient_light.c \
+	Element/Camera/deserialize_camera.c \
 	Element/Camera/init_camera.c \
 	Element/Camera/update_camera.c \
 	Element/Light/init_light.c \
+	Element/Light/deserialize_light.c \
+	Element/Plane/deserialize_plane.c \
 	Element/Plane/hit_plane.c \
 	Element/Plane/hit_color_plane.c \
 	Element/Plane/init_plane.c \
+	Element/Sphere/deserialize_sphere.c \
 	Element/Sphere/hit_sphere.c \
 	Element/Sphere/hit_color_sphere.c \
 	Element/Sphere/init_sphere.c \
 	Element/Sphere/transform_sphere.c \
+	Element/Cylinder/deserialize_cylinder.c \
 	Element/Cylinder/hit_cylinder.c \
 	Element/Cylinder/hit_color_cylinder.c \
 	Element/Cylinder/init_cylinder.c \
@@ -82,22 +88,17 @@ MINIRT_SRCS = \
 	Element/util/quadratic_formula_root.c \
 	Element/util/transform_element.c \
 	Element/util/rotate_element.c \
+	Element/util/rgb_to_color.c \
+	Element/util/parse_rgb.c \
+	Element/util/parse_double.c \
+	Element/util/parse_vector3.c \
+	Element/util/size_range_in.c \
+	Element/util/size_should_be.c \
 	Element/element_iter.c \
+	Element/deserialize.c \
 	Element/hit.c \
 	file/clean_rt.c \
 	file/import_file.c \
-	file/rgb_to_color.c \
-	file/parse_rgb.c \
-	file/parse_double.c \
-	file/parse_vector3.c \
-	file/size_range_in.c \
-	file/size_should_be.c \
-	file/parse_ambient_light.c \
-	file/parse_camera.c \
-	file/parse_light.c \
-	file/parse_plane.c \
-	file/parse_sphere.c \
-	file/parse_cylinder.c \
 	device/create_device.c \
 	device/destroy_device.c \
 	device/hook.c \

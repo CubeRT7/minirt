@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_double.c                                     :+:      :+:    :+:   */
+/*   size_should_be.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/28 19:02:12 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/28 20:16:17 by yonshin          ###   ########.fr       */
+/*   Created: 2023/07/28 18:48:33 by yonshin           #+#    #+#             */
+/*   Updated: 2023/08/01 19:24:03 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file_private.h"
+#include "parse_util.h"
 
-int	parse_double(double *res, char *str)
+int	size_should_be(char **argv, int size)
 {
-	char	*remain;
+	int	i;
 
-	if (res == NULL || str == NULL)
+	if (argv == NULL)
 		return (EXIT_FAILURE);
-	*res = ft_strtof(str, &remain);
-	if (errno || (*remain != '\0' && ft_strchr("\r\n", *remain) == NULL))
+	i = 0;
+	while (i < size)
+	{
+		if (argv[i] == NULL)
+			return (EXIT_FAILURE);
+		i++;
+	}
+	if (argv[i] != NULL)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
