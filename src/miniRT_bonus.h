@@ -44,8 +44,10 @@ typedef struct s_world
 
 typedef struct s_world_for_thread
 {
-	t_world	*world;
-	int		idx;
+	t_world			*world;
+	int				idx;
+	int				run;
+	pthread_mutex_t	m_run;
 }	t_world_for_thread;
 
 extern int			main_loop(void *param);

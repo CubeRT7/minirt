@@ -60,39 +60,82 @@ static void	*_render_image(void *data)
 	t_vector3					pos;
 	int							pixel_color;
 
-	pos.x = device->separated_render_curr.x + wft->idx;
-	while (pos.x < device->size.x)
+	while (1)
 	{
-		pos.y = device->separated_render_curr.y;
-		while (pos.y < device->size.y)
+		pthread_mutex_lock(&wft->m_run);
+		if (wft->run == 0)
 		{
-			if (pos.y > device->size.y)
-				break ;
-			pixel_color = _get_pixel(wft->world, pos);
-			put_pixel(device, pos.x, device->size.y - pos.y - 1, pixel_color);
-			pos.y += device->separated_render_max.y;
+			pthread_mutex_unlock(&wft->m_run);
+			usleep(1);
+			continue;
 		}
-		pos.x += device->separated_render_max.x;
+		pos.x = device->separated_render_curr.x + wft->idx;
+		while (pos.x < device->size.x)
+		{
+			pos.y = device->separated_render_curr.y;
+			while (pos.y < device->size.y)
+			{
+				if (pos.y > device->size.y)
+					break ;
+				pixel_color = _get_pixel(wft->world, pos);
+				put_pixel(device, pos.x, device->size.y - pos.y - 1, pixel_color);
+				pos.y += device->separated_render_max.y;
+			}
+			pos.x += device->separated_render_max.x;
+		}
+		wft->run = 0;
+		pthread_mutex_unlock(&wft->m_run);
+		usleep(1);
 	}
 	return (NULL);
 }
 
 void	render_image(t_world *world)
 {
-	pthread_t			thread[THREAD_COUNT];
-	t_world_for_thread	data[THREAD_COUNT];
-	t_device *const		device = &world->device;
-	int					i;
+	static pthread_t			*threads;
+	static t_world_for_thread	data[THREAD_COUNT];
+	t_device *const				device = &world->device;
+	int							i;
 
+	if (threads == NULL)
+	{
+		threads = malloc(sizeof(pthread_t) * THREAD_COUNT);
+		if (threads == NULL)
+			return ;
+		i = 0;
+		while (i < THREAD_COUNT)
+		{
+			data[i].world = world;
+			data[i].idx = i;
+			data[i].run = 0;
+			pthread_mutex_init(&data[i].m_run, NULL);
+			pthread_create(threads + i, NULL, _render_image, data + i);
+			i++;
+		}
+		while (i > 0)
+			pthread_detach(threads[--i]);
+	}
 	i = 0;
 	while (i < THREAD_COUNT)
 	{
-		data[i].world = world;
-		data[i].idx = i;
-		pthread_create(thread + i, NULL, _render_image, data + i);
+		pthread_mutex_lock(&data[i].m_run);
+		data[i].run = 1;
+		pthread_mutex_unlock(&data[i].m_run);
 		i++;
 	}
-	while (i > 0)
-		pthread_join(thread[--i], NULL);
+	i = 0;
+	while (i < THREAD_COUNT)
+	{
+		pthread_mutex_lock(&data[i].m_run);
+		if (data[i].run == 1)
+		{
+			pthread_mutex_unlock(&data[i].m_run);
+		}
+		else
+		{
+			pthread_mutex_unlock(&data[i].m_run);
+			i++;
+		}
+	}
 	_update_next_render_idx(device);
 }
