@@ -47,7 +47,6 @@ extern int			main_loop(void *param);
 extern void			rotate_camera(void *param);
 extern void			move_camera(void *param);
 extern void			transform_objs(void *param);
-extern void			transform_objs_with_mouse(void *param);
 
 extern void			world_iter(t_world *world, enum e_element_func e);
 extern int			hit(t_list *objs, t_ray *r, t_range ran, t_hit *h);
