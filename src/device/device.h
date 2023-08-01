@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:34:23 by yonshin           #+#    #+#             */
-/*   Updated: 2023/07/25 01:38:11 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 01:40:43 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ enum e_keyboard_key
 	KEYBOARD_F2,
 	KEYBOARD_F3,
 	KEYBOARD_F4,
+	KEYBOARD_F12,
 	MAX_KEYBOARD
 };
 

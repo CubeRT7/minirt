@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:56:58 by minjungk          #+#    #+#             */
-/*   Updated: 2023/08/01 19:34:56 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 02:06:18 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,24 @@ int	deserialize(t_element **rtn, const char *line)
 
 int	serialize(int fd, t_element *element)
 {
+	errno = 0;
 	if (element == NULL)
 		return (EXIT_SUCCESS);
 	else if (element->type == AmbientLight)
-		write(fd, "A ", 2);
+		ft_putstr_fd("A ", fd);
 	else if (element->type == Camera)
-		write(fd, "C ", 2);
+		ft_putstr_fd("C ", fd);
 	else if (element->type == Light)
-		write(fd, "L ", 2);
+		ft_putstr_fd("L ", fd);
 	else if (element->type == Plane)
-		write(fd, "pl ", 3);
+		ft_putstr_fd("pl ", fd);
 	else if (element->type == Sphere)
-		write(fd, "sp ", 3);
+		ft_putstr_fd("sp ", fd);
 	else if (element->type == Cylinder)
-		write(fd, "cy ", 3);
-	element->func[Serialize](element, fd);
+		ft_putstr_fd("cy ", fd);
+	element->func[Serialize](fd, element);
 	if (errno)
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+		return (EXIT_FAILURE);
+	ft_putchar_fd('\n', fd);
 	return (EXIT_SUCCESS);
 }

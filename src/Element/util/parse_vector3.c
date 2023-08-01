@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 14:30:01 by yonshin           #+#    #+#             */
-/*   Updated: 2023/08/01 19:23:52 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 02:00:28 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	parse_vector3(t_vector3 *vector, char *curr, int scope)
 			&& (-1.0 <= vector->z && vector->z <= 1.0)))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	axis_len = v3_magnitude(*vector);
-	if (!(0.9999 < axis_len && axis_len < 1.0001))
+	if (!(0.9 < axis_len && axis_len < 1.1))
 		return (ft_error(__func__, __FILE__, __LINE__, EINVAL));
 	return (EXIT_SUCCESS);
 }
