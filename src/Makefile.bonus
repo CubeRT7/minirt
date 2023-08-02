@@ -124,8 +124,7 @@ MINIRT_SRCS = \
 	draw/main_loop.c \
 	draw/update.c \
 	draw/ray_color.c \
-	draw/render_bonus.c \
-	draw/render_image_bonus.c \
+	draw/render.c \
 	draw/world_iter.c \
 	draw/select_element.c \
 	bumpmap/get_bumpmap_pixel_bonus.c \

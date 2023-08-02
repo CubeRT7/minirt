@@ -24,6 +24,27 @@ static void	_update_next_render_idx(t_device *device)
 		device->separated_render_curr.y = 0;
 }
 
+static int	_get_pixel(t_world *w, t_vector3 pos)
+{
+	static const t_vector3	v[] = {
+		(t_vector3){0, 0.5, 0},
+		(t_vector3){-0.5, -0.5, 0},
+		(t_vector3){0.5, -0.5, 0}};
+	int						idx;
+	t_color					color;
+	t_color					res;
+
+	res = v3_preset(V3_ZERO);
+	idx = 0;
+	while (idx < 3)
+	{
+		color = ray_color(w, v3_add(pos, v[idx]));
+		res = v3_add(res, color);
+		idx++;
+	}
+	return (color_to_pixel(v3_mul(res, 0.333)));
+}
+
 static void	_render_text(t_world *world)
 {
 	static const char	*edit = "edit....";
@@ -62,7 +83,7 @@ static void	_render_image(t_world *world)
 		{
 			if (pos.x > device->size.x || pos.y > device->size.y)
 				break ;
-			pixel_color = color_to_pixel(ray_color(world, pos));
+			pixel_color = _get_pixel(world, pos);
 			put_pixel(device, pos.x, device->size.y - pos.y - 1, pixel_color);
 			pos.y += device->separated_render_max.y;
 		}
