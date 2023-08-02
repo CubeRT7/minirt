@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/07/31 08:39:53 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:09:00 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ static int	_read(struct s_rt_file *rt, int fd)
 	ft_memset(elements, 0, sizeof(elements));
 	if (_append_elements(elements, fd) == EXIT_SUCCESS)
 	{
-		if (ft_lstsize(elements[AmbientLight]) < 2
-			&& ft_lstsize(elements[Camera]) < 2
-			&& ft_lstsize(elements[Light]) < 2)
+		if (ft_lstsize(elements[AmbientLight]) == 1
+			&& ft_lstsize(elements[Camera]) == 1
+			&& ft_lstsize(elements[Light]) == 1)
 		{
 			rt->ambient_light = elements[AmbientLight];
 			rt->camera = elements[Camera];
