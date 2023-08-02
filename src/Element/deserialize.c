@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:56:58 by minjungk          #+#    #+#             */
-/*   Updated: 2023/08/02 01:56:36 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:00:49 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ extern t_element	*deserialize_cylinder(const char *line);
 
 int	deserialize(t_element **rtn, const char *line)
 {
-	t_element	*element;
-
 	*rtn = NULL;
 	while (line[0] == ' ')
 		++line;

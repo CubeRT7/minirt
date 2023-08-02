@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/08/01 19:22:47 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:55:49 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,19 @@ t_element	*deserialize_camera(const char *line)
 	t_camera *const	self = ft_calloc(1, sizeof(t_camera));
 
 	if (self == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+		return (NULL);
 	cols = ft_split(line, ' ');
 	if (cols == NULL)
 	{
 		free(self);
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+		return (NULL);
 	}
 	ret = parse_camera(self, cols);
 	ft_strarr_free(cols);
 	if (ret == EXIT_FAILURE)
 	{
 		free(self);
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+		return (NULL);
 	}
-	return (self);
+	return ((t_element *)self);
 }

@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:36:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/08/02 01:59:20 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:56:15 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	serialize_camera(int fd, t_element *element)
 {
-	t_camera *const	self = element;
+	t_camera *const	self = (t_camera *)element;
 
 	if (serialize_vector3(fd, self->base.position) == EXIT_FAILURE)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));

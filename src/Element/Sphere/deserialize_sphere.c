@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:37:44 by minjungk          #+#    #+#             */
-/*   Updated: 2023/08/01 19:22:58 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:00:35 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,19 @@ t_element	*deserialize_sphere(const char *line)
 	t_sphere *const	self = ft_calloc(1, sizeof(t_sphere));
 
 	if (self == NULL)
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+		return (NULL);
 	cols = ft_split(line, ' ');
 	if (cols == NULL)
 	{
 		free(self);
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+		return (NULL);
 	}
 	ret = parse_sphere(self, cols);
 	ft_strarr_free(cols);
 	if (ret == EXIT_FAILURE)
 	{
 		free(self);
-		return (ft_error(__func__, __FILE__, __LINE__, 0));
+		return (NULL);
 	}
-	return (self);
+	return ((t_element *)self);
 }

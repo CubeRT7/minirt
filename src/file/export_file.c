@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 04:42:29 by minjungk          #+#    #+#             */
-/*   Updated: 2023/08/02 01:55:01 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:01:30 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	_write(t_world *world, int fd)
 	t_list	*curr;
 
 	if (world->ambient_light
-		&& serialize(fd, world->ambient_light) == EXIT_FAILURE)
+		&& serialize(fd, (t_element *)world->ambient_light) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (world->camera
-		&& serialize(fd, world->camera) == EXIT_FAILURE)
+		&& serialize(fd, (t_element *)world->camera) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	curr = world->lights;
 	while (curr)
@@ -46,7 +46,6 @@ int	export_file(t_world *world)
 {
 	int		fd;
 	int		ret;
-	t_list	*curr;
 
 	if (world->device.keyboard[KEYBOARD_F12] == 0)
 		return (EXIT_SUCCESS);

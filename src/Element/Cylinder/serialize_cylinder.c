@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 05:38:49 by minjungk          #+#    #+#             */
-/*   Updated: 2023/08/02 01:59:29 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:56:37 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	serialize_cylinder(int fd, t_element *element)
 {
-	t_cylinder *const	self = element;
+	t_cylinder *const	self = (t_cylinder *)element;
 
 	if (serialize_vector3(fd, self->base.position) == EXIT_FAILURE)
 		return (ft_error(__func__, __FILE__, __LINE__, 0));
