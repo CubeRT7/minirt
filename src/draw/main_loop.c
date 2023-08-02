@@ -6,7 +6,7 @@
 /*   By: yonshin <yonshin@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 06:37:41 by yonshin           #+#    #+#             */
-/*   Updated: 2023/08/02 01:42:53 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:18:45 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main_loop(void *param)
 {
 	t_world *const	world = param;
 
-	export_file(world);
 	update(world);
+	export_file(world);
 	render(world);
 	return (EXIT_SUCCESS);
 }
