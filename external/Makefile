@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-.DEFAULT_ON_ERROR:
+.DELETE_ON_ERROR:
 .DEFAULT_GOAL := all
 
 # **************************************************************************** #
@@ -32,7 +32,8 @@ $(LIBMLX_DIR):
 	fi
 
 libmlx_fix: $(LIBMLX_DIR)
-	sed -i 's///g' $(LIBMLX_DIR)/configure
+	sed -i 's/
+//g' $(LIBMLX_DIR)/configure
 	sed -i'' -r -e "/^CFLAGS\t=/a\CFLAGS+= -Wno-return-type" $(LIBMLX_DIR)/Makefile.mk
 	sed -i'' -r -e "/^CFLAGS\t=/a\CFLAGS+= -Wno-parentheses" $(LIBMLX_DIR)/Makefile.mk
 	sed -i'' -r -e "/^CFLAGS\t=/a\CFLAGS+= -Wno-pointer-sign" $(LIBMLX_DIR)/Makefile.mk

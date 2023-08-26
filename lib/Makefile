@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-.DEFAULT_ON_ERROR:
+.DELETE_ON_ERROR:
 .DEFAULT_GOAL := all
 
 MAKEFLAGS	= -j 8
